@@ -1,0 +1,36 @@
+<aside class="sidebar flex flex-col">
+    <figure class="w-[140px]">
+        <img src="assets/image/logo.svg">
+    </figure>
+
+    <app-input-box></app-input-box>
+
+    <hr class="bg-primary-500 rounded-2">
+
+    <section class="folders h-[100%] overflow-hidden flex flex-col gap-[20px]">
+        <div class="flex-between-center">
+            <div class="text-body-xl-bold">Folders</div>
+
+            <app-add-folder></app-add-folder>
+        </div>
+
+        <div class="h-[100%] overflow-y-scroll">
+
+            <div class="folder-list" *ngFor="let folder of folders">
+                <app-folder [folder]="folder"></app-folder>
+            </div>
+
+            <div class="folder-list" *ngFor="let folder of folders">
+                <app-folder [folder]="folder"></app-folder>
+            </div>
+
+            <div class="folder-list" *ngFor="let folder of folders">
+                <app-folder [folder]="folder"></app-folder>
+            </div>
+
+            <div class="folder-list" *ngFor="let folder of folders">
+                <app-folder [folder]="folder"></app-folder>
+            </div>
+        </div>
+    </section>
+</aside>

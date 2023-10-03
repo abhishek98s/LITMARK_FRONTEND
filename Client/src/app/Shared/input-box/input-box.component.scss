@@ -1,0 +1,17 @@
+@import '../../colors';
+
+.input-box{
+    height: 40px;
+    width: 100%;
+
+    input{
+        border: 1px solid $primary-400;
+        transition: .4s;
+        outline: none;
+        padding: 8px 12px;
+        
+        &:focus{
+            border: 1px solid $primary-800;
+        }
+    }
+}
