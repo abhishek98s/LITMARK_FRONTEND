@@ -13,6 +13,10 @@
         & ~ figure {
             border: 1px solid $primary-400;
         }
+
+        .title{
+            line-height: 130%;
+        }
     }
 
     .date-del {

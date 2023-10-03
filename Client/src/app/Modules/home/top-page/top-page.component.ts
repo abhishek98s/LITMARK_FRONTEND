@@ -13,10 +13,6 @@ export class TopPageComponent {
   }
   chips: Chip[] = [
     {
-      name: 'Design',
-      active: false
-    },
-    {
       name: 'Health',
       active: false
 
@@ -57,13 +53,13 @@ export class TopPageComponent {
     },
 
     {
-      category: "Tech",
+      category: "UX",
       title: "Elevate User Experiences with Exceptional UI/UX Design Services",
       img: "assets/image/bookmark-2.png",
       date: "September 18, 2023"
     },
     {
-      category: "Tech",
+      category: "UI Design",
       title: "Nokia unveils Pure UI, a new user interface design language",
       img: "assets/image/bookmark-3.png",
       date: "May 18, 2014"
@@ -75,13 +71,13 @@ export class TopPageComponent {
       date: "Apr 30, 2023"
     },
     {
-      category: "Tech",
+      category: "UI Design",
       title: "Whatsapp's new UI design looks super sleek",
       img: "assets/image/bookmark-5.png",
       date: "May 18, 2014"
     },
     {
-      category: "Tech",
+      category: "Tools",
       title: "The best UI design tools in 2023",
       img: "assets/image/bookmark-6.png",
       date: "Mar 19, 2023"
