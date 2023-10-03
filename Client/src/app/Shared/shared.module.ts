@@ -8,6 +8,9 @@ import { InputBoxComponent } from './input-box/input-box.component';
 import { AddFolderComponent } from './add-folder/add-folder.component';
 import { FolderComponent } from './folder/folder.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SearchFilterBoxComponent } from './search-filter-box/search-filter-box.component';
+import { ChipComponent } from './chip/chip.component';
+import { RecentBookmarkComponent } from './recent-bookmark/recent-bookmark.component';
 
 
 
@@ -20,7 +23,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     InputBoxComponent,
     AddFolderComponent,
     FolderComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchFilterBoxComponent,
+    ChipComponent,
+    RecentBookmarkComponent
   ],
   imports: [
     CommonModule
@@ -33,7 +39,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     InputBoxComponent,
     AddFolderComponent,
     FolderComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchFilterBoxComponent,
+    ChipComponent,
+    RecentBookmarkComponent
   ]
 })
 export class SharedModule { }

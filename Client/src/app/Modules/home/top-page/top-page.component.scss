@@ -1,3 +1,21 @@
-.main{
-    grid-template-columns: 300px auto;
+.main-wrapper {
+    grid-template-columns: 300px calc(100vw - 308px);
+
+    .main {
+        max-width: calc(100% - 8%);
+        margin: 36px 4% 0;
+    }
+
+    .recent-bookmark-wrapper {
+        margin-top: 48px;
+
+        .chips-list {
+            margin-top: 12px;
+        }
+
+        .recent-bookmark-list {
+            margin-top: 40px;
+            row-gap: 32px;
+        }
+    }
 }

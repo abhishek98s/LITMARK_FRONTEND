@@ -1,0 +1,21 @@
+@import "../../colors";
+
+.recent-bookmark {
+    padding: 12px;
+    max-width: 300px;
+
+    .category-title {
+        max-width: calc(100% - 70px);
+        .category {
+            margin-bottom: 8px;
+        }
+
+        & ~ figure {
+            border: 1px solid $primary-400;
+        }
+    }
+
+    .date-del {
+        margin-top: 12px;
+    }
+}

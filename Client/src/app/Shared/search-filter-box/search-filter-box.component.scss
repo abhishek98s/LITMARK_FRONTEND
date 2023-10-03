@@ -1,0 +1,11 @@
+@import "../../colors";
+
+.search-filter-wrapper {
+    border: 1px solid $primary-200;
+    padding: 20px;
+
+    .search-box {
+        max-width: 300px;
+        width: 100%;
+    }
+}
