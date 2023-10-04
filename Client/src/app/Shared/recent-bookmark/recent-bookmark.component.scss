@@ -2,7 +2,6 @@
 
 .recent-bookmark {
     padding: 12px;
-    max-width: 300px;
 
     .category-title {
         max-width: calc(100% - 70px);
@@ -14,8 +13,14 @@
             border: 1px solid $primary-400;
         }
 
-        .title{
+        .title {
             line-height: 130%;
+            transition: 0.2s;
+
+            &:hover {
+                text-decoration: underline;
+                color: $primary-800;
+            }
         }
     }
 

@@ -1,8 +1,8 @@
-<div class="recent-bookmark rounded-2 bg-primary-100">
+<div class="recent-bookmark rounded-2 bg-primary-100 flex flex-col justify-between h-100">
     <div class="flex-between-center gap-[1px]">
         <div class="category-title grow-0">
             <div class="category text-label-md-bold text-primary-850-80">{{recentBookmark.category}}</div>
-            <div class="title text-body-md-medium text-primary-1000">{{recentBookmark.title}}</div>
+            <a href={{recentBookmark.link}} target="_blank" class="title text-body-md-medium text-primary-1000">{{recentBookmark.title}}</a>
         </div>
 
         <figure class="image w-[60px] h-[60px] rounded-2">

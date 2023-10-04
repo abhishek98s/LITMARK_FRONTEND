@@ -1,5 +1,8 @@
 .main-wrapper {
-    grid-template-columns: 300px calc(100vw - 308px);
+    grid-template-columns: 100%;
+    @media screen and (min-width: 768px) {
+        grid-template-columns: 300px calc(100vw - 308px);
+    }
 
     .main {
         max-width: calc(100% - 8%);
@@ -19,3 +22,4 @@
         }
     }
 }
+

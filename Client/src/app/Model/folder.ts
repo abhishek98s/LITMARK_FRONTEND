@@ -13,4 +13,5 @@ export interface Recentbookmark {
     title: string,
     date: string,
     img: string,
+    link: string
 }
