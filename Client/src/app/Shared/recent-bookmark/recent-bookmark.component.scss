@@ -14,8 +14,13 @@
         }
 
         .title {
-            line-height: 130%;
+            line-height: 1.5;
             transition: 0.2s;
+            display: block;
+
+            @media only screen and (max-height: 1400px) {
+                font-size: 14px;
+            }
 
             &:hover {
                 text-decoration: underline;
