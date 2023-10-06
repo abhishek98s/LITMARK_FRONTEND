@@ -6,7 +6,7 @@
 
 * {
     box-sizing: border-box;
-    font-family: 'Proxima Soft';
+    font-family: "Proxima Soft";
 }
 
 img,
@@ -140,6 +140,11 @@ $colors-list: map-merge(
         @extend %center;
         justify-content: space-between;
     }
+}
+
+::selection {
+    background-color: $primary-600;
+    color: $primary-20;
 }
 
 /* width */
