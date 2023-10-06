@@ -41,8 +41,10 @@ $colors-list: map-merge(
         "primary-900": $primary-900,
         "primary-1000": $primary-1000,
 
-        $error-100: $error-100,
-        $error-800: $error-800
+        "neutral-0": $neutral-0,
+
+        "error-100": $error-100,
+        "error-800": $error-800
     ),
     $colors-list
 );

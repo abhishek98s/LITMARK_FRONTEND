@@ -8,128 +8,98 @@ import { Chip, Recentbookmark } from 'src/app/Model/folder';
 })
 export class TopPageComponent {
   activeChip: Chip = {
-    name: 'Design',
+    chipName: 'Design',
     active: true
   }
   chips: Chip[] = [
     {
-      name: 'Health',
+      chipName: 'Health',
       active: false
 
     },
     {
-      name: 'IDE',
+      chipName: 'IDE',
       active: false
 
     },
     {
-      name: 'Book',
+      chipName: 'Book',
       active: false
     },
     {
-      name: 'Coding',
+      chipName: 'Coding',
       active: false
     },
     {
-      name: 'Swift',
+      chipName: 'Swift',
       active: false
     },
     {
-      name: 'Health',
+      chipName: 'Health',
       active: false
     },
     {
-      name: 'Tech',
+      chipName: 'Tech',
       active: false
     },
     {
-      name: 'Health',
-      active: false
-
-    },
-    {
-      name: 'IDE',
+      chipName: 'Health',
       active: false
 
     },
     {
-      name: 'Book',
-      active: false
-    },
-    {
-      name: 'Coding',
-      active: false
-    },
-    {
-      name: 'Swift',
-      active: false
-    },
-    {
-      name: 'Health',
-      active: false
-    },
-    {
-      name: 'Tech',
-      active: false
-    },
-    {
-      name: 'Health',
+      chipName: 'IDE',
       active: false
 
     },
     {
-      name: 'IDE',
+      chipName: 'Book',
+      active: false
+    },
+    {
+      chipName: 'Coding',
+      active: false
+    },
+    {
+      chipName: 'Swift',
+      active: false
+    },
+    {
+      chipName: 'Health',
+      active: false
+    },
+    {
+      chipName: 'Tech',
+      active: false
+    },
+    {
+      chipName: 'Health',
       active: false
 
     },
     {
-      name: 'Book',
-      active: false
-    },
-    {
-      name: 'Coding',
-      active: false
-    },
-    {
-      name: 'Swift',
-      active: false
-    },
-    {
-      name: 'Health',
-      active: false
-    },
-    {
-      name: 'Tech',
-      active: false
-    },
-    {
-      name: 'Health',
+      chipName: 'IDE',
       active: false
 
     },
     {
-      name: 'IDE',
-      active: false
-
-    },
-    {
-      name: 'Book',
+      chipName: 'Book',
       active: false
     },
     {
-      name: 'Coding',
+      chipName: 'Coding',
       active: false
     },
     {
-      name: 'Swift',
+      chipName: 'Swift',
       active: false
     },
     {
-      name: 'Health',
+      chipName: 'Health',
       active: false
     },
     {
-      name: 'Tech',
+      chipName: 'Tech',
       active: false
     },
   ]

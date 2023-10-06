@@ -4,7 +4,7 @@ export interface folder {
 }
 
 export interface Chip {
-    name: string,
+    chipName: string,
     active: boolean
 }
 
