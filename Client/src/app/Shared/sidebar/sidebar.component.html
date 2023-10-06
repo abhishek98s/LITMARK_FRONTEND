@@ -14,21 +14,21 @@
             <app-add-folder></app-add-folder>
         </div>
 
-        <div class="h-[100%] overflow-y-scroll">
+        <div class="h-[100%] folder-list">
 
-            <div class="folder-list" *ngFor="let folder of folders">
+            <div class="folder" *ngFor="let folder of folders">
                 <app-folder [folder]="folder"></app-folder>
             </div>
 
-            <div class="folder-list" *ngFor="let folder of folders">
+            <div class="folder" *ngFor="let folder of folders">
                 <app-folder [folder]="folder"></app-folder>
             </div>
 
-            <div class="folder-list" *ngFor="let folder of folders">
+            <div class="folder" *ngFor="let folder of folders">
                 <app-folder [folder]="folder"></app-folder>
             </div>
 
-            <div class="folder-list" *ngFor="let folder of folders">
+            <div class="folder" *ngFor="let folder of folders">
                 <app-folder [folder]="folder"></app-folder>
             </div>
         </div>
