@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { folder } from 'src/app/Model/folder';
+import { BookmarkService } from 'src/app/bookmark.service';
 
 
 @Component({
@@ -7,28 +8,12 @@ import { folder } from 'src/app/Model/folder';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent {
-  folders:folder[] =[
-    {
-      img: 'assets/image/folder-1.png',
-      title: 'Technology'
-    },
-    {
-      img: 'assets/image/folder-2.png',
-      title: 'Health'
-    },
-    {
-      img: 'assets/image/folder-3.png',
-      title: 'Study'
-    },
-    {
-      img: 'assets/image/folder-4.png',
-      title: 'Design'
-    },
-    {
-      img: 'assets/image/folder-5.png',
-      title: 'Book'
-    }
-  ]
+export class SidebarComponent implements OnInit {
+  folders!: folder[];
 
+  constructor(private dataService: BookmarkService) { }
+
+  ngOnInit(): void {
+    this.folders = this.dataService.getFolders();
+  }
 }

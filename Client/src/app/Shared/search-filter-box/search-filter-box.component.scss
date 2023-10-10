@@ -2,7 +2,11 @@
 
 .search-filter-wrapper {
     border: 1px solid $primary-200;
-    padding: 20px;
+    padding: 16px;
+
+    @media screen and (max-width: 1024px) {
+        padding: 16px;
+    }
 
     .search-box {
         max-width: 300px;
