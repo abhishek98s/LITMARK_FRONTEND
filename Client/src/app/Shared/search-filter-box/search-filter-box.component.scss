@@ -2,9 +2,9 @@
 
 .search-filter-wrapper {
     border: 1px solid $primary-200;
-    padding: 16px;
+    padding: 8px;
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (min-width: 768px) {
         padding: 16px;
     }
 

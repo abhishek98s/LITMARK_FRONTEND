@@ -1,4 +1,4 @@
-<aside class="sidebar flex flex-col fixed top-0">
+<aside class="sidebar flex flex-col fixed top-0 bg-primary-20">
     <figure class="w-[140px]">
         <img src="assets/image/logo.svg">
     </figure>
@@ -7,8 +7,8 @@
 
     <hr class="bg-primary-500 rounded-2">
 
-    <section class="folders h-[100%] overflow-hidden flex flex-col gap-[20px]">
-        <div class="flex-between-center">
+    <section class="folders h-[100%] overflow-hidden flex flex-col gap-[20px] relative">
+        <div class="lg:flex justify-between align-items-center hidden">
             <div class="text-body-xl-bold">Folders</div>
 
             <app-add-folder></app-add-folder>
@@ -32,5 +32,10 @@
                 <app-folder [folder]="folder"></app-folder>
             </div>
         </div>
+
+        <a href="#"
+            class="fixed z-50 bottom-[24px] right-[24px] p-[12px] rounded-full w-[62px] h-[62px] shadow-1 bg-primary-800 justify-center items-center flex lg:hidden">
+            <img src="assets/icon/add-folder.svg">
+        </a>
     </section>
 </aside>

@@ -15,3 +15,12 @@ export interface Recentbookmark {
     img: string,
     link: string
 }
+
+export interface insideFolder {
+    folder: boolean,
+    category?: string,
+    title?: string,
+    date?: string,
+    img?: string,
+    link?: string
+}

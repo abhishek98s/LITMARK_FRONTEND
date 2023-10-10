@@ -6,12 +6,15 @@
     padding: 24px 20px;
     padding-bottom: 12px;
     gap: 32px;
-    border-right: 1px solid $primary-200;
-    box-shadow: 4px 32px 32px 0px #4141b426;
+    position: absolute;
+    z-index: 5;
 
     @media screen and (min-width: 768px) {
+        border-right: 1px solid $primary-200;
+        box-shadow: 4px 32px 32px 0px #4141b426;
         min-width: 300px;
         max-width: 300px;
+        position: static;
     }
 
     .folders {

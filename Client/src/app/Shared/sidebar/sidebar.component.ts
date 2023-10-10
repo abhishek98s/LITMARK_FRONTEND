@@ -9,6 +9,7 @@ import { BookmarkService } from 'src/app/bookmark.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  sidebar: boolean = false;
   folders!: folder[];
 
   constructor(private dataService: BookmarkService) { }
