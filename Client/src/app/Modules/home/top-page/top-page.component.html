@@ -1,5 +1,6 @@
 <section class="main-wrapper grid grid-cols-2 ">
-    <app-sidebar></app-sidebar>
+    <div class="lg:block hidden"><app-sidebar></app-sidebar></div>
+    <div class="lg:hidden block fixed left-0 right-0 z-30" [class.active]="dataService.sidebar" [class.inactive]="!dataService.sidebar"><app-sidebar></app-sidebar></div>
 
     <section>
         <app-navbar></app-navbar>
@@ -13,21 +14,21 @@
                 <div class="chips-list flex gap-[12px] overflow-hidden">
                     <app-chip [chip]="activeChip"></app-chip>
 
-                    <div *ngFor="let chip of chips">
+                    <div *ngFor="let chip of dataService.getChips()">
                         <app-chip [chip]="chip"></app-chip>
                     </div>
 
                 </div>
 
                 <div class="recent-bookmark-list grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 gap-[4%]">
-                    <div *ngFor="let recentBookmark of recenBookmarks">
+                    <div *ngFor="let recentBookmark of dataService.getRecentBookmark()">
                         <app-recent-bookmark class="col-span-1" [recentBookmark]="recentBookmark"></app-recent-bookmark>
                     </div>
                 </div>
             </section>
 
-            <a href="#"
-                class="fixed z-50 bottom-[24px] right-[24px] p-[12px] rounded-full w-[62px] h-[62px] shadow-1 bg-primary-800 justify-center items-center flex lg:hidden">
+            <a href="#" (click)="toggleSidebar()"
+                class="fixed bottom-[24px] right-[24px] p-[12px] rounded-full w-[62px] h-[62px] shadow-1 bg-primary-800 justify-center items-center flex lg:hidden">
                 <img src="assets/icon/search-folder.svg">
             </a>
         </section>

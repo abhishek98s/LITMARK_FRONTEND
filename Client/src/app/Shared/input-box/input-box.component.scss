@@ -13,5 +13,9 @@
         &:focus{
             border: 1px solid $primary-800;
         }
+
+        &::placeholder{
+            color: $primary-700;
+        }
     }
 }

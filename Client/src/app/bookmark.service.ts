@@ -5,6 +5,8 @@ import { Chip, Recentbookmark, folder, insideFolder } from './Model/folder';
   providedIn: 'root'
 })
 export class BookmarkService {
+  public sidebar = false;
+
   private recentBookmark: Recentbookmark[] = [
     {
       category: "Design",

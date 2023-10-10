@@ -6,7 +6,7 @@
     padding: 24px 20px;
     padding-bottom: 12px;
     gap: 32px;
-    position: absolute;
+    transition: 0.4s;
     z-index: 5;
 
     @media screen and (min-width: 768px) {
@@ -14,7 +14,9 @@
         box-shadow: 4px 32px 32px 0px #4141b426;
         min-width: 300px;
         max-width: 300px;
-        position: static;
+        position: fixed;
+        top: 0;
+        animation: none;
     }
 
     .folders {

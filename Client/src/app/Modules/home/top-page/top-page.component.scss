@@ -4,6 +4,37 @@
         grid-template-columns: 300px calc(100vw - 308px);
     }
 
+    .active {
+        animation: topToDown 0.5s ease-in-out;
+        top: 0;
+        z-index: 55;
+
+        @keyframes topToDown {
+            from {
+                top: -100%;
+            }
+
+            to {
+                top: 0;
+            }
+        }
+    }
+
+    .inactive {
+        animation: downToTop 0.5s;
+        top: -100%;
+
+        @keyframes downToTop {
+            from {
+                top: 0;
+            }
+
+            to {
+                top: -100%;
+            }
+        }
+    }
+
     .main {
         max-width: calc(100% - 8%);
         margin: 36px 4% 0;

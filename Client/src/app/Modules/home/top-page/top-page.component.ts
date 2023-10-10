@@ -1,24 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Chip, Recentbookmark } from 'src/app/Model/folder';
 import { BookmarkService } from 'src/app/bookmark.service';
 
 @Component({
   selector: 'app-top-page',
   templateUrl: './top-page.component.html',
-  styleUrls: ['./top-page.component.scss']
+  styleUrls: ['./top-page.component.scss'],
+  styles: [`
+    .fade {
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .fade-hidden {
+      opacity: 0;
+    }
+  `],
 })
-export class TopPageComponent implements OnInit {
+export class TopPageComponent {
   activeChip: Chip = {
     chipName: 'Design',
     active: true
   }
-  chips!: Chip[];
-  recenBookmarks!: Recentbookmark[];
 
-  constructor(private dataService: BookmarkService) {}
+  constructor(public dataService: BookmarkService) { }
 
-  ngOnInit(): void {
-    this.chips = this.dataService.getChips();
-    this.recenBookmarks = this.dataService.getRecentBookmark();
+  toggleSidebar(): void {
+    this.dataService.sidebar = !this.dataService.sidebar;
   }
 }
