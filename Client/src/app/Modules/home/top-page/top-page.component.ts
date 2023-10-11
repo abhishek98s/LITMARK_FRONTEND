@@ -24,8 +24,4 @@ export class TopPageComponent {
   }
 
   constructor(public dataService: BookmarkService) { }
-
-  toggleSidebar(): void {
-    this.dataService.sidebar = !this.dataService.sidebar;
-  }
 }

@@ -403,3 +403,4 @@ export class BookmarkService {
     return this.folders;
   }
 }
+

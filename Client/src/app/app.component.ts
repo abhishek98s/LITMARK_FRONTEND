@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BookmarkService } from './bookmark.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Litmark';
+
+  constructor(public dataService: BookmarkService) { }
+
+  toggleSidebar(): void {
+    this.dataService.sidebar = !this.dataService.sidebar;
+  }
 }

@@ -1,56 +1,18 @@
-.main-wrapper {
-    grid-template-columns: 100%;
+.recent-bookmark-wrapper {
+    margin-top: 32px;
+
     @media screen and (min-width: 768px) {
-        grid-template-columns: 300px calc(100vw - 308px);
+        margin-top: 48px;
     }
 
-    .mobile-sidebar {
-        top: -100vh;
-        transition: 0.5s;
-        &.active {
-            animation: topToDown 0.5s ease-in-out;
-            top: 0;
-            z-index: 55;
-
-            @keyframes topToDown {
-                from {
-                    top: -100vh;
-                }
-
-                to {
-                    top: 0;
-                }
-            }
-        }
-
-        &.inactive {
-            animation: downToTop 0.5s;
-            top: -100vh;
-            transition: 0.5s;
-        }
+    .chips-list {
+        margin-top: 12px;
     }
 
-    .main {
-        max-width: calc(100% - 8%);
-        margin: 36px 4% 0;
-    }
-
-    .recent-bookmark-wrapper {
+    .recent-bookmark-list {
         margin-top: 32px;
-
-        @media screen and (min-width: 768px) {
-            margin-top: 48px;
-        }
-
-        .chips-list {
-            margin-top: 12px;
-        }
-
-        .recent-bookmark-list {
-            margin-top: 32px;
-            row-gap: 24px;
-            transition: overflow-y 0.3s;
-            overflow-y: hidden;
-        }
+        row-gap: 24px;
+        transition: overflow-y 0.3s;
+        overflow-y: hidden;
     }
 }
