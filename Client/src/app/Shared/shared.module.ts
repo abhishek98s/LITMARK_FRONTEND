@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SearchFilterBoxComponent } from './search-filter-box/search-filter-box.component';
 import { ChipComponent } from './chip/chip.component';
 import { RecentBookmarkComponent } from './recent-bookmark/recent-bookmark.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -29,7 +30,8 @@ import { RecentBookmarkComponent } from './recent-bookmark/recent-bookmark.compo
     RecentBookmarkComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     SidebarComponent,
@@ -42,7 +44,8 @@ import { RecentBookmarkComponent } from './recent-bookmark/recent-bookmark.compo
     NavbarComponent,
     SearchFilterBoxComponent,
     ChipComponent,
-    RecentBookmarkComponent
+    RecentBookmarkComponent,
+    RouterModule,
   ]
 })
 export class SharedModule { }

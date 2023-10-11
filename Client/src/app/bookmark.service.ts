@@ -277,62 +277,77 @@ export class BookmarkService {
 
   private folders: folder[] = [
     {
+      id: '1',
       img: 'assets/image/folder-1.png',
       title: 'Technology'
     },
     {
+      id: '2',
       img: 'assets/image/folder-2.png',
       title: 'Health'
     },
     {
+      id: '3',
       img: 'assets/image/folder-3.png',
       title: 'Study'
     },
     {
+      id: '4',
       img: 'assets/image/folder-4.png',
       title: 'Design'
     },
     {
+      id: '5',
       img: 'assets/image/folder-5.png',
       title: 'Book'
     },
     {
+      id: '6',
       img: 'assets/image/folder-1.png',
       title: 'Technology'
     },
     {
+      id: '7',
       img: 'assets/image/folder-2.png',
       title: 'Health'
     },
     {
+      id: '8',
       img: 'assets/image/folder-3.png',
       title: 'Study'
     },
     {
+      id: '9',
       img: 'assets/image/folder-4.png',
       title: 'Design'
     },
     {
+      id: '10',
       img: 'assets/image/folder-5.png',
       title: 'Book'
     },
     {
+      id: '11',
       img: 'assets/image/folder-1.png',
       title: 'Technology'
     },
     {
+      id: '12',
       img: 'assets/image/folder-2.png',
       title: 'Health'
     },
     {
+      id: '13',
       img: 'assets/image/folder-3.png',
       title: 'Study'
     },
     {
+      id: '14',
       img: 'assets/image/folder-4.png',
       title: 'Design'
     },
     {
+      id: '15',
       img: 'assets/image/folder-5.png',
       title: 'Book'
     },

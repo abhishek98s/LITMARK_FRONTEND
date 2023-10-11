@@ -1,4 +1,5 @@
 export interface folder {
+    id: string,
     img: string
     title: string,
 }

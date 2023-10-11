@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-add-folder',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-folder.component.scss']
 })
 export class AddFolderComponent {
+  @Input() value!: string;
+  @Input() icon!: string;
 
 }
