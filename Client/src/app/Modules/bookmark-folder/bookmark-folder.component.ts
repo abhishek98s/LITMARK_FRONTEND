@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BookmarkService } from 'src/app/bookmark.service';
 
 @Component({
   selector: 'app-bookmark-folder',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./bookmark-folder.component.scss']
 })
 export class BookmarkFolderComponent {
+
+  constructor(public dataService: BookmarkService) { 
+    console.log(this.dataService.getFolderData())
+  };
 
 }

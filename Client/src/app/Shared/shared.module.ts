@@ -12,7 +12,7 @@ import { SearchFilterBoxComponent } from './search-filter-box/search-filter-box.
 import { ChipComponent } from './chip/chip.component';
 import { RecentBookmarkComponent } from './recent-bookmark/recent-bookmark.component';
 import { RouterModule } from '@angular/router';
-
+import { FolderDataComponent } from './folder-data/folder-data.component';
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import { RouterModule } from '@angular/router';
     NavbarComponent,
     SearchFilterBoxComponent,
     ChipComponent,
-    RecentBookmarkComponent
+    RecentBookmarkComponent,
+    FolderDataComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +47,7 @@ import { RouterModule } from '@angular/router';
     ChipComponent,
     RecentBookmarkComponent,
     RouterModule,
+    FolderDataComponent,
   ]
 })
 export class SharedModule { }

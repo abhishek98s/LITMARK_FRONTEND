@@ -17,10 +17,10 @@ export interface Recentbookmark {
     link: string
 }
 
-export interface insideFolder {
+export interface folderData {
     folder: boolean,
     category?: string,
-    title?: string,
+    title: string,
     date?: string,
     img?: string,
     link?: string
