@@ -1,6 +1,6 @@
 <div class="sub-folder h-[90px] flex gap-[16px] items-center bg-primary-200 rounded-2" *ngIf="data.folder">
     <figure class="w-[50px]">
-        <img src="assets/icon/sub-folder.svg">
+        <img src="assets/icon/sub-folder.svg" alt="sub-folder">
     </figure>
 
     <span class="text-body-md-medium text-primary-900">{{data.title}}</span>
@@ -8,7 +8,7 @@
 
 <div class="bookmark rounded-2 flex gap-[8px]" *ngIf="!data.folder">
     <figure class="thumbnail max-w-[60px] max-h-[60px] rounded-2">
-        <img class="rounded-2" src={{data.img}}>
+        <img class="rounded-2" src={{data.img}} alt="bookmark-img">
     </figure>
 
     <article class="flex flex-col w-[100%] justify-between">
@@ -16,9 +16,11 @@
             href={{data.link}}>{{data.title}}</a>
         <div class="text-primary-850-80 text-label-md-medium flex-between-center mt-[8px]">
             <span>{{data.date}}</span>
-            <figure class="w-[20px]">
-                <img src="assets/icon/trash.svg">
-            </figure>
+            <a href="#">
+                <figure class="w-[20px]">
+                    <img src="assets/icon/trash.svg" alt="trash">
+                </figure>
+            </a>
         </div>
     </article>
 </div>

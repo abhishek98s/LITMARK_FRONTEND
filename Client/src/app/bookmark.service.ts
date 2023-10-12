@@ -368,7 +368,7 @@ export class BookmarkService {
     },
     {
       folder: true,
-      title: "aribble",
+      title: "Mobbin",
     },
     {
       folder: false,
