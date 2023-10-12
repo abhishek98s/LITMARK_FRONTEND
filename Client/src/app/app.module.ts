@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,4 +28,8 @@ import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-fold
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private meta: Meta) {
+    this.meta.updateTag({ name: 'title', content: 'Updated Page Title' });
+  }
+}
