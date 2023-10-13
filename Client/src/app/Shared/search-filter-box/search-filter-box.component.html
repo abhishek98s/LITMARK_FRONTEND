@@ -3,11 +3,18 @@
         <app-input-box></app-input-box>
     </div>
 
-    <div class="filter flex gap-[8px]">
-        <span class="text-body-lg-bold text-primary-900">Date</span>
+    <div
+        class="sortDropdown flex p-[4px_10px] rounded-1 justify-between items-center bg-primary-20 text-primary-900 text-label-md-regular">
+        <button class="dropdown-btn">Date</button>
 
-        <figure class="w-[28px] h-[28px] flex-center">
-            <img src="assets/icon/sort.svg" alt="sort">
+        <figure class="w-[12px] h-[12px] flex-center">
+            <img src="assets/icon/arrow-down.svg" alt="sort">
         </figure>
+
+        <div class="sort-option p-[4px] rounded-1 text-label-md-regular spacing-y-[4px]">
+            <div>Date</div>
+            <div>A-Z</div>
+            <div>Z-A</div>
+        </div>
     </div>
 </article>

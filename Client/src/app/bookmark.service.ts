@@ -379,9 +379,9 @@ export class BookmarkService {
 
   constructor() { }
 
-  getRecentBookmark() {
-    return this.recentBookmark;
-  }
+  // getRecentBookmark() {
+  //   return this.recentBookmark;
+  // }
 
   filterRecentBookmark(chipCategory: string) {
     this.chips.forEach((chip: Chip) => { chip.active = false; });
