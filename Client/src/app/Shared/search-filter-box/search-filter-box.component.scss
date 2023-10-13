@@ -28,8 +28,15 @@
                 top: 90%;
                 overflow: unset;
             }
+
+            .down-arrow {
+                transform: rotate(180deg);
+            }
         }
 
+        .down-arrow {
+            transition: .4s;
+        }
         .sort-option {
             border: 2px solid $primary-200;
             border-top: none;
