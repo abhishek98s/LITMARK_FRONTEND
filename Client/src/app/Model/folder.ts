@@ -10,6 +10,7 @@ export interface Chip {
 }
 
 export interface Recentbookmark {
+    id: number,
     category: string,
     title: string,
     date: string,

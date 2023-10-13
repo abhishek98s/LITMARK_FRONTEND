@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Chip, Recentbookmark, folder, folderData } from './Model/folder';
+import { BehaviorSubject, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class BookmarkService {
 
   private recentBookmark: Recentbookmark[] = [
     {
+      id: 1,
       category: "Design",
       title: "Is Neumorphism really 2020's hottest design trend?",
       img: "assets/image/bookmark-1.webp",
@@ -17,6 +19,7 @@ export class BookmarkService {
     },
 
     {
+      id: 2,
       category: "UX",
       title: "Elevate User Experiences with Exceptional UI/UX Design Services",
       img: "assets/image/bookmark-2.webp",
@@ -24,6 +27,7 @@ export class BookmarkService {
       link: 'https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/'
     },
     {
+      id: 3,
       category: "UI Design",
       title: "Nokia unveils Pure UI, a new user interface design language",
       img: "assets/image/bookmark-3.webp",
@@ -31,6 +35,7 @@ export class BookmarkService {
       link: 'https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php'
     },
     {
+      id: 4,
       category: "Tech",
       title: "Google News on smartphones finally picks up Material You makeover",
       img: "assets/image/bookmark-4.webp",
@@ -38,6 +43,7 @@ export class BookmarkService {
       link: 'https://www.androidpolice.com/google-news-material-you-redesign-phones/'
     },
     {
+      id: 5,
       category: "UI Design",
       title: "Whatsapp's new UI design looks super sleek",
       img: "assets/image/bookmark-5.webp",
@@ -45,6 +51,7 @@ export class BookmarkService {
       link: 'https://www.creativebloq.com/news/new-whatsapp-ui-design'
     },
     {
+      id: 6,
       category: "Tools",
       title: "The best UI design tools in 2023",
       img: "assets/image/bookmark-6.webp",
@@ -52,6 +59,7 @@ export class BookmarkService {
       link: 'https://www.creativebloq.com/how-to/20-best-ui-design-tools'
     },
     {
+      id: 7,
       category: "Design",
       title: "Is Neumorphism really 2020's hottest design trend?",
       img: "assets/image/bookmark-1.webp",
@@ -60,6 +68,7 @@ export class BookmarkService {
     },
 
     {
+      id: 8,
       category: "UX",
       title: "Elevate User Experiences with Exceptional UI/UX Design Services",
       img: "assets/image/bookmark-2.webp",
@@ -67,6 +76,7 @@ export class BookmarkService {
       link: 'https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/'
     },
     {
+      id: 9,
       category: "UI Design",
       title: "Nokia unveils Pure UI, a new user interface design language",
       img: "assets/image/bookmark-3.webp",
@@ -74,6 +84,7 @@ export class BookmarkService {
       link: 'https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php'
     },
     {
+      id: 10,
       category: "Tech",
       title: "Google News on smartphones finally picks up Material You makeover",
       img: "assets/image/bookmark-4.webp",
@@ -81,6 +92,7 @@ export class BookmarkService {
       link: 'https://www.androidpolice.com/google-news-material-you-redesign-phones/'
     },
     {
+      id: 11,
       category: "UI Design",
       title: "Whatsapp's new UI design looks super sleek",
       img: "assets/image/bookmark-5.webp",
@@ -88,6 +100,7 @@ export class BookmarkService {
       link: 'https://www.creativebloq.com/news/new-whatsapp-ui-design'
     },
     {
+      id: 12,
       category: "Tools",
       title: "The best UI design tools in 2023",
       img: "assets/image/bookmark-6.webp",
@@ -95,6 +108,7 @@ export class BookmarkService {
       link: 'https://www.creativebloq.com/how-to/20-best-ui-design-tools'
     },
     {
+      id: 13,
       category: "Design",
       title: "Is Neumorphism really 2020's hottest design trend?",
       img: "assets/image/bookmark-1.webp",
@@ -103,6 +117,7 @@ export class BookmarkService {
     },
 
     {
+      id: 14,
       category: "UX",
       title: "Elevate User Experiences with Exceptional UI/UX Design Services",
       img: "assets/image/bookmark-2.webp",
@@ -110,6 +125,7 @@ export class BookmarkService {
       link: 'https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/'
     },
     {
+      id: 15,
       category: "UI Design",
       title: "Nokia unveils Pure UI, a new user interface design language",
       img: "assets/image/bookmark-3.webp",
@@ -117,6 +133,7 @@ export class BookmarkService {
       link: 'https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php'
     },
     {
+      id: 16,
       category: "Tech",
       title: "Google News on smartphones finally picks up Material You makeover",
       img: "assets/image/bookmark-4.webp",
@@ -124,6 +141,7 @@ export class BookmarkService {
       link: 'https://www.androidpolice.com/google-news-material-you-redesign-phones/'
     },
     {
+      id: 17,
       category: "UI Design",
       title: "Whatsapp's new UI design looks super sleek",
       img: "assets/image/bookmark-5.webp",
@@ -131,6 +149,7 @@ export class BookmarkService {
       link: 'https://www.creativebloq.com/news/new-whatsapp-ui-design'
     },
     {
+      id: 18,
       category: "Tools",
       title: "The best UI design tools in 2023",
       img: "assets/image/bookmark-6.webp",
@@ -138,6 +157,7 @@ export class BookmarkService {
       link: 'https://www.creativebloq.com/how-to/20-best-ui-design-tools'
     },
     {
+      id: 19,
       category: "Design",
       title: "Is Neumorphism really 2020's hottest design trend?",
       img: "assets/image/bookmark-1.webp",
@@ -146,41 +166,17 @@ export class BookmarkService {
     },
 
     {
+      id: 20,
       category: "UX",
       title: "Elevate User Experiences with Exceptional UI/UX Design Services",
       img: "assets/image/bookmark-2.webp",
       date: "September 18, 2023",
       link: 'https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/'
-    },
-    {
-      category: "UI Design",
-      title: "Nokia unveils Pure UI, a new user interface design language",
-      img: "assets/image/bookmark-3.webp",
-      date: "May 18, 2014",
-      link: 'https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php'
-    },
-    {
-      category: "Tech",
-      title: "Google News on smartphones finally picks up Material You makeover",
-      img: "assets/image/bookmark-4.webp",
-      date: "Apr 30, 2023",
-      link: 'https://www.androidpolice.com/google-news-material-you-redesign-phones/'
-    },
-    {
-      category: "UI Design",
-      title: "Whatsapp's new UI design looks super sleek",
-      img: "assets/image/bookmark-5.webp",
-      date: "May 18, 2014",
-      link: 'https://www.creativebloq.com/news/new-whatsapp-ui-design'
-    },
-    {
-      category: "Tools",
-      title: "The best UI design tools in 2023",
-      img: "assets/image/bookmark-6.webp",
-      date: "Mar 19, 2023",
-      link: 'https://www.creativebloq.com/how-to/20-best-ui-design-tools'
     },
   ];
+
+  myBehaviorSubject = new BehaviorSubject<Recentbookmark[]>(this.recentBookmark);
+
 
   private chips: Chip[] = [
     {
@@ -217,17 +213,17 @@ export class BookmarkService {
     {
       id: '1',
       img: 'assets/image/folder-1.png',
-      title: 'Technology'
+      title: 'UX'
     },
     {
       id: '2',
       img: 'assets/image/folder-2.png',
-      title: 'Health'
+      title: 'Tools'
     },
     {
       id: '3',
       img: 'assets/image/folder-3.png',
-      title: 'Study'
+      title: 'UI Design'
     },
     {
       id: '4',
@@ -387,18 +383,36 @@ export class BookmarkService {
     return this.recentBookmark;
   }
 
-  filterRecentBookmark(filterCategory: string) {
-    this.chips.map((chip: Chip) => {
-      chip.active = false;
-      if (chip.chipName == filterCategory) {
-        chip.active = !chip.active;
-      }
-    })
-    if (filterCategory == 'All') {
-      return this.recentBookmark;
+  filterRecentBookmark(chipCategory: string) {
+    this.chips.forEach((chip: Chip) => { chip.active = false; });
+
+    let selectedChip = this.chips.find((chip: Chip) => chip.chipName == chipCategory);
+
+    if (selectedChip) {
+      selectedChip.active = true;
     }
-    let filteredData = this.recentBookmark.filter((item) => item.category == filterCategory);
-    return filteredData;
+
+    if (chipCategory == 'All') {
+      this.myBehaviorSubject.next(this.recentBookmark);
+      return
+    }
+
+    this.myBehaviorSubject.pipe(
+      map((bookmarks: Recentbookmark[]) =>
+        this.recentBookmark.filter((bookmark) => bookmark.category === chipCategory)),
+      tap((filterdBookmarks: Recentbookmark[]) => {
+        this.myBehaviorSubject.next(filterdBookmarks)
+      })
+    ).subscribe();
+  }
+
+  deleteBookmark(id: number) {
+    this.myBehaviorSubject.pipe(
+      map((bookmarks: Recentbookmark[]) => bookmarks.filter(bookmark => bookmark.id !== id)),
+      tap((filteredBookmarks: Recentbookmark[]) => {
+        this.myBehaviorSubject.next(filteredBookmarks);
+      })
+    ).subscribe();
   }
 
   getChips() {
