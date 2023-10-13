@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Chip, Recentbookmark } from 'src/app/Model/folder';
 import { BookmarkService } from 'src/app/bookmark.service';
 
@@ -17,11 +17,21 @@ import { BookmarkService } from 'src/app/bookmark.service';
     }
   `],
 })
-export class TopPageComponent {
+export class TopPageComponent implements OnInit {
+  recentBookmark!: Recentbookmark[];
   activeChip: Chip = {
-    chipName: 'Design',
+    chipName: 'All',
     active: true
   }
 
   constructor(public dataService: BookmarkService) { }
+
+  ngOnInit(): void {
+    this.recentBookmark = this.dataService.getRecentBookmark();
+  }
+
+  filterCategory(category: string) {
+    this.recentBookmark = this.dataService.filterRecentBookmark(category);
+    console.log(this.recentBookmark)
+  }
 }

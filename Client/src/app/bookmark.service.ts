@@ -184,93 +184,31 @@ export class BookmarkService {
 
   private chips: Chip[] = [
     {
-      chipName: 'Health',
+      chipName: 'All',
+      active: true
+
+    },
+    {
+      chipName: 'Design',
       active: false
 
     },
     {
-      chipName: 'IDE',
+      chipName: 'UX',
       active: false
 
     },
     {
-      chipName: 'Book',
+      chipName: 'UI Design',
       active: false
-    },
-    {
-      chipName: 'Coding',
-      active: false
-    },
-    {
-      chipName: 'Swift',
-      active: false
-    },
-    {
-      chipName: 'Health',
-      active: false
+
     },
     {
       chipName: 'Tech',
       active: false
     },
     {
-      chipName: 'Health',
-      active: false
-
-    },
-    {
-      chipName: 'IDE',
-      active: false
-
-    },
-    {
-      chipName: 'Book',
-      active: false
-    },
-    {
-      chipName: 'Coding',
-      active: false
-    },
-    {
-      chipName: 'Swift',
-      active: false
-    },
-    {
-      chipName: 'Health',
-      active: false
-    },
-    {
-      chipName: 'Tech',
-      active: false
-    },
-    {
-      chipName: 'Health',
-      active: false
-
-    },
-    {
-      chipName: 'IDE',
-      active: false
-
-    },
-    {
-      chipName: 'Book',
-      active: false
-    },
-    {
-      chipName: 'Coding',
-      active: false
-    },
-    {
-      chipName: 'Swift',
-      active: false
-    },
-    {
-      chipName: 'Health',
-      active: false
-    },
-    {
-      chipName: 'Tech',
+      chipName: 'Tools',
       active: false
     },
   ]
@@ -447,6 +385,20 @@ export class BookmarkService {
 
   getRecentBookmark() {
     return this.recentBookmark;
+  }
+
+  filterRecentBookmark(filterCategory: string) {
+    this.chips.map((chip: Chip) => {
+      chip.active = false;
+      if (chip.chipName == filterCategory) {
+        chip.active = !chip.active;
+      }
+    })
+    if (filterCategory == 'All') {
+      return this.recentBookmark;
+    }
+    let filteredData = this.recentBookmark.filter((item) => item.category == filterCategory);
+    return filteredData;
   }
 
   getChips() {

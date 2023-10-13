@@ -5,7 +5,8 @@
     border-radius: 20px;
     padding: 8px 12px;
     transition: 0.4s;
-    
+    white-space: nowrap;
+
     &:hover {
         background-color: $primary-200;
     }
