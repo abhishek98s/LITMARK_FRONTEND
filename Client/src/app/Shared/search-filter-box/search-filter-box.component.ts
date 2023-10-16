@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-filter-box.component.scss']
 })
 export class SearchFilterBoxComponent {
+  filter: string = 'Date';
 
+  changeFilter(filterOption: string) {
+    this.filter = filterOption;
+  }
 }

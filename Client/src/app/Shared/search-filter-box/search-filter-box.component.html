@@ -5,16 +5,16 @@
 
     <div
         class="sortDropdown flex p-[4px_10px] rounded-1 justify-between items-center bg-primary-20 text-primary-900 text-label-md-regular">
-        <button class="dropdown-btn">Date</button>
+        <button class="dropdown-btn">{{filter}}</button>
 
         <figure class="down-arrow w-[12px] h-[12px] flex-center">
             <img src="assets/icon/arrow-down.svg" alt="sort">
         </figure>
 
         <div class="sort-option p-[4px] rounded-1 text-label-md-regular spacing-y-[4px]">
-            <div>Date</div>
-            <div>A-Z</div>
-            <div>Z-A</div>
+            <div (click)="changeFilter('Date')">Date</div>
+            <div (click)="changeFilter('A-Z')">A-Z</div>
+            <div (click)="changeFilter('Z-A')">Z-A</div>
         </div>
     </div>
 </article>

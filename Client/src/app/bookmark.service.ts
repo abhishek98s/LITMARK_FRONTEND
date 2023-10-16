@@ -439,5 +439,9 @@ export class BookmarkService {
 
     return sortedData;
   }
+
+  filterBy(){
+    
+  }
 }
 
