@@ -13,10 +13,10 @@ export class TopPageComponent implements OnInit {
   constructor(public dataService: BookmarkService) { }
 
   ngOnInit(): void {
-    this.dataService.myBehaviorSubject.subscribe((value) => this.recentBookmark = value);
+    this.dataService.recentBookmarkObservable.subscribe((value) => this.recentBookmark = value);
   }
 
-  filterCategory(category: string) {
-    this.dataService.filterRecentBookmark(category);
+  filterRecentBookmarkCategory(category: string) {
+    this.dataService.filterRecentBookmarkByChip(category);
   }
 }

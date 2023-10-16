@@ -16,18 +16,21 @@
     .sortDropdown {
         min-width: 120px;
         // width: 100%;
-        border: 2px solid $primary-400;
+        border: 1px solid $primary-400;
         position: relative;
         padding: 10px;
         background-color: $neutral-0;
-        height: max-content;
+        overflow: hidden;
+        height: 40px;
 
         &:hover {
+            overflow: unset;
+            height: 40px;
+            transition: 0.4s;
             .sort-option {
                 opacity: 1;
                 transition: 0.4s;
                 top: 90%;
-                overflow: unset;
             }
 
             .down-arrow {
@@ -36,23 +39,23 @@
         }
 
         .down-arrow {
-            transition: .4s;
+            transition: 0.4s;
         }
         .sort-option {
-            border: 2px solid $primary-200;
+            border: 1px solid $primary-400;
             border-top: none;
             background-color: $neutral-0;
             position: absolute;
             top: 80%;
             padding-top: 10%;
-            right: -2px;
+            right: -1px;
             min-width: 120px;
             transition: 0.4s;
             opacity: 0;
 
             div {
                 border-radius: 4px;
-                padding: 6px 8px;
+                padding: 6px 15px;
                 border-bottom: 2px solid $primary-100;
                 cursor: pointer;
                 transition: 0.4s;

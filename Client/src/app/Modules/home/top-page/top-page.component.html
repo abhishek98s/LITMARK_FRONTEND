@@ -3,7 +3,7 @@
 
     <div class="chips-list flex gap-[12px] overflow-scroll no-scrollbar">
         <div *ngFor="let chip of dataService.getChips()">
-            <app-chip [chip]="chip" (click)="filterCategory(chip.chipName)"></app-chip>
+            <app-chip [chip]="chip" (click)="filterRecentBookmarkCategory(chip.chipName)"></app-chip>
         </div>
     </div>
 

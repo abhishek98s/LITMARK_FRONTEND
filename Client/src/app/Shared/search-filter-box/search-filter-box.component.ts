@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BookmarkService } from 'src/app/bookmark.service';
 
 @Component({
   selector: 'app-search-filter-box',
@@ -8,7 +9,9 @@ import { Component } from '@angular/core';
 export class SearchFilterBoxComponent {
   filter: string = 'Date';
 
-  changeFilter(filterOption: string) {
-    this.filter = filterOption;
+  constructor(private dataService: BookmarkService) { }
+
+  filterRecentBookmarkBy(filterType: string) {
+    this.dataService.filterRecentBookmarkBy(filterType)
   }
 }

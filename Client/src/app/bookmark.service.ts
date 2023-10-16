@@ -175,8 +175,7 @@ export class BookmarkService {
     },
   ];
 
-  myBehaviorSubject = new BehaviorSubject<Recentbookmark[]>(this.recentBookmark);
-
+  recentBookmarkObservable = new BehaviorSubject<Recentbookmark[]>(this.recentBookmark);
 
   private chips: Chip[] = [
     {
@@ -213,7 +212,7 @@ export class BookmarkService {
     {
       id: '1',
       img: 'assets/image/folder-1.png',
-      title: 'UX'
+      title: 'Tech'
     },
     {
       id: '2',
@@ -228,62 +227,12 @@ export class BookmarkService {
     {
       id: '4',
       img: 'assets/image/folder-4.png',
-      title: 'Design'
+      title: 'Design' 
     },
     {
       id: '5',
       img: 'assets/image/folder-5.png',
-      title: 'Book'
-    },
-    {
-      id: '6',
-      img: 'assets/image/folder-1.png',
-      title: 'Technology'
-    },
-    {
-      id: '7',
-      img: 'assets/image/folder-2.png',
-      title: 'Health'
-    },
-    {
-      id: '8',
-      img: 'assets/image/folder-3.png',
-      title: 'Study'
-    },
-    {
-      id: '9',
-      img: 'assets/image/folder-4.png',
-      title: 'Design'
-    },
-    {
-      id: '10',
-      img: 'assets/image/folder-5.png',
-      title: 'Book'
-    },
-    {
-      id: '11',
-      img: 'assets/image/folder-1.png',
-      title: 'Technology'
-    },
-    {
-      id: '12',
-      img: 'assets/image/folder-2.png',
-      title: 'Health'
-    },
-    {
-      id: '13',
-      img: 'assets/image/folder-3.png',
-      title: 'Study'
-    },
-    {
-      id: '14',
-      img: 'assets/image/folder-4.png',
-      title: 'Design'
-    },
-    {
-      id: '15',
-      img: 'assets/image/folder-5.png',
-      title: 'Book'
+      title: 'UX'
     },
   ]
 
@@ -383,7 +332,15 @@ export class BookmarkService {
   //   return this.recentBookmark;
   // }
 
-  filterRecentBookmark(chipCategory: string) {
+  getFolders() {
+    return this.folders;
+  }
+
+  getChips() {
+    return this.chips;
+  }
+
+  filterRecentBookmarkByChip(chipCategory: string) {
     this.chips.forEach((chip: Chip) => { chip.active = false; });
 
     let selectedChip = this.chips.find((chip: Chip) => chip.chipName == chipCategory);
@@ -393,35 +350,61 @@ export class BookmarkService {
     }
 
     if (chipCategory == 'All') {
-      this.myBehaviorSubject.next(this.recentBookmark);
+      this.recentBookmarkObservable.next(this.recentBookmark);
       return
     }
 
-    this.myBehaviorSubject.pipe(
+    this.recentBookmarkObservable.pipe(
       map((bookmarks: Recentbookmark[]) =>
         this.recentBookmark.filter((bookmark) => bookmark.category === chipCategory)),
       tap((filterdBookmarks: Recentbookmark[]) => {
-        this.myBehaviorSubject.next(filterdBookmarks)
+        this.recentBookmarkObservable.next(filterdBookmarks)
       })
     ).subscribe();
   }
 
   deleteBookmark(id: number) {
-    this.myBehaviorSubject.pipe(
+    this.recentBookmarkObservable.pipe(
       map((bookmarks: Recentbookmark[]) => bookmarks.filter(bookmark => bookmark.id !== id)),
       tap((filteredBookmarks: Recentbookmark[]) => {
-        this.myBehaviorSubject.next(filteredBookmarks);
+        this.recentBookmarkObservable.next(filteredBookmarks);
       })
     ).subscribe();
   }
 
-  getChips() {
-    return this.chips;
+  sortAlphabeticaly(arr: any[]) {
+
   }
 
-  getFolders() {
-    return this.folders;
+  filterRecentBookmarkBy(type: string) {
+    switch (type) {
+      case "Date":
+        break;
+
+      case "A-Z":
+        this.recentBookmarkObservable.pipe(
+          map((recentBookmark: Recentbookmark[]) => {
+            recentBookmark.sort((a, b) => {
+              const titleA = a.title || '';
+              const titleB = b.title || '';
+              return titleA.localeCompare(titleB);
+            }),
+              tap((sortedRecentBookmark: Recentbookmark[]) => {
+                this.recentBookmarkObservable.next(sortedRecentBookmark);
+              })
+          })
+        ).subscribe();
+        break;
+
+      case "Z-A":
+
+        break;
+
+      default:
+        break;
+    }
   }
+
 
   getFolderData() {
     const sortedData: folderData[] = this.folderData.sort((a, b): number => {
@@ -439,9 +422,4 @@ export class BookmarkService {
 
     return sortedData;
   }
-
-  filterBy(){
-    
-  }
 }
-

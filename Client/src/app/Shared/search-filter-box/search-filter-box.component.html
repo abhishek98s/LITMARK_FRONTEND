@@ -11,10 +11,10 @@
             <img src="assets/icon/arrow-down.svg" alt="sort">
         </figure>
 
-        <div class="sort-option p-[4px] rounded-1 text-label-md-regular spacing-y-[4px]">
-            <div (click)="changeFilter('Date')">Date</div>
-            <div (click)="changeFilter('A-Z')">A-Z</div>
-            <div (click)="changeFilter('Z-A')">Z-A</div>
+        <div class="sort-option p-[4px] rounded-1 text-label-md-regular spacing-y-[4px] z-50">
+            <div (click)="filterRecentBookmarkBy('Date')">Date</div>
+            <div (click)="filterRecentBookmarkBy('A-Z')">A-Z</div>
+            <div (click)="filterRecentBookmarkBy('Z-A')">Z-A</div>
         </div>
     </div>
 </article>
