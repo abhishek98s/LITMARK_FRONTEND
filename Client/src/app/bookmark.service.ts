@@ -227,7 +227,7 @@ export class BookmarkService {
     {
       id: '4',
       img: 'assets/image/folder-4.png',
-      title: 'Design' 
+      title: 'Design'
     },
     {
       id: '5',
@@ -358,7 +358,7 @@ export class BookmarkService {
       map((bookmarks: Recentbookmark[]) =>
         this.recentBookmark.filter((bookmark) => bookmark.category === chipCategory)),
       tap((filterdBookmarks: Recentbookmark[]) => {
-        this.recentBookmarkObservable.next(filterdBookmarks)
+        this.recentBookmarkObservable.next(filterdBookmarks);
       })
     ).subscribe();
   }
@@ -367,6 +367,7 @@ export class BookmarkService {
     this.recentBookmarkObservable.pipe(
       map((bookmarks: Recentbookmark[]) => bookmarks.filter(bookmark => bookmark.id !== id)),
       tap((filteredBookmarks: Recentbookmark[]) => {
+        this.recentBookmark = filteredBookmarks;
         this.recentBookmarkObservable.next(filteredBookmarks);
       })
     ).subscribe();
@@ -397,6 +398,18 @@ export class BookmarkService {
         break;
 
       case "Z-A":
+        this.recentBookmarkObservable.pipe(
+          map((recentBookmark: Recentbookmark[]) => {
+            recentBookmark.sort((a, b) => {
+              const titleA = a.title || '';
+              const titleB = b.title || '';
+              return titleB.localeCompare(titleA);
+            }),
+              tap((sortedRecentBookmark: Recentbookmark[]) => {
+                this.recentBookmarkObservable.next(sortedRecentBookmark);
+              })
+          })
+        ).subscribe();
 
         break;
 
