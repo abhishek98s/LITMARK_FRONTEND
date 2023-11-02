@@ -41,7 +41,7 @@ $colors-list: map-merge(
         "primary-870": $primary-870,
         "primary-900": $primary-900,
         "primary-1000": $primary-1000,
-        "gradient-1": $gradient-1
+        "gradient-1": $gradient-1,
 
         "neutral-0": $neutral-0,
 
@@ -57,7 +57,7 @@ $colors-list: map-merge(
     }
 
     .bg-#{$name} {
-        background-color: $color;
+        background: $color;
     }
 }
 
