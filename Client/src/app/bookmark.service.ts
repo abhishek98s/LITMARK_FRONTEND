@@ -365,9 +365,10 @@ export class BookmarkService {
 
   deleteBookmark(id: number) {
     this.recentBookmarkObservable.pipe(
-      map((bookmarks: Recentbookmark[]) => bookmarks.filter(bookmark => bookmark.id !== id)),
+      map((bookmarks: Recentbookmark[]) => this.recentBookmark.filter(bookmark => bookmark.id !== id)),
       tap((filteredBookmarks: Recentbookmark[]) => {
         this.recentBookmark = filteredBookmarks;
+        console.log(filteredBookmarks)
         this.recentBookmarkObservable.next(filteredBookmarks);
       })
     ).subscribe();
