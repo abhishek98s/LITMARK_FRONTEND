@@ -5,14 +5,15 @@ import { PrimaryBtnComponent } from './Button/primary-btn/primary-btn.component'
 import { SecondaryBtnComponent } from './Button/secondary-btn/secondary-btn.component';
 import { TeritaryBtnComponent } from './Button/teritary-btn/teritary-btn.component';
 import { InputBoxComponent } from './input-box/input-box.component';
-import { AddFolderComponent } from './add-folder/add-folder.component';
+import { AddComponent } from './Button/Add/add.component';
 import { FolderComponent } from './folder/folder.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchFilterBoxComponent } from './search-filter-box/search-filter-box.component';
 import { ChipComponent } from './chip/chip.component';
 import { RecentBookmarkComponent } from './recent-bookmark/recent-bookmark.component';
 import { RouterModule } from '@angular/router';
-import { FolderDataComponent } from './folder-data/folder-data.component';
+import { NestedFolderComponent } from './nested-folder/nested-folder.component';
+import { BookmarkComponent } from './bookmark/bookmark.component';
 
 
 @NgModule({
@@ -22,13 +23,14 @@ import { FolderDataComponent } from './folder-data/folder-data.component';
     SecondaryBtnComponent,
     TeritaryBtnComponent,
     InputBoxComponent,
-    AddFolderComponent,
+    AddComponent,
     FolderComponent,
     NavbarComponent,
     SearchFilterBoxComponent,
     ChipComponent,
     RecentBookmarkComponent,
-    FolderDataComponent
+    NestedFolderComponent,
+    BookmarkComponent
   ],
   imports: [
     CommonModule,
@@ -40,14 +42,15 @@ import { FolderDataComponent } from './folder-data/folder-data.component';
     SecondaryBtnComponent,
     TeritaryBtnComponent,
     InputBoxComponent,
-    AddFolderComponent,
+    AddComponent,
     FolderComponent,
     NavbarComponent,
     SearchFilterBoxComponent,
     ChipComponent,
     RecentBookmarkComponent,
     RouterModule,
-    FolderDataComponent,
+    NestedFolderComponent,
+    BookmarkComponent
   ]
 })
 export class SharedModule { }

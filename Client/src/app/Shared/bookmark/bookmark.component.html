@@ -1,0 +1,18 @@
+<div class="bookmark rounded-2 flex gap-[8px]">
+    <figure class="thumbnail max-w-[60px] w-[100%] max-h-[60px] rounded-2">
+        <img class="rounded-2" src={{bookmark.img}} alt="bookmark-img">
+    </figure>
+
+    <div class="flex flex-col w-[100%] justify-between">
+        <a class="title text-primary-900 text-body-md-medium hover:underline" target="_blank"
+            href={{bookmark.link}}>{{bookmark.title}}</a>
+        <div class="text-primary-850-80 text-label-md-medium flex-between-center mt-[8px]">
+            <span>{{bookmark.date}}</span>
+            <a href="#">
+                <figure class="w-[20px]">
+                    <img src="assets/icon/trash.svg" alt="trash">
+                </figure>
+            </a>
+        </div>
+    </div>
+</div>

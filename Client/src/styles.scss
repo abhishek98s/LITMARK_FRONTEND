@@ -24,6 +24,20 @@ svg {
     }
 }
 
+input {
+    border: 1px solid $primary-400;
+    transition: 0.4s;
+    outline: none;
+
+    &:focus {
+        border: 1px solid $primary-800;
+    }
+
+    &::placeholder {
+        color: $primary-500;
+    }
+}
+
 $colors-list: ();
 $colors-list: map-merge(
     (

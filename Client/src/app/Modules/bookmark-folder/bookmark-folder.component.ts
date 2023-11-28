@@ -7,9 +7,17 @@ import { BookmarkService } from 'src/app/bookmark.service';
   styleUrls: ['./bookmark-folder.component.scss']
 })
 export class BookmarkFolderComponent {
+  userInputtedFodlerName: string = "";
 
-  constructor(public dataService: BookmarkService) { 
-    console.log(this.dataService.getFolderData())
-  };
+  constructor(public dataService: BookmarkService) { };
 
+  toggleFolderInputBox() {
+    this.dataService.folderInputbox = !this.dataService.folderInputbox;
+    this.userInputtedFodlerName = "";
+  }
+
+  submitFolderForm() {
+    this.dataService.addFolder(this.userInputtedFodlerName);
+    this.userInputtedFodlerName = "";
+  }
 }

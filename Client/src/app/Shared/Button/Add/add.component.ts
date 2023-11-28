@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-add-folder',
-  templateUrl: './add-folder.component.html',
-  styleUrls: ['./add-folder.component.scss']
+  templateUrl: './add.component.html',
+  styleUrls: ['./add.component.scss']
 })
-export class AddFolderComponent {
+export class AddComponent {
   @Input() value!: string;
   @Input() icon!: string;
 

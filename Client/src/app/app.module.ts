@@ -9,6 +9,7 @@ import { SharedModule } from './Shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-folder.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-fold
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    FormsModule,
     RouterModule,
     BrowserModule,
     AppRoutingModule,

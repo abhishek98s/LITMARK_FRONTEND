@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { folder } from 'src/app/Model/folder';
+import { Folder } from 'src/app/Model/folder';
 import { BookmarkService } from 'src/app/bookmark.service';
 
 
@@ -9,7 +9,7 @@ import { BookmarkService } from 'src/app/bookmark.service';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  folders!: folder[];
+  folders!: Folder[];
 
   constructor(public dataService: BookmarkService) { }
 

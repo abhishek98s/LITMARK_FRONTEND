@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Chip, Recentbookmark, folder, folderData } from './Model/folder';
+import { Bookmark, Chip, Folder, Recentbookmark, } from './Model/folder';
 import { BehaviorSubject, map, tap } from 'rxjs';
+import { distinctUntilKeyChanged } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookmarkService {
   public sidebar = false;
+  public folderInputbox = false;
 
   private recentBookmark: Recentbookmark[] = [
     {
@@ -177,160 +180,153 @@ export class BookmarkService {
 
   recentBookmarkObservable = new BehaviorSubject<Recentbookmark[]>(this.recentBookmark);
 
-  private chips: Chip[] = [
+  private folders: Folder[] = [
     {
-      chipName: 'All',
-      active: true
-
-    },
-    {
-      chipName: 'Design',
-      active: false
-
-    },
-    {
-      chipName: 'UX',
-      active: false
-
-    },
-    {
-      chipName: 'UI Design',
-      active: false
-
-    },
-    {
-      chipName: 'Tech',
-      active: false
-    },
-    {
-      chipName: 'Tools',
-      active: false
-    },
-  ]
-
-  private folders: folder[] = [
-    {
-      id: '1',
+      id: 1,
       img: 'assets/image/folder-1.png',
       title: 'Tech'
     },
     {
-      id: '2',
+      id: 2,
       img: 'assets/image/folder-2.png',
       title: 'Tools'
     },
     {
-      id: '3',
+      id: 3,
       img: 'assets/image/folder-3.png',
       title: 'UI Design'
     },
     {
-      id: '4',
+      id: 4,
       img: 'assets/image/folder-4.png',
       title: 'Design'
     },
     {
-      id: '5',
+      id: 5,
       img: 'assets/image/folder-5.png',
       title: 'UX'
     },
   ]
 
-  private folderData: folderData[] = [
+  private chips: Chip[] = [
     {
-      folder: true,
-      title: "Design Inspiration",
+      id: 1,
+      chipName: 'All',
+      active: true
+
     },
     {
-      folder: false,
-      category: "UX",
+      id: 2,
+      chipName: 'Design',
+      active: false
+
+    },
+    {
+      id: 3,
+      chipName: 'UX',
+      active: false
+
+    },
+    {
+      id: 4,
+      chipName: 'UI Design',
+      active: false
+
+    },
+    {
+      id: 5,
+      chipName: 'Tech',
+      active: false
+    },
+    {
+      id: 6,
+      chipName: 'Tools',
+      active: false
+    },
+  ]
+
+  private nestedFolder: Folder[] = [
+    {
+      id: 1,
+      "title": "Design Inspiration"
+    },
+    {
+      id: 2,
+      "title": "Dribble"
+    },
+    {
+      id: 3,
+      "title": "Mobbin"
+    }
+  ]
+
+  private bookmark: Bookmark[] = [
+    {
+      id: 1,
       title: "Elevate User Experiences with Exceptional UI/UX Design Services",
       img: "assets/image/bookmark-2.webp",
       date: "September 18, 2023",
-      link: 'https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/'
+      link: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
     },
     {
-      folder: true,
-      title: "Mobbin",
+      id: 2,
+      title: "Elevate User Experiences with Exceptional UI/UX Design Services",
+      img: "assets/image/bookmark-2.webp",
+      date: "September 18, 2023",
+      link: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
     },
     {
-      folder: false,
-      category: "UI Design",
-      title: "Nokia unveils Pure UI, a new user interface design language",
-      img: "assets/image/bookmark-3.webp",
-      date: "May 18, 2014",
-      link: 'https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php'
-    },
-    {
-      folder: true,
-      title: "Dribble",
-    },
-    {
-      folder: false,
-      category: "Tech",
+      id: 3,
       title: "Google News on smartphones finally picks up Material You makeover",
       img: "assets/image/bookmark-4.webp",
       date: "Apr 30, 2023",
-      link: 'https://www.androidpolice.com/google-news-material-you-redesign-phones/'
+      link: "https://www.androidpolice.com/google-news-material-you-redesign-phones/"
     },
     {
-      folder: false,
-      category: "Design",
+      id: 4,
+      title: "Google News on smartphones finally picks up Material You makeover",
+      img: "assets/image/bookmark-4.webp",
+      date: "Apr 30, 2023",
+      link: "https://www.androidpolice.com/google-news-material-you-redesign-phones/"
+    },
+    {
+      id: 5,
       title: "Is Neumorphism really 2020's hottest design trend?",
       img: "assets/image/bookmark-1.webp",
       date: "May 18, 2014",
-      link: 'https://www.creativebloq.com/news/neumorphism'
-    },
-
-    {
-      folder: false,
-      category: "UX",
-      title: "Elevate User Experiences with Exceptional UI/UX Design Services",
-      img: "assets/image/bookmark-2.webp",
-      date: "September 18, 2023",
-      link: 'https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/'
+      link: "https://www.creativebloq.com/news/neumorphism"
     },
     {
-      folder: false,
-      category: "UI Design",
+      id: 6,
       title: "Nokia unveils Pure UI, a new user interface design language",
       img: "assets/image/bookmark-3.webp",
       date: "May 18, 2014",
-      link: 'https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php'
+      link: "https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php"
     },
     {
-      folder: false,
-      category: "Tech",
-      title: "Google News on smartphones finally picks up Material You makeover",
-      img: "assets/image/bookmark-4.webp",
-      date: "Apr 30, 2023",
-      link: 'https://www.androidpolice.com/google-news-material-you-redesign-phones/'
-    },
-    {
-      folder: false,
-      category: "UI Design",
-      title: "Whatsapp's new UI design looks super sleek",
-      img: "assets/image/bookmark-5.webp",
+      id: 7,
+      title: "Nokia unveils Pure UI, a new user interface design language",
+      img: "assets/image/bookmark-3.webp",
       date: "May 18, 2014",
-      link: 'https://www.creativebloq.com/news/new-whatsapp-ui-design'
+      link: "https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php"
     },
     {
-      folder: false,
-      category: "Tools",
+      id: 8,
       title: "The best UI design tools in 2023",
       img: "assets/image/bookmark-6.webp",
       date: "Mar 19, 2023",
-      link: 'https://www.creativebloq.com/how-to/20-best-ui-design-tools'
+      link: "https://www.creativebloq.com/how-to/20-best-ui-design-tools"
     },
-
-
-  ];
+    {
+      id: 9,
+      title: "Whatsapp's new UI design looks super sleek",
+      img: "assets/image/bookmark-5.webp",
+      date: "May 18, 2014",
+      link: "https://www.creativebloq.com/news/new-whatsapp-ui-design"
+    }
+  ]
 
   constructor() { }
-
-  // getRecentBookmark() {
-  //   return this.recentBookmark;
-  // }
 
   getFolders() {
     return this.folders;
@@ -365,17 +361,13 @@ export class BookmarkService {
 
   deleteBookmark(id: number) {
     this.recentBookmarkObservable.pipe(
-      map((bookmarks: Recentbookmark[]) => this.recentBookmark.filter(bookmark => bookmark.id !== id)),
+      map((bookmarks: Recentbookmark[]) => bookmarks.filter(bookmark => bookmark.id !== id)),
+      distinctUntilKeyChanged('length'), // Using array length as a key for comparison
       tap((filteredBookmarks: Recentbookmark[]) => {
         this.recentBookmark = filteredBookmarks;
-        console.log(filteredBookmarks)
         this.recentBookmarkObservable.next(filteredBookmarks);
       })
     ).subscribe();
-  }
-
-  sortAlphabeticaly(arr: any[]) {
-
   }
 
   filterRecentBookmarkBy(type: string) {
@@ -420,12 +412,8 @@ export class BookmarkService {
   }
 
 
-  getFolderData() {
-    const sortedData: folderData[] = this.folderData.sort((a, b): number => {
-      // Sort by folder property (true comes first)
-      if (a.folder !== b.folder) {
-        return a.folder ? -1 : 1;
-      }
+  getNestedFolder() {
+    const sortedData: Folder[] = this.nestedFolder.sort((a, b): number => {
 
       // If both have the same folder property, sort alphabetically by title
       const titleA = a.title || ''; // Use an empty string if a.title is undefined
@@ -435,5 +423,23 @@ export class BookmarkService {
     });
 
     return sortedData;
+  }
+
+  getBookmark() {
+    const sortedData: Bookmark[] = this.bookmark.sort((a, b): number => {
+
+      // If both have the same folder property, sort alphabetically by title
+      const titleA = a.title || ''; // Use an empty string if a.title is undefined
+      const titleB = b.title || ''; // Use an empty string if b.title is undefined
+
+      return titleA.localeCompare(titleB);
+    });
+
+    return sortedData;
+  }
+
+  addFolder(name: string) {
+    this.nestedFolder.push({ id: 1, title: name })
+    this.folderInputbox = false;
   }
 }

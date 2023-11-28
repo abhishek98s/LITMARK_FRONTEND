@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { folder } from 'src/app/Model/folder';
+import { Folder } from 'src/app/Model/folder';
 
 @Component({
   selector: 'app-folder',
@@ -7,6 +7,6 @@ import { folder } from 'src/app/Model/folder';
   styleUrls: ['./folder.component.scss']
 })
 export class FolderComponent {
-  @Input() folder!: folder;
+  @Input() folder!: Folder;
 
 }

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddFolderComponent } from './add-folder.component';
+import { AddComponent } from './add.component';
 
-describe('AddFolderComponent', () => {
-  let component: AddFolderComponent;
-  let fixture: ComponentFixture<AddFolderComponent>;
+describe('AddComponent', () => {
+  let component: AddComponent;
+  let fixture: ComponentFixture<AddComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AddFolderComponent]
+      declarations: [AddComponent]
     });
-    fixture = TestBed.createComponent(AddFolderComponent);
+    fixture = TestBed.createComponent(AddComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

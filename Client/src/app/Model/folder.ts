@@ -1,10 +1,5 @@
-export interface folder {
-    id: string,
-    img: string
-    title: string,
-}
-
 export interface Chip {
+    id: number,
     chipName: string,
     active: boolean
 }
@@ -18,11 +13,15 @@ export interface Recentbookmark {
     link: string
 }
 
-export interface folderData {
-    folder: boolean,
-    category?: string,
+export interface Folder {
+    id: number,
+    img?: string
     title: string,
-    date?: string,
-    img?: string,
-    link?: string
+}
+export interface Bookmark {
+    id: number,
+    title: string,
+    img: string
+    date: string,
+    link: string
 }
