@@ -8,9 +8,14 @@ import { BookmarkService } from 'src/app/bookmark.service';
   styleUrls: ['./recent-bookmark.component.scss']
 })
 export class RecentBookmarkComponent {
+  openDropdown: boolean = false;
   @Input() recentBookmark!: Recentbookmark;
 
   constructor(public dataService: BookmarkService) { };
+
+  toggleDropdown() {
+    this.openDropdown = !this.openDropdown
+  }
 
   deleteBookmark(id: number) {
     this.dataService.deleteBookmark(id);
