@@ -10,6 +10,7 @@ import { distinctUntilKeyChanged } from 'rxjs/operators';
 export class BookmarkService {
   public sidebar = false;
   public folderInputbox = false;
+  public bookmarkInputbox = false;
 
   private recentBookmark: Recentbookmark[] = [
     {
@@ -441,5 +442,16 @@ export class BookmarkService {
   addFolder(name: string) {
     this.nestedFolder.push({ id: 1, title: name })
     this.folderInputbox = false;
+  }
+
+  addBookmark(link: string) {
+    this.bookmark.push({
+      id: 1,
+      title: link,
+      img: "assets/image/add-bookmark.png",
+      date: "September 18, 2023",
+      link: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
+    })
+    this.bookmarkInputbox = false;
   }
 }

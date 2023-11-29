@@ -1,24 +1,26 @@
 <section class="inside-bookmark-box">
-    <header class="flex flex-between-center mt-[48px] mb-[20px]">
+    <header class="flex flex-between-center mt-[48px] mb-[30px]">
         <h2 class="text-title-md-bold">Design</h2>
 
         <div class="hidden gap-[16px] md:flex">
             <app-add-folder [value]="'Add Folder'" (click)="toggleFolderInputBox()"></app-add-folder>
-            <app-add-folder [value]="'Add File'"></app-add-folder>
+            <app-add-folder [value]="'Add File'" (click)="toggleBookmarkInputBox()"></app-add-folder>
         </div>
     </header>
 
     <section class="inside-folder grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-[8px] md:gap-[4%]">
-        <form class="folder h-[90px] rounded-2 flex-between-center gap-3 bg-primary-200" *ngIf="this.dataService.folderInputbox"  (ngSubmit)="submitFolderForm()">
+        <form class="folder h-[90px] rounded-2 flex-between-center gap-3 bg-primary-200"
+            *ngIf="this.dataService.folderInputbox" (ngSubmit)="submitFolderForm()">
             <div class="flex w-[100%] gap-2 items-center">
                 <figure class="max-w-[50px] w-[100%]">
                     <img src="assets/icon/sub-folder.svg" alt="folder">
                 </figure>
 
-                <input class="h-[34px] w-[100%] rounded-1 p-[4px_8px]" placeholder="New Folder" autofocus [(ngModel)]="userInputtedFodlerName" name="Folder Name">
+                <input class="h-[34px] w-[100%] rounded-1 p-[4px_8px]" placeholder="New Folder"
+                    [(ngModel)]="userInputtedFodlerName" name="Folder Name">
             </div>
             <div class="flex-between-center max-w-[40px] gap-[4px]">
-                <button class="w-[24px]" type="submit" (ngSubmit)="toggleFolderInputBox()">
+                <button class="w-[24px]" type="submit" (ngSubmit)="submitFolderForm()">
                     <img src="assets/icon/save.svg" alt="save">
                 </button>
 
@@ -31,6 +33,26 @@
         <div *ngFor="let data of dataService.getNestedFolder()">
             <nested-folder [data]="data"></nested-folder>
         </div>
+
+        <form class="bookmarkInputBox flex gap-[8px] rounded-2 " *ngIf="this.dataService.bookmarkInputbox" (ngSubmit)="submitBookmarkForm()">
+            <figure class="max-w-[60px] w-[100%] h-[60px] rounded-1">
+                <img src="assets/image/add-bookmark.png">
+            </figure>
+            <div class="w-[100%]">
+                <input class="h-[34px] w-[100%] rounded-1 p-[4px_8px] mb-[8px]" placeholder="Bookmark link"
+                    [(ngModel)]="userInputtedBookmarkName" name="Bookmark Name">
+
+                <div class="flex-between-center ml-auto max-w-[40px] gap-[4px]">
+                    <button class="w-[24px]" type="submit" (ngSubmit)="submitBookmarkForm()">
+                        <img src="assets/icon/save.svg" alt="save">
+                    </button>
+
+                    <button class="w-[24px]" (click)="toggleBookmarkInputBox()">
+                        <img src="assets/icon/cancel.svg" alt="close">
+                    </button>
+                </div>
+            </div>
+        </form>
 
         <div *ngFor="let bookmark of dataService.getBookmark()">
             <app-bookmark [bookmark]="bookmark"></app-bookmark>

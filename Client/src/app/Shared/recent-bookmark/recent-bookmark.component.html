@@ -5,8 +5,9 @@
             <img src='assets/icon/more.svg' alt="more-btn">
         </figure>
 
-        <div class="dropdown rounded-1 absolute right-[8px] top-[18px] pt-[8px] p-[4px] text-label-md-regular" *ngIf="openDropdown">
-            <div class="rounded-1 mb-[4px]">Delete</div>
+        <div class="dropdown rounded-1 absolute right-[8px] top-[18px] pt-[8px] p-[4px] text-label-md-regular"
+            *ngIf="openDropdown">
+            <div class="rounded-1" (click)="deleteBookmark(recentBookmark.id)">Delete</div>
             <div class="rounded-1">Change Image</div>
         </div>
     </div>
@@ -22,7 +23,7 @@
         <div class="absolute bottom-[8px] right-[8px] text-primary-850 text-label-md-regular">{{recentBookmark.date}}
         </div>
     </div>
-</div>
+</div> 
 
 <!-- <div class="recent-bookmark rounded-2 bg-gradient-1 flex flex-col justify-between h-[100%] relative">
     <div class="flex-between-center mb-[8px]">
