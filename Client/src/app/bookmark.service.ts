@@ -407,7 +407,6 @@ export class BookmarkService {
         ).subscribe();
 
         break;
-
       default:
         break;
     }
