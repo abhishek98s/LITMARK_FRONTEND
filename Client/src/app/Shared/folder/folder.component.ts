@@ -9,8 +9,13 @@ import { BookmarkService } from 'src/app/bookmark.service';
 })
 export class FolderComponent {
   @Input() folder!: Folder;
+  menuOpen: boolean = false;
 
   constructor(public dataService: BookmarkService) { }
+
+  toggleOpen(){
+    this.menuOpen = !this.menuOpen;
+  }
 
   deleteFolder(id: number) {
     this.dataService.deleteFolder(id)

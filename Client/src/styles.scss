@@ -39,6 +39,22 @@ input {
     }
 }
 
+ .more-btn-dropdown {
+        border: 0.5px solid $primary-200;
+        background: $primary-100;
+        box-shadow: 0px 4px 16px 0px #8f8dce40;
+
+        div {
+            padding: 4px;
+            transition: 0.2s;
+            color: $primary-900;
+            cursor: pointer;
+            &:hover {
+                background: $primary-200;
+            }
+        }
+    }
+
 $colors-list: ();
 $colors-list: map-merge(
     (

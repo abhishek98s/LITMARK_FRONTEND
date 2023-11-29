@@ -1,4 +1,4 @@
-<div class="folder rounded-2 flex-between-center">
+<div class="folder rounded-1 flex-between-center relative">
     <a routerLink="/bookmark/{{folder.id}}" class="flex-between-center gap-[8px] text-primary-900 text-body-md-medium">
         <figure class="rounded-2 w-[100%] md:w-[30px] h-[40px] md:h-[30px]">
             <img src={{folder.img}} alt="folder">
@@ -7,7 +7,13 @@
         {{folder.title}}
     </a>
 
-    <figure class="w-[30px] h-[30px]" (click)="deleteFolder(folder.id)">
+    <figure class="more-btn rounded-full w-[30px] h-[30px]" (click)="toggleOpen()">
         <img src="assets/icon/more.svg" alt="more">
     </figure>
+
+    <div class="more-btn-dropdown rounded-1 absolute right-[8px] top-[30px] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
+        *ngIf="menuOpen">
+        <div class="rounded-1" (click)="deleteFolder(folder.id)">Delete</div>
+        <div class="rounded-1">Rename</div>
+    </div>
 </div>

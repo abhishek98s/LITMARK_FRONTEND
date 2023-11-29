@@ -409,7 +409,7 @@ export class BookmarkService {
   // Folders
   addFolder(name: string) {
     this.folders.push({
-      id: 1,
+      id: this.folders.length + 1,
       img: 'assets/image/add-folder.png',
       title: name
     },)
