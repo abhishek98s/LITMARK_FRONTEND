@@ -7,7 +7,7 @@ import { BookmarkService } from 'src/app/bookmark.service';
   styleUrls: ['./bookmark-folder.component.scss']
 })
 export class BookmarkFolderComponent {
-  userInputtedFodlerName: string = "";
+  userInputtedNestedFodlerName: string = "";
   userInputtedBookmarkName: string = "";
 
   constructor(public dataService: BookmarkService) { };
@@ -15,13 +15,13 @@ export class BookmarkFolderComponent {
   toggleFolderInputBox() {
     this.dataService.folderInputbox = !this.dataService.folderInputbox;
     this.dataService.bookmarkInputbox = false;
-    this.userInputtedFodlerName = "";
+    this.userInputtedNestedFodlerName = "";
   }
 
   submitFolderForm() {
-    if (this.userInputtedFodlerName) {
-      this.dataService.addFolder(this.userInputtedFodlerName);
-      this.userInputtedFodlerName = "";
+    if (this.userInputtedNestedFodlerName) {
+      this.dataService.addNestedFolder(this.userInputtedNestedFodlerName);
+      this.userInputtedNestedFodlerName = "";
       return;
     }
     alert("no")

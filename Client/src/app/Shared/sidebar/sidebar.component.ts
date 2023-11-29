@@ -10,6 +10,7 @@ import { BookmarkService } from 'src/app/bookmark.service';
 })
 export class SidebarComponent implements OnInit {
   folders!: Folder[];
+  userInputtedFodlerName: string = '';
 
   constructor(public dataService: BookmarkService) { }
 
@@ -19,5 +20,14 @@ export class SidebarComponent implements OnInit {
 
   toggleSidebar() {
     this.dataService.sidebar = !this.dataService.sidebar;
+  }
+
+  toggleSidebarFolderInputBox() {
+    this.dataService.sidebarFolderkInputbox = !this.dataService.sidebarFolderkInputbox;
+    this.userInputtedFodlerName = '';
+  }
+
+  submitSidebarFolderForm() {
+    this.dataService.addFolder(this.userInputtedFodlerName)
   }
 }

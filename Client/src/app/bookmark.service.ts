@@ -11,6 +11,7 @@ export class BookmarkService {
   public sidebar = false;
   public folderInputbox = false;
   public bookmarkInputbox = false;
+  public sidebarFolderkInputbox = false;
 
   private recentBookmark: Recentbookmark[] = [
     {
@@ -439,7 +440,7 @@ export class BookmarkService {
     return sortedData;
   }
 
-  addFolder(name: string) {
+  addNestedFolder(name: string) {
     this.nestedFolder.push({ id: 1, title: name })
     this.folderInputbox = false;
   }
@@ -453,5 +454,14 @@ export class BookmarkService {
       link: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
     })
     this.bookmarkInputbox = false;
+  }
+
+  addFolder(name: string) {
+    this.folders.push({
+      id: 1,
+      img: 'assets/image/add-folder.png',
+      title: name
+    },)
+    this.sidebarFolderkInputbox = false;
   }
 }
