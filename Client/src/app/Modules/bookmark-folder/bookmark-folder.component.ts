@@ -19,8 +19,12 @@ export class BookmarkFolderComponent {
   }
 
   submitFolderForm() {
-    this.dataService.addFolder(this.userInputtedFodlerName);
-    this.userInputtedFodlerName = "";
+    if (this.userInputtedFodlerName) {
+      this.dataService.addFolder(this.userInputtedFodlerName);
+      this.userInputtedFodlerName = "";
+      return;
+    }
+    alert("no")
   }
 
   toggleBookmarkInputBox() {
@@ -31,7 +35,11 @@ export class BookmarkFolderComponent {
   }
 
   submitBookmarkForm() {
-    this.dataService.addBookmark(this.userInputtedBookmarkName);
-    this.userInputtedBookmarkName = "";
+    if (this.userInputtedBookmarkName) {
+      this.dataService.addBookmark(this.userInputtedBookmarkName);
+      this.userInputtedBookmarkName = "";
+      return
+    }
+    alert("enpty?")
   }
 }
