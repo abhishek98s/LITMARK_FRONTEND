@@ -17,7 +17,7 @@ export class RecentBookmarkComponent {
     this.openDropdown = !this.openDropdown
   }
 
-  deleteBookmark(id: number) {
-    this.dataService.deleteBookmark(id);
+  deleteRecentBookmark(id: number) {
+    this.dataService.deleteRecentBookmark(id);
   }
 }

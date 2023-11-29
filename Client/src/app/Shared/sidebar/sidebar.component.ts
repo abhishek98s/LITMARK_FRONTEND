@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   constructor(public dataService: BookmarkService) { }
 
   ngOnInit(): void {
-    this.folders = this.dataService.getFolders();
+    this.dataService.foldersObservable.subscribe((value) => this.folders = value);
   }
 
   toggleSidebar() {

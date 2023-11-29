@@ -180,8 +180,6 @@ export class BookmarkService {
     },
   ];
 
-  recentBookmarkObservable = new BehaviorSubject<Recentbookmark[]>(this.recentBookmark);
-
   private folders: Folder[] = [
     {
       id: 1,
@@ -328,16 +326,11 @@ export class BookmarkService {
     }
   ]
 
+  recentBookmarkObservable = new BehaviorSubject<Recentbookmark[]>(this.recentBookmark);
+  foldersObservable = new BehaviorSubject<Folder[]>(this.folders);
+
   constructor() { }
-
-  getFolders() {
-    return this.folders;
-  }
-
-  getChips() {
-    return this.chips;
-  }
-
+  // Recent Bookmark
   filterRecentBookmarkByChip(chipCategory: string) {
     this.chips.forEach((chip: Chip) => { chip.active = false; });
 
@@ -361,7 +354,7 @@ export class BookmarkService {
     ).subscribe();
   }
 
-  deleteBookmark(id: number) {
+  deleteRecentBookmark(id: number) {
     this.recentBookmarkObservable.pipe(
       map((bookmarks: Recentbookmark[]) => bookmarks.filter(bookmark => bookmark.id !== id)),
       distinctUntilKeyChanged('length'), // Using array length as a key for comparison
@@ -413,21 +406,36 @@ export class BookmarkService {
   }
 
 
-  getNestedFolder() {
-    const sortedData: Folder[] = this.nestedFolder.sort((a, b): number => {
-
-      // If both have the same folder property, sort alphabetically by title
-      const titleA = a.title || ''; // Use an empty string if a.title is undefined
-      const titleB = b.title || ''; // Use an empty string if b.title is undefined
-
-      return titleA.localeCompare(titleB);
-    });
-
-    return sortedData;
+  // Folders
+  addFolder(name: string) {
+    this.folders.push({
+      id: 1,
+      img: 'assets/image/add-folder.png',
+      title: name
+    },)
+    this.sidebarFolderkInputbox = false;
   }
 
-  getBookmark() {
-    const sortedData: Bookmark[] = this.bookmark.sort((a, b): number => {
+  deleteFolder(id: number) {
+    this.foldersObservable.pipe(
+      map((folders: Folder[]) => folders.filter(item => item.id !== id)),
+      tap((filteredBookmarks: Folder[]) => {
+        this.folders = filteredBookmarks;
+        this.foldersObservable.next(filteredBookmarks);
+      })
+    ).subscribe();
+  }
+
+
+  // Chip
+  getChips() {
+    return this.chips;
+  }
+
+
+  // Nested Folder
+  getNestedFolder() {
+    const sortedData: Folder[] = this.nestedFolder.sort((a, b): number => {
 
       // If both have the same folder property, sort alphabetically by title
       const titleA = a.title || ''; // Use an empty string if a.title is undefined
@@ -444,6 +452,21 @@ export class BookmarkService {
     this.folderInputbox = false;
   }
 
+
+  // Bookmark
+  getBookmark() {
+    const sortedData: Bookmark[] = this.bookmark.sort((a, b): number => {
+
+      // If both have the same folder property, sort alphabetically by title
+      const titleA = a.title || ''; // Use an empty string if a.title is undefined
+      const titleB = b.title || ''; // Use an empty string if b.title is undefined
+
+      return titleA.localeCompare(titleB);
+    });
+
+    return sortedData;
+  }
+
   addBookmark(link: string) {
     this.bookmark.push({
       id: 1,
@@ -453,14 +476,5 @@ export class BookmarkService {
       link: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
     })
     this.bookmarkInputbox = false;
-  }
-
-  addFolder(name: string) {
-    this.folders.push({
-      id: 1,
-      img: 'assets/image/add-folder.png',
-      title: name
-    },)
-    this.sidebarFolderkInputbox = false;
   }
 }
