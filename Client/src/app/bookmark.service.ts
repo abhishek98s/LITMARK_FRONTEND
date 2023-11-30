@@ -323,6 +323,13 @@ export class BookmarkService {
       img: "assets/image/bookmark-5.webp",
       date: "May 18, 2014",
       link: "https://www.creativebloq.com/news/new-whatsapp-ui-design"
+    },
+    {
+      id: 10,
+      title: "35 features that make Angular stand out from the crowd",
+      img: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*IaK-N7xvebUFuOfauNXwYw.png",
+      date: "May 18, 2014",
+      link: "https://mirzaleka.medium.com/35-features-that-make-angular-stand-out-from-the-crowd-293375c368b8#b84b"
     }
   ]
 
@@ -448,8 +455,12 @@ export class BookmarkService {
   }
 
   addNestedFolder(name: string) {
-    this.nestedFolder.push({ id: 1, title: name })
+    this.nestedFolder.push({ id: this.nestedFolder.length + 1, title: name })
     this.folderInputbox = false;
+  }
+
+  deleteNestedFolder(id: number) {
+    this.nestedFolder = this.nestedFolder.filter((item) => item.id !== id)
   }
 
 

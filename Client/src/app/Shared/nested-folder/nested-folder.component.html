@@ -1,8 +1,19 @@
-<div class="sub-folder h-[90px] flex gap-[16px] items-center bg-primary-200 rounded-2">
-    <figure class="w-[50px]">
-        <img src="assets/icon/sub-folder.svg" alt="sub-folder">
+<div class="sub-folder relative h-[90px] flex justify-between items-center bg-primary-200 rounded-2">
+    <div class="flex items-center gap-[16px]">
+        <figure class="w-[50px]">
+            <img src="assets/icon/sub-folder.svg" alt="sub-folder">
+        </figure>
+
+        <span class="text-body-md-medium text-primary-900">{{data.title}}</span>
+    </div>
+
+    <figure class="w-[24px] rounded-full more-btn cursor-pointer" (click)="toggleMenu()">
+        <img src="assets/icon/more.svg" alt="more button">
     </figure>
 
-    <span class="text-body-md-medium text-primary-900">{{data.title}}</span>
+    <div class="more-btn-dropdown rounded-1 absolute right-[12px] top-[50px] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
+        *ngIf="menuOpen">
+        <div class="rounded-1" (click)="deleteNestedFolder(data.id)">Delete</div>
+        <div class="rounded-1">Rename</div>
+    </div>
 </div>
-
