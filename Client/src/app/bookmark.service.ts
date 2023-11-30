@@ -490,4 +490,8 @@ export class BookmarkService {
     })
     this.bookmarkInputbox = false;
   }
+
+  deleteBookmark(id :number){
+    this.bookmark = this.bookmark.filter((item) => item.id !== id)
+  }
 }
