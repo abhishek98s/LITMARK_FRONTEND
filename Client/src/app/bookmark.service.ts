@@ -3,7 +3,6 @@ import { Bookmark, Chip, Folder, Recentbookmark, } from './Model/folder';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { distinctUntilKeyChanged } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -330,6 +329,13 @@ export class BookmarkService {
       img: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*IaK-N7xvebUFuOfauNXwYw.png",
       date: "May 18, 2014",
       link: "https://mirzaleka.medium.com/35-features-that-make-angular-stand-out-from-the-crowd-293375c368b8#b84b"
+    },
+    {
+      id: 11,
+      title: "Back To Square One | JavaScript (JSLand)",
+      img: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*dll2cHrs9c-E5HlOggVPUw.jpeg",
+      date: "Nov 18, 2023",
+      link: "https://github.com/MirzaLeka/JavaScript-Land"
     }
   ]
 
@@ -412,7 +418,6 @@ export class BookmarkService {
     }
   }
 
-
   // Folders
   addFolder(name: string) {
     this.folders.push({
@@ -433,12 +438,10 @@ export class BookmarkService {
     ).subscribe();
   }
 
-
   // Chip
   getChips() {
     return this.chips;
   }
-
 
   // Nested Folder
   getNestedFolder() {
@@ -462,7 +465,6 @@ export class BookmarkService {
   deleteNestedFolder(id: number) {
     this.nestedFolder = this.nestedFolder.filter((item) => item.id !== id)
   }
-
 
   // Bookmark
   getBookmark() {

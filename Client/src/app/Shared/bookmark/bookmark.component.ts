@@ -8,4 +8,13 @@ import { Bookmark } from 'src/app/Model/folder';
 })
 export class BookmarkComponent {
   @Input() bookmark!: Bookmark;
+  openBookmarkMenu: Boolean = false;
+
+  toggleBookmarkMenu() {
+    this.openBookmarkMenu = !this.openBookmarkMenu;
+  }
+
+  deleteBookmark(id: number) {
+
+  }
 }
