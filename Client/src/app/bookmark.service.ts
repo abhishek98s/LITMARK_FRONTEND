@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Bookmark, Chip, Folder, Recentbookmark, } from './Model/folder';
+import { Bookmark, Chip, Folder, Recentbookmark, State, } from './Model/folder';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { distinctUntilKeyChanged } from 'rxjs/operators';
 
@@ -7,10 +7,12 @@ import { distinctUntilKeyChanged } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class BookmarkService {
-  public sidebar = false;
-  public folderInputbox = false;
-  public bookmarkInputbox = false;
-  public sidebarFolderkInputbox = false;
+  public state = <State>{
+    sidebar: false,
+    folderInputbox: false,
+    bookmarkInputbox: false,
+    sidebarFolderkInputbox: false
+  };
 
   private recentBookmark: Recentbookmark[] = [
     {
@@ -342,6 +344,13 @@ export class BookmarkService {
   recentBookmarkObservable = new BehaviorSubject<Recentbookmark[]>(this.recentBookmark);
   foldersObservable = new BehaviorSubject<Folder[]>(this.folders);
 
+  setToFalse() {
+    this.state.sidebar = false;
+    this.state.folderInputbox = false;
+    this.state.bookmarkInputbox = false;
+    this.state.sidebarFolderkInputbox = false;
+  }
+
   constructor() { }
   // Recent Bookmark
   filterRecentBookmarkByChip(chipCategory: string) {
@@ -425,7 +434,7 @@ export class BookmarkService {
       img: 'assets/image/add-folder.png',
       title: name
     },)
-    this.sidebarFolderkInputbox = false;
+    this.state.sidebarFolderkInputbox = false;
   }
 
   deleteFolder(id: number) {
@@ -459,7 +468,7 @@ export class BookmarkService {
 
   addNestedFolder(name: string) {
     this.nestedFolder.push({ id: this.nestedFolder.length + 1, title: name })
-    this.folderInputbox = false;
+    this.state.folderInputbox = false;
   }
 
   deleteNestedFolder(id: number) {
@@ -488,10 +497,10 @@ export class BookmarkService {
       date: "September 18, 2023",
       link: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
     })
-    this.bookmarkInputbox = false;
+    this.state.bookmarkInputbox = false;
   }
 
-  deleteBookmark(id :number){
+  deleteBookmark(id: number) {
     this.bookmark = this.bookmark.filter((item) => item.id !== id)
   }
 }

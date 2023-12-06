@@ -25,3 +25,10 @@ export interface Bookmark {
     date: string,
     link: string
 }
+
+export interface State {
+    sidebar: Boolean,
+    folderInputbox: Boolean,
+    bookmarkInputbox: Boolean
+    sidebarFolderkInputbox: Boolean,
+}

@@ -13,8 +13,8 @@ export class BookmarkFolderComponent {
   constructor(public dataService: BookmarkService) { };
 
   toggleFolderInputBox() {
-    this.dataService.folderInputbox = !this.dataService.folderInputbox;
-    this.dataService.bookmarkInputbox = false;
+    this.dataService.state.folderInputbox = !this.dataService.state.folderInputbox;
+    this.dataService.state.bookmarkInputbox = false;
     this.userInputtedNestedFodlerName = "";
   }
 
@@ -28,9 +28,9 @@ export class BookmarkFolderComponent {
   }
 
   toggleBookmarkInputBox() {
-    this.dataService.bookmarkInputbox = !this.dataService.bookmarkInputbox;
-    console.log(this.dataService.folderInputbox)
-    this.dataService.folderInputbox = false;
+    this.dataService.state.bookmarkInputbox = !this.dataService.state.bookmarkInputbox;
+    console.log(this.dataService.state.folderInputbox)
+    this.dataService.state.folderInputbox = false;
     this.userInputtedBookmarkName = "";
   }
 

@@ -25,6 +25,6 @@ export class AppComponent {
   }
 
   toggleSidebar(): void {
-    this.dataService.sidebar = !this.dataService.sidebar;
+    this.dataService.state.sidebar = !this.dataService.state.sidebar;
   }
 }

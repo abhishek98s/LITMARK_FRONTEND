@@ -19,6 +19,5 @@ export class FolderComponent {
 
   deleteFolder(id: number) {
     this.dataService.deleteFolder(id)
-    console.log(id)
   }
 }

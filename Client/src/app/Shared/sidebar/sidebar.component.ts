@@ -19,11 +19,11 @@ export class SidebarComponent implements OnInit {
   }
 
   toggleSidebar() {
-    this.dataService.sidebar = !this.dataService.sidebar;
+    this.dataService.state.sidebar = !this.dataService.state.sidebar;
   }
 
   toggleSidebarFolderInputBox() {
-    this.dataService.sidebarFolderkInputbox = !this.dataService.sidebarFolderkInputbox;
+    this.dataService.state.sidebarFolderkInputbox = !this.dataService.state.sidebarFolderkInputbox;
     this.userInputtedFodlerName = '';
   }
 

@@ -31,7 +31,7 @@ import { FormsModule } from '@angular/forms';
     ChipComponent,
     RecentBookmarkComponent,
     NestedFolderComponent,
-    BookmarkComponent
+    BookmarkComponent,
   ],
   imports: [
     FormsModule,
