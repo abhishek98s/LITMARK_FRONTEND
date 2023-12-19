@@ -11,7 +11,7 @@ export class BookmarkService {
     sidebar: false,
     folderInputbox: false,
     bookmarkInputbox: false,
-    sidebarFolderkInputbox: false
+    sidebarFolderkInputbox: false,
   };
 
   private recentBookmark: Recentbookmark[] = [
@@ -249,15 +249,15 @@ export class BookmarkService {
   private nestedFolder: Folder[] = [
     {
       id: 1,
-      "title": "Design Inspiration"
+      title: "Design Inspiration"
     },
     {
       id: 2,
-      "title": "Dribble"
+      title: "Dribble"
     },
     {
       id: 3,
-      "title": "Mobbin"
+      title: "Mobbin"
     }
   ]
 
@@ -338,6 +338,13 @@ export class BookmarkService {
       img: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*dll2cHrs9c-E5HlOggVPUw.jpeg",
       date: "Nov 18, 2023",
       link: "https://github.com/MirzaLeka/JavaScript-Land"
+    },
+    {
+      id: 12,
+      title: "TutFlix - Free Education Resources",
+      img: "https://logos-world.net/wp-content/uploads/2022/05/Tutflix-Logo-700x394.png",
+      date: "Dec 19, 2023",
+      link: "https://tutflix.org/"
     }
   ]
 
