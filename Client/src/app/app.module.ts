@@ -10,12 +10,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-folder.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './Modules/login/login.component';
+import { LayoutComponent } from './Modules/layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopPageComponent,
     BookmarkFolderComponent,
+    LoginComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
