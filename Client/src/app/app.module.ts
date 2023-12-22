@@ -9,7 +9,7 @@ import { SharedModule } from './Shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-folder.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout.component';
 
@@ -29,7 +29,8 @@ import { LayoutComponent } from './Modules/layout/layout.component';
     RouterModule,
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

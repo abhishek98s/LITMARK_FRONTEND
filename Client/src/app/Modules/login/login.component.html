@@ -1,1 +1,47 @@
-<p>login works!</p>
+<section class="login-wrapper">
+    <div class="login-box grid grid-cols-1 lg:grid-cols-2 lg:h-[100vh]">
+        <div class="heading flex flex-col items-center m-auto">
+            <figure class="w-[150px] lg:w-[330px] max-lg:mr-auto">
+                <img src="assets/image/logo.svg">
+            </figure>
+            <h1 class="text-body-lg-medium mt-[8px] hidden lg:block">Managing your bookmakr, Your Way</h1>
+            <figure class="w-[230px] mt-[24px] max-lg:w-[240px] max-lg:mt-[132px]">
+                <img src="assets/image/bookmark-overlap.png">
+            </figure>
+        </div>
+
+        <div class="form-box flex lg:h-[100vh]">
+            <form [formGroup]="myForm" (ngSubmit)="submitForm()"
+                class="px-[20px] pt-[48px] pb-[20px] w-100 max-w-[370px] m-auto rounded-2 bg-primary-20 max-lg:p-0">
+                <header>
+                    <h2 class="text-display-lg-bold">Login</h2>
+                    <h3 class="text-body-md-medium mt-[0px]">Let's manage your bookmark, Your Way</h3>
+                </header>
+
+                <div class="form-body mt-[28px]">
+                    <div class="input-box flex flex-col">
+                        <label class="text-label-md-regular">Email</label>
+                        <input class="mt-[4px] rounded-1" type="text" formControlName="email">
+                        <div *ngIf="email.errors?.['email']" class="error text-label-md-regular">Email not valid</div>
+                    </div>
+
+                    <div class="input-box flex flex-col mt-[24px]">
+                        <label class="text-text-">Password</label>
+                        <input class="mt-[4px] rounded-1" [attr.type]="showPassword? 'text':'password' "
+                            formControlName="password">
+                        <a class="showpassword w-[16px] m-[12px] mt-[14px] absolute top-[50%] right-[4px] translate-y-[-50%] cursor-pointer" (click)="togglePassword()">
+                            <img src="assets/image/eye.svg">
+                        </a>
+                        <div *ngIf="password.errors?.['required']" class="error text-label-md-regular">Not valid</div>
+                    </div>
+                </div>
+
+                <button type="submit" (click)="submitForm()"
+                    class="mt-[24px] px-[16px] py-[14px] text-body-md-bold w-100 rounded-1">Login</button>
+
+                <div class="mt-[32px] text-body-md-medium">Don't have an account? <a href="#"
+                        class="text-body-md-bold register-txt">Let's register</a></div>
+            </form>
+        </div>
+    </div>
+</section>

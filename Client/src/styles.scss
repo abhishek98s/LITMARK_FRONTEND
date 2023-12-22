@@ -24,10 +24,20 @@ svg {
     }
 }
 
+// custom class
+.w-100{
+    width: 100%;
+}
+
+.h-100{
+    height: 100%;
+}
+
 input {
     border: 1px solid $primary-400;
     transition: 0.4s;
     outline: none;
+    background-color: $primary-20;
     border-radius: 4px;
 
     &:focus {
