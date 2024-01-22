@@ -1,6 +1,6 @@
 @import "../../colors";
 
-.login-wrapper {
+.register-wrapper {
   background: linear-gradient(180deg, #5754c9 0%, #5754c987 54.52%), #fff;
   .form-box {
     border: 1px solid $primary-300;
@@ -18,7 +18,7 @@
       accent-color: $primary-900;
     }
 
-    .buttons .register-btn {
+    .buttons .secondary-btn {
       border: 1px solid $primary-800;
       transition: 0.4s;
       &:hover {

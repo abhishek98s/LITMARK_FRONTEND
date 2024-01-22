@@ -4,6 +4,7 @@ import { TopPageComponent } from './Modules/home/top-page/top-page.component';
 import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-folder.component';
 import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout.component';
+import { RegisterComponent } from './Modules/register/register.component';
 
 const routes: Routes = [
   {
@@ -13,8 +14,9 @@ const routes: Routes = [
       { path: 'bookmark/:id', component: BookmarkFolderComponent },
     ]
   },
-  
+
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({

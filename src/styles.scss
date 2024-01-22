@@ -5,225 +5,249 @@
 @import "./app/colors";
 
 * {
-    box-sizing: border-box;
-    font-family: "Proxima Soft";
-    -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  font-family: "Proxima Soft";
+  -webkit-tap-highlight-color: transparent;
 }
 
 img,
 svg {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    &.contain {
-        object-fit: contain;
-    }
+  &.contain {
+    object-fit: contain;
+  }
 
-    &.cover {
-        object-fit: cover;
-    }
+  &.cover {
+    object-fit: cover;
+  }
 }
 
 // custom class
-.w-100{
-    width: 100%;
+.w-100 {
+  width: 100%;
 }
 
-.h-100{
-    height: 100%;
+.h-100 {
+  height: 100%;
 }
 
 input {
-    border: 1px solid $primary-400;
-    transition: 0.4s;
-    outline: none;
-    background-color: $primary-20;
-    border-radius: 4px;
+  border: 1px solid $primary-400;
+  transition: 0.4s;
+  outline: none;
+  // background-color: $primary-20;
+  border-radius: 4px;
 
-    &:focus {
-        border: 1px solid $primary-800;
-    }
+  &:focus {
+    border: 1px solid $primary-800;
+  }
 
-    &::placeholder {
-        color: $primary-500;
-    }
+  &::placeholder {
+    color: $primary-500;
+  }
 }
 
- .more-btn-dropdown {
-        border: 0.5px solid $primary-200;
-        background: $primary-100;
-        box-shadow: 0px 4px 16px 0px #8f8dce40;
-        z-index: 100;
+.more-btn-dropdown {
+  border: 0.5px solid $primary-200;
+  background: $primary-100;
+  box-shadow: 0px 4px 16px 0px #8f8dce40;
+  z-index: 100;
 
-        div {
-            padding: 4px;
-            transition: 0.2s;
-            color: $primary-900;
-            cursor: pointer;
-            &:hover {
-                background: $primary-200;
-            }
-        }
+  div {
+    padding: 4px;
+    transition: 0.2s;
+    color: $primary-900;
+    cursor: pointer;
+
+    &:hover {
+      background: $primary-200;
     }
+  }
+}
 
 $colors-list: ();
 $colors-list: map-merge(
-    (
-        "primary-20": $primary-20,
-        "primary-100": $primary-100,
-        "primary-200": $primary-200,
-        "primary-300": $primary-300,
-        "primary-400": $primary-400,
-        "primary-500": $primary-500,
-        "primary-600": $primary-600,
-        "primary-700": $primary-700,
-        "primary-800": $primary-800,
-        "primary-850": $primary-850,
-        "primary-850-80": $primary-850-80,
-        "primary-870": $primary-870,
-        "primary-900": $primary-900,
-        "primary-1000": $primary-1000,
-        "gradient-1": $gradient-1,
+  (
+    "primary-20": $primary-20,
+    "primary-100": $primary-100,
+    "primary-150": $primary-150,
+    "primary-250": $primary-250,
+    "primary-200": $primary-200,
+    "primary-300": $primary-300,
+    "primary-400": $primary-400,
+    "primary-560": $primary-560,
+    "primary-500": $primary-500,
+    "primary-600": $primary-600,
+    "primary-700": $primary-700,
+    "primary-810": $primary-810,
+    "primary-800": $primary-800,
+    "primary-850-80": $primary-850-80,
+    "primary-850": $primary-850,
+    "primary-870": $primary-870,
+    "primary-900": $primary-900,
+    "primary-1000": $primary-1000,
+    "gradient-1": $gradient-1,
 
-        "neutral-0": $neutral-0,
+    "neutral-0": $neutral-0,
 
-        "error-100": $error-100,
-        "error-800": $error-800
-    ),
-    $colors-list
+    "error-100": $error-100,
+    "error-800": $error-800,
+  ),
+  $colors-list
 );
 
 @each $name, $color in $colors-list {
-    .text-#{$name} {
-        color: $color;
-    }
+  .color-#{$name} {
+    color: $color;
+  }
 
-    .bg-#{$name} {
-        background: $color;
-    }
+  .bg-#{$name} {
+    background: $color;
+  }
 }
 
 .text {
-    &-display-lg-bold {
-        font-size: 32px;
-        font-weight: 700;
-    }
-    &-display-lg-medium {
-        font-size: 32px;
-        font-weight: 500;
-    }
-    &-title-md-bold {
-        font-size: 24px;
-        font-weight: 700;
-    }
-    &-body-xl-bold {
-        font-size: 20px;
-        font-weight: 700;
-    }
-    &-body-lg-bold {
-        font-size: 18px;
-        font-weight: 700;
-    }
-    &-body-lg-medium {
-        font-size: 18px;
-        font-weight: 500;
-    }
-    &-body-md-bold {
-        font-size: 16px;
-        font-weight: 700;
-    }
-    &-body-md-semi-bold {
-        font-size: 16px;
-        font-weight: 600;
-    }
-    &-body-md-medium {
-        font-size: 16px;
-        font-weight: 500;
-    }
-    &-body-md-regular {
-        font-size: 16px;
-        font-weight: 400;
-    }
-    &-label-md-bold {
-        font-size: 14px;
-        font-weight: 700;
-    }
-    &-label-md-medium {
-        font-size: 14px;
-        font-weight: 500;
-    }
-    &-label-md-regular {
-        font-size: 14px;
-        font-weight: 400;
-    }
+  &-display-lg-bold {
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  &-display-lg-medium {
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  &-title-md-bold {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 120%;
+  }
+
+  &-body-xl-bold {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &-body-xl-regular {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  &-body-lg-bold {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &-body-lg-medium {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &-body-md-bold {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &-body-md-semi-bold {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &-body-md-medium {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &-body-md-regular {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  &-label-md-bold {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  &-label-md-medium {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &-label-md-regular {
+    font-size: 14px;
+    font-weight: 400;
+  }
 }
 
 .rounded {
-    &-1 {
-        border-radius: 4px;
-    }
+  &-1 {
+    border-radius: 4px;
+  }
 
-    &-2 {
-        border-radius: 8px;
-    }
+  &-2 {
+    border-radius: 8px;
+  }
 }
 
 %center {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
+
 .flex {
-    &-center {
-        @extend %center;
-        justify-content: center;
-    }
+  &-center {
+    @extend %center;
+    justify-content: center;
+  }
 
-    &-v-cemter {
-        @extend %center;
-    }
+  &-v-cemter {
+    @extend %center;
+  }
 
-    &-between-center {
-        @extend %center;
-        justify-content: space-between;
-    }
+  &-between-center {
+    @extend %center;
+    justify-content: space-between;
+  }
 }
 
 .shadow {
-    &-1 {
-        box-shadow: 0px 6px 12px 0px #14135340;
-    }
+  &-1 {
+    box-shadow: 0px 6px 12px 0px #14135340;
+  }
 }
 
 @layer utilities {
-    @variants responsive {
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
     }
+  }
 }
 
 ::selection {
-    background-color: $primary-600;
-    color: $primary-20;
+  background-color: $primary-600;
+  color: $primary-20;
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: $primary-200;
+  background: $primary-200;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: $primary-400;
+  background: $primary-400;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: $primary-600;
+  background: $primary-600;
 }

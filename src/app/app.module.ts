@@ -12,6 +12,7 @@ import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-fold
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout.component';
+import { RegisterComponent } from './Modules/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LayoutComponent } from './Modules/layout/layout.component';
     BookmarkFolderComponent,
     LoginComponent,
     LayoutComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

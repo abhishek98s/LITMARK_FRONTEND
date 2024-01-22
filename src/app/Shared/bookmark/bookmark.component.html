@@ -1,6 +1,6 @@
 <div class="bookmark rounded-2 pt-0 p-[10px_12px] relative">
     <div class="flex justify-between mb-[12px]">
-        <span class="text-primary-850-80 .text-label-md-regular">{{bookmark.date}}</span>
+        <span class="color-primary-850-80 .text-label-md-regular">{{bookmark.date}}</span>
 
         <figure class="more-btn w-[20px] rounded-full cursor-pointer" (click)="toggleBookmarkMenu()">
             <img src="assets/icon/more.svg" alt="more-option">
@@ -15,7 +15,7 @@
         <figure class="max-w-[60px] w-[100%] h-[60px] rounded-2">
             <img class="rounded-2" src={{bookmark.img}} alt="bookmark-img">
         </figure>
-        <a class="title text-primary-900 text-body-md-medium hover:underline" target="_blank"
+        <a class="title color-primary-900 text-body-md-medium hover:underline" target="_blank"
             href={{bookmark.link}}>{{bookmark.title}}</a>
     </div>
 </div>
