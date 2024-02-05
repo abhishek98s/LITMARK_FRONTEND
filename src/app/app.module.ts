@@ -14,7 +14,6 @@ import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { CustomInterceptor } from './service/custom.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,12 +36,7 @@ import { CustomInterceptor } from './service/custom.interceptor';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor,
-      multi: true
-    }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
