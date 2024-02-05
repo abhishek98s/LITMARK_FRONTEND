@@ -1,5 +1,5 @@
 <section class="login-wrapper grid place-items-center w-[100vw] h-[100vh]">
-    <div class="form-box max-w-[450px] w-full mx-auto mt-auto rounded-2 px-[16px] pt-[52px] pb-[16px] bg-neutral-0 md:m-auto md:p-[48px_32px] md:pb-[24px]">
+    <div class="form-box max-w-[450px] w-full mx-auto mt-auto rounded-2 px-[16px] pt-[52px] pb-[16px] bg-neutral-0 md:m-auto md:p-[48px_24px] md:pb-[24px]">
         <figure class="w-[164px] mb-[56px]">
             <img src="assets/image/logo.svg">
         </figure>
@@ -12,12 +12,12 @@
         <form class="form-wrapper">
             <div class="flex flex-col mb-[20px]">
                 <label class="text-body-md-bold color-primary-900 mb-[8px]">Email</label>
-                <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com">
+                <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com" name="email" [(ngModel)]="loginObj.email">
             </div>
             <div class="flex flex-col mb-[20px]">
                 <label class="text-body-md-bold color-primary-900 mb-[8px]">Password</label>
                 <div class="relative">
-                    <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular w-full pr-[10px]" type="password">
+                    <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular w-full pr-[10px]" type="password" name="password" [(ngModel)]="loginObj.password">
                     <div class="absolute top-[50%] right-0 translate-y-[-50%] p-[10px] cursor-pointer">
                         <figure class="w-[24px] h-[24px] bg-neutral-0 cursor-pointer">
                             <img src="assets/icon/eye.svg">
@@ -38,7 +38,7 @@
 
             <div class="buttons flex gap-[24px]">
                 <a type="submit"
-                    class="bg-primary-800 color-neutral-0 rounded-2 w-full p-[12px] text-body-md-bold text-center cursor-pointer">Login</a>
+                    class="bg-primary-800 color-neutral-0 rounded-2 w-full p-[12px] text-body-md-bold text-center cursor-pointer" (click)="submitForm()">Login</a>
                 <a routerLink="/register"
                     class="register-btn color-primary-800 rounded-2 w-full p-[12px] text-body-md-bold text-center">Register</a>
             </div>
