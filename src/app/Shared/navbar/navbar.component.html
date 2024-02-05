@@ -3,54 +3,59 @@
         <img src="assets/image/logo.svg" alt="logo">
     </figure>
 
-    <div class="profile-menu-wrapper relative">
-        <div class="profile-menu flex items-center p-1 gap-1 rounded-full cursor-pointer" (click)="toggleProfileMenu()">
+    <div class="profile-menu-wrapper relative ">
+        <div class="profile-menu flex items-center p-1 gap-1 rounded-full cursor-pointer"
+            (click)="toggleProfileMenu($event)">
             <div class="w-[40px] h-[40px] rounded-full bg-primary-200 flex-center">
                 <figure class="bg-primary-200 flex-center w-[20px]">
                     <img src="assets/icon/user.svg" alt="user">
                 </figure>
             </div>
-            <figure [ngClass]="{'active': showProfileMenu}" class="icon-arrow w-[24px] h-[24px] p-[4px]">
+            <figure [ngClass]="{'active': dropdwonService.isOpen('profile-dropdown')}" class="icon-arrow w-[24px] h-[24px] p-[4px]">
                 <img src="assets/icon/arrow-down.svg" alt="">
             </figure>
         </div>
 
-        <div *ngIf="showProfileMenu" class="menu-wrapper p-[8px] pb-[4px] mt-[-4px] rounded-2 w-[200px] space-y-[8px] absolute top-full right-0 bg-neutral-0">
-            <div class="block-1">
-                <a routerLink="/" class="item flex items-center rouned-2 p-[8px_6px] gap-[12px]">
-                    <figure class="w-[20px] h-[20px]">
-                        <img src="assets/icon/icon-user.svg" alt="icon-user">
-                    </figure>
+        <div  [hidden]="!dropdwonService.isOpen('profile-dropdown')">
+            <div #dropdown
+                class="menu-wrapper p-[8px] pb-[4px] mt-[-4px] rounded-2 w-[200px] space-y-[8px] absolute top-full right-0 bg-neutral-0">
+                <div class="block-1">
+                    <a routerLink="/" #menuItem class="item flex items-center rouned-2 p-[8px_12px] gap-[16px]">
+                        <figure class="w-[20px] h-[20px]">
+                            <img src="assets/icon/icon-user.svg" alt="icon-user">
+                        </figure>
 
-                    <span class="color-primary-900 text-label-md-regular">Jonah Wick</span>
-                </a>
-                <a routerLink="/" class="item flex items-center rouned-2 p-[8px_6px] gap-[12px]">
-                    <figure class="w-[20px] h-[20px]">
-                        <img src="assets/icon/icon-stats.svg" alt="icon-stats">
-                    </figure>
+                        <span class="color-primary-900 text-label-md-regular">Jonah Wick</span>
+                    </a>
+                    <a routerLink="/" #menuItem class="item flex items-center rouned-2 p-[8px_12px] gap-[16px]">
+                        <figure class="w-[20px] h-[20px]">
+                            <img src="assets/icon/icon-stats.svg" alt="icon-stats">
+                        </figure>
 
-                    <span class="color-primary-900 text-label-md-regular">Stats</span>
-                </a>
-                <a routerLink="/" class="item flex items-center rouned-2 p-[8px_6px] gap-[12px]">
-                    <figure class="w-[20px] h-[20px]">
-                        <img src="assets/icon/icon-favroite.svg" alt="icon-favorite">
-                    </figure>
+                        <span class="color-primary-900 text-label-md-regular">Stats</span>
+                    </a>
+                    <a routerLink="/" #menuItem class="item flex items-center rouned-2 p-[8px_12px] gap-[16px]">
+                        <figure class="w-[20px] h-[20px]">
+                            <img src="assets/icon/icon-favroite.svg" alt="icon-favorite">
+                        </figure>
 
-                    <span class="color-primary-900 text-label-md-regular">Favroite</span>
-                </a>
+                        <span class="color-primary-900 text-label-md-regular">Favroite</span>
+                    </a>
+                </div>
+
+                <hr class="h-[0.5px] rounded-full">
+
+                <div class="block-2">
+                    <a routerLink="/" #menuItem class="item flex items-center rouned-2 p-[8px] gap-[16px]">
+                        <span class="color-primary-900 text-label-md-regular">Setting</span>
+                    </a>
+                    <a routerLink="/" #menuItem class="item flex flex-col rouned-2 p-[8px]">
+                        <div class="sign-out text-label-md-regular">Sign out</div>
+                        <div class="color-primary-550 text-label-md-regular">joanthanwiseal@gmail.com</div>
+                    </a>
+                </div>
             </div>
-
-            <hr class="h-[0.5px] rounded-full">
-
-            <div class="block-2">
-                <a routerLink="/" class="item flex items-center rouned-2 p-[8px] gap-[16px]">              
-                    <span class="color-primary-900 text-label-md-regular">Setting</span>
-                </a>
-                <a routerLink="/" class="item flex flex-col rouned-2 p-[8px]">
-                    <div class="text-label-md-regular">Sign out</div>
-                    <div class="color-primary-550 text-label-md-regular">joanthanwiseal@gmail.com</div>
-                </a>
-            </div>
+            <!-- </ng-template> -->
         </div>
     </div>
 </nav>
