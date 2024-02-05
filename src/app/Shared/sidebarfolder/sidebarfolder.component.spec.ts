@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FolderComponent } from './folder.component';
+import { FolderComponent } from './sidebarfolder.component';
 
 describe('FolderComponent', () => {
   let component: FolderComponent;

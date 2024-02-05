@@ -8,27 +8,27 @@ import { FlagService } from 'src/app/services/flag.service';
 })
 export class NavbarComponent {
 
-  constructor(public dropdwonService: FlagService) { }
+  constructor(public dropdownService: FlagService) { }
   @ViewChild('dropdown') dropdownElement!: ElementRef;
 
   toggleProfileMenu(event: Event) {
-    if (this.dropdwonService.isOpen('profile-dropdown')) {
-      this.dropdwonService.closeDropdown('profile-dropdown');
+    if (this.dropdownService.isOpen('profile-dropdown')) {
+      this.dropdownService.closeDropdown('profile-dropdown');
     } else {
-      this.dropdwonService.openDropdown('profile-dropdown');
+      this.dropdownService.openDropdown('profile-dropdown');
     }
     event.stopPropagation();
   }
 
   onDropdownItemClick() {
-    this.dropdwonService.closeDropdown('profile-dropdown');
+    this.dropdownService.closeDropdown('profile-dropdown');
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if (this.dropdwonService.isOpen('profile-dropdown') === false) { return }
-    if (this.dropdwonService.isOpen('profile-dropdown') && !this.dropdownElement.nativeElement.contains(event.target)) {
-      this.dropdwonService.clearDropdowns();
+    if (this.dropdownService.isOpen('profile-dropdown') === false) { return }
+    if (this.dropdownService.isOpen('profile-dropdown') && !this.dropdownElement.nativeElement.contains(event.target)) {
+      this.dropdownService.clearDropdowns();
     }
   }
 }

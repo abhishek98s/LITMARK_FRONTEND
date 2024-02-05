@@ -11,12 +11,12 @@
                     <img src="assets/icon/user.svg" alt="user">
                 </figure>
             </div>
-            <figure [ngClass]="{'active': dropdwonService.isOpen('profile-dropdown')}" class="icon-arrow w-[24px] h-[24px] p-[4px]">
+            <figure [ngClass]="{'active': dropdownService.isOpen('profile-dropdown')}" class="icon-arrow w-[24px] h-[24px] p-[4px]">
                 <img src="assets/icon/arrow-down.svg" alt="">
             </figure>
         </div>
 
-        <div  [hidden]="!dropdwonService.isOpen('profile-dropdown')">
+        <div  [hidden]="!dropdownService.isOpen('profile-dropdown')">
             <div #dropdown
                 class="menu-wrapper p-[8px] pb-[4px] mt-[-4px] rounded-2 w-[200px] space-y-[8px] absolute top-full right-0 bg-neutral-0">
                 <div class="block-1">

@@ -23,18 +23,7 @@
         z-index: 20;
         box-shadow: 0 10px 10px -8px rgba(29, 28, 64, 0.15);
         animation: top_down 0.2s ease-out;
-
-        @keyframes top_down {
-            from {
-                margin-top: 8px;
-            }
-
-            to {
-                margin-top: -4px;
-            }
-
-        }
-
+        
         .item {
             transition: .2s;
 

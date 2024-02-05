@@ -51,9 +51,10 @@ input {
 
 .more-btn-dropdown {
   border: 0.5px solid $primary-200;
-  background: $primary-100;
-  box-shadow: 0px 4px 16px 0px #8f8dce40;
+  background: $neutral-0;
+  box-shadow: 0 10px 10px -8px rgba(29, 28, 64, 0.15);
   z-index: 100;
+  animation: top_down 0.2s ease-out;
 
   div {
     padding: 4px;
@@ -67,37 +68,46 @@ input {
   }
 }
 
-$colors-list: ();
-$colors-list: map-merge(
-  (
-    "primary-20": $primary-20,
-    "primary-100": $primary-100,
-    "primary-150": $primary-150,
-    "primary-250": $primary-250,
-    "primary-200": $primary-200,
-    "primary-300": $primary-300,
-    "primary-400": $primary-400,
-    "primary-560": $primary-560,
-    "primary-550": $primary-550,
-    "primary-500": $primary-500,
-    "primary-600": $primary-600,
-    "primary-700": $primary-700,
-    "primary-810": $primary-810,
-    "primary-800": $primary-800,
-    "primary-850-80": $primary-850-80,
-    "primary-850": $primary-850,
-    "primary-870": $primary-870,
-    "primary-900": $primary-900,
-    "primary-1000": $primary-1000,
-    "gradient-1": $gradient-1,
+@keyframes top_down {
+  from {
+    transform: translateY(10px);
+  }
 
-    "neutral-0": $neutral-0,
+  to {
+    transform: translateY(0);
+  }
 
-    "error-100": $error-100,
-    "error-800": $error-800,
-  ),
-  $colors-list
+}
+
+$colors-list: (
 );
+$colors-list: map-merge(("primary-20": $primary-20,
+      "primary-100": $primary-100,
+      "primary-150": $primary-150,
+      "primary-250": $primary-250,
+      "primary-200": $primary-200,
+      "primary-300": $primary-300,
+      "primary-400": $primary-400,
+      "primary-560": $primary-560,
+      "primary-550": $primary-550,
+      "primary-500": $primary-500,
+      "primary-600": $primary-600,
+      "primary-700": $primary-700,
+      "primary-810": $primary-810,
+      "primary-800": $primary-800,
+      "primary-850-80": $primary-850-80,
+      "primary-850": $primary-850,
+      "primary-870": $primary-870,
+      "primary-900": $primary-900,
+      "primary-1000": $primary-1000,
+      "gradient-1": $gradient-1,
+
+      "neutral-0": $neutral-0,
+
+      "error-100": $error-100,
+      "error-800": $error-800,
+    ),
+    $colors-list);
 
 @each $name, $color in $colors-list {
   .color-#{$name} {
@@ -221,6 +231,7 @@ $colors-list: map-merge(
 
 @layer utilities {
   @variants responsive {
+
     /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
       display: none;

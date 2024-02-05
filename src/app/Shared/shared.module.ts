@@ -6,7 +6,7 @@ import { SecondaryBtnComponent } from './Button/secondary-btn/secondary-btn.comp
 import { TeritaryBtnComponent } from './Button/teritary-btn/teritary-btn.component';
 import { InputBoxComponent } from './input-box/input-box.component';
 import { AddComponent } from './Button/Add/add.component';
-import { FolderComponent } from './folder/folder.component';
+import { FolderComponent } from './sidebarfolder/sidebarfolder.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchFilterBoxComponent } from './search-filter-box/search-filter-box.component';
 import { ChipComponent } from './chip/chip.component';

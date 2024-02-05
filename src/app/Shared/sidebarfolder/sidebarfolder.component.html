@@ -7,12 +7,12 @@
         {{folder.title}}
     </a>
 
-    <figure class="more-btn rounded-full w-[30px] h-[30px]" (click)="toggleOpen()">
+    <figure class="more-btn rounded-full w-[30px] h-[30px]" (click)="toggleOpen($event)">
         <img src="assets/icon/more.svg" alt="more">
     </figure>
 
-    <div class="more-btn-dropdown rounded-1 absolute right-[8px] top-[30px] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
-        *ngIf="menuOpen">
+    <div #dropdowns class="more-btn-dropdown rounded-1 absolute right-[8px] top-[30px] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
+        [hidden]="!dropdownService.isOpen(folder.title)">
         <div class="rounded-1" (click)="deleteFolder(folder.id)">Delete</div>
         <div class="rounded-1">Rename</div>
     </div>

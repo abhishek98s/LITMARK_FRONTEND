@@ -14,7 +14,7 @@
         </div>
         <div class="h-[100%] folder-list">
             <div class="folder" *ngFor="let folder of folders">
-                <app-folder [folder]="folder"></app-folder>
+                <app-sidebarfolder [folder]="folder"></app-sidebarfolder>
             </div>
             <form class="flex py-[10px] pl-[12px] gap-[8px]" (ngSubmit)="submitSidebarFolderForm()"
                 *ngIf="this.dataService.state.sidebarFolderkInputbox">

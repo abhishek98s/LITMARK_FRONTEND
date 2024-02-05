@@ -14,6 +14,7 @@ export class FlagService {
   }
 
   openDropdown(identifier: string) {
+    this.clearDropdowns()
     this.openDropdowns.add(identifier);
   }
 
