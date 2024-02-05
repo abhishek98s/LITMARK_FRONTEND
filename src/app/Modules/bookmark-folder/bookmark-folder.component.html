@@ -31,7 +31,7 @@
         </form>
 
         <div *ngFor="let data of dataService.getNestedFolder()">
-            <nested-folder [data]="data"></nested-folder>
+            <nested-folder [nestedFolder]="data"></nested-folder>
         </div>
 
         <form class="bookmarkInputBox flex gap-[8px] rounded-2 " *ngIf="this.dataService.state.bookmarkInputbox" (ngSubmit)="submitBookmarkForm()">

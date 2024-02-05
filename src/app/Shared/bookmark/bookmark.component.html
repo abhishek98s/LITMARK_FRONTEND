@@ -2,11 +2,11 @@
     <div class="flex justify-between mb-[12px]">
         <span class="color-primary-850-80 .text-label-md-regular">{{bookmark.date}}</span>
 
-        <figure class="more-btn w-[20px] rounded-full cursor-pointer" (click)="toggleBookmarkMenu()">
+        <figure class="more-btn w-[20px] rounded-full cursor-pointer" (click)="toggleBookmarkMenu($event)">
             <img src="assets/icon/more.svg" alt="more-option">
         </figure>
-        <div class="more-btn-dropdown rounded-1 absolute right-[8px] top-[20px] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
-            *ngIf="openBookmarkMenu">
+        <div #bookmarkDropdown class="more-btn-dropdown rounded-1 absolute right-[8px] top-[20px] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
+             [hidden]="!dropdownService.isOpen(uniqueString)">
             <div class="rounded-1" (click)="deleteBookmark(bookmark.id)">Delete</div>
             <div class="rounded-1">Rename</div>
         </div>

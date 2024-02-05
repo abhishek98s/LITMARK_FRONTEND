@@ -15,8 +15,7 @@ export class RecentBookmarkComponent implements OnInit {
 
   uniqueString = '';
 
-  constructor(public dataService: BookmarkService, public dropdownService: FlagService) {
-  };
+  constructor(public dataService: BookmarkService, public dropdownService: FlagService) {};
 
   ngOnInit(): void {
     this.uniqueString = this.recentBookmark.id.toString() + this.recentBookmark.title;

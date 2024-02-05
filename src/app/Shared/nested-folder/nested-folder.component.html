@@ -4,16 +4,16 @@
             <img src="assets/icon/sub-folder.svg" alt="sub-folder">
         </figure>
 
-        <span class="text-body-md-medium color-primary-900">{{data.title}}</span>
+        <span class="text-body-md-medium color-primary-900">{{nestedFolder.title}}</span>
     </div>
 
-    <figure class="w-[24px] rounded-full more-btn cursor-pointer" (click)="toggleMenu()">
+    <figure class="w-[24px] rounded-full more-btn cursor-pointer" (click)="toggleMenu($event)">
         <img src="assets/icon/more.svg" alt="more button">
     </figure>
 
-    <div class="more-btn-dropdown rounded-1 absolute right-[12px] top-[50px] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
-        *ngIf="menuOpen">
-        <div class="rounded-1" (click)="deleteNestedFolder(data.id)">Delete</div>
+    <div #nestedFolderDropdown class="more-btn-dropdown rounded-1 absolute right-[12px] top-[60%] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
+        [hidden]="!dropdownService.isOpen(uniqueString)">
+        <div class="rounded-1" (click)="deleteNestedFolder(nestedFolder.id)">Delete</div>
         <div class="rounded-1">Rename</div>
     </div>
 </div>
