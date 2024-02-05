@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/service/auth.service';
+// import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +15,15 @@ export class LoginComponent {
     email: '',
     password: '',
   };
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, 
+    // private authService: AuthService
+    ) {}
 
   submitForm() {
-    this.authService.onLogin(this.loginObj).subscribe((res: any) => {
-      console.log('res', res);
-      localStorage.setItem('token', res.data);
-    });
+    // this.authService.onLogin(this.loginObj).subscribe((res: any) => {
+    //   console.log('res', res);
+    //   localStorage.setItem('token', res.data);
+    // });
   }
 
   togglePassword() {
