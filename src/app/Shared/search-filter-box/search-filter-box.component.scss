@@ -22,6 +22,7 @@
         background-color: $neutral-0;
         overflow: hidden;
         height: 40px;
+        z-index: 10;
 
         &:hover {
             overflow: unset;
