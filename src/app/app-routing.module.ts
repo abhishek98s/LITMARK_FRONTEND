@@ -14,7 +14,7 @@ const routes: Routes = [
       { path: 'bookmark/:id', component: BookmarkFolderComponent },
     ]
   },
-
+  
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: '/login' },
