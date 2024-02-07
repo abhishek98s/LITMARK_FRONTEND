@@ -49,7 +49,7 @@
                     <a routerLink="/" #menuItem class="item flex items-center rouned-2 p-[8px] gap-[16px]">
                         <span class="color-primary-900 text-label-md-regular">Setting</span>
                     </a>
-                    <a routerLink="/" #menuItem class="item flex flex-col rouned-2 p-[8px]">
+                    <a #menuItem class="item flex flex-col rouned-2 p-[8px]" (click)="logout()">
                         <div class="sign-out text-label-md-regular">Sign out</div>
                         <div class="color-primary-550 text-label-md-regular">joanthanwiseal@gmail.com</div>
                     </a>

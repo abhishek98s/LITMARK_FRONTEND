@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { TopPageComponent } from './Modules/home/top-page/top-page.component';
 import { SharedModule } from './Shared/shared.module';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-folder.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './Modules/login/login.component';

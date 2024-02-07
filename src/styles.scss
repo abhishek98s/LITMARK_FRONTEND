@@ -33,6 +33,10 @@ svg {
   height: 100%;
 }
 
+a, button{
+  cursor: pointer;
+}
+
 input {
   border: 1px solid $primary-400;
   transition: 0.4s;

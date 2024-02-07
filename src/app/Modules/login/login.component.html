@@ -9,15 +9,15 @@
             <div class="text-body-md-regular">Enter your email and password to login</div>
         </header>
 
-        <form class="form-wrapper">
+        <form class="form-wrapper" [formGroup]="loginForm" (ngSubmit)="submitForm()">
             <div class="flex flex-col mb-[20px]">
                 <label class="text-body-md-bold color-primary-900 mb-[8px]">Email</label>
-                <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com">
+                <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com" formControlName="email">
             </div>
             <div class="flex flex-col mb-[20px]">
                 <label class="text-body-md-bold color-primary-900 mb-[8px]">Password</label>
                 <div class="relative">
-                    <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular w-full pr-[10px]" type="password">
+                    <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular w-full pr-[10px]" type="password" formControlName="password">
                     <div class="absolute top-[50%] right-0 translate-y-[-50%] p-[10px] cursor-pointer">
                         <figure class="w-[24px] h-[24px] bg-neutral-0 cursor-pointer">
                             <img src="assets/icon/eye.svg">
@@ -37,10 +37,10 @@
             </div>
 
             <div class="buttons flex gap-[24px]">
-                <a type="submit"
-                    class="bg-primary-800 color-neutral-0 rounded-2 w-full p-[12px] text-body-md-bold text-center cursor-pointer">Login</a>
-                <a routerLink="/register"
-                    class="register-btn color-primary-800 rounded-2 w-full p-[12px] text-body-md-bold text-center">Register</a>
+                <button type="submit"
+                    class="bg-primary-800 color-neutral-0 rounded-2 w-full p-[12px] text-body-md-bold text-center cursor-pointer">Login</button>
+                <button routerLink="/register" type="button"
+                    class="register-btn color-primary-800 rounded-2 w-full p-[12px] text-body-md-bold text-center">Register</button>
             </div>
         </form>
     </div>

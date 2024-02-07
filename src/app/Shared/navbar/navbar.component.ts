@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { FlagService } from 'src/app/services/flag.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { FlagService } from 'src/app/services/flag.service';
 })
 export class NavbarComponent {
 
-  constructor(public dropdownService: FlagService) { }
+  constructor(public dropdownService: FlagService,  private authService: AuthService) { }
   @ViewChild('dropdown') dropdownElement!: ElementRef;
 
   toggleProfileMenu(event: Event) {
@@ -22,6 +23,10 @@ export class NavbarComponent {
 
   onDropdownItemClick() {
     this.dropdownService.closeDropdown('profile-dropdown');
+  }
+
+  logout() {
+    this.authService.onLogout();
   }
 
   @HostListener('document:click', ['$event'])
