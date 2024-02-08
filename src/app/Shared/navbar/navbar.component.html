@@ -4,19 +4,18 @@
     </figure>
 
     <div class="profile-menu-wrapper relative ">
-        <div class="profile-menu flex items-center p-1 gap-1 rounded-full cursor-pointer"
-            (click)="toggleProfileMenu($event)">
+        <div (click)="toggleProfileMenu($event)" class="profile-menu flex items-center p-1 gap-1 rounded-full cursor-pointer">
             <div class="w-[40px] h-[40px] rounded-full bg-primary-200 flex-center">
                 <figure class="bg-primary-200 flex-center w-[20px]">
                     <img src="assets/icon/user.svg" alt="user">
                 </figure>
             </div>
-            <figure [ngClass]="{'active': dropdownService.isOpen('profile-dropdown')}" class="icon-arrow w-[24px] h-[24px] p-[4px]">
-                <img src="assets/icon/arrow-down.svg" alt="">
+            <figure [ngClass]="{'active': dropdownService.isOpen(uniqueString)}" class="icon-arrow w-[24px] h-[24px] p-[4px]">
+                <img src="assets/icon/arrow-down.svg" alt="arrow-down">
             </figure>
         </div>
 
-        <div  [hidden]="!dropdownService.isOpen('profile-dropdown')">
+        <div  [hidden]="!dropdownService.isOpen(uniqueString)">
             <div #dropdown
                 class="menu-wrapper p-[8px] pb-[4px] mt-[-4px] rounded-2 w-[200px] space-y-[8px] absolute top-full right-0 bg-neutral-0">
                 <div class="block-1">

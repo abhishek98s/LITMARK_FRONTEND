@@ -4,16 +4,18 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FlagService {
-
-  constructor() { }
-
   private openDropdowns: Set<string> = new Set<string>();
+
+  constructor() {
+    this.clearDropdowns()
+  }
 
   isOpen(identifier: string): boolean {
     return this.openDropdowns.has(identifier);
   }
 
   openDropdown(identifier: string) {
+    // console.log(identifier)
     this.clearDropdowns()
     this.openDropdowns.add(identifier);
   }

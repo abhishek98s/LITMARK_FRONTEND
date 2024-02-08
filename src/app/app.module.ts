@@ -14,6 +14,7 @@ import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

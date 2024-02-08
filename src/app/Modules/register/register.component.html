@@ -12,17 +12,17 @@
 
         <form class="form-wrapper" [formGroup]="registerForm" (ngSubmit)="submitForm()">
             <div class="flex flex-col mb-[20px]">
-                <label for="name" class="text-body-md-bold color-primary-900 mb-[8px]">Full Name</label>
-                <input id="name" class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="John Weasly" formControlName="name">
+                <label  class="text-body-md-bold color-primary-900 mb-[8px]">Full Name</label>
+                <input  class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="John Weasly" formControlName="name">
             </div>
             <div class="flex flex-col mb-[20px]">
-                <label for="email" class="text-body-md-bold color-primary-900 mb-[8px]">Email</label>
-                <input id="email" class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com" formControlName="email">
+                <label  class="text-body-md-bold color-primary-900 mb-[8px]">Email</label>
+                <input  class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com" formControlName="email">
             </div>
             <div class="flex flex-col mb-[20px]">
-                <label for="password" class="text-body-md-bold color-primary-900 mb-[8px]">Password</label>
+                <label  class="text-body-md-bold color-primary-900 mb-[8px]">Password</label>
                 <div class="relative">
-                    <input id="password" class="p-[20px] rounded-2 h-[56px] text-body-md-regular w-full pr-[10px]" type="password" formControlName="password">
+                    <input  class="p-[20px] rounded-2 h-[56px] text-body-md-regular w-full pr-[10px]" type="password" formControlName="password">
                     <div class="absolute top-[50%] right-0 translate-y-[-50%] p-[10px] cursor-pointer">
                         <figure class="w-[24px] h-[24px] bg-neutral-0 cursor-pointer">
                             <img src="assets/icon/eye.svg">
@@ -33,7 +33,7 @@
 
             <div class="buttons flex gap-[24px]">
                 <button type="button" routerLink="/login"
-                    class="secondary-btn color-primary-800 rounded-2 w-full p-[12px] text-body-md-bold text-center">login</button>
+                    class="secondary-btn color-primary-800 rounded-2 w-full p-[12px] text-body-md-bold text-center">Login</button>
                 <button type="submit"
                     class="bg-primary-800 color-neutral-0 rounded-2 w-full p-[12px] text-body-md-bold text-center cursor-pointer" >Register</button>
             </div>

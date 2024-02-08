@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FlagService } from 'src/app/services/flag.service';
 
@@ -7,22 +7,24 @@ import { FlagService } from 'src/app/services/flag.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
-
-  constructor(public dropdownService: FlagService,  private authService: AuthService) { }
+export class NavbarComponent implements OnInit{
   @ViewChild('dropdown') dropdownElement!: ElementRef;
 
-  toggleProfileMenu(event: Event) {
-    if (this.dropdownService.isOpen('profile-dropdown')) {
-      this.dropdownService.closeDropdown('profile-dropdown');
-    } else {
-      this.dropdownService.openDropdown('profile-dropdown');
-    }
-    event.stopPropagation();
+  constructor(public dropdownService: FlagService,  private authService: AuthService) { }
+
+  uniqueString = 'profile-menu'
+
+  ngOnInit(): void {
+    this.dropdownService.closeDropdown(this.uniqueString);
   }
 
-  onDropdownItemClick() {
-    this.dropdownService.closeDropdown('profile-dropdown');
+  toggleProfileMenu(event: Event) {
+    if (this.dropdownService.isOpen(this.uniqueString)) {
+      this.dropdownService.closeDropdown(this.uniqueString);
+    } else {
+      this.dropdownService.openDropdown(this.uniqueString);
+    }
+    event.stopPropagation();
   }
 
   logout() {
@@ -31,8 +33,8 @@ export class NavbarComponent {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if (this.dropdownService.isOpen('profile-dropdown') === false) { return }
-    if (this.dropdownService.isOpen('profile-dropdown') && !this.dropdownElement.nativeElement.contains(event.target)) {
+    if (this.dropdownService.isOpen(this.uniqueString) === false) { return }
+    if (this.dropdownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
       this.dropdownService.clearDropdowns();
     }
   }

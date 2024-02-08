@@ -5,6 +5,7 @@ import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-fold
 import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', component: TopPageComponent },
       { path: 'bookmark/:id', component: BookmarkFolderComponent },
-    ]
+    ], canActivate: [AuthGuard]
   },
   
   { path: 'login', component: LoginComponent },
