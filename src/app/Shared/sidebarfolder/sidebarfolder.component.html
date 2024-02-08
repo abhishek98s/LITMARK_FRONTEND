@@ -1,6 +1,6 @@
 <div class="folder rounded-1 flex-between-center relative">
-    <a routerLink="/bookmark/{{folder.id}}" class="flex gap-[8px] w-full color-primary-900 text-body-md-medium">
-        <figure class="rounded-2 max-w-[30px] w-[100%] h-[30px]">
+    <a routerLink="/bookmark/{{folder.id}}" class="flex items-center gap-[8px] w-full color-primary-900 text-body-md-medium">
+        <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-[100%] ">
             <img src={{folder.img}} alt="folder">
         </figure>
 
@@ -12,7 +12,7 @@
     </figure>
 
     <div #dropdowns class="more-btn-dropdown rounded-1 absolute right-[8px] top-[80%] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
-        [hidden]="!dropdownService.isOpen(folder.title)">
+        [hidden]="!dropdownService.isOpen(uniqueString)">
         <div class="rounded-1" (click)="deleteFolder(folder.id)">Delete</div>
         <div class="rounded-1">Rename</div>
     </div>

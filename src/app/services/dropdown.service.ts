@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class FlagService {
+export class dropDownService {
   private openDropdowns: Set<string> = new Set<string>();
 
   constructor() {

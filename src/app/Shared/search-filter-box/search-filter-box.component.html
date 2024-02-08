@@ -4,14 +4,14 @@
     </div>
 
     <div class="relative bg-neutral-0">
-        <div (click)="toggleProfileMenu($event)"
+        <a (click)="toggleProfileMenu($event)"
             class="sortDropdown flex p-[4px_10px] rounded-1 justify-between items-center color-primary-900 text-label-md-regular">
             <button class="more-btn-dropdown-btn">{{filter}}</button>
 
             <figure class="down-arrow w-[12px] h-[12px] flex-center" [ngClass]="{'active': dropdownService.isOpen(uniqueString)}">
                 <img src="assets/icon/arrow-down.svg" alt="sort">
             </figure>
-        </div>
+        </a>
 
         <div #dateDropdown [hidden]="!dropdownService.isOpen(uniqueString)"
             class="sort-option absolute top-[80%] pt-[10px] mt-[16px] p-[4px] rounded-1 text-label-md-regular spacing-y-[4px] z-50">

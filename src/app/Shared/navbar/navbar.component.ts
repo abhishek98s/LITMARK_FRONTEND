@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { FlagService } from 'src/app/services/dropdown.service';
+import { dropDownService } from 'src/app/services/dropdown.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,7 @@ import { FlagService } from 'src/app/services/dropdown.service';
 export class NavbarComponent implements OnInit{
   @ViewChild('dropdown') dropdownElement!: ElementRef;
 
-  constructor(public dropdownService: FlagService,  private authService: AuthService) { }
+  constructor(public dropdownService: dropDownService,  private authService: AuthService) { }
 
   uniqueString = 'profile-menu'
 

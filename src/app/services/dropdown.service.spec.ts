@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FlagService } from './dropdown.service';
+import { dropDownService } from './dropdown.service';
 
-describe('FlagService', () => {
-  let service: FlagService;
+describe('dropDownService', () => {
+  let service: dropDownService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FlagService);
+    service = TestBed.inject(dropDownService);
   });
 
   it('should be created', () => {

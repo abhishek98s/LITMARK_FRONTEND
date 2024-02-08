@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { BookmarkService } from 'src/app/services/recentbookmark.service';
-import { FlagService } from 'src/app/services/dropdown.service';
+import { dropDownService } from 'src/app/services/dropdown.service';
 
 @Component({
   selector: 'app-search-filter-box',
@@ -10,7 +10,7 @@ import { FlagService } from 'src/app/services/dropdown.service';
 export class SearchFilterBoxComponent implements OnInit{
   @ViewChild('dateDropdown') dropdownElement!: ElementRef;
   
-  constructor(private dataService: BookmarkService, public dropdownService: FlagService) { }
+  constructor(private dataService: BookmarkService, public dropdownService: dropDownService) { }
   
   filter: string = 'Date';
   uniqueString = 'date';

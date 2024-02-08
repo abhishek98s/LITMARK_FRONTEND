@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/Model/folder';
 import { BookmarkService } from 'src/app/services/recentbookmark.service';
-import { FlagService } from 'src/app/services/dropdown.service';
+import { dropDownService } from 'src/app/services/dropdown.service';
 
 @Component({
   selector: 'nested-folder',
@@ -16,7 +16,7 @@ export class NestedFolderComponent implements OnInit {
 
   uniqueString = '';
 
-  constructor(public dataService: BookmarkService, public dropdownService: FlagService) { }
+  constructor(public dataService: BookmarkService, public dropdownService: dropDownService) { }
 
   ngOnInit(): void {
     this.uniqueString = this.nestedFolder.id.toString();

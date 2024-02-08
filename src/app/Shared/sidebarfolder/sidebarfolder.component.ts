@@ -1,6 +1,6 @@
-import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/Model/folder';
-import { FlagService } from 'src/app/services/dropdown.service';
+import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/sidebarFolder.service';
 
 @Component({
@@ -8,19 +8,25 @@ import { FolderService } from 'src/app/services/sidebarFolder.service';
   templateUrl: './sidebarfolder.component.html',
   styleUrls: ['./sidebarfolder.component.scss']
 })
-export class FolderComponent {
+export class FolderComponent implements OnInit{
   @ViewChild(`dropdowns`) dropdownElement!: ElementRef;
 
   @Input() folder!: Folder;
   menuOpen: boolean = false;
 
-  constructor(public folderService: FolderService, public dropdownService:FlagService) { }
+  uniqueString = ''
+
+  constructor(public folderService: FolderService, public dropdownService:dropDownService) { }
+
+  ngOnInit(): void {
+    this.uniqueString = (this.folder.title + this.folder.id).toString()
+  }
 
   toggleOpen(event:Event) {
-    if (this.dropdownService.isOpen(this.folder.title)) {
-      this.dropdownService.closeDropdown(this.folder.title);
+    if (this.dropdownService.isOpen(this.uniqueString)) {
+      this.dropdownService.closeDropdown(this.uniqueString);
     } else {
-      this.dropdownService.openDropdown(this.folder.title);
+      this.dropdownService.openDropdown(this.uniqueString);
     }
     event.stopPropagation();
   }
@@ -29,11 +35,10 @@ export class FolderComponent {
     this.folderService.deleteFolder(id)
   }
 
-
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if (this.dropdownService.isOpen(this.folder.title) === false) { return }
-    if (this.dropdownService.isOpen(this.folder.title) && !this.dropdownElement.nativeElement.contains(event.target)) {
+    if (this.dropdownService.isOpen(this.uniqueString) === false) { return }
+    if (this.dropdownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
       this.dropdownService.clearDropdowns();
     }
   }

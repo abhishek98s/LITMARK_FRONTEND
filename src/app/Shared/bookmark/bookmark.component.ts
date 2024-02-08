@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Bookmark } from 'src/app/Model/folder';
 import { BookmarkService } from 'src/app/services/recentbookmark.service';
-import { FlagService } from 'src/app/services/dropdown.service';
+import { dropDownService } from 'src/app/services/dropdown.service';
 
 @Component({
   selector: 'app-bookmark',
@@ -13,7 +13,7 @@ export class BookmarkComponent implements OnInit {
 
   @Input() bookmark!: Bookmark;
 
-  constructor(public dataService: BookmarkService, public dropdownService: FlagService) { }
+  constructor(public dataService: BookmarkService, public dropdownService: dropDownService) { }
 
   uniqueString = ''
 
