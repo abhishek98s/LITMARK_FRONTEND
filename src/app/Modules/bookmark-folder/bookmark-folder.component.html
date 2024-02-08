@@ -4,19 +4,19 @@
 
         <div class="hidden gap-[16px] md:flex">
             <app-add-folder [value]="'Add Folder'" (click)="toggleFolderInputBox()"></app-add-folder>
-            <app-add-folder [value]="'Add File'" (click)="toggleBookmarkInputBox()"></app-add-folder>
+            <app-add-folder [value]="'Add Bookmark'" (click)="toggleBookmarkInputBox()"></app-add-folder>
         </div>
     </header>
 
     <section class="inside-folder grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-[8px] md:gap-[4%]">
         <form class="folder h-[90px] rounded-2 flex-between-center gap-3 bg-primary-200"
             *ngIf="this.stateService.state.folderInputbox" (ngSubmit)="submitFolderForm()">
-            <div class="flex w-[100%] gap-2 items-center">
-                <figure class="max-w-[50px] w-[100%]">
+            <div class="flex w-full gap-2 items-center"> 
+                <figure class="max-w-[50px] w-full">
                     <img src="assets/icon/sub-folder.svg" alt="folder">
                 </figure>
 
-                <input class="h-[34px] w-[100%] rounded-1 p-[4px_8px]" placeholder="New Folder"
+                <input class="h-[34px] w-full rounded-1 p-[4px_8px]" placeholder="New Folder"
                     [(ngModel)]="userInputtedNestedFodlerName" name="Folder Name">
             </div>
             <div class="flex-between-center max-w-[40px] gap-[4px]">
@@ -35,11 +35,11 @@
         </div>
 
         <form class="bookmarkInputBox flex gap-[8px] rounded-2 " *ngIf="this.stateService.state.bookmarkInputbox" (ngSubmit)="submitBookmarkForm()">
-            <figure class="max-w-[60px] w-[100%] h-[60px] rounded-1">
+            <figure class="max-w-[60px] w-full h-[60px] rounded-1">
                 <img src="assets/image/add-bookmark.png">
             </figure>
-            <div class="w-[100%]">
-                <input class="h-[34px] w-[100%] rounded-1 p-[4px_8px] mb-[8px]" placeholder="Bookmark link"
+            <div class="w-full">
+                <input class="h-[34px] w-full rounded-1 p-[4px_8px] mb-[8px]" placeholder="Bookmark link"
                     [(ngModel)]="userInputtedBookmarkName" name="Bookmark Name">
 
                 <div class="flex-between-center ml-auto max-w-[40px] gap-[4px]">

@@ -6,30 +6,30 @@
     </a>
     <app-input-box class="p-[8px] md:p-0"></app-input-box>
     <hr class="bg-primary-500 rounded-2">
-    <section class="folders h-[100%] overflow-hidden flex flex-col gap-[20px] relative">
+    <section class="folders h-full overflow-hidden flex flex-col gap-[20px] relative">
         <div class="flex justify-between align-items-center ">
             <div class="text-body-xl-bold">Folders</div>
             <app-add-folder [value]="'Add Folder'" [icon]="'circle-plus'"
                 (click)="toggleSidebarFolderInputBox($event)"></app-add-folder>
         </div>
-        <div class="h-[100%] folder-list overflow-y-scroll">
+        <div class="h-full folder-list overflow-y-scroll">
             <div #sidebarinput [hidden]="!dropdownService.isOpen(uniqueString)" (click)="stopPropagation($event)">
                 <form class="flex py-[10px] pl-[12px] gap-[8px]" (ngSubmit)="submitSidebarFolderForm()">
                     <div class="flex items-center gap-[8px] color-primary-900 text-body-md-medium w-100">
-                        <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-[100%]">
+                        <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-full">
                             <img src="assets/image/add-folder.png" alt="add folder">
                         </figure>
-                        <input #inputBox class="px-[8px] h-full w-[100%]" type="text" placeholder="New Folder" [(ngModel)]="userInputtedFodlerName"
+                        <input #inputBox class="px-[8px] h-full w-full" type="text" placeholder="New Folder" [(ngModel)]="userInputtedFodlerName"
                             name="folder">
                     </div>
-                    <div class="flex-between-center max-w-[40px] gap-[4px]">
+                    <!-- <div class="flex-between-center max-w-[40px] gap-[4px]">
                         <button class="w-[24px]" type="submit" ((click))="submitSidebarFolderForm()">
                             <img src="assets/icon/save.svg" alt="save">
                         </button>
                         <button class="w-[24px]" (click)="toggleSidebarFolderInputBox($event)">
                             <img src="assets/icon/cancel.svg" alt="close">
                         </button>
-                    </div>
+                    </div> -->
                 </form>
             </div>
             <div class="folder" *ngFor="let folder of folders">
