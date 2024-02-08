@@ -3,15 +3,18 @@
         <app-input-box></app-input-box>
     </div>
 
-    <div
-        class="sortDropdown flex p-[4px_10px] rounded-1 justify-between items-center bg-primary-20 color-primary-900 text-label-md-regular">
-        <button class="more-btn-dropdown-btn">{{filter}}</button>
+    <div class="relative bg-neutral-0">
+        <div (click)="toggleProfileMenu($event)"
+            class="sortDropdown flex p-[4px_10px] rounded-1 justify-between items-center color-primary-900 text-label-md-regular">
+            <button class="more-btn-dropdown-btn">{{filter}}</button>
 
-        <figure class="down-arrow w-[12px] h-[12px] flex-center">
-            <img src="assets/icon/arrow-down.svg" alt="sort">
-        </figure>
+            <figure class="down-arrow w-[12px] h-[12px] flex-center" [ngClass]="{'active': dropdownService.isOpen(uniqueString)}">
+                <img src="assets/icon/arrow-down.svg" alt="sort">
+            </figure>
+        </div>
 
-        <div class="sort-option p-[4px] rounded-1 text-label-md-regular spacing-y-[4px] z-50">
+        <div #dateDropdown [hidden]="!dropdownService.isOpen(uniqueString)"
+            class="sort-option absolute top-[80%] pt-[10px] mt-[16px] p-[4px] rounded-1 text-label-md-regular spacing-y-[4px] z-50">
             <div (click)="filterRecentBookmarkBy('Date')">Date</div>
             <div (click)="filterRecentBookmarkBy('A-Z')">A-Z</div>
             <div (click)="filterRecentBookmarkBy('Z-A')">Z-A</div>

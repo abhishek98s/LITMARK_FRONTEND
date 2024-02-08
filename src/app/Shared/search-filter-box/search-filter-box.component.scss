@@ -17,58 +17,39 @@
         min-width: 120px;
         // width: 100%;
         border: 1px solid $primary-400;
-        position: relative;
+        // position: relative;
         padding: 10px;
-        background-color: $neutral-0;
-        overflow: hidden;
         height: 40px;
         z-index: 10;
-
-        &:hover {
-            overflow: unset;
-            height: 40px;
+        
+        .down-arrow {
             transition: 0.4s;
-            .sort-option {
-                opacity: 1;
-                transition: 0.4s;
-                top: 90%;
-            }
-
-            .down-arrow {
+            &.active{
                 transform: rotate(180deg);
             }
         }
+    }
+    .sort-option {
+        border: 1px solid $primary-400;
+        background-color: $neutral-0;
+        min-width: 120px;
+        animation: top_down .4s;
+        box-shadow: 0 10px 10px -8px #1d1c4026;
 
-        .down-arrow {
+        div {
+            border-radius: 4px;
+            padding: 6px 15px;
+            border-bottom: 2px solid $primary-100;
             transition: 0.4s;
-        }
-        .sort-option {
-            border: 1px solid $primary-400;
-            border-top: none;
-            background-color: $neutral-0;
-            position: absolute;
-            top: 80%;
-            padding-top: 10%;
-            right: -1px;
-            min-width: 120px;
-            transition: 0.4s;
-            opacity: 0;
 
-            div {
-                border-radius: 4px;
-                padding: 6px 15px;
-                border-bottom: 2px solid $primary-100;
+            &:hover {
+                background-color: $primary-300;
+                color: $primary-1000;
                 cursor: pointer;
-                transition: 0.4s;
+            }
 
-                &:hover {
-                    background-color: $primary-300;
-                    color: $primary-1000;
-                }
-
-                &:last-of-type {
-                    border: none;
-                }
+            &:last-of-type {
+                border: none;
             }
         }
     }

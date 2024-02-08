@@ -1,10 +1,10 @@
 <div class="folder rounded-1 flex-between-center relative">
-    <a routerLink="/bookmark/{{folder.id}}" class="flex gap-[8px] color-primary-900 text-body-md-medium">
+    <a routerLink="/bookmark/{{folder.id}}" class="flex gap-[8px] w-full color-primary-900 text-body-md-medium">
         <figure class="rounded-2 max-w-[30px] w-[100%] h-[30px]">
             <img src={{folder.img}} alt="folder">
         </figure>
 
-        <span class="w-full">{{folder.title}}</span>
+        <span class="w-full block">{{folder.title}}</span>
     </a>
 
     <figure class="more-btn rounded-full w-[30px] h-[30px]" (click)="toggleOpen($event)">
