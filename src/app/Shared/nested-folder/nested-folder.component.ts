@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/Model/folder';
-import { BookmarkService } from 'src/app/bookmark.service';
-import { FlagService } from 'src/app/services/flag.service';
+import { BookmarkService } from 'src/app/services/recentbookmark.service';
+import { FlagService } from 'src/app/services/dropdown.service';
 
 @Component({
   selector: 'nested-folder',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recentbookmark } from 'src/app/Model/folder';
-import { BookmarkService } from 'src/app/bookmark.service';
+import { BookmarkService } from 'src/app/services/recentbookmark.service';
 
 @Component({
   selector: 'app-top-page',

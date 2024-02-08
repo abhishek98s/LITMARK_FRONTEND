@@ -1,19 +1,23 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { BookmarkService } from 'src/app/bookmark.service';
-import { FlagService } from 'src/app/services/flag.service';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { BookmarkService } from 'src/app/services/recentbookmark.service';
+import { FlagService } from 'src/app/services/dropdown.service';
 
 @Component({
   selector: 'app-search-filter-box',
   templateUrl: './search-filter-box.component.html',
   styleUrls: ['./search-filter-box.component.scss']
 })
-export class SearchFilterBoxComponent {
+export class SearchFilterBoxComponent implements OnInit{
   @ViewChild('dateDropdown') dropdownElement!: ElementRef;
-
+  
+  constructor(private dataService: BookmarkService, public dropdownService: FlagService) { }
+  
   filter: string = 'Date';
   uniqueString = 'date';
 
-  constructor(private dataService: BookmarkService, public dropdownService: FlagService) { }
+  ngOnInit(): void {
+    this.filter = this.dataService.getFilterType();
+  }
 
   toggleProfileMenu(event: Event) {
     if (this.dropdownService.isOpen(this.uniqueString)) {
@@ -24,8 +28,10 @@ export class SearchFilterBoxComponent {
     event.stopPropagation();
   }
 
-  filterRecentBookmarkBy(filterType: string) {
-    this.dataService.filterRecentBookmarkBy(filterType)
+  sortRecentBookmarkBy(filterType: string) {
+    this.dataService.sortRecentBookmarkBy(filterType)
+    this.filter = this.dataService.getFilterType();
+    this.dropdownService.closeDropdown(this.uniqueString);
   }
 
   @HostListener('document:click', ['$event'])

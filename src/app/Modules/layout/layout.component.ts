@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
-import { BookmarkService } from '../../bookmark.service';
+import { BookmarkService } from '../../services/recentbookmark.service';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-layout',
@@ -11,7 +12,7 @@ import { BookmarkService } from '../../bookmark.service';
 export class LayoutComponent {
   title = 'Litmark';
 
-  constructor(public dataService: BookmarkService, private titleService: Title,
+  constructor(public dataService: BookmarkService, public stateService:StateService,  private titleService: Title,
     private metaTagService: Meta) { }
 
   ngOnInit() {
@@ -25,6 +26,6 @@ export class LayoutComponent {
   }
 
   toggleSidebar(): void {
-    this.dataService.state.sidebar = !this.dataService.state.sidebar;
+    this.stateService.state.sidebar = !this.stateService.state.sidebar;
   }
 }

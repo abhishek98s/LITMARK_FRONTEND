@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Bookmark, Chip, Folder, Recentbookmark, State, } from './Model/folder';
+import { Bookmark, Chip, Folder, Recentbookmark, State, } from '../Model/folder';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { distinctUntilKeyChanged } from 'rxjs/operators';
+import { StateService } from './state.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookmarkService {
-  public state = <State>{
-    sidebar: false,
-    folderInputbox: false,
-    bookmarkInputbox: false,
-    sidebarFolderkInputbox: false,
-  };
+
+  private filterType = 'Date';
 
   private recentBookmark: Recentbookmark[] = [
     {
@@ -181,34 +178,6 @@ export class BookmarkService {
     },
   ];
 
-  private folders: Folder[] = [
-    {
-      id: 1,
-      img: 'assets/image/folder-1.png',
-      title: 'Tech'
-    },
-    {
-      id: 2,
-      img: 'assets/image/folder-2.png',
-      title: 'Tools'
-    },
-    {
-      id: 3,
-      img: 'assets/image/folder-3.png',
-      title: 'UI Design'
-    },
-    {
-      id: 4,
-      img: 'assets/image/folder-4.png',
-      title: 'Design'
-    },
-    {
-      id: 5,
-      img: 'assets/image/folder-5.png',
-      title: 'UX'
-    },
-  ]
-
   private chips: Chip[] = [
     {
       id: 1,
@@ -349,17 +318,19 @@ export class BookmarkService {
   ]
 
   recentBookmarkObservable = new BehaviorSubject<Recentbookmark[]>(this.recentBookmark);
-  foldersObservable = new BehaviorSubject<Folder[]>(this.folders);
+  
+  constructor(private stateService:StateService) { }
 
-  setToFalse() {
-    this.state.sidebar = false;
-    this.state.folderInputbox = false;
-    this.state.bookmarkInputbox = false;
-    this.state.sidebarFolderkInputbox = false;
+  getFilterType() {
+    return this.filterType
   }
 
-  constructor() { }
-  // Recent Bookmark
+
+  // Chip
+  getChips() {
+    return this.chips;
+  }
+
   filterRecentBookmarkByChip(chipCategory: string) {
     this.chips.forEach((chip: Chip) => { chip.active = false; });
 
@@ -383,20 +354,12 @@ export class BookmarkService {
     ).subscribe();
   }
 
-  deleteRecentBookmark(id: number) {
-    this.recentBookmarkObservable.pipe(
-      map((bookmarks: Recentbookmark[]) => bookmarks.filter(bookmark => bookmark.id !== id)),
-      distinctUntilKeyChanged('length'), // Using array length as a key for comparison
-      tap((filteredBookmarks: Recentbookmark[]) => {
-        this.recentBookmark = filteredBookmarks;
-        this.recentBookmarkObservable.next(filteredBookmarks);
-      })
-    ).subscribe();
-  }
 
-  filterRecentBookmarkBy(type: string) {
+  // Recent Bookmark
+  sortRecentBookmarkBy(type: string) {
     switch (type) {
       case "Date":
+        this.filterType = "Date";
         break;
 
       case "A-Z":
@@ -412,6 +375,7 @@ export class BookmarkService {
               })
           })
         ).subscribe();
+        this.filterType = "A-Z";
         break;
 
       case "Z-A":
@@ -427,37 +391,24 @@ export class BookmarkService {
               })
           })
         ).subscribe();
-
+        this.filterType = "Z-A";
         break;
       default:
         break;
     }
   }
 
-  // Folders
-  addFolder(name: string) {
-    this.folders.push({
-      id: this.folders.length + 1,
-      img: 'assets/image/add-folder.png',
-      title: name
-    },)
-    this.state.sidebarFolderkInputbox = false;
-  }
-
-  deleteFolder(id: number) {
-    this.foldersObservable.pipe(
-      map((folders: Folder[]) => folders.filter(item => item.id !== id)),
-      tap((filteredBookmarks: Folder[]) => {
-        this.folders = filteredBookmarks;
-        this.foldersObservable.next(filteredBookmarks);
+  deleteRecentBookmark(id: number) {
+    this.recentBookmarkObservable.pipe(
+      map((bookmarks: Recentbookmark[]) => bookmarks.filter(bookmark => bookmark.id !== id)),
+      distinctUntilKeyChanged('length'), // Using array length as a key for comparison
+      tap((filteredBookmarks: Recentbookmark[]) => {
+        this.recentBookmark = filteredBookmarks;
+        this.recentBookmarkObservable.next(filteredBookmarks);
       })
     ).subscribe();
   }
-
-  // Chip
-  getChips() {
-    return this.chips;
-  }
+ 
 
   // Nested Folder
   getNestedFolder() {
@@ -475,12 +426,13 @@ export class BookmarkService {
 
   addNestedFolder(name: string) {
     this.nestedFolder.push({ id: this.nestedFolder.length + 1, title: name })
-    this.state.folderInputbox = false;
+    this.stateService.state.folderInputbox = false;
   }
 
   deleteNestedFolder(id: number) {
     this.nestedFolder = this.nestedFolder.filter((item) => item.id !== id)
   }
+
 
   // Bookmark
   getBookmark() {
@@ -504,7 +456,7 @@ export class BookmarkService {
       date: "September 18, 2023",
       link: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
     })
-    this.state.bookmarkInputbox = false;
+    this.stateService.state.bookmarkInputbox = false;
   }
 
   deleteBookmark(id: number) {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { BookmarkService } from 'src/app/bookmark.service';
+import { BookmarkService } from 'src/app/services/recentbookmark.service';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-bookmark-folder',
@@ -10,11 +11,11 @@ export class BookmarkFolderComponent {
   userInputtedNestedFodlerName: string = "";
   userInputtedBookmarkName: string = "";
 
-  constructor(public dataService: BookmarkService) { };
+  constructor(public dataService: BookmarkService, public stateService:StateService) { };
 
   toggleFolderInputBox() {
-    this.dataService.state.folderInputbox = !this.dataService.state.folderInputbox;
-    this.dataService.state.bookmarkInputbox = false;
+    this.stateService.state.folderInputbox = !this.stateService.state.folderInputbox;
+    this.stateService.state.bookmarkInputbox = false;
     this.userInputtedNestedFodlerName = "";
   }
 
@@ -28,9 +29,9 @@ export class BookmarkFolderComponent {
   }
 
   toggleBookmarkInputBox() {
-    this.dataService.state.bookmarkInputbox = !this.dataService.state.bookmarkInputbox;
-    console.log(this.dataService.state.folderInputbox)
-    this.dataService.state.folderInputbox = false;
+    this.stateService.state.bookmarkInputbox = !this.stateService.state.bookmarkInputbox;
+    console.log(this.stateService.state.folderInputbox)
+    this.stateService.state.folderInputbox = false;
     this.userInputtedBookmarkName = "";
   }
 

@@ -10,7 +10,7 @@
 
     <section class="inside-folder grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-[8px] md:gap-[4%]">
         <form class="folder h-[90px] rounded-2 flex-between-center gap-3 bg-primary-200"
-            *ngIf="this.dataService.state.folderInputbox" (ngSubmit)="submitFolderForm()">
+            *ngIf="this.stateService.state.folderInputbox" (ngSubmit)="submitFolderForm()">
             <div class="flex w-[100%] gap-2 items-center">
                 <figure class="max-w-[50px] w-[100%]">
                     <img src="assets/icon/sub-folder.svg" alt="folder">
@@ -34,7 +34,7 @@
             <nested-folder [nestedFolder]="data"></nested-folder>
         </div>
 
-        <form class="bookmarkInputBox flex gap-[8px] rounded-2 " *ngIf="this.dataService.state.bookmarkInputbox" (ngSubmit)="submitBookmarkForm()">
+        <form class="bookmarkInputBox flex gap-[8px] rounded-2 " *ngIf="this.stateService.state.bookmarkInputbox" (ngSubmit)="submitBookmarkForm()">
             <figure class="max-w-[60px] w-[100%] h-[60px] rounded-1">
                 <img src="assets/image/add-bookmark.png">
             </figure>

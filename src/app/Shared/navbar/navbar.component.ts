@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { FlagService } from 'src/app/services/flag.service';
+import { FlagService } from 'src/app/services/dropdown.service';
 
 @Component({
   selector: 'app-navbar',

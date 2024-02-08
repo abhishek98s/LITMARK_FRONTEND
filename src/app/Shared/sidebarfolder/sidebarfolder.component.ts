@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/Model/folder';
-import { BookmarkService } from 'src/app/bookmark.service';
-import { FlagService } from 'src/app/services/flag.service';
+import { FlagService } from 'src/app/services/dropdown.service';
+import { FolderService } from 'src/app/services/sidebarFolder.service';
 
 @Component({
   selector: 'app-sidebarfolder',
@@ -14,7 +14,7 @@ export class FolderComponent {
   @Input() folder!: Folder;
   menuOpen: boolean = false;
 
-  constructor(public dataService: BookmarkService, public dropdownService:FlagService) { }
+  constructor(public folderService: FolderService, public dropdownService:FlagService) { }
 
   toggleOpen(event:Event) {
     if (this.dropdownService.isOpen(this.folder.title)) {
@@ -26,7 +26,7 @@ export class FolderComponent {
   }
 
   deleteFolder(id: number) {
-    this.dataService.deleteFolder(id)
+    this.folderService.deleteFolder(id)
   }
 
 

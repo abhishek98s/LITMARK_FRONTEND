@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Folder } from 'src/app/Model/folder';
-import { BookmarkService } from 'src/app/bookmark.service';
+import { FolderService } from 'src/app/services/sidebarFolder.service';
+import { BookmarkService } from 'src/app/services/recentbookmark.service';
+import { StateService } from 'src/app/services/state.service';
 
 
 @Component({
@@ -12,22 +14,22 @@ export class SidebarComponent implements OnInit {
   folders!: Folder[];
   userInputtedFodlerName: string = '';
 
-  constructor(public dataService: BookmarkService) { }
+  constructor(public folderService: FolderService, public stateService: StateService) { }
 
   ngOnInit(): void {
-    this.dataService.foldersObservable.subscribe((value) => this.folders = value);
+    this.folderService.foldersObservable.subscribe((value) => this.folders = value);
   }
 
   toggleSidebar() {
-    this.dataService.state.sidebar = !this.dataService.state.sidebar;
+    this.stateService.state.sidebar = !this.stateService.state.sidebar;
   }
 
   toggleSidebarFolderInputBox() {
-    this.dataService.state.sidebarFolderkInputbox = !this.dataService.state.sidebarFolderkInputbox;
+    this.stateService.state.sidebarFolderkInputbox = !this.stateService.state.sidebarFolderkInputbox;
     this.userInputtedFodlerName = '';
   }
 
   submitSidebarFolderForm() {
-    this.dataService.addFolder(this.userInputtedFodlerName)
+    this.folderService.addFolder(this.userInputtedFodlerName)
   }
 }

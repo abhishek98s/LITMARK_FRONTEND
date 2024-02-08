@@ -17,7 +17,7 @@
                 <app-sidebarfolder [folder]="folder"></app-sidebarfolder>
             </div>
             <form class="flex py-[10px] pl-[12px] gap-[8px]" (ngSubmit)="submitSidebarFolderForm()"
-                *ngIf="this.dataService.state.sidebarFolderkInputbox">
+                *ngIf="this.stateService.state.sidebarFolderkInputbox">
                 <div class="flex gap-[8px] color-primary-900 text-body-md-medium">
                     <figure class="rounded-2 max-w-[30px] w-[100%] h-[30px]">
                         <img src="assets/image/add-folder.png" alt="add folder">
