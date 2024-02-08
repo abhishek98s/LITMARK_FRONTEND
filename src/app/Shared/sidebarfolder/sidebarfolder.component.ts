@@ -34,7 +34,6 @@ export class FolderComponent {
   onDocumentClick(event: MouseEvent) {
     if (this.dropdownService.isOpen(this.folder.title) === false) { return }
     if (this.dropdownService.isOpen(this.folder.title) && !this.dropdownElement.nativeElement.contains(event.target)) {
-      console.log(2)
       this.dropdownService.clearDropdowns();
     }
   }
