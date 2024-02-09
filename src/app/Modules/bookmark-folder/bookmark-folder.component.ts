@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { dropDownService } from 'src/app/services/dropdown.service';
 import { BookmarkService } from 'src/app/services/recentbookmark.service';
 import { StateService } from 'src/app/services/state.service';
 
@@ -8,39 +9,74 @@ import { StateService } from 'src/app/services/state.service';
   styleUrls: ['./bookmark-folder.component.scss']
 })
 export class BookmarkFolderComponent {
-  userInputtedNestedFodlerName: string = "";
-  userInputtedBookmarkName: string = "";
+  @ViewChild('folderInputBox') folderInputBox!: ElementRef;
+  @ViewChild('folderInputElement') folderInputElement!: ElementRef;
 
-  constructor(public dataService: BookmarkService, public stateService:StateService) { };
+  @ViewChild('bookmarkInputBox') bookmarkInputBox!: ElementRef;
+  @ViewChild('bookmarkInputElement') bookmarkInputElement!: ElementRef;
 
-  toggleFolderInputBox() {
-    this.stateService.state.folderInputbox = !this.stateService.state.folderInputbox;
-    this.stateService.state.bookmarkInputbox = false;
-    this.userInputtedNestedFodlerName = "";
+  fodlerName: string = "";
+  bookmarkName: string = "";
+
+  folderUniqueString = 'folder-input-box'
+  bookmarkUniqueString = 'bookmark-input-box'
+
+  constructor(public dataService: BookmarkService, public dropDownService: dropDownService, public stateService: StateService) {
+    this.dropDownService.clearDropdowns()
+  };
+
+  toggleFolderInputBox(event: Event) {
+    if (this.dropDownService.isOpen(this.folderUniqueString)) {
+      this.dropDownService.closeDropdown(this.folderUniqueString);
+    } else {
+      this.dropDownService.openDropdown(this.folderUniqueString); 
+      setTimeout(() => this.folderInputElement.nativeElement.focus())
+    }
+    event.stopPropagation();
+    this.fodlerName = '';
+  }
+
+  toggleBookmarkInputBox(event: Event) {
+    if (this.dropDownService.isOpen(this.bookmarkUniqueString)) {
+      this.dropDownService.closeDropdown(this.bookmarkUniqueString);
+    } else {
+      this.dropDownService.openDropdown(this.bookmarkUniqueString);
+      setTimeout(() => this.bookmarkInputElement.nativeElement.focus())
+    }
+    event.stopPropagation();
+    this.bookmarkName = "";
   }
 
   submitFolderForm() {
-    if (this.userInputtedNestedFodlerName) {
-      this.dataService.addNestedFolder(this.userInputtedNestedFodlerName);
-      this.userInputtedNestedFodlerName = "";
-      return;
+    if (!this.fodlerName) {
+      this.dropDownService.closeDropdown(this.folderUniqueString);
+      return
     }
-    alert("no")
-  }
-
-  toggleBookmarkInputBox() {
-    this.stateService.state.bookmarkInputbox = !this.stateService.state.bookmarkInputbox;
-    console.log(this.stateService.state.folderInputbox)
-    this.stateService.state.folderInputbox = false;
-    this.userInputtedBookmarkName = "";
+    this.dataService.addNestedFolder(this.fodlerName);
+    this.fodlerName = "";
+    this.dropDownService.closeDropdown(this.folderUniqueString);
   }
 
   submitBookmarkForm() {
-    if (this.userInputtedBookmarkName) {
-      this.dataService.addBookmark(this.userInputtedBookmarkName);
-      this.userInputtedBookmarkName = "";
+    if (this.bookmarkName) {
+      this.dataService.addBookmark(this.bookmarkName);
+      this.bookmarkName = "";
       return
     }
     alert("enpty?")
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if ((this.dropDownService.isOpen(this.folderUniqueString) || this.dropDownService.isOpen(this.bookmarkUniqueString)) === false) return
+    if (this.dropDownService.isOpen(this.folderUniqueString) && !this.folderInputBox.nativeElement.contains(event.target)) {
+      this.fodlerName = '';
+      this.dropDownService.clearDropdowns();
+    }
+
+    if (this.dropDownService.isOpen(this.bookmarkUniqueString) && !this.folderInputBox.nativeElement.contains(event.target)) {
+      this.fodlerName = '';
+      this.dropDownService.clearDropdowns();
+    }
   }
 }

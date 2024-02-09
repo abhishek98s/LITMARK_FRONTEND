@@ -3,56 +3,60 @@
         <h2 class="text-title-md-bold">Design</h2>
 
         <div class="hidden gap-[16px] md:flex">
-            <app-add-folder [value]="'Add Folder'" (click)="toggleFolderInputBox()"></app-add-folder>
-            <app-add-folder [value]="'Add Bookmark'" (click)="toggleBookmarkInputBox()"></app-add-folder>
+            <app-add-folder [value]="'Add Folder'" (click)="toggleFolderInputBox($event)"></app-add-folder>
+            <app-add-folder [value]="'Add Bookmark'" (click)="toggleBookmarkInputBox($event)"></app-add-folder>
         </div>
     </header>
 
     <section class="inside-folder grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-[8px] md:gap-[4%]">
-        <form class="folder h-[90px] rounded-2 flex-between-center gap-3 bg-primary-200"
-            *ngIf="this.stateService.state.folderInputbox" (ngSubmit)="submitFolderForm()">
-            <div class="flex w-full gap-2 items-center"> 
-                <figure class="max-w-[50px] w-full">
-                    <img src="assets/icon/sub-folder.svg" alt="folder">
-                </figure>
+        <div #folderInputBox [hidden]="!dropDownService.isOpen(folderUniqueString)">
+            <form class="folder h-[90px] rounded-2 flex-between-center gap-3 bg-primary-200"
+                 (ngSubmit)="submitFolderForm()">
+                <div class="flex w-full gap-2 items-center"> 
+                    <figure class="max-w-[50px] w-full">
+                        <img src="assets/icon/sub-folder.svg" alt="folder">
+                    </figure>
 
-                <input class="h-[34px] w-full rounded-1 p-[4px_8px]" placeholder="New Folder"
-                    [(ngModel)]="userInputtedNestedFodlerName" name="Folder Name">
-            </div>
-            <div class="flex-between-center max-w-[40px] gap-[4px]">
-                <button class="w-[24px]" type="submit" (ngSubmit)="submitFolderForm()">
-                    <img src="assets/icon/save.svg" alt="save">
-                </button>
+                    <input #folderInputElement class="h-[34px] w-full rounded-1 p-[4px_8px]" placeholder="New Folder"
+                        [(ngModel)]="fodlerName" name="Folder Name">
+                </div>
+                <div class="flex-between-center max-w-[40px] gap-[4px]">
+                    <button class="w-[24px]" type="submit" (ngSubmit)="submitFolderForm()">
+                        <img src="assets/icon/save.svg" alt="save">
+                    </button>
 
-                <button class="w-[24px]" (click)="toggleFolderInputBox()">
-                    <img src="assets/icon/cancel.svg" alt="close">
-                </button>
-            </div>
-        </form>
+                    <button class="w-[24px]" (click)="toggleFolderInputBox($event)">
+                        <img src="assets/icon/cancel.svg" alt="close">
+                    </button>
+                </div>
+            </form>
+        </div>
 
         <div *ngFor="let data of dataService.getNestedFolder()">
             <nested-folder [nestedFolder]="data"></nested-folder>
         </div>
 
-        <form class="bookmarkInputBox flex gap-[8px] rounded-2 " *ngIf="this.stateService.state.bookmarkInputbox" (ngSubmit)="submitBookmarkForm()">
-            <figure class="max-w-[60px] w-full h-[60px] rounded-1">
-                <img src="assets/image/add-bookmark.png">
-            </figure>
-            <div class="w-full">
-                <input class="h-[34px] w-full rounded-1 p-[4px_8px] mb-[8px]" placeholder="Bookmark link"
-                    [(ngModel)]="userInputtedBookmarkName" name="Bookmark Name">
+        <div #folderInputBox [hidden]="!dropDownService.isOpen(bookmarkUniqueString)">
+            <form class="bookmarkInputBox flex gap-[8px] rounded-2 " (ngSubmit)="submitBookmarkForm()">
+                <figure class="max-w-[60px] w-full h-[60px] rounded-1">
+                    <img src="assets/image/add-bookmark.png">
+                </figure>
+                <div class="w-full">
+                    <input #bookmarkInputElement class="h-[34px] w-full rounded-1 p-[4px_8px] mb-[8px]" placeholder="Bookmark link"
+                        [(ngModel)]="bookmarkName" name="Bookmark Name">
 
-                <div class="flex-between-center ml-auto max-w-[40px] gap-[4px]">
-                    <button class="w-[24px]" type="submit" (ngSubmit)="submitBookmarkForm()">
-                        <img src="assets/icon/save.svg" alt="save">
-                    </button>
+                    <div class="flex-between-center ml-auto max-w-[40px] gap-[4px]">
+                        <button class="w-[24px]" type="submit" (ngSubmit)="submitBookmarkForm()">
+                            <img src="assets/icon/save.svg" alt="save">
+                        </button>
 
-                    <button class="w-[24px]" (click)="toggleBookmarkInputBox()">
-                        <img src="assets/icon/cancel.svg" alt="close">
-                    </button>
+                        <button class="w-[24px]" (click)="toggleBookmarkInputBox($event)">
+                            <img src="assets/icon/cancel.svg" alt="close">
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
 
         <div *ngFor="let bookmark of dataService.getBookmark()">
             <app-bookmark [bookmark]="bookmark"></app-bookmark>
