@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Folder } from '../Model/folder';
 import { BehaviorSubject, map, tap } from 'rxjs';
-import { StateService } from './state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +36,7 @@ export class sidebarFolderService {
 
   foldersObservable = new BehaviorSubject<Folder[]>(this.folders);
   
-  constructor(private stateService: StateService ) { }
+  constructor( ) { }
 
 
   // Folders
@@ -47,7 +46,6 @@ export class sidebarFolderService {
       img: 'assets/image/add-folder.png',
       title: name
     },)
-    this.stateService.state.sidebarFolderkInputbox = false;
   }
 
   deleteFolder(id: number) {
@@ -59,5 +57,4 @@ export class sidebarFolderService {
       })
     ).subscribe();
   }
-
 }

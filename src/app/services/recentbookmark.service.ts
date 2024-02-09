@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Bookmark, Chip, Folder, Recentbookmark, State, } from '../Model/folder';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { distinctUntilKeyChanged } from 'rxjs/operators';
-import { StateService } from './state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -217,8 +216,6 @@ export class recentBookmarkService {
 
   recentBookmarkObservable = new BehaviorSubject<Recentbookmark[]>(this.recentBookmark);
   
-  constructor(private stateService:StateService) { }
-
   getFilterType() {
     return this.filterType
   }

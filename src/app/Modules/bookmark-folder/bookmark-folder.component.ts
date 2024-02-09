@@ -4,7 +4,6 @@ import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
-import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-bookmark-folder',
@@ -24,7 +23,7 @@ export class BookmarkFolderComponent {
   folderUniqueString = 'folder-input-box'
   bookmarkUniqueString = 'bookmark-input-box'
 
-  constructor(public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, public stateService: StateService) {
+  constructor(public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService) {
     this.dropDownService.clearDropdowns()
   };
 

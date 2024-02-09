@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/Model/folder';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
-import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 
@@ -13,29 +12,27 @@ import { dropDownService } from 'src/app/services/dropdown.service';
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
   @ViewChild(`sidebarinput`) inputSection!: ElementRef;
-  @ViewChild(`inputBox`) inputElement!: ElementRef;   
-  
+  @ViewChild(`inputBox`) inputElement!: ElementRef;
+
   folders!: Folder[];
   userInputtedFodlerName: string = '';
   uniqueString = 'addfolderinput'
 
-  constructor(public folderService: sidebarFolderService, public stateService: StateService, public dropdownService: dropDownService) {
-
-   }
+  constructor(public folderService: sidebarFolderService, public stateService: StateService, public dropdownService: dropDownService) { }
 
   ngOnInit(): void {
     this.folderService.foldersObservable.subscribe((value) => this.folders = value);
   }
-  
+
   ngAfterViewInit(): void {
     this.inputElement.nativeElement.focus()
   }
-  
+
   toggleSidebar() {
     this.stateService.state.sidebar = !this.stateService.state.sidebar;
   }
 
-  toggleSidebarFolderInputBox(event:Event) {
+  toggleSidebarFolderInputBox(event: Event) {
     if (this.dropdownService.isOpen(this.uniqueString)) {
       this.dropdownService.closeDropdown(this.uniqueString);
     } else {
@@ -47,13 +44,13 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   submitSidebarFolderForm() {
-    if (this.userInputtedFodlerName){
+    if (this.userInputtedFodlerName) {
       this.folderService.addFolder(this.userInputtedFodlerName)
     }
     this.dropdownService.closeDropdown(this.uniqueString);
   }
 
-  stopPropagation(event:Event){
+  stopPropagation(event: Event) {
     event.stopPropagation()
   }
   @HostListener('document:click', ['$event'])
