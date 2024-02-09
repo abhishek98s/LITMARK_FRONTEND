@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recentbookmark } from 'src/app/Model/folder';
-import { BookmarkService } from 'src/app/services/recentbookmark.service';
+import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 
 @Component({
   selector: 'app-top-page',
@@ -10,7 +10,7 @@ import { BookmarkService } from 'src/app/services/recentbookmark.service';
 export class TopPageComponent implements OnInit {
   recentBookmark!: Recentbookmark[];
 
-  constructor(public dataService: BookmarkService) { }
+  constructor(public dataService: recentBookmarkService) { }
 
   ngOnInit(): void {
     this.dataService.recentBookmarkObservable.subscribe((value) => this.recentBookmark = value);

@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Recentbookmark } from 'src/app/Model/folder';
-import { BookmarkService } from 'src/app/services/recentbookmark.service';
+import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class RecentBookmarkComponent implements OnInit {
 
   uniqueString = '';
 
-  constructor(public dataService: BookmarkService, public dropdownService: dropDownService) {};
+  constructor(public dataService: recentBookmarkService, public dropdownService: dropDownService) {};
 
   ngOnInit(): void {
     this.uniqueString = this.recentBookmark.id.toString() + this.recentBookmark.title;

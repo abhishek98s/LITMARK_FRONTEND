@@ -1,6 +1,9 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { BookmarkService } from 'src/app/services/bookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
-import { BookmarkService } from 'src/app/services/recentbookmark.service';
+import { FolderService } from 'src/app/services/folder.service';
+import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
+import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { StateService } from 'src/app/services/state.service';
 
 @Component({
@@ -21,7 +24,7 @@ export class BookmarkFolderComponent {
   folderUniqueString = 'folder-input-box'
   bookmarkUniqueString = 'bookmark-input-box'
 
-  constructor(public dataService: BookmarkService, public dropDownService: dropDownService, public stateService: StateService) {
+  constructor(public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, public stateService: StateService) {
     this.dropDownService.clearDropdowns()
   };
 
@@ -56,7 +59,7 @@ export class BookmarkFolderComponent {
       this.dropDownService.closeDropdown(this.folderUniqueString);
       return
     }
-    this.dataService.addNestedFolder(this.fodlerName);
+    this.folderService.addNestedFolder(this.fodlerName);
     this.fodlerName = "";
     this.dropDownService.closeDropdown(this.folderUniqueString);
   }
@@ -66,7 +69,7 @@ export class BookmarkFolderComponent {
       this.dropDownService.closeDropdown(this.bookmarkUniqueString);
       return
     }
-    this.dataService.addBookmark(this.bookmarkName);
+    this.bookmarkService.addBookmark(this.bookmarkName);
     this.bookmarkName = "";
     this.dropDownService.closeDropdown(this.bookmarkUniqueString);
   }

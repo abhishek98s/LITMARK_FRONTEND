@@ -32,7 +32,7 @@
             </form>
         </div>
 
-        <div *ngFor="let data of dataService.getNestedFolder()">
+        <div *ngFor="let data of folderService.getNestedFolder()">
             <nested-folder [nestedFolder]="data"></nested-folder>
         </div>
 
@@ -58,7 +58,7 @@
             </form>
         </div>
 
-        <div *ngFor="let bookmark of dataService.getBookmark()">
+        <div *ngFor="let bookmark of bookmarkService.getBookmark()">
             <app-bookmark [bookmark]="bookmark"></app-bookmark>
         </div>
     </section>

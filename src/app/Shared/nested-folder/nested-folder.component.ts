@@ -1,7 +1,8 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/Model/folder';
-import { BookmarkService } from 'src/app/services/recentbookmark.service';
+import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
+import { FolderService } from 'src/app/services/folder.service';
 
 @Component({
   selector: 'nested-folder',
@@ -16,7 +17,7 @@ export class NestedFolderComponent implements OnInit {
 
   uniqueString = '';
 
-  constructor(public dataService: BookmarkService, public dropdownService: dropDownService) { }
+  constructor(public dropdownService: dropDownService, public folderService:FolderService) { }
 
   ngOnInit(): void {
     this.uniqueString = this.nestedFolder.id.toString();
@@ -32,7 +33,7 @@ export class NestedFolderComponent implements OnInit {
   }
 
   deleteNestedFolder(id: number) {
-    this.dataService.deleteNestedFolder(id);
+    this.folderService.deleteNestedFolder(id);
   }
 
   @HostListener('document:click', ['$event'])

@@ -6,7 +6,7 @@ import { StateService } from './state.service';
 @Injectable({
   providedIn: 'root'
 })
-export class FolderService {
+export class sidebarFolderService {
   private folders: Folder[] = [
     {
       id: 1,

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/Model/folder';
-import { FolderService } from 'src/app/services/sidebarFolder.service';
-import { BookmarkService } from 'src/app/services/recentbookmark.service';
+import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
+import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 
@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   userInputtedFodlerName: string = '';
   uniqueString = 'addfolderinput'
 
-  constructor(public folderService: FolderService, public stateService: StateService, public dropdownService: dropDownService) {
+  constructor(public folderService: sidebarFolderService, public stateService: StateService, public dropdownService: dropDownService) {
 
    }
 

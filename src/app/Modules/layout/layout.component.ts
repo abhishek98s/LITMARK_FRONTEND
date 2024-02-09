@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
-import { BookmarkService } from '../../services/recentbookmark.service';
+import { recentBookmarkService } from '../../services/recentbookmark.service';
 import { StateService } from 'src/app/services/state.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { StateService } from 'src/app/services/state.service';
 export class LayoutComponent {
   title = 'Litmark';
 
-  constructor(public dataService: BookmarkService, public stateService:StateService,  private titleService: Title,
+  constructor(public dataService: recentBookmarkService, public stateService:StateService,  private titleService: Title,
     private metaTagService: Meta) { }
 
   ngOnInit() {

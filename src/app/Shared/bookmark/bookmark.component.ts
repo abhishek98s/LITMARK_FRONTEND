@@ -1,7 +1,8 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Bookmark } from 'src/app/Model/folder';
-import { BookmarkService } from 'src/app/services/recentbookmark.service';
+import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
+import { BookmarkService } from 'src/app/services/bookmark.service';
 
 @Component({
   selector: 'app-bookmark',
@@ -13,7 +14,7 @@ export class BookmarkComponent implements OnInit {
 
   @Input() bookmark!: Bookmark;
 
-  constructor(public dataService: BookmarkService, public dropdownService: dropDownService) { }
+  constructor(public dataService: recentBookmarkService, public bookmarkService:BookmarkService, public dropdownService: dropDownService) { }
 
   uniqueString = ''
 
@@ -31,7 +32,7 @@ export class BookmarkComponent implements OnInit {
   }
 
   deleteBookmark(id: number) {
-    this.dataService.deleteBookmark(id);
+    this.bookmarkService.deleteBookmark(id);
   }
 
   @HostListener('document:click', ['$event'])

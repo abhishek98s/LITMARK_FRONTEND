@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/Model/folder';
 import { dropDownService } from 'src/app/services/dropdown.service';
-import { FolderService } from 'src/app/services/sidebarFolder.service';
+import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 
 @Component({
   selector: 'app-sidebarfolder',
@@ -16,7 +16,7 @@ export class FolderComponent implements OnInit{
 
   uniqueString = ''
 
-  constructor(public folderService: FolderService, public dropdownService:dropDownService) { }
+  constructor(public folderService: sidebarFolderService, public dropdownService:dropDownService) { }
 
   ngOnInit(): void {
     this.uniqueString = (this.folder.title + this.folder.id).toString()
