@@ -25,6 +25,10 @@ export class BookmarkFolderComponent {
     this.dropDownService.clearDropdowns()
   };
 
+  stopPropagation(event: Event) {
+    event.stopPropagation()
+  }
+
   toggleFolderInputBox(event: Event) {
     if (this.dropDownService.isOpen(this.folderUniqueString)) {
       this.dropDownService.closeDropdown(this.folderUniqueString);
@@ -58,12 +62,13 @@ export class BookmarkFolderComponent {
   }
 
   submitBookmarkForm() {
-    if (this.bookmarkName) {
-      this.dataService.addBookmark(this.bookmarkName);
-      this.bookmarkName = "";
+    if (!this.bookmarkName) {
+      this.dropDownService.closeDropdown(this.bookmarkUniqueString);
       return
     }
-    alert("enpty?")
+    this.dataService.addBookmark(this.bookmarkName);
+    this.bookmarkName = "";
+    this.dropDownService.closeDropdown(this.bookmarkUniqueString);
   }
 
   @HostListener('document:click', ['$event'])

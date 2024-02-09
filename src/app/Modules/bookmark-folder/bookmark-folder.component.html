@@ -9,7 +9,7 @@
     </header>
 
     <section class="inside-folder grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-[8px] md:gap-[4%]">
-        <div #folderInputBox [hidden]="!dropDownService.isOpen(folderUniqueString)">
+        <div #folderInputBox [hidden]="!dropDownService.isOpen(folderUniqueString)" (click)="stopPropagation($event)">
             <form class="folder h-[90px] rounded-2 flex-between-center gap-3 bg-primary-200"
                  (ngSubmit)="submitFolderForm()">
                 <div class="flex w-full gap-2 items-center"> 
@@ -36,7 +36,7 @@
             <nested-folder [nestedFolder]="data"></nested-folder>
         </div>
 
-        <div #folderInputBox [hidden]="!dropDownService.isOpen(bookmarkUniqueString)">
+        <div #folderInputBox [hidden]="!dropDownService.isOpen(bookmarkUniqueString)" (click)="stopPropagation($event)">
             <form class="bookmarkInputBox flex gap-[8px] rounded-2 " (ngSubmit)="submitBookmarkForm()">
                 <figure class="max-w-[60px] w-full h-[60px] rounded-1">
                     <img src="assets/image/add-bookmark.png">
