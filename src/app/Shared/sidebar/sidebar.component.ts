@@ -10,7 +10,7 @@ import { dropDownService } from 'src/app/services/dropdown.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent implements OnInit, AfterViewInit {
+export class SidebarComponent implements OnInit{
   @ViewChild(`sidebarinput`) inputSection!: ElementRef;
   @ViewChild(`inputBox`) inputElement!: ElementRef;
 
@@ -22,10 +22,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.folderService.foldersObservable.subscribe((value) => this.folders = value);
-  }
-
-  ngAfterViewInit(): void {
-    this.inputElement.nativeElement.focus()
   }
 
   toggleSidebar() {

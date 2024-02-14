@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { NestedFolderComponent } from './nested-folder/nested-folder.component';
 import { BookmarkComponent } from './bookmark/bookmark.component';
 import { FormsModule } from '@angular/forms';
+import { BookmarkSearchComponent } from './bookmark-search/bookmark-search.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     RecentBookmarkComponent,
     NestedFolderComponent,
     BookmarkComponent,
+    BookmarkSearchComponent,
   ],
   imports: [
     FormsModule,

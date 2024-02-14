@@ -1,21 +1,26 @@
 @import '../../colors';
 
-.input-box{
-    height: 40px;
-    width: 100%;
-
-    input{
+.input-box {
+    input {
         border: 1px solid $primary-400;
         transition: .4s;
         outline: none;
         padding: 8px 12px;
-        
-        &:focus{
+
+        &:focus {
             border: 1px solid $primary-800;
         }
 
-        &::placeholder{
+        &::placeholder {
             color: $primary-500;
+        }
+    }
+
+    button {
+        transition: .4s;
+
+        &:hover {
+            background-color: $primary-150;
         }
     }
 }

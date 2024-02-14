@@ -19,6 +19,7 @@ export class BookmarkFolderComponent {
 
   fodlerName: string = "";
   bookmarkName: string = "";
+  searchType = "bookmark";
 
   folderUniqueString = 'folder-input-box'
   bookmarkUniqueString = 'bookmark-input-box'
@@ -35,7 +36,7 @@ export class BookmarkFolderComponent {
     if (this.dropDownService.isOpen(this.folderUniqueString)) {
       this.dropDownService.closeDropdown(this.folderUniqueString);
     } else {
-      this.dropDownService.openDropdown(this.folderUniqueString); 
+      this.dropDownService.openDropdown(this.folderUniqueString);
       setTimeout(() => this.folderInputElement.nativeElement.focus())
     }
     event.stopPropagation();

@@ -43,3 +43,9 @@ export interface LoginUser {
     email: string,
     password: string
 }
+
+export interface BookmarkSearchObject {
+    type: string,
+    title: string,
+    link: string,
+}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Bookmark, Chip, Folder, Recentbookmark, State, } from '../Model/folder';
+import { Bookmark, BookmarkSearchObject, Chip, Folder, Recentbookmark, State, } from '../Model/folder';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { distinctUntilKeyChanged } from 'rxjs/operators';
 
@@ -215,7 +215,7 @@ export class recentBookmarkService {
   ]
 
   recentBookmarkObservable = new BehaviorSubject<Recentbookmark[]>(this.recentBookmark);
-  
+
   getFilterType() {
     return this.filterType
   }
@@ -300,5 +300,17 @@ export class recentBookmarkService {
         this.recentBookmarkObservable.next(filteredBookmarks);
       })
     ).subscribe();
+  }
+
+  filterByTitle(searchText: string) {
+    const filteredData: BookmarkSearchObject[] = this.recentBookmark.filter(item => {
+      const bookmarkTitle = item.title.toLowerCase();
+      return bookmarkTitle.includes(searchText.toLowerCase());
+    }).map((filterItem) => {
+      const { title, link } = filterItem;
+      return { title, link, type: 'bookmark' }
+    });
+
+    return filteredData;
   }
 }

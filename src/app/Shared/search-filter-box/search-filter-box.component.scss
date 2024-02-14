@@ -11,6 +11,10 @@
     .search-box {
         max-width: 300px;
         width: 100%;
+
+        .search-result {
+            border: 1px solid $primary-400;
+        }
     }
 
     .sortDropdown {
@@ -21,14 +25,16 @@
         padding: 10px;
         height: 40px;
         z-index: 10;
-        
+
         .down-arrow {
             transition: 0.4s;
-            &.active{
+
+            &.active {
                 transform: rotate(180deg);
             }
         }
     }
+
     .sort-option {
         border: 1px solid $primary-400;
         background-color: $neutral-0;

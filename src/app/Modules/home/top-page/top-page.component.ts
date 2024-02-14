@@ -10,6 +10,8 @@ import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 export class TopPageComponent implements OnInit {
   recentBookmark!: Recentbookmark[];
 
+  searchType = 'recent-bookmark'
+
   constructor(public dataService: recentBookmarkService) { }
 
   ngOnInit(): void {

@@ -1,6 +1,18 @@
 <article class="search-filter-wrapper flex-between-center bg-primary-100 rounded-2">
-    <div class="search-box">
-        <app-input-box></app-input-box>
+    <div class="search-box relative">
+        <app-input-box (newItemEvent)="setSearchData($event)" [searchType]="searchType"></app-input-box>
+        <!-- searchBox && search result -->
+        <div *ngIf="searchService.isSearchShown() && searchService.isResult()"
+            class="search-result absolute top-full left-0 right-0 mt-[8px] rounded-1 bg-neutral-0 min-h-[40px] p-[4px] shadow-1 z-10">
+            <div *ngFor="let result of searchService.getSearchResult()!">
+                <app-bookmark-search [bookmarkResult]="result"></app-bookmark-search>
+            </div>
+        </div>
+        <!-- searchBox && !search result -->
+        <div *ngIf="searchService.isSearchShown() && !searchService.isResult()"
+            class="search-result flex-center absolute top-full left-0 right-0 mt-[8px] rounded-1 bg-neutral-0 min-h-[40px] p-[8px] pb-[4px] shadow-1">
+            <div class="m-auto color-primary-560 text-body-md-regular line-clamp-1">No result with "{{searchData}}"</div>
+        </div>
     </div>
 
     <div class="relative bg-neutral-0">
@@ -8,7 +20,8 @@
             class="sortDropdown flex p-[4px_10px] rounded-1 justify-between items-center color-primary-900 text-label-md-regular">
             <button class="more-btn-dropdown-btn">{{filter}}</button>
 
-            <figure class="down-arrow w-[12px] h-[12px] flex-center" [ngClass]="{'active': dropdownService.isOpen(uniqueString)}">
+            <figure class="down-arrow w-[12px] h-[12px] flex-center"
+                [ngClass]="{'active': dropdownService.isOpen(uniqueString)}">
                 <img src="assets/icon/arrow-down.svg" alt="sort">
             </figure>
         </a>
