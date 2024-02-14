@@ -1,0 +1,10 @@
+@import '../../colors';
+
+.folder-search-item {
+    border-bottom: 1px solid $primary-400-35;
+    transition: .4s;
+
+    &:hover {
+        background-color: $primary-200;
+    }
+}

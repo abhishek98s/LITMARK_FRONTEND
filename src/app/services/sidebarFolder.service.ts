@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Folder } from '../Model/folder';
+import { Folder, FolderSearchObject } from '../Model/folder';
 import { BehaviorSubject, map, tap } from 'rxjs';
 
 @Injectable({
@@ -33,11 +33,11 @@ export class sidebarFolderService {
       title: 'UX'
     },
   ]
+  private folderSearchResult!: FolderSearchObject[];
 
   foldersObservable = new BehaviorSubject<Folder[]>(this.folders);
-  
-  constructor( ) { }
 
+  constructor() { }
 
   // Folders
   addFolder(name: string) {
@@ -56,5 +56,25 @@ export class sidebarFolderService {
         this.foldersObservable.next(filteredBookmarks);
       })
     ).subscribe();
+  }
+
+  filterByTitle(searchText: string) {
+    const filterData = this.folders.filter((item) => {
+      const folderTitle = item.title.toLocaleLowerCase();
+      return folderTitle.includes(searchText.toLowerCase());
+    }).map((filterItem) => {
+      const { id, title } = filterItem;
+      return { title, id }
+    })
+
+    return filterData;
+  }
+
+  getSearchResult() {
+    return this.folderSearchResult;
+  }
+
+  populateSearchResult(arr: FolderSearchObject[]) {
+    this.folderSearchResult = arr
   }
 }

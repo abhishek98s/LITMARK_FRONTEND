@@ -49,3 +49,8 @@ export interface BookmarkSearchObject {
     title: string,
     link: string,
 }
+
+export interface FolderSearchObject {
+    id: number,
+    title: string,
+}

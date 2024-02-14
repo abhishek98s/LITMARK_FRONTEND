@@ -17,8 +17,9 @@ export class SidebarComponent implements OnInit{
   folders!: Folder[];
   userInputtedFodlerName: string = '';
   uniqueString = 'addfolderinput'
+  inputUniqueString = 'sidebar-folder-input-box'
 
-  constructor(public folderService: sidebarFolderService, public stateService: StateService, public dropdownService: dropDownService) { }
+  constructor(public folderService: sidebarFolderService, public stateService: StateService, public dropdownService: dropDownService, public sidebarFolderService:sidebarFolderService) { }
 
   ngOnInit(): void {
     this.folderService.foldersObservable.subscribe((value) => this.folders = value);
@@ -49,6 +50,7 @@ export class SidebarComponent implements OnInit{
   stopPropagation(event: Event) {
     event.stopPropagation()
   }
+  
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     if (this.dropdownService.isOpen(this.uniqueString) === false) { return }

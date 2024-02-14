@@ -4,7 +4,14 @@
             <img src="assets/image/logo.svg" alt="logo">
         </figure>
     </a>
-    <app-input-box class="p-[8px] md:p-0"></app-input-box>
+    <div class="relative z-10">
+        <app-input-box [searchType]="'folder'" class="p-[8px] md:p-0"></app-input-box>
+        <div [hidden]="!dropdownService.isOpen(inputUniqueString)" class="search-folder-list absolute left-0 right-0 top-full mt-[8px] p-[4px] rounded-2 shadow-1 bg-neutral-0">
+            <ng-container *ngFor="let folder of sidebarFolderService.getSearchResult()">
+                <app-folder-search [folder]="folder"></app-folder-search>
+            </ng-container>
+        </div>
+    </div>
     <hr class="bg-primary-500 rounded-2">
     <section class="folders h-full overflow-hidden flex flex-col gap-[20px] relative">
         <div class="flex justify-between align-items-center ">
