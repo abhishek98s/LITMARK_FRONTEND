@@ -6,7 +6,7 @@ import { BookmarkSearchObject } from '../Model/folder';
 })
 export class SearchService {
   private searchResultBox: Boolean = false;
-  public searchResult: BookmarkSearchObject[] = [{type: 'bookmark', title: 'sd', link: 'sd'}];
+  public searchResult!: BookmarkSearchObject[];
 
   constructor() { }
 

@@ -10,12 +10,10 @@ export class AuthService {
   constructor(private router: Router) { }
 
   onRegister(user: RegisterUser) {
-    // console.log(user)
     return
   }
 
   onLogin(user: LoginUser) {
-    // console.log(user)
     localStorage.setItem('token', user.email)
     return
   }

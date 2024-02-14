@@ -15,7 +15,9 @@ export class InputBoxComponent {
   @Input() searchType!: string;
   @Output() newItemEvent = new EventEmitter<string>();
   sendSerchVal(value: string) {
-    this.newItemEvent.emit(value);
+    if (this.searchType === 'recent-bookmark') {
+      this.newItemEvent.emit(value);
+    }
   }
 
   searchData!: string;
@@ -26,14 +28,17 @@ export class InputBoxComponent {
       return
     }
 
-    this.sendSerchVal(this.searchData)
-    this.searchService.showSearchBox();
-
     if (this.searchType === 'recent-bookmark') {
       let result = this.recentBookmarkService.filterByTitle(this.searchData)
       this.searchService.populateSearchResult(result)
     } else if (this.searchType === 'bookmark') {
       console.log('Call bookmark service')
+      return
+    } else {
+      return
     }
+
+    this.sendSerchVal(this.searchData)
+    this.searchService.showSearchBox();
   }
 }

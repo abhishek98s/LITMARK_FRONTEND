@@ -15,7 +15,6 @@ export class dropDownService {
   }
 
   openDropdown(identifier: string) {
-    // console.log(identifier)
     this.clearDropdowns()
     this.openDropdowns.add(identifier);
   }
