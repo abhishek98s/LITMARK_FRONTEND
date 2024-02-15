@@ -30,7 +30,7 @@ export class InputBoxComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<string>();
   sendSerchVal(value: string) {
-    if (this.searchType === 'recent-bookmark') {
+    if (this.searchType === 'recent-bookmark' || this.searchType === 'folder') {
       this.newItemEvent.emit(value);
     }
   }
@@ -53,6 +53,7 @@ export class InputBoxComponent implements OnInit {
     else if (this.searchType === 'folder') {
       this.dropDownService.openDropdown('sidebar-folder-input-box');
       let result = this.folderSsearchService.filterByTitle(this.searchData);
+      this.sendSerchVal(this.searchData)
       this.folderSsearchService.populateSearchResult(result)
     }
     else if (this.searchType === 'bookmark') {

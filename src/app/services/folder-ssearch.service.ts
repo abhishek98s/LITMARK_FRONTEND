@@ -6,7 +6,7 @@ import { sidebarFolderService } from './sidebarFolder.service';
   providedIn: 'root'
 })
 export class FolderSsearchService implements OnInit {
-  private folderSearchResult!: FolderSearchObject[];
+  private folderSearchResult: FolderSearchObject[] = [];
 
   folders!: Folder[];
 
@@ -34,5 +34,9 @@ export class FolderSsearchService implements OnInit {
 
   populateSearchResult(arr: FolderSearchObject[]) {
     this.folderSearchResult = arr
+  }
+
+  isSearchEmpty() {
+    return this.folderSearchResult.length === 0 ? true : false
   }
 }

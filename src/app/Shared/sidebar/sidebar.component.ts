@@ -17,6 +17,8 @@ export class SidebarComponent implements OnInit{
 
   folders!: Folder[];
   userInputtedFodlerName: string = '';
+  searchData!: string;
+
   uniqueString = 'addfolderinput'
   inputUniqueString = 'sidebar-folder-input-box'
 
@@ -24,6 +26,10 @@ export class SidebarComponent implements OnInit{
 
   ngOnInit(): void {
     this.sidebarFolderService.foldersObservable.subscribe((value) => this.folders = value);
+  }
+
+  setSearchData(newItem: string) {
+    this.searchData = newItem;
   }
 
   toggleSidebar() {

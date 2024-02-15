@@ -18,13 +18,13 @@ export class SearchFilterBoxComponent implements OnInit {
   uniqueString = 'date';
   bookmarkSearchUniqueString = 'bookmark-search-unique-string';
   searchData!: string;
+  
+  ngOnInit(): void {
+    this.filter = this.dataService.getFilterType();
+  }
 
   setSearchData(newItem: string) {
     this.searchData = newItem;
-  }
-
-  ngOnInit(): void {
-    this.filter = this.dataService.getFilterType();
   }
 
   toggleProfileMenu(event: Event) {
