@@ -4,6 +4,7 @@ import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderSsearchService } from 'src/app/services/folder-ssearch.service';
+import { SearchTextService } from 'src/app/services/search-text.service';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { FolderSsearchService } from 'src/app/services/folder-ssearch.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent implements OnInit{
+export class SidebarComponent implements OnInit {
+  @ViewChild(`sidebarFodlerSearch`) sidebarFodlerSearch!: ElementRef;
   @ViewChild(`sidebarinput`) inputSection!: ElementRef;
   @ViewChild(`inputBox`) inputElement!: ElementRef;
 
@@ -22,7 +24,7 @@ export class SidebarComponent implements OnInit{
   uniqueString = 'addfolderinput'
   inputUniqueString = 'sidebar-folder-input-box'
 
-  constructor(public stateService: StateService, public dropdownService: dropDownService, public sidebarFolderService: sidebarFolderService, public folderSearchService: FolderSsearchService) { }
+  constructor(public stateService: StateService, public dropdownService: dropDownService, public sidebarFolderService: sidebarFolderService, public folderSearchService: FolderSsearchService, private searchTextService: SearchTextService) { }
 
   ngOnInit(): void {
     this.sidebarFolderService.foldersObservable.subscribe((value) => this.folders = value);
@@ -57,10 +59,15 @@ export class SidebarComponent implements OnInit{
   stopPropagation(event: Event) {
     event.stopPropagation()
   }
-  
+
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if (this.dropdownService.isOpen(this.uniqueString) === false) { return }
+    if ((this.dropdownService.isOpen(this.uniqueString) || this.dropdownService.isOpen(this.inputUniqueString)) === false) { return }
+    if (this.dropdownService.isOpen(this.inputUniqueString) && !this.sidebarFodlerSearch.nativeElement.contains(event.target)) {
+      this.searchTextService.clearSearchText();
+      this.dropdownService.closeDropdown(this.inputUniqueString)
+    }
+
     if (this.dropdownService.isOpen(this.uniqueString) && !this.inputSection.nativeElement.contains(event.target)) {
       this.userInputtedFodlerName = '';
       this.dropdownService.clearDropdowns();

@@ -1,5 +1,5 @@
 <article class="search-filter-wrapper flex-between-center bg-primary-100 rounded-2">
-    <div class="search-box relative">
+    <div #bookmarkInputFields class="search-box relative">
         <app-input-box (newItemEvent)="setSearchData($event)" [searchType]="searchType" [inputId]="'input2'"></app-input-box>
         <!-- searchBox && search result -->
         <div *ngIf="dropdownService.isOpen(bookmarkSearchUniqueString) && searchService.isResult()"
