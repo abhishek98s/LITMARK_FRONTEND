@@ -15,8 +15,8 @@ import { RouterModule } from '@angular/router';
 import { NestedFolderComponent } from './nested-folder/nested-folder.component';
 import { BookmarkComponent } from './bookmark/bookmark.component';
 import { FormsModule } from '@angular/forms';
-import { BookmarkSearchComponent } from './bookmark-search/bookmark-search.component';
-import { FolderSearchComponent } from './folder-search/folder-search.component';
+import { BookmarkSearchItemComponent } from './bookmark-search-item/bookmark-search.component';
+import { FolderSearchItemComponent } from './folder-search-item/folder-search-item.component';
 
 
 @NgModule({
@@ -34,8 +34,8 @@ import { FolderSearchComponent } from './folder-search/folder-search.component';
     RecentBookmarkComponent,
     NestedFolderComponent,
     BookmarkComponent,
-    BookmarkSearchComponent,
-    FolderSearchComponent,
+    BookmarkSearchItemComponent,
+    FolderSearchItemComponent,
   ],
   imports: [
     FormsModule,

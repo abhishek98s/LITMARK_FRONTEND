@@ -16,6 +16,7 @@ export class SearchFilterBoxComponent implements OnInit {
 
   filter: string = 'Date';
   uniqueString = 'date';
+  bookmarkSearchUniqueString = 'bookmark-search-unique-string';
   searchData!: string;
 
   setSearchData(newItem: string) {

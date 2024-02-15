@@ -54,3 +54,8 @@ export interface FolderSearchObject {
     id: number,
     title: string,
 }
+
+export interface SearchText {
+    searchText: string,
+    inputId: string,
+}
