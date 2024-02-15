@@ -7,7 +7,7 @@
     <div class="relative z-10">
         <app-input-box [searchType]="'folder'" class="p-[8px] md:p-0"></app-input-box>
         <div [hidden]="!dropdownService.isOpen(inputUniqueString)" class="search-folder-list absolute left-0 right-0 top-full mt-[8px] p-[4px] rounded-2 shadow-1 bg-neutral-0">
-            <ng-container *ngFor="let folder of sidebarFolderService.getSearchResult()">
+            <ng-container *ngFor="let folder of folderSearchService.getSearchResult()">
                 <app-folder-search [folder]="folder"></app-folder-search>
             </ng-container>
         </div>

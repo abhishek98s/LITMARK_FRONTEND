@@ -33,7 +33,6 @@ export class sidebarFolderService {
       title: 'UX'
     },
   ]
-  private folderSearchResult!: FolderSearchObject[];
 
   foldersObservable = new BehaviorSubject<Folder[]>(this.folders);
 
@@ -48,6 +47,10 @@ export class sidebarFolderService {
     },)
   }
 
+  getFolder() {
+    return this.folders
+  }
+
   deleteFolder(id: number) {
     this.foldersObservable.pipe(
       map((folders: Folder[]) => folders.filter(item => item.id !== id)),
@@ -56,25 +59,5 @@ export class sidebarFolderService {
         this.foldersObservable.next(filteredBookmarks);
       })
     ).subscribe();
-  }
-
-  filterByTitle(searchText: string) {
-    const filterData = this.folders.filter((item) => {
-      const folderTitle = item.title.toLocaleLowerCase();
-      return folderTitle.includes(searchText.toLowerCase());
-    }).map((filterItem) => {
-      const { id, title } = filterItem;
-      return { title, id }
-    })
-
-    return filterData;
-  }
-
-  getSearchResult() {
-    return this.folderSearchResult;
-  }
-
-  populateSearchResult(arr: FolderSearchObject[]) {
-    this.folderSearchResult = arr
   }
 }

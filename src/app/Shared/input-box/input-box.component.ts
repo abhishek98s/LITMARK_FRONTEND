@@ -5,6 +5,7 @@ import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
+import { FolderSsearchService } from 'src/app/services/folder-ssearch.service';
 
 @Component({
   selector: 'app-input-box',
@@ -13,7 +14,7 @@ import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 })
 export class InputBoxComponent {
 
-  constructor(private searchService: SearchService, private recentBookmarkService: recentBookmarkService, private dropDownService: dropDownService, private sidebarFolderService: sidebarFolderService) { }
+  constructor(private searchService: SearchService, private recentBookmarkService: recentBookmarkService, private dropDownService: dropDownService, private folderSsearchService: FolderSsearchService) { }
   @Input() searchType!: string;
   @Output() newItemEvent = new EventEmitter<string>();
   sendSerchVal(value: string) {
@@ -40,8 +41,8 @@ export class InputBoxComponent {
     }
     else if (this.searchType === 'folder') {
       this.dropDownService.openDropdown('sidebar-folder-input-box');
-      let result = this.sidebarFolderService.filterByTitle(this.searchData);
-      this.sidebarFolderService.populateSearchResult(result)
+      let result = this.folderSsearchService.filterByTitle(this.searchData);
+      this.folderSsearchService.populateSearchResult(result)
     }
     else if (this.searchType === 'bookmark') {
       console.log('Call bookmark service')
@@ -50,6 +51,5 @@ export class InputBoxComponent {
     else {
       return
     }
-
   }
 }

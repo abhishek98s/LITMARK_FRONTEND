@@ -3,6 +3,7 @@ import { Folder } from 'src/app/Model/folder';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
+import { FolderSsearchService } from 'src/app/services/folder-ssearch.service';
 
 
 @Component({
@@ -19,10 +20,10 @@ export class SidebarComponent implements OnInit{
   uniqueString = 'addfolderinput'
   inputUniqueString = 'sidebar-folder-input-box'
 
-  constructor(public folderService: sidebarFolderService, public stateService: StateService, public dropdownService: dropDownService, public sidebarFolderService:sidebarFolderService) { }
+  constructor(public stateService: StateService, public dropdownService: dropDownService, public sidebarFolderService: sidebarFolderService, public folderSearchService: FolderSsearchService) { }
 
   ngOnInit(): void {
-    this.folderService.foldersObservable.subscribe((value) => this.folders = value);
+    this.sidebarFolderService.foldersObservable.subscribe((value) => this.folders = value);
   }
 
   toggleSidebar() {
@@ -42,7 +43,7 @@ export class SidebarComponent implements OnInit{
 
   submitSidebarFolderForm() {
     if (this.userInputtedFodlerName) {
-      this.folderService.addFolder(this.userInputtedFodlerName)
+      this.sidebarFolderService.addFolder(this.userInputtedFodlerName)
     }
     this.dropdownService.closeDropdown(this.uniqueString);
   }
