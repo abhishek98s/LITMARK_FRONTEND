@@ -15,32 +15,13 @@
     }
     
     &:hover {
-        background-color: $primary-250;
         scale: 1.05;
     }
     &:active {
-        scale: 0.9;
-    }
+        scale: 0.8;
 
-    &::before {
-        z-index: 0;
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 100%;
-        width: 1px;
-        opacity: 0;
-        border-radius: 100%;
-        transition: 0.8s;
-        background-color: $primary-500;
+        @media screen and (min-width: 786px) {
+            scale: 0.9;
+        }
     }
-
-    // &:active::before {
-    //     border-radius: 100%;
-    //     background-color: $primary-500;
-    //     width: 700px;
-    //     opacity: 1;
-    // }
 }
