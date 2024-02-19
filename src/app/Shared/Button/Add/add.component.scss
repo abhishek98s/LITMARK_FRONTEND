@@ -4,19 +4,22 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    padding: 8px;
     gap: 8px;
     position: relative;
     overflow: hidden;
     z-index: 3;
-    transition: 0.4s;
+    transition: 0.2s;
 
     & > * {
         z-index: 3;
     }
-
+    
     &:hover {
         background-color: $primary-250;
+        scale: 1.05;
+    }
+    &:active {
+        scale: 0.9;
     }
 
     &::before {
@@ -34,10 +37,10 @@
         background-color: $primary-500;
     }
 
-    &:active::before {
-        border-radius: 100%;
-        background-color: $primary-500;
-        width: 700px;
-        opacity: 1;
-    }
+    // &:active::before {
+    //     border-radius: 100%;
+    //     background-color: $primary-500;
+    //     width: 700px;
+    //     opacity: 1;
+    // }
 }

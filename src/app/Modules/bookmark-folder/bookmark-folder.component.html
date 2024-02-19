@@ -5,8 +5,8 @@
         <h2 class="text-title-md-bold">Design</h2>
 
         <div class="hidden gap-[16px] md:flex">
-            <app-add-folder [value]="'Add Folder'" (click)="toggleFolderInputBox($event)"></app-add-folder>
-            <app-add-folder [value]="'Add Bookmark'" (click)="toggleBookmarkInputBox($event)"></app-add-folder>
+            <app-add-folder [value]="'Add Folder'" [icon]="'add-folder'" (click)="toggleFolderInputBox($event)"></app-add-folder>
+            <app-add-folder [value]="'Add Bookmark'" [icon]="'add-bookmark'" (click)="toggleBookmarkInputBox($event)"></app-add-folder>
         </div>
     </header>
 
