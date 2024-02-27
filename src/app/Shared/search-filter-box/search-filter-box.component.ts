@@ -25,6 +25,10 @@ export class SearchFilterBoxComponent implements OnInit {
     this.filter = this.dataService.getFilterType();
   }
 
+  isInputFocus(){
+    return this.searchService.isInputFocus();
+  }
+
   setSearchData(newItem: string) {
     this.searchData = newItem;
   }

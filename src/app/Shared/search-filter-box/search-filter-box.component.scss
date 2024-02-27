@@ -15,6 +15,14 @@
         .search-result {
             border: 1px solid $primary-400;
         }
+
+        &.fullInputWidth {
+            max-width: unset;
+
+            @media screen and (min-width: 768px) {
+                max-width: 300px;
+            }
+        }
     }
 
     .sortDropdown {

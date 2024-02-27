@@ -15,7 +15,7 @@ import { SearchTextService } from 'src/app/services/search-text.service';
 })
 export class InputBoxComponent implements OnInit {
 
-  constructor(private searchService: SearchService, private recentBookmarkService: recentBookmarkService, private dropDownService: dropDownService, private folderSsearchService: FolderSsearchService, private searchTextService: SearchTextService) { }
+  constructor(public searchService: SearchService, private recentBookmarkService: recentBookmarkService, private dropDownService: dropDownService, private folderSsearchService: FolderSsearchService, public searchTextService: SearchTextService) { }
 
 
   @Input() searchType!: string;
@@ -65,5 +65,10 @@ export class InputBoxComponent implements OnInit {
     }
 
     this.searchTextService.setSearchText(this.searchData, this.inputId)
+  }
+
+  clearinput(){
+    this.dropDownService.clearDropdowns();
+    this.searchTextService.clearSearchText();
   }
 }

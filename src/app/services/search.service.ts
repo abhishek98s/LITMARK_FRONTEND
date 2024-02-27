@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BookmarkSearchObject } from '../Model/folder';
+import { dropDownService } from './dropdown.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
   private searchResultBox: Boolean = false;
-  public searchResult: BookmarkSearchObject[]=[];
+  public searchResult: BookmarkSearchObject[] = [];
 
-  constructor() { }
+  constructor(private dropDownService: dropDownService) { }
 
   isSearchShown() {
     return this.searchResultBox;
@@ -33,7 +34,11 @@ export class SearchService {
     this.searchResult = arr
   }
 
-   getSearchResult() {
+  getSearchResult() {
     return this.searchResult
+  }
+
+  isInputFocus() {
+    return (this.dropDownService.isOpen('bookmark-search-unique-string') || this.dropDownService.isOpen('sidebar-folder-input-box')) ? 1 : 0;
   }
 }
