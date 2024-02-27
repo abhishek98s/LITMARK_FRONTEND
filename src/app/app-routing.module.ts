@@ -6,6 +6,7 @@ import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
 import { AuthGuard } from './auth.guard';
+import { SettingComponent } from './Modules/settings/setting/setting.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,12 @@ const routes: Routes = [
       { path: 'bookmark/:id', component: BookmarkFolderComponent },
     ], canActivate: [AuthGuard]
   },
-  
+  {
+    path: 'setting', component: LayoutComponent,
+    children: [
+      { path: '', component: SettingComponent },
+    ], canActivate: [AuthGuard]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: '/login' },

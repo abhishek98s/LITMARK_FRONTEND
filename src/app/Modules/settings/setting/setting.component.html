@@ -1,0 +1,76 @@
+<section class="setting-wrapper">
+    <header class="p-[20px] rounded-2 flex justify-between items-center">
+
+        <div class="user-info flex items-center gap-[20px]">
+            <figure class="w-[52px] h-[52px] rounded-full overflow-hidden">
+                <img src="assets/image/folder-2.png">
+            </figure>
+
+            <div class="user-name">
+                <h2 class="text-body-xl-bold color-primary-1000">Jonah Wicks</h2>
+                <div class="text-body-md-regular color-primary-900">jonahwicks@gmail.com</div>
+            </div>
+        </div>
+
+        <figure class="icon-more w-[40px] h-[40px] p-[4px] rounded-full overflow-hidden cursor-pointer">
+            <img src="assets/icon/more.svg">
+        </figure>
+    </header>
+
+    <article>
+        <div class="acc-setting-wrapper p-[28px_12px]">
+            <h2 class="mb-[4px] text-body-xl-bold color-primary-1000">Account</h2>
+            <div class="sub-heading mb-[24px] text-body-md-medium color-primary-550">Add or upload your information
+            </div>
+
+            <div class="account-setting w-full md:max-w-[375px]">
+                <div class="input-box mb-[16px]">
+                    <label class="text-label-md-medium color-primary-900 block mb-[8px]">Change your username</label>
+                    <div class="flex gap-[16px]">
+                        <input class="w-full p-[4px_12px] rounded-1" type="text" placeholder="Jonah Wicks">
+                        <button
+                            class="p-[12px_24px] rounded-1 bg-primary-40 text-body-md-semi-bold color-primary-900">Save</button>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <label class="text-label-md-medium color-primary-900 block mb-[8px]">Change password</label>
+                    <div class="flex gap-[16px]">
+                        <input class="w-full p-[4px_12px] rounded-1" type="text" placeholder="">
+                        <button
+                            class="p-[12px_24px] rounded-1 bg-primary-40 text-body-md-semi-bold color-primary-900">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="acc-theme-wrapper p-[28px_12px]">
+            <h2 class="mb-[4px] text-body-xl-bold color-primary-1000">Theme</h2>
+            <div class="sub-heading mb-[24px] text-body-md-medium color-primary-550">Change your theme according to your
+                prefrence.</div>
+
+            <form class="flex md:max-w-[375px] gap-[16px]">
+                <div class="flex items-center gap-[12px] w-full cursor-pointer">
+                    <input name="theme" id="dark" type="radio">
+                    <label for="dark" class="color-primary-870 text-body-md-medium w-full cursor-pointer">Dark</label>
+                </div>
+
+                <div class="flex items-center gap-[12px] w-full cursor-pointer">
+                    <input name="theme" id="light" type="radio">
+                    <label for="light" class="color-primary-870 text-body-md-medium w-full cursor-pointer">Light</label>
+                </div>
+            </form>
+        </div>
+
+        <div class="acc-delete-wrapper flex flex-col lg:flex-row p-[28px_12px] items-center">
+            <div>
+                <h2 class="mb-[4px] text-body-xl-bold color-primary-1000">Delete Account</h2>
+                <div class="sub-heading mb-[24px] text-body-md-medium color-primary-550">Deleting your account is a
+                    permanent action that cannot be undone. By proceeding with this action, you will lose access
+                    to all your saved bookmarks, settings, and personal data associated with your account.</div>
+            </div>
+
+            <button class="rounded-1 p-[8px_20px] bg-error-100 color-error-800 text-body-md-semi-bold h-[fit-content] w-full lg:w-[fit-content]">Delete</button>
+        </div>
+    </article>
+</section>

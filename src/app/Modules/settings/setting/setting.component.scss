@@ -1,0 +1,42 @@
+@import '../../../colors';
+
+.setting-wrapper {
+    header {
+        border: 1px solid $primary-200;
+
+        .user-info figure {
+            border: 1px solid $primary-200;
+        }
+
+        .icon-more {
+            transition: 0.4s;
+
+            &:hover {
+                background-color: $primary-100;
+            }
+        }
+    }
+
+    article {
+        .acc-setting-wrapper, .acc-theme-wrapper{
+            border-bottom: 1px solid $primary-400-35;
+        }
+        .acc-setting-wrapper {
+            .input-box button:hover {
+                background-color: $primary-200;
+            }
+        }
+        .acc-delete-wrapper{
+            .bg-error-100:hover{
+                background-color: $error-200;
+            }
+            
+            input[type='radio'] {
+                max-width: 20px;
+                width: 100%;
+                accent-color: $primary-800;
+                cursor: pointer;
+            }
+        }
+    }
+}

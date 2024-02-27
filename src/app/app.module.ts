@@ -15,6 +15,7 @@ import { LayoutComponent } from './Modules/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
+import { SettingComponent } from './Modules/settings/setting/setting.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AuthGuard } from './auth.guard';
     LoginComponent,
     LayoutComponent,
     RegisterComponent,
+    SettingComponent,
   ],
   imports: [
     BrowserModule,

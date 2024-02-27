@@ -36,6 +36,7 @@ svg {
 a,
 button {
   cursor: pointer;
+  transition: .4s;
 }
 
 input {
@@ -44,6 +45,7 @@ input {
   outline: none;
   background-color: $neutral-0;
   border-radius: 4px;
+  min-height: 40px;
 
   &:focus {
     border: 1px solid $primary-800;
@@ -95,14 +97,17 @@ input {
 
 $colors-list: (
 );
-$colors-list: map-merge(("primary-20": $primary-20,
+$colors-list: map-merge((
+      "primary-20": $primary-20,
+      "primary-40": $primary-40,
       "primary-100": $primary-100,
       "primary-150": $primary-150,
+      "primary-220": $primary-220,
       "primary-250": $primary-250,
       "primary-200": $primary-200,
-      "primary-220": $primary-220,
       "primary-300": $primary-300,
       "primary-400": $primary-400,
+      "primary-400-35": $primary-400-35,
       "primary-560": $primary-560,
       "primary-550": $primary-550,
       "primary-500": $primary-500,
