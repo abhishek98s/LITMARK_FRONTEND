@@ -97,8 +97,7 @@ input {
 
 $colors-list: (
 );
-$colors-list: map-merge((
-      "primary-20": $primary-20,
+$colors-list: map-merge(("primary-20": $primary-20,
       "primary-40": $primary-40,
       "primary-100": $primary-100,
       "primary-150": $primary-150,
@@ -282,4 +281,34 @@ $colors-list: map-merge((
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: $primary-600;
+}
+
+
+// Tost style
+.toast {
+  &-success, &-error {
+    border-radius: 4px !important;
+    box-shadow: 0 0 0 0.2px #8484d2 !important;
+    padding: 16px 24px !important;
+    padding-bottom: 16px !important;
+  }
+  &-success {
+    background-color: #F6F7F8 !important;
+    border-left: 6px solid $primary-600 !important;
+    color: $primary-1000 !important;
+    background-image: none !important;
+  }
+
+  &-error {
+    background-color: #fff8f8 !important;
+    border-left: 4px solid #BB3E3E;
+    color: #BB3E3E !important;
+    background-image: none !important;
+    box-shadow: 0 0 0 0.2px #d28484 !important;
+  }
+}
+
+.toast-progress {
+  background-color: $primary-1000 !important;
+  opacity: 0.2 !important;
 }

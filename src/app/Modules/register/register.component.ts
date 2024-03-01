@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +12,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterComponent {
   registerForm: FormGroup;
 
-  constructor(private authService: AuthService, private router:Router) {
+  constructor(private authService: AuthService, private router: Router, private toast: ToastService) {
     this.registerForm = new FormGroup({
-      name: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/)])
     })
@@ -21,10 +22,19 @@ export class RegisterComponent {
 
 
   submitForm() {
-    if (this.registerForm.status === 'VALID' && !this.registerForm.errors) {
-      this.authService.onRegister(this.registerForm.value)
-      this.router.navigate(['/login']) 
+    if (!(this.registerForm.status === 'VALID' && !this.registerForm.errors)) {
+      this.toast.error('All field are required.')
+      return
     }
+    this.authService.onRegister(this.registerForm.value).subscribe(
+      (res) => {
+        this.router.navigate(['/login'])
+        this.toast.success('You are registered.');
+      },
+      (error) => {
+        this.toast.error(error.error.msg);
+      }
+    )
   }
 
 }

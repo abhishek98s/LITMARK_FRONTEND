@@ -16,6 +16,10 @@ import { RegisterComponent } from './Modules/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import { SettingComponent } from './Modules/settings/setting/setting.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthInterceptor } from './auth.interceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,8 +30,16 @@ import { SettingComponent } from './Modules/settings/setting/setting.component';
     LayoutComponent,
     RegisterComponent,
     SettingComponent,
+
   ],
   imports: [
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('token'), // Provide a function to retrieve the token from storage
+        allowedDomains: ['http://localhost:4200/'], // Specify the domains where the token should be sent
+        disallowedRoutes: ['example.com/auth'] // Specify routes that don't need the token
+      }
+    }),
     BrowserModule,
     AppRoutingModule,
     CommonModule,
@@ -37,9 +49,17 @@ import { SettingComponent } from './Modules/settings/setting/setting.component';
     AppRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(), 
+    BrowserAnimationsModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
