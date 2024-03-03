@@ -36,7 +36,11 @@ export class LoginComponent {
         }
       },
       (error) => {
-        this.toast.error(error.error.msg)
+        if (!error.error.msg) {
+          this.toast.error("Internet Unavailable");
+          return;
+        }
+        this.toast.error(error.error.msg);
         console.error('Error handler:', error);
       }
     )
