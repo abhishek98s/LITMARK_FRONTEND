@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { Folder } from 'src/app/Model/folder';
+import { Folder, SidebarFolder } from 'src/app/Model/folder';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
-import { FolderSsearchService } from 'src/app/services/folder-ssearch.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 
 
@@ -17,17 +16,17 @@ export class SidebarComponent implements OnInit {
   @ViewChild(`sidebarinput`) inputSection!: ElementRef;
   @ViewChild(`inputBox`) inputElement!: ElementRef;
 
-  folders!: Folder[];
+  folders!: SidebarFolder[];
   userInputtedFodlerName: string = '';
   searchData!: string;
 
   uniqueString = 'addfolderinput'
   inputUniqueString = 'sidebar-folder-input-box'
 
-  constructor(public stateService: StateService, public dropdownService: dropDownService, public sidebarFolderService: sidebarFolderService, public folderSearchService: FolderSsearchService, private searchTextService: SearchTextService) { }
+  constructor(public stateService: StateService, public dropdownService: dropDownService, public sidebarFolderService: sidebarFolderService, private searchTextService: SearchTextService) { }
 
   ngOnInit(): void {
-    this.sidebarFolderService.foldersObservable.subscribe((value) => this.folders = value);
+
   }
 
   setSearchData(newItem: string) {

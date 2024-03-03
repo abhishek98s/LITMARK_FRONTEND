@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { Folder } from 'src/app/Model/folder';
+import { Folder, SidebarFolder } from 'src/app/Model/folder';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 
@@ -11,15 +11,15 @@ import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 export class FolderComponent implements OnInit{
   @ViewChild(`dropdowns`) dropdownElement!: ElementRef;
 
-  @Input() folder!: Folder;
+  @Input() folder!: SidebarFolder;
   menuOpen: boolean = false;
 
   uniqueString = ''
 
-  constructor(public folderService: sidebarFolderService, public dropdownService:dropDownService) { }
+  constructor(public sidebarFolderService: sidebarFolderService, public dropdownService:dropDownService) { }
 
   ngOnInit(): void {
-    this.uniqueString = (this.folder.title + this.folder.id).toString()
+    this.uniqueString = (this.folder.name + this.folder.id).toString()
   }
 
   toggleOpen(event:Event) {
@@ -32,7 +32,7 @@ export class FolderComponent implements OnInit{
   }
 
   deleteFolder(id: number) {
-    this.folderService.deleteFolder(id)
+    this.sidebarFolderService.deleteFolder(id)
   }
 
   @HostListener('document:click', ['$event'])

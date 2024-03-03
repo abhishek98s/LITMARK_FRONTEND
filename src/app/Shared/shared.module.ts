@@ -16,7 +16,7 @@ import { NestedFolderComponent } from './nested-folder/nested-folder.component';
 import { BookmarkComponent } from './bookmark/bookmark.component';
 import { FormsModule } from '@angular/forms';
 import { BookmarkSearchItemComponent } from './bookmark-search-item/bookmark-search.component';
-import { FolderSearchItemComponent } from './folder-search-item/folder-search-item.component';
+import { FolderSearchItemComponent } from './sidebarfolder-searched-item/folder-search-item.component';
 
 
 @NgModule({

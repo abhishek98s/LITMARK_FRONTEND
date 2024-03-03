@@ -18,6 +18,13 @@ export interface Folder {
     img?: string
     title: string,
 }
+
+export interface SidebarFolder {
+    id: number,
+    img?: string
+    name: string,
+}
+
 export interface Bookmark {
     id: number,
     title: string,

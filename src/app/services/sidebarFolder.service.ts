@@ -1,63 +1,74 @@
-import { Injectable } from '@angular/core';
-import { Folder, FolderSearchObject } from '../Model/folder';
+import { Injectable, WritableSignal, signal } from '@angular/core';
+import { SidebarFolder } from '../Model/folder';
 import { BehaviorSubject, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class sidebarFolderService {
-  private folders: Folder[] = [
+  private sidebarFolders: WritableSignal<SidebarFolder[]> = signal([
     {
       id: 1,
       img: 'assets/image/folder-1.png',
-      title: 'Tech'
+      name: 'Tech'
     },
     {
       id: 2,
       img: 'assets/image/folder-2.png',
-      title: 'Tools'
+      name: 'Tools'
     },
     {
       id: 3,
       img: 'assets/image/folder-3.png',
-      title: 'UI Design'
+      name: 'UI Design'
     },
     {
       id: 4,
       img: 'assets/image/folder-4.png',
-      title: 'Design'
+      name: 'Design'
     },
     {
       id: 5,
       img: 'assets/image/folder-5.png',
-      title: 'UX'
+      name: 'UX'
     },
-  ]
+  ])
 
-  foldersObservable = new BehaviorSubject<Folder[]>(this.folders);
+  private searchResult: WritableSignal<SidebarFolder[]> = signal([]);
 
   constructor() { }
 
   // Folders
   addFolder(name: string) {
-    this.folders.push({
-      id: this.folders.length + 1,
+    this.sidebarFolders.mutate(item => item.push({
+      id: this.sidebarFolders().length + 1,
       img: 'assets/image/add-folder.png',
-      title: name
-    },)
+      name: name
+    }))
   }
 
   getFolder() {
-    return this.folders
+    return this.sidebarFolders();
   }
 
   deleteFolder(id: number) {
-    this.foldersObservable.pipe(
-      map((folders: Folder[]) => folders.filter(item => item.id !== id)),
-      tap((filteredBookmarks: Folder[]) => {
-        this.folders = filteredBookmarks;
-        this.foldersObservable.next(filteredBookmarks);
-      })
-    ).subscribe();
+    let data = this.sidebarFolders().filter(item => item.id !== id)
+    this.sidebarFolders.set(data)
+  };
+
+  populateSearchResult(searchText: string) {
+    let filterData = this.sidebarFolders().filter(folder => {
+      const folderTitle = folder.name.toLocaleLowerCase();
+      return folderTitle.includes(searchText.toLowerCase());
+    })
+    this.searchResult.set(filterData)
+  }
+
+  sidebarFolderSearchResult() {
+    return this.searchResult();
+  }
+
+  isSearchEmpty() {
+    return (this.searchResult().length == 0) ? 1 : 0;
   }
 }

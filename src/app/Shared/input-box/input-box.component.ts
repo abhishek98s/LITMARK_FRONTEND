@@ -5,7 +5,6 @@ import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
-import { FolderSsearchService } from 'src/app/services/folder-ssearch.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 
 @Component({
@@ -15,7 +14,7 @@ import { SearchTextService } from 'src/app/services/search-text.service';
 })
 export class InputBoxComponent implements OnInit {
 
-  constructor(public searchService: SearchService, private recentBookmarkService: recentBookmarkService, private dropDownService: dropDownService, private folderSsearchService: FolderSsearchService, public searchTextService: SearchTextService) { }
+  constructor(public searchService: SearchService, private recentBookmarkService: recentBookmarkService, private dropDownService: dropDownService, private sidebarFolderService: sidebarFolderService, public searchTextService: SearchTextService) { }
 
 
   @Input() searchType!: string;
@@ -29,8 +28,8 @@ export class InputBoxComponent implements OnInit {
   }
 
   @Output() newItemEvent = new EventEmitter<string>();
-  sendSerchVal(value: string) {
-    if (this.searchType === 'recent-bookmark' || this.searchType === 'folder') {
+  emitInputValue(value: string) {
+    if (this.searchType === 'recent-bookmark' || this.searchType === 'sidebarfolder') {
       this.newItemEvent.emit(value);
     }
   }
@@ -47,14 +46,13 @@ export class InputBoxComponent implements OnInit {
     if (this.searchType === 'recent-bookmark') {
       let result = this.recentBookmarkService.filterByTitle(this.searchData)
       this.searchService.populateSearchResult(result)
-      this.sendSerchVal(this.searchData)
+      this.emitInputValue(this.searchData)
       this.dropDownService.openDropdown('bookmark-search-unique-string');
     }
-    else if (this.searchType === 'folder') {
+    else if (this.searchType === 'sidebarfolder') {
       this.dropDownService.openDropdown('sidebar-folder-input-box');
-      let result = this.folderSsearchService.filterByTitle(this.searchData);
-      this.sendSerchVal(this.searchData)
-      this.folderSsearchService.populateSearchResult(result)
+      this.sidebarFolderService.populateSearchResult(this.searchData);
+      this.emitInputValue(this.searchData)
     }
     else if (this.searchType === 'bookmark') {
       console.log('Call bookmark service')
