@@ -3,14 +3,14 @@
         <app-input-box (newItemEvent)="setSearchData($event)" [searchType]="searchType"
             [inputId]="'input2'"></app-input-box>
         <!-- searchBox && search result -->
-        <div *ngIf="dropdownService.isOpen(bookmarkSearchUniqueString) && searchService.isResult()"
+        <div *ngIf="dropDownService.isOpen(bookmarkSearchUniqueString) && searchService.isResult()"
             class="search-result absolute top-full left-0 right-0 mt-[8px] rounded-1 bg-neutral-0 min-h-[40px] p-[4px] shadow-1 z-10">
             <div *ngFor="let result of searchService.getSearchResult()!">
                 <app-bookmark-search-item [bookmarkResult]="result"></app-bookmark-search-item>
             </div>
         </div>
         <!-- searchBox && !search result -->
-        <div *ngIf="dropdownService.isOpen(bookmarkSearchUniqueString) && !searchService.isResult()"
+        <div *ngIf="dropDownService.isOpen(bookmarkSearchUniqueString) && !searchService.isResult()"
             class="search-result flex-center absolute top-full left-0 right-0 mt-[8px] rounded-1 bg-neutral-0 min-h-[60px] p-[8px] pb-[4px] shadow-1">
             <div class="m-auto color-primary-560 text-body-md-regular line-clamp-1">No result with "{{searchData}}"
             </div>
@@ -23,12 +23,12 @@
             <button class="more-btn-dropdown-btn">{{filter}}</button>
 
             <figure class="down-arrow w-[12px] h-[12px] flex-center"
-                [ngClass]="{'active': dropdownService.isOpen(uniqueString)}">
+                [ngClass]="{'active': dropDownService.isOpen(uniqueString)}">
                 <img src="assets/icon/arrow-down.svg" alt="sort">
             </figure>
         </a>
 
-        <div #dateDropdown [hidden]="!dropdownService.isOpen(uniqueString)"
+        <div #dateDropdown [hidden]="!dropDownService.isOpen(uniqueString)"
             class="sort-option absolute top-[80%] pt-[10px] mt-[16px] p-[4px] rounded-1 text-label-md-regular spacing-y-[4px] z-50">
             <div (click)="sortRecentBookmarkBy('Date')">Date</div>
             <div (click)="sortRecentBookmarkBy('A-Z')">A-Z</div>

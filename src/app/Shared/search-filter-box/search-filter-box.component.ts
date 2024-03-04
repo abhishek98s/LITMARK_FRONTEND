@@ -14,7 +14,7 @@ export class SearchFilterBoxComponent implements OnInit {
   @ViewChild('dateDropdown') dropdownElement!: ElementRef;
 
   @Input() searchType!: string;
-  constructor(private dataService: recentBookmarkService, public dropdownService: dropDownService, public searchService: SearchService, private searchTextService: SearchTextService) { }
+  constructor(private dataService: recentBookmarkService, public dropDownService: dropDownService, public searchService: SearchService, private searchTextService: SearchTextService) { }
 
   filter: string = 'Date';
   uniqueString = 'date';
@@ -34,10 +34,10 @@ export class SearchFilterBoxComponent implements OnInit {
   }
 
   toggleProfileMenu(event: Event) {
-    if (this.dropdownService.isOpen(this.uniqueString)) {
-      this.dropdownService.closeDropdown(this.uniqueString);
+    if (this.dropDownService.isOpen(this.uniqueString)) {
+      this.dropDownService.closeDropdown(this.uniqueString);
     } else {
-      this.dropdownService.openDropdown(this.uniqueString);
+      this.dropDownService.openDropdown(this.uniqueString);
     }
     event.stopPropagation();
   }
@@ -45,18 +45,18 @@ export class SearchFilterBoxComponent implements OnInit {
   sortRecentBookmarkBy(filterType: string) {
     this.dataService.sortRecentBookmarkBy(filterType)
     this.filter = this.dataService.getFilterType();
-    this.dropdownService.closeDropdown(this.uniqueString);
+    this.dropDownService.closeDropdown(this.uniqueString);
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if ((this.dropdownService.isOpen(this.uniqueString) || this.dropdownService.isOpen(this.bookmarkSearchUniqueString)) === false) { return }
-    if (this.dropdownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
-      this.dropdownService.clearDropdowns();
+    if ((this.dropDownService.isOpen(this.uniqueString) || this.dropDownService.isOpen(this.bookmarkSearchUniqueString)) === false) { return }
+    if (this.dropDownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
+      this.dropDownService.clearDropdowns();
     }
-    if (this.dropdownService.isOpen(this.bookmarkSearchUniqueString) && !this.bookmarkInputFields.nativeElement.contains(event.target)) {
+    if (this.dropDownService.isOpen(this.bookmarkSearchUniqueString) && !this.bookmarkInputFields.nativeElement.contains(event.target)) {
       this.searchTextService.clearSearchText();
-      this.dropdownService.clearDropdowns();
+      this.dropDownService.clearDropdowns();
     }
   }
 }

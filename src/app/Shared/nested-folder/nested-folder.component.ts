@@ -17,17 +17,17 @@ export class NestedFolderComponent implements OnInit {
 
   uniqueString = '';
 
-  constructor(public dropdownService: dropDownService, public folderService:FolderService) { }
+  constructor(public dropDownService: dropDownService, public folderService:FolderService) { }
 
   ngOnInit(): void {
     this.uniqueString = this.nestedFolder.id.toString();
   }
 
   toggleMenu(event: Event) {
-    if (this.dropdownService.isOpen(this.uniqueString)) {
-      this.dropdownService.closeDropdown(this.uniqueString);
+    if (this.dropDownService.isOpen(this.uniqueString)) {
+      this.dropDownService.closeDropdown(this.uniqueString);
     } else {
-      this.dropdownService.openDropdown(this.uniqueString);
+      this.dropDownService.openDropdown(this.uniqueString);
     }
     event.stopPropagation();
   }
@@ -38,9 +38,9 @@ export class NestedFolderComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if (this.dropdownService.isOpen(this.uniqueString) === false) { return }
-    if (this.dropdownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
-      this.dropdownService.clearDropdowns();
+    if (this.dropDownService.isOpen(this.uniqueString) === false) { return }
+    if (this.dropDownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
+      this.dropDownService.clearDropdowns();
     }
   }
 }

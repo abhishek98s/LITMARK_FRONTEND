@@ -15,17 +15,17 @@ export class RecentBookmarkComponent implements OnInit {
 
   uniqueString = '';
 
-  constructor(public dataService: recentBookmarkService, public dropdownService: dropDownService) {};
+  constructor(public dataService: recentBookmarkService, public dropDownService: dropDownService) {};
 
   ngOnInit(): void {
     this.uniqueString = this.recentBookmark.id.toString() + this.recentBookmark.title;
   }
 
   toggleDropdown(event: Event) {
-    if (this.dropdownService.isOpen(this.uniqueString)) {
-      this.dropdownService.closeDropdown(this.uniqueString);
+    if (this.dropDownService.isOpen(this.uniqueString)) {
+      this.dropDownService.closeDropdown(this.uniqueString);
     } else {
-      this.dropdownService.openDropdown(this.uniqueString);
+      this.dropDownService.openDropdown(this.uniqueString);
     }
     event.stopPropagation();
   }
@@ -36,9 +36,9 @@ export class RecentBookmarkComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if (this.dropdownService.isOpen(this.uniqueString) === false) { return }
-    if (this.dropdownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
-      this.dropdownService.clearDropdowns();
+    if (this.dropDownService.isOpen(this.uniqueString) === false) { return }
+    if (this.dropDownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
+      this.dropDownService.clearDropdowns();
     }
   }
 }

@@ -6,12 +6,12 @@
     </a>
     <div #sidebarFodlerSearch class="relative z-10">
         <app-input-box [searchType]="'sidebarfolder'" [inputId]="'input1'" (newItemEvent)="setSearchData($event)" class="p-[8px] md:p-0"></app-input-box>
-        <div *ngIf="dropdownService.isOpen(inputUniqueString) && !sidebarFolderService.isSearchEmpty()" class="search-folder-list absolute left-0 right-0 top-full mt-[8px] p-[4px] rounded-2 shadow-1 bg-neutral-0">
+        <div *ngIf="dropDownService.isOpen(inputUniqueString) && !sidebarFolderService.isSearchEmpty()" class="search-folder-list absolute left-0 right-0 top-full mt-[8px] p-[4px] rounded-2 shadow-1 bg-neutral-0">
             <ng-container *ngFor="let folder of sidebarFolderService.sidebarFolderSearchResult()">
                 <app-sidebarfolder-searched-item [folder]="folder"></app-sidebarfolder-searched-item>
             </ng-container>
         </div>
-        <div *ngIf="dropdownService.isOpen(inputUniqueString) && sidebarFolderService.isSearchEmpty()" class="search-folder-list flex-center absolute left-0 right-0 top-full mt-[8px] p-[8px_4px] rounded-2 shadow-1 bg-neutral-0">
+        <div *ngIf="dropDownService.isOpen(inputUniqueString) && sidebarFolderService.isSearchEmpty()" class="search-folder-list flex-center absolute left-0 right-0 top-full mt-[8px] p-[8px_4px] rounded-2 shadow-1 bg-neutral-0">
             <div class="text-md-body-regular color-primary-560">No result with "{{searchData}}"</div>
         </div>
     </div>
@@ -23,7 +23,7 @@
                 (click)="toggleSidebarFolderInputBox($event)"></app-add-folder>
         </div>
         <div class="h-full folder-list overflow-y-scroll">
-            <div #sidebarinput [hidden]="!dropdownService.isOpen(uniqueString)" (click)="stopPropagation($event)">
+            <div #sidebarinput [hidden]="!dropDownService.isOpen(uniqueString)" (click)="stopPropagation($event)">
                 <form class="flex py-[10px] pl-[12px] gap-[8px]" (ngSubmit)="submitSidebarFolderForm()">
                     <div class="flex items-center gap-[8px] color-primary-900 text-body-md-medium w-100">
                         <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-full">

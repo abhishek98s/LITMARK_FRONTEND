@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit {
   uniqueString = 'addfolderinput'
   inputUniqueString = 'sidebar-folder-input-box'
 
-  constructor(public stateService: StateService, public dropdownService: dropDownService, public sidebarFolderService: sidebarFolderService, private searchTextService: SearchTextService) { }
+  constructor(public stateService: StateService, public dropDownService: dropDownService, public sidebarFolderService: sidebarFolderService, private searchTextService: SearchTextService) { }
 
   ngOnInit(): void {
 
@@ -38,10 +38,10 @@ export class SidebarComponent implements OnInit {
   }
 
   toggleSidebarFolderInputBox(event: Event) {
-    if (this.dropdownService.isOpen(this.uniqueString)) {
-      this.dropdownService.closeDropdown(this.uniqueString);
+    if (this.dropDownService.isOpen(this.uniqueString)) {
+      this.dropDownService.closeDropdown(this.uniqueString);
     } else {
-      this.dropdownService.openDropdown(this.uniqueString);
+      this.dropDownService.openDropdown(this.uniqueString);
       setTimeout(() => this.inputElement.nativeElement.focus())
     }
     event.stopPropagation();
@@ -52,7 +52,7 @@ export class SidebarComponent implements OnInit {
     if (this.userInputtedFodlerName) {
       this.sidebarFolderService.addFolder(this.userInputtedFodlerName)
     }
-    this.dropdownService.closeDropdown(this.uniqueString);
+    this.dropDownService.closeDropdown(this.uniqueString);
   }
 
   stopPropagation(event: Event) {
@@ -61,15 +61,15 @@ export class SidebarComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if ((this.dropdownService.isOpen(this.uniqueString) || this.dropdownService.isOpen(this.inputUniqueString)) === false) { return }
-    if (this.dropdownService.isOpen(this.inputUniqueString) && !this.sidebarFodlerSearch.nativeElement.contains(event.target)) {
+    if ((this.dropDownService.isOpen(this.uniqueString) || this.dropDownService.isOpen(this.inputUniqueString)) === false) { return }
+    if (this.dropDownService.isOpen(this.inputUniqueString) && !this.sidebarFodlerSearch.nativeElement.contains(event.target)) {
       this.searchTextService.clearSearchText();
-      this.dropdownService.closeDropdown(this.inputUniqueString)
+      this.dropDownService.closeDropdown(this.inputUniqueString)
     }
 
-    if (this.dropdownService.isOpen(this.uniqueString) && !this.inputSection.nativeElement.contains(event.target)) {
+    if (this.dropDownService.isOpen(this.uniqueString) && !this.inputSection.nativeElement.contains(event.target)) {
       this.userInputtedFodlerName = '';
-      this.dropdownService.clearDropdowns();
+      this.dropDownService.clearDropdowns();
     }
   }
 }

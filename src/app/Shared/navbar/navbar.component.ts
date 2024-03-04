@@ -10,19 +10,19 @@ import { dropDownService } from 'src/app/services/dropdown.service';
 export class NavbarComponent implements OnInit{
   @ViewChild('dropdown') dropdownElement!: ElementRef;
 
-  constructor(public dropdownService: dropDownService,  private authService: AuthService) { }
+  constructor(public dropDownService: dropDownService,  private authService: AuthService) { }
 
   uniqueString = 'profile-menu'
 
   ngOnInit(): void {
-    this.dropdownService.closeDropdown(this.uniqueString);
+    this.dropDownService.closeDropdown(this.uniqueString);
   }
 
   toggleProfileMenu(event: Event) {
-    if (this.dropdownService.isOpen(this.uniqueString)) {
-      this.dropdownService.closeDropdown(this.uniqueString);
+    if (this.dropDownService.isOpen(this.uniqueString)) {
+      this.dropDownService.closeDropdown(this.uniqueString);
     } else {
-      this.dropdownService.openDropdown(this.uniqueString);
+      this.dropDownService.openDropdown(this.uniqueString);
     }
     event.stopPropagation();
   }
@@ -33,9 +33,9 @@ export class NavbarComponent implements OnInit{
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if (this.dropdownService.isOpen(this.uniqueString) === false) { return }
-    if (this.dropdownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
-      this.dropdownService.clearDropdowns();
+    if (this.dropDownService.isOpen(this.uniqueString) === false) { return }
+    if (this.dropDownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
+      this.dropDownService.clearDropdowns();
     }
   }
 }
