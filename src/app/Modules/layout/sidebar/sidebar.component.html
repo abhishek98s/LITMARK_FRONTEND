@@ -1,0 +1,47 @@
+<aside class="sidebar flex flex-col bg-primary-20 relative">
+    <a routerLink="/">
+        <figure class="w-[140px] p-[8px] md:p-0">
+            <img src="assets/image/logo.svg" alt="logo">
+        </figure>
+    </a>
+    <div #sidebarFodlerSearch class="relative z-10">
+        <app-input-box [searchType]="'sidebarfolder'" [inputId]="'input1'" (newItemEvent)="setSearchData($event)" class="p-[8px] md:p-0"></app-input-box>
+        <div *ngIf="dropDownService.isOpen(inputUniqueString) && !sidebarFolderService.isSearchEmpty()" class="search-folder-list absolute left-0 right-0 top-full mt-[8px] p-[4px] rounded-2 shadow-1 bg-neutral-0">
+            <ng-container *ngFor="let folder of sidebarFolderService.sidebarFolderSearchResult()">
+                <app-sidebarfolder-searched-item [folder]="folder"></app-sidebarfolder-searched-item>
+            </ng-container>
+        </div>
+        <div *ngIf="dropDownService.isOpen(inputUniqueString) && sidebarFolderService.isSearchEmpty()" class="search-folder-list flex-center absolute left-0 right-0 top-full mt-[8px] p-[8px_4px] rounded-2 shadow-1 bg-neutral-0">
+            <div class="text-md-body-regular color-primary-560">No result with "{{searchData}}"</div>
+        </div>
+    </div>
+    <hr class="bg-primary-500 rounded-2">
+    <section class="folders h-full overflow-hidden flex flex-col gap-[20px] relative">
+        <div class="flex justify-between items-center pr-[4px]">
+            <div class="text-body-xl-bold">Folders</div>
+            <app-add-folder [value]="'Add Folder'" [icon]="'add-folder'"
+                (click)="toggleSidebarFolderInputBox($event)"></app-add-folder>
+        </div>
+        <div class="h-full folder-list overflow-y-scroll">
+            <div #sidebarinput [hidden]="!dropDownService.isOpen(uniqueString)" (click)="stopPropagation($event)">
+                <form class="flex py-[10px] pl-[12px] gap-[8px]" (ngSubmit)="submitSidebarFolderForm()">
+                    <div class="flex items-center gap-[8px] color-primary-900 text-body-md-medium w-100">
+                        <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-full">
+                            <img src="assets/image/add-folder.png" alt="add folder">
+                        </figure>
+                        <input #inputBox class="p-[8px] h-full w-full" type="text" placeholder="New Folder" [(ngModel)]="userInputtedFodlerName"
+                            name="folder">
+                    </div>
+                </form>
+            </div>
+            <div class="folder" *ngFor="let folder of this.sidebarFolderService.getFolder()">
+                <app-sidebarfolder [folder]="folder"></app-sidebarfolder>
+            </div>
+        </div>
+    </section>
+    <!-- only seen in mobile  -->
+    <div (click)="toggleSidebar()"
+        class="absolute z-40 bottom-[24px] right-[24px] p-[12px] cursor-pointer rounded-full w-[62px] h-[62px] shadow-1 bg-primary-800 justify-center items-center flex md:hidden">
+        <img src="assets/icon/add-folder.svg" alt="add-folder">
+    </div>
+</aside>
