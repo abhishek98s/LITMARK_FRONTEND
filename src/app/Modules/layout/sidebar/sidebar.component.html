@@ -5,13 +5,16 @@
         </figure>
     </a>
     <div #sidebarFodlerSearch class="relative z-10">
-        <app-input-box [searchType]="'sidebarfolder'" [inputId]="'input1'" (newItemEvent)="setSearchData($event)" class="p-[8px] md:p-0"></app-input-box>
-        <div *ngIf="dropDownService.isOpen(inputUniqueString) && !sidebarFolderService.isSearchEmpty()" class="search-folder-list absolute left-0 right-0 top-full mt-[8px] p-[4px] rounded-2 shadow-1 bg-neutral-0">
+        <app-input-box [searchType]="'sidebarfolder'" [inputId]="'input1'" (newItemEvent)="setSearchData($event)"
+            class="p-[8px] md:p-0"></app-input-box>
+        <div *ngIf="dropDownService.isOpen(inputUniqueString) && !sidebarFolderService.isSearchEmpty()"
+            class="search-folder-list absolute left-0 right-0 top-full mt-[8px] p-[4px] rounded-2 shadow-1 bg-neutral-0">
             <ng-container *ngFor="let folder of sidebarFolderService.sidebarFolderSearchResult()">
                 <app-sidebarfolder-searched-item [folder]="folder"></app-sidebarfolder-searched-item>
             </ng-container>
         </div>
-        <div *ngIf="dropDownService.isOpen(inputUniqueString) && sidebarFolderService.isSearchEmpty()" class="search-folder-list flex-center absolute left-0 right-0 top-full mt-[8px] p-[8px_4px] rounded-2 shadow-1 bg-neutral-0">
+        <div *ngIf="dropDownService.isOpen(inputUniqueString) && sidebarFolderService.isSearchEmpty()"
+            class="search-folder-list flex-center absolute left-0 right-0 top-full mt-[8px] p-[8px_4px] rounded-2 shadow-1 bg-neutral-0">
             <div class="text-md-body-regular color-primary-560">No result with "{{searchData}}"</div>
         </div>
     </div>
@@ -29,12 +32,12 @@
                         <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-full">
                             <img src="assets/image/add-folder.png" alt="add folder">
                         </figure>
-                        <input #inputBox class="p-[8px] h-full w-full" type="text" placeholder="New Folder" [(ngModel)]="userInputtedFodlerName"
-                            name="folder">
+                        <input #inputBox class="p-[8px] h-full w-full" type="text" placeholder="New Folder"
+                            [(ngModel)]="userInputtedFodlerName" name="folder">
                     </div>
                 </form>
             </div>
-            <div class="folder" *ngFor="let folder of this.sidebarFolderService.getFolder()">
+            <div class="folder" *ngFor="let folder of getFolders()">
                 <app-sidebarfolder [folder]="folder"></app-sidebarfolder>
             </div>
         </div>

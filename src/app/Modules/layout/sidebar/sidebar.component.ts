@@ -1,11 +1,14 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Signal, ViewChild, WritableSignal, signal } from '@angular/core';
 import { Folder, SidebarFolder } from 'src/app/Model/folder';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
+import { ToastService } from 'src/app/services/toast.service';
 
-
+interface FolderResponse {
+  data: SidebarFolder[];
+}
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -16,17 +19,22 @@ export class SidebarComponent implements OnInit {
   @ViewChild(`sidebarinput`) inputSection!: ElementRef;
   @ViewChild(`inputBox`) inputElement!: ElementRef;
 
-  folders!: SidebarFolder[];
+  private folders: WritableSignal<SidebarFolder[]> = signal([])
   userInputtedFodlerName: string = '';
   searchData!: string;
 
   uniqueString = 'addfolderinput'
   inputUniqueString = 'sidebar-folder-input-box'
 
-  constructor(public stateService: StateService, public dropDownService: dropDownService, public sidebarFolderService: sidebarFolderService, private searchTextService: SearchTextService) { }
+  constructor(public stateService: StateService, public dropDownService: dropDownService, public sidebarFolderService: sidebarFolderService, private searchTextService: SearchTextService, private tost: ToastService) { }
 
   ngOnInit(): void {
+    this.sidebarFolderService.fetchFolder();
+    this.folders = this.sidebarFolderService.getFolder();
+  }
 
+  getFolders() {
+    return this.folders();
   }
 
   setSearchData(newItem: string) {
@@ -49,7 +57,15 @@ export class SidebarComponent implements OnInit {
 
   submitSidebarFolderForm() {
     if (this.userInputtedFodlerName) {
-      this.sidebarFolderService.addFolder(this.userInputtedFodlerName)
+      this.sidebarFolderService.addFolder({ name: this.userInputtedFodlerName, image_id: 1, folder_id: 1 }).subscribe(
+        (res: FolderResponse) => {
+          this.sidebarFolderService.fetchFolder()
+          this.tost.success('Folder added sucessfully.')
+        },
+        (err) => {
+          this.tost.error(err.error.error)
+        }
+      )
     }
     this.dropDownService.closeDropdown(this.uniqueString);
   }

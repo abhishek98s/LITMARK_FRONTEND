@@ -23,6 +23,18 @@ export interface SidebarFolder {
     id: number,
     img?: string
     name: string,
+    image_id?: number,
+    folder_id: number
+}
+
+export interface SidebarFolderApiBody {
+    name: string,
+    image_id: number,
+    folder_id: number
+}
+
+export interface FolderResponse {
+    data: SidebarFolder[];
 }
 
 export interface Bookmark {

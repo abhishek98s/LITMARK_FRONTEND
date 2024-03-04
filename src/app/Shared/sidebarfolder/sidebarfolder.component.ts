@@ -1,7 +1,8 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { Folder, SidebarFolder } from 'src/app/Model/folder';
+import { Folder, FolderResponse, SidebarFolder } from 'src/app/Model/folder';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-sidebarfolder',
@@ -16,10 +17,11 @@ export class FolderComponent implements OnInit {
 
   uniqueString = ''
 
-  constructor(public sidebarFolderService: sidebarFolderService, public dropDownService: dropDownService) { }
+  constructor(public sidebarFolderService: sidebarFolderService, public dropDownService: dropDownService, private tost: ToastService) { }
 
   ngOnInit(): void {
     this.uniqueString = (this.folder.name + this.folder.id).toString()
+    this.sidebarFolderService.getFolderImage(this.folder.image_id!).subscribe((image: any) => this.folder.img = image.data.url)
   }
 
   toggleOpen(event: Event) {
@@ -28,7 +30,15 @@ export class FolderComponent implements OnInit {
   }
 
   deleteFolder(id: number) {
-    this.sidebarFolderService.deleteFolder(id)
+    this.sidebarFolderService.deleteFolder(id).subscribe(
+      (res: FolderResponse) => {
+        this.sidebarFolderService.fetchFolder()
+        this.tost.success('Folder deleted sucessfully.')
+      },
+      (err) => {
+        this.tost.error(err.error.error)
+      }
+    );
   }
 
   @HostListener('document:click', ['$event'])

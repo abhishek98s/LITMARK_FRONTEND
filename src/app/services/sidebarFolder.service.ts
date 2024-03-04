@@ -1,59 +1,47 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { SidebarFolder } from '../Model/folder';
-import { BehaviorSubject, map, tap } from 'rxjs';
+import { FolderResponse, SidebarFolder, SidebarFolderApiBody } from '../Model/folder';
+import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
+
+interface ImageResponse {
+  url: string;
+}
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class sidebarFolderService {
-  private sidebarFolders: WritableSignal<SidebarFolder[]> = signal([
-    {
-      id: 1,
-      img: 'assets/image/folder-1.png',
-      name: 'Tech'
-    },
-    {
-      id: 2,
-      img: 'assets/image/folder-2.png',
-      name: 'Tools'
-    },
-    {
-      id: 3,
-      img: 'assets/image/folder-3.png',
-      name: 'UI Design'
-    },
-    {
-      id: 4,
-      img: 'assets/image/folder-4.png',
-      name: 'Design'
-    },
-    {
-      id: 5,
-      img: 'assets/image/folder-5.png',
-      name: 'UX'
-    },
-  ])
+  private sidebarFolders: WritableSignal<SidebarFolder[]> = signal([])
 
   private searchResult: WritableSignal<SidebarFolder[]> = signal([]);
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   // Folders
-  addFolder(name: string) {
-    this.sidebarFolders.mutate(item => item.push({
-      id: this.sidebarFolders().length + 1,
-      img: 'assets/image/add-folder.png',
-      name: name
-    }))
+  addFolder(body: SidebarFolderApiBody) {
+    return this.http.post<FolderResponse>('http://localhost:5000/api/folder', body)
+  }
+
+  fetchFolder() {
+    this.http.get<FolderResponse>('http://localhost:5000/api/folder').pipe(
+      map((res: FolderResponse) => res.data),
+    ).subscribe((Folders: SidebarFolder[]) => {
+      this.sidebarFolders.set(Folders);
+    });
   }
 
   getFolder() {
-    return this.sidebarFolders();
+    return this.sidebarFolders;
+  }
+
+  getFolderImage(id: number) {
+    return this.http.get(`http://localhost:5000/api/image/${id}`);
   }
 
   deleteFolder(id: number) {
-    let data = this.sidebarFolders().filter(item => item.id !== id)
-    this.sidebarFolders.set(data)
+    return this.http.delete<FolderResponse>(`http://localhost:5000/api/folder/${id}`)
   };
 
   populateSearchResult(searchText: string) {
