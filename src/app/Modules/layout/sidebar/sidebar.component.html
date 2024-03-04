@@ -29,7 +29,7 @@
             <div #sidebarinput [hidden]="!dropDownService.isOpen(uniqueString)" (click)="stopPropagation($event)">
                 <form class="flex py-[10px] pl-[12px] gap-[8px]" (ngSubmit)="submitSidebarFolderForm()">
                     <div class="flex items-center gap-[8px] color-primary-900 text-body-md-medium w-100">
-                        <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-full">
+                        <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-full overflow-hidden">
                             <img src="assets/image/add-folder.png" alt="add folder">
                         </figure>
                         <input #inputBox class="p-[8px] h-full w-full" type="text" placeholder="New Folder"
@@ -37,7 +37,7 @@
                     </div>
                 </form>
             </div>
-            <div class="folder" *ngFor="let folder of getFolders()">
+            <div class="folder mr-[4px]" *ngFor="let folder of getFolders()">
                 <app-sidebarfolder [folder]="folder"></app-sidebarfolder>
             </div>
         </div>

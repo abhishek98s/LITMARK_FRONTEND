@@ -1,15 +1,15 @@
 @import "../../colors";
 
 .folder {
-    padding: 10px 12px;
-    padding-right: 0;
+    padding: 10px 8px;
+    padding-right: 4px;
     margin-bottom: 16px;
     width: 100%;
     transition: 0.4s;
     cursor: pointer;
 
     &:hover {
-        background-color: $primary-200;
+        background-color: $primary-250;
     }
 
     .more-btn {

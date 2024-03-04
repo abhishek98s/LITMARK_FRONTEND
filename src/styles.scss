@@ -125,6 +125,8 @@ $colors-list: map-merge(("primary-20": $primary-20,
 
       "error-100": $error-100,
       "error-800": $error-800,
+
+      "transparent": "transparent"
     ),
     $colors-list);
 

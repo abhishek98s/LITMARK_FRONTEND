@@ -15,8 +15,13 @@ export class loggedInGuard {
     const token = localStorage.getItem('token');
     const url = this.location.path();
 
-    if (!this.jwtHelper.isTokenExpired(token) && /(login|register)/.test(url)) {
-      this.router.navigate(['/']);
+    try {
+      if (!this.jwtHelper.isTokenExpired(token) && /(login|register)/.test(url)) {
+        this.router.navigate(['/']);
+      }
+    } catch (error) {
+      localStorage.clear();
+      this.router.navigate(['/login']);
     }
   }
 }
