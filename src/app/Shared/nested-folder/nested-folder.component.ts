@@ -17,18 +17,14 @@ export class NestedFolderComponent implements OnInit {
 
   uniqueString = '';
 
-  constructor(public dropDownService: dropDownService, public folderService:FolderService) { }
+  constructor(public dropDownService: dropDownService, public folderService: FolderService) { }
 
   ngOnInit(): void {
     this.uniqueString = this.nestedFolder.id.toString();
   }
 
   toggleMenu(event: Event) {
-    if (this.dropDownService.isOpen(this.uniqueString)) {
-      this.dropDownService.closeDropdown(this.uniqueString);
-    } else {
-      this.dropDownService.openDropdown(this.uniqueString);
-    }
+    this.dropDownService.toggle(this.uniqueString);
     event.stopPropagation();
   }
 

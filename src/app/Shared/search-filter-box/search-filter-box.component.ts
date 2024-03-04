@@ -25,7 +25,7 @@ export class SearchFilterBoxComponent implements OnInit {
     this.filter = this.dataService.getFilterType();
   }
 
-  isInputFocus(){
+  isInputFocus() {
     return this.searchService.isInputFocus();
   }
 
@@ -34,11 +34,7 @@ export class SearchFilterBoxComponent implements OnInit {
   }
 
   toggleProfileMenu(event: Event) {
-    if (this.dropDownService.isOpen(this.uniqueString)) {
-      this.dropDownService.closeDropdown(this.uniqueString);
-    } else {
-      this.dropDownService.openDropdown(this.uniqueString);
-    }
+    this.dropDownService.toggle(this.uniqueString)
     event.stopPropagation();
   }
 

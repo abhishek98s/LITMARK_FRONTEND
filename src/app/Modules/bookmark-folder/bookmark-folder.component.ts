@@ -33,23 +33,21 @@ export class BookmarkFolderComponent {
   }
 
   toggleFolderInputBox(event: Event) {
-    if (this.dropDownService.isOpen(this.folderUniqueString)) {
-      this.dropDownService.closeDropdown(this.folderUniqueString);
-    } else {
-      this.dropDownService.openDropdown(this.folderUniqueString);
+    if (!this.dropDownService.isOpen(this.folderUniqueString)) {
       setTimeout(() => this.folderInputElement.nativeElement.focus())
     }
+
+    this.dropDownService.toggle(this.folderUniqueString);
+
     event.stopPropagation();
     this.fodlerName = '';
   }
 
   toggleBookmarkInputBox(event: Event) {
-    if (this.dropDownService.isOpen(this.bookmarkUniqueString)) {
-      this.dropDownService.closeDropdown(this.bookmarkUniqueString);
-    } else {
-      this.dropDownService.openDropdown(this.bookmarkUniqueString);
+    if (!this.dropDownService.isOpen(this.bookmarkUniqueString)) {
       setTimeout(() => this.bookmarkInputElement.nativeElement.focus())
     }
+    this.dropDownService.toggle(this.bookmarkUniqueString)
     event.stopPropagation();
     this.bookmarkName = "";
   }

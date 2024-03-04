@@ -7,10 +7,10 @@ import { dropDownService } from 'src/app/services/dropdown.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
   @ViewChild('dropdown') dropdownElement!: ElementRef;
 
-  constructor(public dropDownService: dropDownService,  private authService: AuthService) { }
+  constructor(public dropDownService: dropDownService, private authService: AuthService) { }
 
   uniqueString = 'profile-menu'
 
@@ -19,11 +19,7 @@ export class NavbarComponent implements OnInit{
   }
 
   toggleProfileMenu(event: Event) {
-    if (this.dropDownService.isOpen(this.uniqueString)) {
-      this.dropDownService.closeDropdown(this.uniqueString);
-    } else {
-      this.dropDownService.openDropdown(this.uniqueString);
-    }
+    this.dropDownService.toggle(this.uniqueString);
     event.stopPropagation();
   }
 

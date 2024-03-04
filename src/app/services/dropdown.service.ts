@@ -25,4 +25,12 @@ export class dropDownService {
   clearDropdowns() {
     this.openDropdowns.clear();
   }
+
+  toggle(uniqueString: string) {
+    if (this.isOpen(uniqueString)) {
+      this.closeDropdown(uniqueString);
+    } else {
+      this.openDropdown(uniqueString);
+    }
+  }
 }

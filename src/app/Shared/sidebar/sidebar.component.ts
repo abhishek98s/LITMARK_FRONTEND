@@ -38,12 +38,11 @@ export class SidebarComponent implements OnInit {
   }
 
   toggleSidebarFolderInputBox(event: Event) {
-    if (this.dropDownService.isOpen(this.uniqueString)) {
-      this.dropDownService.closeDropdown(this.uniqueString);
-    } else {
-      this.dropDownService.openDropdown(this.uniqueString);
+    if (!this.dropDownService.isOpen(this.uniqueString)) {
       setTimeout(() => this.inputElement.nativeElement.focus())
     }
+    this.dropDownService.toggle(this.uniqueString)
+
     event.stopPropagation();
     this.userInputtedFodlerName = '';
   }

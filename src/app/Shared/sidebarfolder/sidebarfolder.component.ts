@@ -8,7 +8,7 @@ import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
   templateUrl: './sidebarfolder.component.html',
   styleUrls: ['./sidebarfolder.component.scss']
 })
-export class FolderComponent implements OnInit{
+export class FolderComponent implements OnInit {
   @ViewChild(`dropdowns`) dropdownElement!: ElementRef;
 
   @Input() folder!: SidebarFolder;
@@ -16,18 +16,14 @@ export class FolderComponent implements OnInit{
 
   uniqueString = ''
 
-  constructor(public sidebarFolderService: sidebarFolderService, public dropDownService:dropDownService) { }
+  constructor(public sidebarFolderService: sidebarFolderService, public dropDownService: dropDownService) { }
 
   ngOnInit(): void {
     this.uniqueString = (this.folder.name + this.folder.id).toString()
   }
 
-  toggleOpen(event:Event) {
-    if (this.dropDownService.isOpen(this.uniqueString)) {
-      this.dropDownService.closeDropdown(this.uniqueString);
-    } else {
-      this.dropDownService.openDropdown(this.uniqueString);
-    }
+  toggleOpen(event: Event) {
+    this.dropDownService.toggle(this.uniqueString)
     event.stopPropagation();
   }
 

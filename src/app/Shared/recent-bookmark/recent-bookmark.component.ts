@@ -15,18 +15,14 @@ export class RecentBookmarkComponent implements OnInit {
 
   uniqueString = '';
 
-  constructor(public dataService: recentBookmarkService, public dropDownService: dropDownService) {};
+  constructor(public dataService: recentBookmarkService, public dropDownService: dropDownService) { };
 
   ngOnInit(): void {
     this.uniqueString = this.recentBookmark.id.toString() + this.recentBookmark.title;
   }
 
   toggleDropdown(event: Event) {
-    if (this.dropDownService.isOpen(this.uniqueString)) {
-      this.dropDownService.closeDropdown(this.uniqueString);
-    } else {
-      this.dropDownService.openDropdown(this.uniqueString);
-    }
+    this.dropDownService.toggle(this.uniqueString)
     event.stopPropagation();
   }
 

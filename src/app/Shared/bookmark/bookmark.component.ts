@@ -14,7 +14,7 @@ export class BookmarkComponent implements OnInit {
 
   @Input() bookmark!: Bookmark;
 
-  constructor(public dataService: recentBookmarkService, public bookmarkService:BookmarkService, public dropDownService: dropDownService) { }
+  constructor(public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public dropDownService: dropDownService) { }
 
   uniqueString = ''
 
@@ -23,11 +23,7 @@ export class BookmarkComponent implements OnInit {
   }
 
   toggleBookmarkMenu(event: Event) {
-    if (this.dropDownService.isOpen(this.uniqueString)) {
-      this.dropDownService.closeDropdown(this.uniqueString);
-    } else {
-      this.dropDownService.openDropdown(this.uniqueString);
-    }
+    this.dropDownService.toggle(this.uniqueString)
     event.stopPropagation();
   }
 
