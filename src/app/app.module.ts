@@ -11,7 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-folder.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './Modules/login/login.component';
-import { LayoutComponent } from './Modules/layout/layout.component';
+import { LayoutComponent } from './Modules/layout/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
