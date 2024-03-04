@@ -14,7 +14,7 @@ import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 import { SettingComponent } from './Modules/settings/setting/setting.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './auth.interceptor';

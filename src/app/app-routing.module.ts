@@ -5,8 +5,9 @@ import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-fold
 import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 import { SettingComponent } from './Modules/settings/setting/setting.component';
+import { loggedInGuard } from './guard/logged-in.guard';
 
 const routes: Routes = [
   {
@@ -22,8 +23,8 @@ const routes: Routes = [
       { path: '', component: SettingComponent },
     ], canActivate: [AuthGuard]
   },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [loggedInGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [loggedInGuard] },
   { path: '**', redirectTo: '/login' },
 ];
 

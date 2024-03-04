@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
-import * as jwt from 'jsonwebtoken'
+import {  Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -16,12 +15,13 @@ export class AuthGuard {
             this.router.navigate(['/login']);
             return false;
         }
-        
+
         try {
-            const decodedToken = this.jwtHelper.isTokenExpired(token);
-            if(!decodedToken) true
-            
-            return
+            const isTokenInvalid = this.jwtHelper.isTokenExpired(token);
+            if (isTokenInvalid) {
+                throw new Error
+            }
+            return true
         } catch (error) {
             this.router.navigate(['/login']);
         }
