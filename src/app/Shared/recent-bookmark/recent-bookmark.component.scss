@@ -1,38 +1,44 @@
 @import "../../colors";
 
 .recent-bookmark {
-    padding: 8px;
-
+  padding: 8px;
+  &:hover {
     .more-btn {
-        transition: 0.4s;
-        &:hover {
-            background-color: $primary-200;
-        }
+      display: block;
+    }
+  }
+
+  .more-btn {
+    transition: 0.4s;
+    display: none;
+    &:hover {
+      background-color: $primary-200;
+    }
+  }
+
+  .category-title {
+    max-width: calc(100% - 70px);
+
+    & ~ figure {
+      border: 1px solid $primary-400;
     }
 
-    .category-title {
-        max-width: calc(100% - 70px);
+    .title {
+      line-height: 1.5;
+      transition: 0.2s;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      word-break: break-word;
+      overflow: hidden;
 
-        & ~ figure {
-            border: 1px solid $primary-400;
-        }
+      @media only screen and (max-height: 1400px) {
+        font-size: 14px;
+      }
 
-        .title {
-            line-height: 1.5;
-            transition: 0.2s;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            word-break: break-word;
-            overflow: hidden;
-
-            @media only screen and (max-height: 1400px) {
-                font-size: 14px;
-            }
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
+      &:hover {
+        text-decoration: underline;
+      }
     }
+  }
 }

@@ -1,25 +1,30 @@
 @import "../../colors";
 
 .folder {
-    padding: 10px 8px;
-    padding-right: 4px;
-    margin-bottom: 16px;
-    width: 100%;
-    transition: 0.4s;
-    cursor: pointer;
+  padding: 10px 8px;
+  padding-right: 4px;
+  margin-bottom: 16px;
+  width: 100%;
+  transition: 0.4s;
+  cursor: pointer;
 
-    &:hover {
-        background-color: $primary-250;
-    }
+  &:hover {
+    background-color: $primary-220;
 
     .more-btn {
-        transition: 0.2s;
-        &:hover {
-            background-color: $primary-100;
-        }
+      display: block;
     }
+  }
 
-    @media screen and (min-width: 768px) {
-        margin-bottom: 8px;
+  .more-btn {
+    transition: 0.2s;
+    display: none;
+    &:hover {
+      background-color: $primary-100;
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 8px;
+  }
 }
