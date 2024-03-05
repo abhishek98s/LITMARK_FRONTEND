@@ -30,7 +30,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LayoutComponent,
     RegisterComponent,
     SettingComponent,
-
   ],
   imports: [
     JwtModule.forRoot({
@@ -60,7 +59,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(private meta: Meta) {

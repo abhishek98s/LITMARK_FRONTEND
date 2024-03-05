@@ -17,6 +17,7 @@ import { BookmarkComponent } from './bookmark/bookmark.component';
 import { FormsModule } from '@angular/forms';
 import { BookmarkSearchItemComponent } from './bookmark-search-item/bookmark-search.component';
 import { FolderSearchItemComponent } from './sidebarfolder-searched-item/folder-search-item.component';
+import { EmptyFolderComponent } from '../Modules/layout/empty-folder/empty-folder.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { FolderSearchItemComponent } from './sidebarfolder-searched-item/folder-
     BookmarkComponent,
     BookmarkSearchItemComponent,
     FolderSearchItemComponent,
+    EmptyFolderComponent
   ],
   imports: [
     FormsModule,
@@ -56,7 +58,8 @@ import { FolderSearchItemComponent } from './sidebarfolder-searched-item/folder-
     RecentBookmarkComponent,
     RouterModule,
     NestedFolderComponent,
-    BookmarkComponent
+    BookmarkComponent,
+    EmptyFolderComponent
   ]
 })
 export class SharedModule { }

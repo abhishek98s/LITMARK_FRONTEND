@@ -36,6 +36,11 @@ export class FolderComponent implements OnInit {
         this.tost.success('Folder deleted sucessfully.')
       },
       (err) => {
+        const error = err.error.error;
+        if (!error) {
+          this.tost.error("Check connection.");
+          return
+        }
         this.tost.error(err.error.error)
       }
     );

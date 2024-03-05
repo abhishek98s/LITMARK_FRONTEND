@@ -1,11 +1,10 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Signal, ViewChild, WritableSignal, signal } from '@angular/core';
-import { Folder, SidebarFolder } from 'src/app/Model/folder';
+import { SidebarFolder } from 'src/app/Model/folder';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 import { ToastService } from 'src/app/services/toast.service';
-import { retry } from 'rxjs';
 
 interface FolderResponse {
   data: SidebarFolder[];
