@@ -18,9 +18,14 @@
 
   .more-btn {
     transition: 0.2s;
-    display: none;
+    display: block;
+
     &:hover {
       background-color: $primary-100;
+    }
+
+    @media screen and (min-width: 768px) {
+      display: none;
     }
   }
 
