@@ -66,13 +66,13 @@ export class SidebarComponent implements OnInit {
           this.sidebarFolderService.fetchFolder()
           this.tost.success('Folder added sucessfully.')
         },
-        (err) => {
-          const error = err.error.error;
-          if (!error) {
+        (error) => {
+          const err = error.error.msg;
+          if (!err) {
             this.tost.error("Check connection.");
             return
           }
-          this.tost.error(err.error.error)
+          this.tost.error(err)
         }
       )
     }

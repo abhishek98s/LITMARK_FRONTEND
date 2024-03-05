@@ -36,12 +36,12 @@ export class LoginComponent {
         }
       },
       (error) => {
-        if (!error.error.msg) {
+        const err = error.error.msg;
+        if (!err) {
           this.toast.error("Internet Unavailable");
           return;
         }
-        this.toast.error(error.error.msg);
-        console.error('Error handler:', error);
+        this.toast.error(err);
       }
     )
   }
