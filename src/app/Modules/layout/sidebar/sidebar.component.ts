@@ -61,7 +61,7 @@ export class SidebarComponent implements OnInit {
 
   submitSidebarFolderForm() {
     if (this.userInputtedFodlerName) {
-      this.sidebarFolderService.addFolder({ name: this.userInputtedFodlerName, image_id: 1, folder_id: 1 }).subscribe(
+      this.sidebarFolderService.addFolder({ name: this.userInputtedFodlerName, folder_id: 1 }).subscribe(
         (res: FolderResponse) => {
           this.sidebarFolderService.fetchFolder()
           this.tost.success('Folder added sucessfully.')

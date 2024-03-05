@@ -29,7 +29,6 @@ export interface SidebarFolder {
 
 export interface SidebarFolderApiBody {
     name: string,
-    image_id: number,
     folder_id: number
 }
 
