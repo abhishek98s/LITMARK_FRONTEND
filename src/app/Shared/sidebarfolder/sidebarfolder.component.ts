@@ -15,9 +15,9 @@ export class FolderComponent implements OnInit {
 
 
   @Input() folder!: SidebarFolder;
-  isUpdateFormOpen: boolean = false;
 
   uniqueString = ''
+  renamedFormString = '';
 
   renamedFolderName = '';
 
@@ -25,13 +25,13 @@ export class FolderComponent implements OnInit {
 
   ngOnInit(): void {
     this.uniqueString = (this.folder.name + this.folder.id).toString()
+    this.renamedFormString = (this.renamedFolderName + this.folder.id).toString()
     this.sidebarFolderService.getFolderImage(this.folder.image_id!).subscribe((image: any) => this.folder.img = image.data.url)
   }
 
   toggleRenameForm(event: Event) {
     event.stopPropagation();
-    this.isUpdateFormOpen = true;
-    this.dropDownService.toggle(this.uniqueString)
+    this.dropDownService.toggle(this.renamedFormString)
     setTimeout(() => this.updateForm.nativeElement.focus())
   }
 
@@ -59,7 +59,7 @@ export class FolderComponent implements OnInit {
 
   renameFolder(id: number) {
     if (!this.renamedFolderName) {
-      this.isUpdateFormOpen = false
+      this.dropDownService.clearDropdowns()
     }
 
     this.sidebarFolderService.updateFolder(id, { name: this.renamedFolderName }).subscribe(
@@ -76,13 +76,13 @@ export class FolderComponent implements OnInit {
         this.tost.error(err.error.error)
       }
     )
+    this.dropDownService.clearDropdowns();
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if (this.isUpdateFormOpen && !this.updateForm.nativeElement.contains(event.target)) {
-      this.isUpdateFormOpen = false
-      console.log(2)
+    if (this.dropDownService.isOpen(this.renamedFormString) && !this.updateForm.nativeElement.contains(event.target)) {
+      this.dropDownService.clearDropdowns();
     }
     if (this.dropDownService.isOpen(this.uniqueString) === false) { return }
     if (this.dropDownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {

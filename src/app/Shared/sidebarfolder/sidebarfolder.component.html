@@ -5,15 +5,15 @@
             <img src={{folder.img}} alt="folder">
         </figure>
 
-        <span *ngIf="!isUpdateFormOpen"
+        <span *ngIf="!this.dropDownService.isOpen(renamedFormString)"
             class="text-body-md-regular color-primary-900 w-full block">{{folder.name}}</span>
-        <form *ngIf="isUpdateFormOpen" (ngSubmit)="renameFolder(folder.id)" class="w-full">
+        <form *ngIf="this.dropDownService.isOpen(renamedFormString)" (ngSubmit)="renameFolder(folder.id)" class="w-full">
             <input #updateForm class="small text-body-md-regular color-primary-900 w-full block pl-2" type="text"
                 [(ngModel)]="renamedFolderName" name="folderName">
         </form>
     </a>
 
-    <figure *ngIf="!isUpdateFormOpen" class="more-btn rounded-full w-[30px] h-[30px]" (click)="toggleOpen($event)">
+    <figure *ngIf="!this.dropDownService.isOpen(renamedFormString)" class="more-btn rounded-full w-[30px] h-[30px]" (click)="toggleOpen($event)">
         <img src="assets/icon/more.svg" alt="more">
     </figure>
 
