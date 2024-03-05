@@ -1,22 +1,26 @@
 <div class="folder rounded-1 flex-between-center relative">
-    <a routerLink="/bookmark/{{folder.id}}" class="flex items-center gap-[8px] w-full color-primary-900 text-body-md-medium">
+    <a routerLink="/bookmark/{{folder.id}}"
+        class="flex items-center gap-[8px] w-full color-primary-900 text-body-md-medium">
         <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-full overflow-hidden ">
             <img src={{folder.img}} alt="folder">
         </figure>
 
-        <span *ngIf="!isUpdateFormOpen" class="text-body-md-regular color-primary-900 w-full block">{{folder.name}}</span>
-        <form *ngIf="isUpdateFormOpen">
-            <input class="text-body-md-regular color-primary-900 w-full block" type="text">
+        <span *ngIf="!isUpdateFormOpen"
+            class="text-body-md-regular color-primary-900 w-full block">{{folder.name}}</span>
+        <form *ngIf="isUpdateFormOpen" (ngSubmit)="renameFolder(folder.id)" class="w-full">
+            <input #updateForm class="small text-body-md-regular color-primary-900 w-full block pl-2" type="text"
+                [(ngModel)]="renamedFolderName" name="folderName">
         </form>
     </a>
 
-    <figure class="more-btn rounded-full w-[30px] h-[30px]" (click)="toggleOpen($event)">
+    <figure *ngIf="!isUpdateFormOpen" class="more-btn rounded-full w-[30px] h-[30px]" (click)="toggleOpen($event)">
         <img src="assets/icon/more.svg" alt="more">
     </figure>
 
-    <div #dropdowns class="more-btn-dropdown rounded-1 absolute right-[8px] top-[80%] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
+    <div #dropdowns
+        class="more-btn-dropdown rounded-1 absolute right-[8px] top-[80%] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
         [hidden]="!dropDownService.isOpen(uniqueString)">
         <div class="rounded-1" (click)="deleteFolder(folder.id)">Delete</div>
-        <div class="rounded-1">Rename</div>
+        <div class="rounded-1" (click)="toggleRenameForm($event)">Rename</div>
     </div>
 </div>

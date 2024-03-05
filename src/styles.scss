@@ -41,7 +41,7 @@ button {
 
 input {
   border: 1px solid $primary-400;
-  transition: 0.4s;
+  transition: 0.2s;
   outline: none;
   background-color: $neutral-0;
   border-radius: 4px;
@@ -54,6 +54,9 @@ input {
   &::placeholder {
     color: $primary-900;
     opacity: 0.6;
+  }
+  &.small{
+    min-height: 30px;
   }
 }
 

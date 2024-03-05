@@ -4,8 +4,8 @@ import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
-interface ImageResponse {
-  url: string;
+interface UpdateFolderBody {
+  name: string;
 }
 @Injectable({
   providedIn: 'root'
@@ -42,6 +42,10 @@ export class sidebarFolderService {
 
   deleteFolder(id: number) {
     return this.http.delete<FolderResponse>(`http://localhost:5000/api/folder/${id}`)
+  };
+
+  updateFolder(id: number, option: UpdateFolderBody) {
+    return this.http.patch<FolderResponse>(`http://localhost:5000/api/folder/${id}`, option)
   };
 
   populateSearchResult(searchText: string) {
