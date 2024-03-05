@@ -13,7 +13,7 @@ export class FolderComponent implements OnInit {
   @ViewChild(`dropdowns`) dropdownElement!: ElementRef;
 
   @Input() folder!: SidebarFolder;
-  menuOpen: boolean = false;
+  isUpdateFormOpen: boolean = false;
 
   uniqueString = ''
 

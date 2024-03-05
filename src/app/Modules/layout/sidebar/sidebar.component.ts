@@ -5,6 +5,7 @@ import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { retry } from 'rxjs';
 
 interface FolderResponse {
   data: SidebarFolder[];
@@ -31,6 +32,10 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.sidebarFolderService.fetchFolder();
     this.folders = this.sidebarFolderService.getFolder();
+  }
+
+  isFoldersEmpty() {
+    return (!this.folders().length) ? 1 : 0;
   }
 
   getFolders() {
@@ -63,6 +68,11 @@ export class SidebarComponent implements OnInit {
           this.tost.success('Folder added sucessfully.')
         },
         (err) => {
+          const error = err.error.error;
+          if (!error) {
+            this.tost.error("Check connection.");
+            return
+          }
           this.tost.error(err.error.error)
         }
       )

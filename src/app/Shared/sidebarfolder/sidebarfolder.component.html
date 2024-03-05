@@ -4,7 +4,10 @@
             <img src={{folder.img}} alt="folder">
         </figure>
 
-        <span class="text-body-md-regular color-primary-900 w-full block">{{folder.name}}</span>
+        <span *ngIf="!isUpdateFormOpen" class="text-body-md-regular color-primary-900 w-full block">{{folder.name}}</span>
+        <form *ngIf="isUpdateFormOpen">
+            <input class="text-body-md-regular color-primary-900 w-full block" type="text">
+        </form>
     </a>
 
     <figure class="more-btn rounded-full w-[30px] h-[30px]" (click)="toggleOpen($event)">
