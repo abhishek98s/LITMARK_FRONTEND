@@ -115,7 +115,7 @@ export class BookmarkService {
       title: link,
       img: "assets/image/add-bookmark.png",
       date: "September 18, 2023",
-      link: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
+      link: link
     })
   }
 
