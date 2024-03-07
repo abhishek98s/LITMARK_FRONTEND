@@ -21,6 +21,16 @@ export class RecentBookmarkComponent implements OnInit {
     this.uniqueString = this.recentBookmark.id.toString() + this.recentBookmark.title;
   }
 
+  getHostnameFromUrl(url: string) {
+    const pattern = /https?:\/\/(?:www\.)?([^/?]+)/i;
+    const match = url.match(pattern);
+    if (match) {
+      return match[1];
+    } else {
+      return null;
+    }
+  }
+
   toggleDropdown(event: Event) {
     this.dropDownService.toggle(this.uniqueString)
     event.stopPropagation();

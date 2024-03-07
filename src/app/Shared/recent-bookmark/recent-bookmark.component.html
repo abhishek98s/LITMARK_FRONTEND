@@ -1,7 +1,7 @@
 <div class="recent-bookmark rounded-2 bg-gradient-1 flex flex-col justify-between h-full relative">
     <div class="flex-between-center mb-[12px] relative h-[24px]">
         <div class="category text-label-md-bold color-primary-850-80">{{recentBookmark.category}}</div>
-        <figure class="more-btn w-[24px] cursor-pointer rounded-full" (click)="toggleDropdown($event)">
+        <figure class="absolute right-0 top-0 more-btn w-[32px] p-[4px] cursor-pointer rounded-full" (click)="toggleDropdown($event)">
             <img src='assets/icon/more.svg' alt="more-btn">
         </figure>
 
@@ -13,7 +13,9 @@
 
     <div class="flex justify-start items-start gap-[8px]">
         <figure class="image w-[60px] h-[60px] rounded-2">
-            <img class="cover rounded-2" src={{recentBookmark.img}} alt="recent-thumbnail">
+            <img class="rounded-2 object-cover object-left rounded-2"
+                src="https://www.google.com/s2/favicons?domain={{getHostnameFromUrl(recentBookmark.link)}}&sz=256" alt="bookmark-img">
+
         </figure>
         <div class="category-title grow-0 max-h-[60px]">
             <a href={{recentBookmark.link}} target="_blank"
