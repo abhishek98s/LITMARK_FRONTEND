@@ -59,7 +59,7 @@ export class BookmarkFolderComponent {
     }
     this.folderService.addNestedFolder(this.fodlerName);
     this.fodlerName = "";
-    this.dropDownService.closeDropdown(this.folderUniqueString);
+    this.dropDownService.clearDropdowns();
   }
 
   submitBookmarkForm() {
@@ -69,7 +69,7 @@ export class BookmarkFolderComponent {
     }
     this.bookmarkService.addBookmark(this.bookmarkName);
     this.bookmarkName = "";
-    this.dropDownService.closeDropdown(this.bookmarkUniqueString);
+    this.dropDownService.clearDropdowns();
   }
 
   @HostListener('document:click', ['$event'])

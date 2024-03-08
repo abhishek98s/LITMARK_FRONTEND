@@ -6,9 +6,7 @@ import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 import { ToastService } from 'src/app/services/toast.service';
 
-interface FolderResponse {
-  data: SidebarFolder[];
-}
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -61,18 +59,20 @@ export class SidebarComponent implements OnInit {
 
   submitSidebarFolderForm() {
     if (this.userInputtedFodlerName) {
-      this.sidebarFolderService.addFolder({ name: this.userInputtedFodlerName, folder_id: 1 }).subscribe(
-        (res: FolderResponse) => {
-          this.sidebarFolderService.fetchFolder()
-          this.tost.success('Folder added sucessfully.')
-        },
-        (error) => {
-          const err = error.error.msg;
-          if (!err) {
-            this.tost.error("Check connection.");
-            return
+      this.sidebarFolderService.addFolder({ name: this.userInputtedFodlerName, folder_id: 0 }).subscribe(
+        {
+          next: () => {
+            this.sidebarFolderService.fetchFolder()
+            this.tost.success('Folder added sucessfully.')
+          },
+          error: (error) => {
+            const err = error.error.msg;
+            if (!err) {
+              this.tost.error("Check connection.");
+              return
+            }
+            this.tost.error(err)
           }
-          this.tost.error(err)
         }
       )
     }

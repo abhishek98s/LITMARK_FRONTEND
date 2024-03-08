@@ -19,6 +19,10 @@ export interface Folder {
     title: string,
 }
 
+export interface NestedFolderResponse {
+    data: Folder[];
+}
+
 export interface SidebarFolder {
     id: number,
     img?: string
@@ -32,9 +36,10 @@ export interface SidebarFolderApiBody {
     folder_id: number
 }
 
-export interface FolderResponse {
+export interface sidebarFolderResponse {
     data: SidebarFolder[];
 }
+
 
 export interface Bookmark {
     id: number,

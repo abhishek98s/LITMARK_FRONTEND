@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { Folder, FolderResponse, SidebarFolder } from 'src/app/Model/folder';
+import { Folder, sidebarFolderResponse, SidebarFolder } from 'src/app/Model/folder';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -42,7 +42,7 @@ export class FolderComponent implements OnInit {
 
   deleteFolder(id: number) {
     this.sidebarFolderService.deleteFolder(id).subscribe(
-      (res: FolderResponse) => {
+      (res: sidebarFolderResponse) => {
         this.sidebarFolderService.fetchFolder()
         this.tost.success('Folder deleted sucessfully.')
       },
@@ -63,7 +63,7 @@ export class FolderComponent implements OnInit {
     }
 
     this.sidebarFolderService.updateFolder(id, { name: this.renamedFolderName }).subscribe(
-      (res: FolderResponse) => {
+      (res: sidebarFolderResponse) => {
         this.sidebarFolderService.fetchFolder()
         this.tost.success('Rename folder sucessfully.')
       },

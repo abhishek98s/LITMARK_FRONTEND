@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { FolderResponse, SidebarFolder, SidebarFolderApiBody } from '../Model/folder';
+import { SidebarFolder, SidebarFolderApiBody, sidebarFolderResponse } from '../Model/folder';
 import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -21,12 +21,12 @@ export class sidebarFolderService {
 
   // Folders
   addFolder(body: SidebarFolderApiBody) {
-    return this.http.post<FolderResponse>('http://localhost:5000/api/folder', body)
+    return this.http.post<sidebarFolderResponse>('http://localhost:5000/api/folder', body)
   }
 
   fetchFolder() {
-    this.http.get<FolderResponse>('http://localhost:5000/api/folder').pipe(
-      map((res: FolderResponse) => res.data),
+    this.http.get<sidebarFolderResponse>('http://localhost:5000/api/folder').pipe(
+      map((res: sidebarFolderResponse) => res.data),
     ).subscribe((Folders: SidebarFolder[]) => {
       this.sidebarFolders.set(Folders);
     });
@@ -41,11 +41,11 @@ export class sidebarFolderService {
   }
 
   deleteFolder(id: number) {
-    return this.http.delete<FolderResponse>(`http://localhost:5000/api/folder/${id}`)
+    return this.http.delete<sidebarFolderResponse>(`http://localhost:5000/api/folder/${id}`)
   };
 
   updateFolder(id: number, option: UpdateFolderBody) {
-    return this.http.patch<FolderResponse>(`http://localhost:5000/api/folder/${id}`, option)
+    return this.http.patch<sidebarFolderResponse>(`http://localhost:5000/api/folder/${id}`, option)
   };
 
   populateSearchResult(searchText: string) {

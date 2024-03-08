@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, WritableSignal, signal } from '@angular/core';
 import { Bookmark } from '../Model/folder';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookmarkService {
-  private bookmark: Bookmark[] = [
+  private bookmark: WritableSignal<Bookmark[]> = signal([
     {
       id: 1,
       title: "Elevate User Experiences with Exceptional UI/UX Design Services",
@@ -90,18 +90,16 @@ export class BookmarkService {
       date: "Dec 19, 2023",
       link: "https://tutflix.org/"
     }
-  ]
-
+  ])
 
   constructor() { }
 
   // Bookmark
   getBookmark() {
-    const sortedData: Bookmark[] = this.bookmark.sort((a, b): number => {
+    const sortedData: Bookmark[] = this.bookmark().sort((a, b): number => {
 
-      // If both have the same folder property, sort alphabetically by title
-      const titleA = a.title || ''; // Use an empty string if a.title is undefined
-      const titleB = b.title || ''; // Use an empty string if b.title is undefined
+      const titleA = a.title || '';
+      const titleB = b.title || '';
 
       return titleA.localeCompare(titleB);
     });
@@ -110,16 +108,16 @@ export class BookmarkService {
   }
 
   addBookmark(link: string) {
-    this.bookmark.push({
-      id: this.bookmark.length + 1,
+    this.bookmark().push({
+      id: this.bookmark().length + 1,
       title: link,
-      img: "assets/image/add-bookmark.png",
+      img: link,
       date: "September 18, 2023",
       link: link
     })
   }
 
   deleteBookmark(id: number) {
-    this.bookmark = this.bookmark.filter((item) => item.id !== id)
+    this.bookmark.set(this.bookmark().filter((item) => item.id !== id));
   }
 }
