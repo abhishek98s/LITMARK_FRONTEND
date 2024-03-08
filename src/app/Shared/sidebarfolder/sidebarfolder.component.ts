@@ -41,12 +41,12 @@ export class FolderComponent implements OnInit {
   }
 
   deleteFolder(id: number) {
-    this.sidebarFolderService.deleteFolder(id).subscribe(
-      (res: sidebarFolderResponse) => {
+    this.sidebarFolderService.deleteFolder(id).subscribe({
+      next: () => {
         this.sidebarFolderService.fetchFolder()
         this.tost.success('Folder deleted sucessfully.')
       },
-      (error) => {
+      error: (error) => {
         const err = error.error.msg;
         if (!err) {
           this.tost.error("Check connection.");
@@ -54,20 +54,20 @@ export class FolderComponent implements OnInit {
         }
         this.tost.error(err)
       }
-    );
-  }
+    })
+  };
 
   renameFolder(id: number) {
     if (!this.renamedFolderName) {
       this.dropDownService.clearDropdowns()
     }
 
-    this.sidebarFolderService.updateFolder(id, { name: this.renamedFolderName }).subscribe(
-      (res: sidebarFolderResponse) => {
+    this.sidebarFolderService.updateFolder(id, { name: this.renamedFolderName }).subscribe({
+      next: () => {
         this.sidebarFolderService.fetchFolder()
         this.tost.success('Rename folder sucessfully.')
       },
-      (error) => {
+      error: (error) => {
         const err = error.error.msg;
         if (!err) {
           this.tost.error("Check connection.");
@@ -75,7 +75,7 @@ export class FolderComponent implements OnInit {
         }
         this.tost.error(err)
       }
-    )
+    })
     this.dropDownService.clearDropdowns();
   }
 
@@ -88,6 +88,5 @@ export class FolderComponent implements OnInit {
     if (this.dropDownService.isOpen(this.uniqueString) && !this.dropdownElement.nativeElement.contains(event.target)) {
       this.dropDownService.clearDropdowns();
     }
-
   }
 }

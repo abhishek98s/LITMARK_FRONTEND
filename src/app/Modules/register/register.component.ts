@@ -26,20 +26,19 @@ export class RegisterComponent {
       this.toast.error('All field are required.')
       return
     }
-    this.authService.onRegister(this.registerForm.value).subscribe(
-      (res) => {
+    this.authService.onRegister(this.registerForm.value).subscribe({
+      next: () => {
         this.router.navigate(['/login'])
         this.toast.success('You are registered.');
       },
-      (error) => {
+      error: (error) => {
         const err = error.error.msg;
-          if (!err) {
-            this.toast.error("Check connection.");
-            return
-          }
-          this.toast.error(err)
+        if (!err) {
+          this.toast.error("Check connection.");
+          return
+        }
+        this.toast.error(err)
       }
-    )
+    })
   }
-
 }

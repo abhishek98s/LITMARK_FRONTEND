@@ -28,14 +28,14 @@ export class LoginComponent {
       this.toast.error('Email and password is required')
       return
     }
-    this.authService.onLogin(this.loginForm.value).subscribe(
-      (res) => {
+    this.authService.onLogin(this.loginForm.value).subscribe({
+      next: (res) => {
         if (res.data) {
           localStorage.setItem('token', res.data)
           this.router.navigate(['/']);
         }
       },
-      (error) => {
+      error: (error) => {
         const err = error.error.msg;
         if (!err) {
           this.toast.error("Internet Unavailable");
@@ -43,7 +43,7 @@ export class LoginComponent {
         }
         this.toast.error(err);
       }
-    )
+    })
   }
 
   togglePassword() {
