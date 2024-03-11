@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { Folder } from 'src/app/Model/folder';
+import { Folder } from 'src/app/Model/nestedfolder.model';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';

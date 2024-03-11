@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { Folder, NestedFolderResponse, sidebarFolderResponse } from '../Model/folder';
+import { Folder, NestedFolderResponse } from '../Model/nestedfolder.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 

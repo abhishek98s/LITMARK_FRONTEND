@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { Bookmark } from 'src/app/Model/folder';
+import { Bookmark } from 'src/app/Model/bookmark.model';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { BookmarkService } from 'src/app/services/bookmark.service';

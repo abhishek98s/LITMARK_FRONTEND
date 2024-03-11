@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {  SidebarFolder } from 'src/app/Model/folder';
+import {  SidebarFolder } from 'src/app/Model/sidebarFolder.model';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 

@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { Folder, sidebarFolderResponse, SidebarFolder } from 'src/app/Model/folder';
+import { SidebarFolder } from 'src/app/Model/sidebarFolder.model';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { ToastService } from 'src/app/services/toast.service';

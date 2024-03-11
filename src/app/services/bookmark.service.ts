@@ -1,5 +1,7 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { Bookmark } from '../Model/folder';
+import { Bookmark, bookmarkResponse } from '../Model/bookmark.model';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -92,9 +94,16 @@ export class BookmarkService {
     }
   ])
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   // Bookmark
+  fetchBookmark() {
+    this.http.get<bookmarkResponse>('http://localhost:5000/api/folder').pipe(
+      map((res: bookmarkResponse) => res.data),
+    ).subscribe((bookmarks: Bookmark[]) => {
+      this.bookmark.set(bookmarks);
+    });
+  }
   getBookmark() {
     const sortedData: Bookmark[] = this.bookmark().sort((a, b): number => {
 

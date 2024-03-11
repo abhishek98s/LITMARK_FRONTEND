@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BookmarkSearchObject } from '../Model/folder';
+import { BookmarkSearchObject } from '../Model/bookmark.model';
 import { dropDownService } from './dropdown.service';
 
 @Injectable({

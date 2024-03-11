@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Bookmark, BookmarkSearchObject, Chip, Folder, Recentbookmark, State, } from '../Model/folder';
+
+import { Recentbookmark } from '../Model/recentbookmark.model';
+import { Chip, } from '../Model/chip.model';
+import { BookmarkSearchObject, } from '../Model/bookmark.model';
+
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { distinctUntilKeyChanged } from 'rxjs/operators';
 

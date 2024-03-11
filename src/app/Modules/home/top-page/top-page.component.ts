@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recentbookmark } from 'src/app/Model/folder';
+import { Recentbookmark } from 'src/app/Model/recentbookmark.model';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 
 @Component({
