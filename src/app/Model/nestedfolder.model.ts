@@ -1,13 +1,17 @@
 
 export interface Folder {
     id: number,
-    img?: string
-    title: string,
+    name: string,
+    image_id: number,
+    folder_id: number,
 }
 export interface NestedFolderResponse {
     data: Folder[];
 }
-
+export interface FolderApiBody {
+    name: string,
+    folder_id: number
+}
 
 
 export interface State {

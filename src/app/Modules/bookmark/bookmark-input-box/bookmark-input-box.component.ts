@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
@@ -10,6 +10,8 @@ import { FolderService } from 'src/app/services/folder.service';
 })
 export class BookmarkInputBoxComponent {
   @ViewChild('bookmarkInputElement') bookmarkInputElement!: ElementRef;
+
+  @Input() parentFolderId!: number;
 
   bookmarkName: string = "";
   bookmarkUniqueString = 'bookmark-input-box'

@@ -12,7 +12,7 @@
 
     <section class="inside-folder grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-[8px] md:gap-[4%]">
         <div #folderInputBox [hidden]="!dropDownService.isOpen(folderUniqueString)" (click)="stopPropagation($event)">
-           <app-folder-input-box  (folderInputEvent)="onFolderInputEvent($event)"></app-folder-input-box>
+           <app-folder-input-box  (folderInputEvent)="onFolderInputEvent($event)" [parentFolderId]="routeId"></app-folder-input-box>
         </div>
 
         <div *ngFor="let data of folderService.getNestedFolder()">
@@ -20,7 +20,7 @@
         </div>
 
         <div #folderInputBox [hidden]="!dropDownService.isOpen(bookmarkUniqueString)" (click)="stopPropagation($event)">
-            <app-bookmark-input-box (bookmarkInputEvent)="onBookmarkInputEvent($event)"></app-bookmark-input-box>
+            <app-bookmark-input-box (bookmarkInputEvent)="onBookmarkInputEvent($event)" [parentFolderId]="routeId"></app-bookmark-input-box>
         </div>
 
         <div *ngFor="let bookmark of bookmarkService.getBookmark()">

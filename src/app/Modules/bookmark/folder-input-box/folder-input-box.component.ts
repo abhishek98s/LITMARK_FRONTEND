@@ -11,6 +11,8 @@ import { InputElementService } from 'src/app/services/input-element.service';
 export class FolderFormComponent {
   @ViewChild('folderInputElement') folderInputElement!: ElementRef;
 
+  @Input() parentFolderId!: number;
+
   public fodlerName: string = "";
   folderUniqueString = 'folder-input-box'
 
@@ -27,7 +29,11 @@ export class FolderFormComponent {
       this.dropDownService.closeDropdown(this.folderUniqueString);
       return
     }
-    this.folderService.addNestedFolder(this.fodlerName);
+    this.folderService.addNestedFolder({name:this.fodlerName, folder_id:this.parentFolderId}).subscribe({
+      next: ()=>{
+        this.folderService.fetchFolder(this.parentFolderId);
+      }
+    });
     this.InputElementService.clearValue(this.folderInputElement);
     this.dropDownService.clearDropdowns();
   }

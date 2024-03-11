@@ -20,7 +20,7 @@ export class NestedFolderComponent implements OnInit {
   constructor(public dropDownService: dropDownService, public folderService: FolderService) { }
 
   ngOnInit(): void {
-    this.uniqueString = this.nestedFolder.id.toString() + this.nestedFolder.title;
+    this.uniqueString = this.nestedFolder.id.toString() + this.nestedFolder.name;
   }
 
   toggleMenu(event: Event) {

@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '', component: LayoutComponent,
     children: [
       { path: '', component: TopPageComponent },
-      { path: 'bookmark/:id', component: BookmarkFolderComponent },
+      { path: 'bookmark/:id', loadChildren: () => import('./Modules/bookmark/bookmark.module').then(m => m.BookmarkModule) },
     ], canActivate: [AuthGuard]
   },
   {

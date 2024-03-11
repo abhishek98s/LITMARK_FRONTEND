@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { Folder, NestedFolderResponse } from '../Model/nestedfolder.model';
+import { Folder, FolderApiBody, NestedFolderResponse } from '../Model/nestedfolder.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 
@@ -8,20 +8,7 @@ import { map } from 'rxjs';
 })
 export class FolderService {
 
-  private nestedFolder: WritableSignal<Folder[]> = signal([
-    {
-      id: 1,
-      title: "Design Inspiration"
-    },
-    {
-      id: 2,
-      title: "Dribble"
-    },
-    {
-      id: 3,
-      title: "Mobbin"
-    }
-  ])
+  private nestedFolder: WritableSignal<Folder[]> = signal([])
 
   constructor(private http: HttpClient) { }
 
@@ -39,8 +26,8 @@ export class FolderService {
     const sortedData: Folder[] = this.nestedFolder().sort((a, b): number => {
 
       // If both have the same folder property, sort alphabetically by title
-      const titleA = a.title || ''; // Use an empty string if a.title is undefined
-      const titleB = b.title || ''; // Use an empty string if b.title is undefined
+      const titleA = a.name || ''; // Use an empty string if a.title is undefined
+      const titleB = b.name || ''; // Use an empty string if b.title is undefined
 
       return titleA.localeCompare(titleB);
     });
@@ -48,8 +35,8 @@ export class FolderService {
     return sortedData;
   }
 
-  addNestedFolder(name: string) {
-    this.nestedFolder().push({ id: this.nestedFolder.length + 1, title: name })
+  addNestedFolder(folderBodyObj: FolderApiBody) {
+    return this.http.post<NestedFolderResponse>(`http://localhost:5000/api/folder/`, folderBodyObj)
   }
 
   deleteNestedFolder(id: number) {
