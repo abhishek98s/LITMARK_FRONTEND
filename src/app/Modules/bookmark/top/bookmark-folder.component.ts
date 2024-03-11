@@ -3,7 +3,8 @@ import { BookmarkService } from 'src/app/services/bookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
-import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
+import { FolderFormComponent } from '../folder-input-box/folder-input-box.component';
+import { InputElementService } from 'src/app/services/input-element.service';
 
 @Component({
   selector: 'app-bookmark-folder',
@@ -12,76 +13,59 @@ import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 })
 export class BookmarkFolderComponent {
   @ViewChild('folderInputBox') folderInputBox!: ElementRef;
-  @ViewChild('folderInputElement') folderInputElement!: ElementRef;
+  folderInputElement!: ElementRef
 
   @ViewChild('bookmarkInputBox') bookmarkInputBox!: ElementRef;
-  @ViewChild('bookmarkInputElement') bookmarkInputElement!: ElementRef;
+  bookmarkInputElement!: ElementRef;
 
-  fodlerName: string = "";
-  bookmarkName: string = "";
   searchType = "bookmark";
 
   folderUniqueString = 'folder-input-box'
   bookmarkUniqueString = 'bookmark-input-box'
 
-  constructor(public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService) {
+  constructor(public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, private InputElementService: InputElementService) {
     this.dropDownService.clearDropdowns()
   };
+
+  onFolderInputEvent(element: ElementRef) {
+    this.folderInputElement = element;
+  }
+
+  onBookmarkInputEvent(element: ElementRef) {
+    this.bookmarkInputElement = element;
+  }
 
   stopPropagation(event: Event) {
     event.stopPropagation()
   }
 
   toggleFolderInputBox(event: Event) {
-    if (!this.dropDownService.isOpen(this.folderUniqueString)) {
-      setTimeout(() => this.folderInputElement.nativeElement.focus())
-    }
-
-    this.dropDownService.toggle(this.folderUniqueString);
-
     event.stopPropagation();
-    this.fodlerName = '';
+    if (!this.dropDownService.isOpen(this.folderUniqueString)) {
+      this.InputElementService.onFocus(this.folderInputElement)
+    }
+    this.dropDownService.toggle(this.folderUniqueString);
+    this.InputElementService.clearValue(this.folderInputElement)
   }
 
   toggleBookmarkInputBox(event: Event) {
+    event.stopPropagation();
     if (!this.dropDownService.isOpen(this.bookmarkUniqueString)) {
-      setTimeout(() => this.bookmarkInputElement.nativeElement.focus())
+      this.InputElementService.onFocus(this.bookmarkInputElement)
     }
     this.dropDownService.toggle(this.bookmarkUniqueString)
-    event.stopPropagation();
-    this.bookmarkName = "";
-  }
-
-  submitFolderForm() {
-    if (!this.fodlerName) {
-      this.dropDownService.closeDropdown(this.folderUniqueString);
-      return
-    }
-    this.folderService.addNestedFolder(this.fodlerName);
-    this.fodlerName = "";
-    this.dropDownService.clearDropdowns();
-  }
-
-  submitBookmarkForm() {
-    if (!this.bookmarkName) {
-      this.dropDownService.closeDropdown(this.bookmarkUniqueString);
-      return
-    }
-    this.bookmarkService.addBookmark(this.bookmarkName);
-    this.bookmarkName = "";
-    this.dropDownService.clearDropdowns();
+    this.InputElementService.clearValue(this.bookmarkInputBox)
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
-    if ((this.dropDownService.isOpen(this.folderUniqueString) || this.dropDownService.isOpen(this.bookmarkUniqueString)) === false) return
     if (this.dropDownService.isOpen(this.folderUniqueString) && !this.folderInputBox.nativeElement.contains(event.target)) {
-      this.fodlerName = '';
+      this.InputElementService.clearValue(this.folderInputElement)
       this.dropDownService.clearDropdowns();
     }
 
     if (this.dropDownService.isOpen(this.bookmarkUniqueString) && !this.folderInputBox.nativeElement.contains(event.target)) {
-      this.fodlerName = '';
+      this.InputElementService.clearValue(this.bookmarkInputElement)
       this.dropDownService.clearDropdowns();
     }
   }

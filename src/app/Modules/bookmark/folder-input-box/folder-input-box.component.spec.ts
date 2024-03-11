@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FolderFormComponent } from './folder-form.component';
+import { FolderFormComponent } from './folder-input-box.component';
 
 describe('FolderFormComponent', () => {
   let component: FolderFormComponent;

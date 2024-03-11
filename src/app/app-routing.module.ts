@@ -1,12 +1,14 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { TopPageComponent } from './Modules/home/top-page/top-page.component';
-import { BookmarkFolderComponent } from './Modules/bookmark-folder/bookmark-folder.component';
+import { BookmarkFolderComponent } from './Modules/bookmark/top/bookmark-folder.component';
 import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
-import { AuthGuard } from './guard/auth.guard';
 import { SettingComponent } from './Modules/settings/setting/setting.component';
+
+import { AuthGuard } from './guard/auth.guard';
 import { loggedInGuard } from './guard/logged-in.guard';
 
 const routes: Routes = [

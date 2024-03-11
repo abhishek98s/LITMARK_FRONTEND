@@ -26,7 +26,6 @@ export class BookmarkComponent implements OnInit {
     const pattern = /https?:\/\/(?:www\.)?([^/?]+)/i;
     const match = url.match(pattern);
     if (match) {
-      console.log(match[1])
       return match[1];
     } else {
       return null;

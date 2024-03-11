@@ -1,0 +1,30 @@
+<app-search-filter-box [searchType]="searchType"></app-search-filter-box>
+
+<section class="inside-bookmark-box">
+    <header class="flex flex-between-center mt-[48px] mb-[30px]">
+        <h2 class="text-title-md-bold">Design</h2>
+
+        <div class="gap-[16px] flex">
+            <app-add-folder [value]="'Add Folder'" [icon]="'add-folder'" (click)="toggleFolderInputBox($event)"></app-add-folder>
+            <app-add-folder [value]="'Add Bookmark'" [icon]="'add-bookmark'" (click)="toggleBookmarkInputBox($event)"></app-add-folder>
+        </div>
+    </header>
+
+    <section class="inside-folder grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-[8px] md:gap-[4%]">
+        <div #folderInputBox [hidden]="!dropDownService.isOpen(folderUniqueString)" (click)="stopPropagation($event)">
+           <app-folder-input-box  (folderInputEvent)="onFolderInputEvent($event)"></app-folder-input-box>
+        </div>
+
+        <div *ngFor="let data of folderService.getNestedFolder()">
+            <nested-folder [nestedFolder]="data"></nested-folder>
+        </div>
+
+        <div #folderInputBox [hidden]="!dropDownService.isOpen(bookmarkUniqueString)" (click)="stopPropagation($event)">
+            <app-bookmark-input-box (bookmarkInputEvent)="onBookmarkInputEvent($event)"></app-bookmark-input-box>
+        </div>
+
+        <div *ngFor="let bookmark of bookmarkService.getBookmark()">
+            <app-bookmark [bookmark]="bookmark"></app-bookmark>
+        </div>
+    </section>
+</section>

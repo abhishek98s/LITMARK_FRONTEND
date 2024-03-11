@@ -22,6 +22,7 @@ export class dropDownService {
   closeDropdown(identifier: string) {
     this.openDropdowns.delete(identifier);
   }
+  
   clearDropdowns() {
     this.openDropdowns.clear();
   }

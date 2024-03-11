@@ -1,0 +1,12 @@
+@import "../../../colors";
+
+.folder {
+    padding: 10px 12px;
+    width: 100%;
+    box-shadow: 0px 4px 30px 0px #1413531a;
+    transition: 0.4s;
+
+    &:hover {
+        background-color: $primary-200;
+    }
+}

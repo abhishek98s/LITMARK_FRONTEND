@@ -1,0 +1,10 @@
+<form class="folder h-[90px] rounded-2 flex-between-center gap-3 bg-primary-200" (ngSubmit)="submitFolderForm()">
+    <div class="flex w-full gap-2 items-center">
+        <figure class="max-w-[50px] w-full">
+            <img src="assets/icon/sub-folder.svg" alt="folder">
+        </figure>
+
+        <input #folderInputElement class="h-[34px] w-full rounded-1 p-[4px_8px]" placeholder="New Folder"
+            [(ngModel)]="fodlerName" name="Folder Name">
+    </div>
+</form>
