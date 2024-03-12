@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
+import { InputElementService } from 'src/app/services/input-element.service';
 
 @Component({
   selector: 'app-bookmark-input-box',
@@ -13,10 +14,10 @@ export class BookmarkInputBoxComponent {
 
   @Input() parentFolderId!: number;
 
-  bookmarkName: string = "";
+  bookmarkLink: string = "";
   bookmarkUniqueString = 'bookmark-input-box'
 
-  constructor(private dropDownService: dropDownService, private folderService: FolderService, private bookmarkService: BookmarkService) { }
+  constructor(private dropDownService: dropDownService, private folderService: FolderService, private bookmarkService: BookmarkService, private InputElementService: InputElementService) { }
 
   @Output() bookmarkInputEvent = new EventEmitter<ElementRef>();
 
@@ -25,12 +26,12 @@ export class BookmarkInputBoxComponent {
   }
   
   submitBookmarkForm() {
-    if (!this.bookmarkName) {
+    if (!this.bookmarkLink) {
       this.dropDownService.closeDropdown(this.bookmarkUniqueString);
       return
     }
-    this.bookmarkService.addBookmark(this.bookmarkName);
-    this.bookmarkName = "";
+    this.bookmarkService.addBookmark(this.bookmarkLink);
+    this.bookmarkLink = "";
     this.dropDownService.clearDropdowns();
   }
 }

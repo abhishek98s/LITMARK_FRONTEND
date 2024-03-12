@@ -65,7 +65,6 @@ export class BookmarkFolderComponent implements OnInit {
       this.InputElementService.onFocus(this.bookmarkInputElement)
     }
     this.dropDownService.toggle(this.bookmarkUniqueString)
-    this.InputElementService.clearValue(this.bookmarkInputBox)
   }
 
   @HostListener('document:click', ['$event'])
