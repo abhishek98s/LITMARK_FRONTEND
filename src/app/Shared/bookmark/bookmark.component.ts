@@ -39,6 +39,7 @@ export class BookmarkComponent implements OnInit {
 
   deleteBookmark(id: number) {
     this.bookmarkService.deleteBookmark(id);
+    this.dropDownService.toggle(this.uniqueString)
   }
 
   @HostListener('document:click', ['$event'])

@@ -41,11 +41,15 @@ export class FolderService {
     return this.http.post<NestedFolderResponse>(`http://localhost:5000/api/folder/`, folderBodyObj)
   }
 
+  updateFolderName(folderId: number, folderName: string,) {
+    return this.http.patch<NestedFolderResponse>(`http://localhost:5000/api/folder/${folderId}`, { name: folderName })
+  }
+
   deleteNestedFolder(folderId: number) {
     return this.http.delete<NestedFolderResponse>(`http://localhost:5000/api/folder/${folderId}`)
   }
 
-  setParentId(id:number){
+  setParentId(id: number) {
     this.currentParentId = id
   }
 

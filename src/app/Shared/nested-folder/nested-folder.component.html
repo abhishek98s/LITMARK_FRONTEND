@@ -1,19 +1,23 @@
 <div class="sub-folder relative min-h-[90px] h-full flex justify-between items-center bg-primary-200 rounded-2">
-    <div class="flex items-center gap-[16px]">
-        <figure class="w-[50px]">
+    <div class="flex items-center gap-[16px] w-full">
+        <figure class="max-w-[50px] w-full">
             <img src="assets/icon/sub-folder.svg" alt="sub-folder">
         </figure>
 
-        <span class="text-body-md-medium color-primary-900">{{nestedFolder.name}}</span>
+        <span *ngIf="!this.dropDownService.isOpen(renamedFolderString)" class="text-body-md-medium color-primary-900">{{nestedFolder.name}}</span>
+        <form *ngIf="this.dropDownService.isOpen(renamedFolderString)" (ngSubmit)="renameNestedFolder(nestedFolder.id)" class="w-full">
+            <input #nestedFolderUpdateForm class="small text-body-md-regular color-primary-900 w-full block pl-2 mr-[4px]" type="text"
+                [(ngModel)]="renamedFolderName" name="folderName">
+        </form>
     </div>
 
-    <figure class="w-[24px] rounded-full more-btn cursor-pointer" (click)="toggleMenu($event)">
+    <figure *ngIf="!this.dropDownService.isOpen(renamedFolderString)" class="w-[24px] rounded-full more-btn cursor-pointer" (click)="toggleMenu($event)">
         <img src="assets/icon/more.svg" alt="more button">
     </figure>
 
     <div #nestedFolderDropdown class="more-btn-dropdown rounded-1 absolute right-[12px] top-[60%] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
         [hidden]="!dropDownService.isOpen(uniqueString)">
         <div class="rounded-1" (click)="deleteNestedFolder(nestedFolder.id)">Delete</div>
-        <div class="rounded-1">Rename</div>
+        <div class="rounded-1" (click)="toggleNestedFolderInput($event)">Rename</div>
     </div>
 </div>
