@@ -29,7 +29,12 @@ export class NestedFolderComponent implements OnInit {
   }
 
   deleteNestedFolder(id: number) {
-    this.folderService.deleteNestedFolder(id);
+    this.folderService.deleteNestedFolder(id).subscribe({
+      next:()=>{
+        const currentParentId = this.folderService.getParentId();
+        this.folderService.fetchFolder(currentParentId);
+      }
+    });
   }
 
   @HostListener('document:click', ['$event'])

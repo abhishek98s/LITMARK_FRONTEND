@@ -8,6 +8,8 @@ import { map } from 'rxjs';
 })
 export class FolderService {
 
+  private currentParentId!: number;
+
   private nestedFolder: WritableSignal<Folder[]> = signal([])
 
   constructor(private http: HttpClient) { }
@@ -39,7 +41,15 @@ export class FolderService {
     return this.http.post<NestedFolderResponse>(`http://localhost:5000/api/folder/`, folderBodyObj)
   }
 
-  deleteNestedFolder(id: number) {
-    this.nestedFolder.set(this.nestedFolder().filter((item) => item.id !== id))
+  deleteNestedFolder(folderId: number) {
+    return this.http.delete<NestedFolderResponse>(`http://localhost:5000/api/folder/${folderId}`)
+  }
+
+  setParentId(id:number){
+    this.currentParentId = id
+  }
+
+  getParentId() {
+    return this.currentParentId;
   }
 }

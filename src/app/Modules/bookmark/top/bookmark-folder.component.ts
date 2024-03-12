@@ -28,12 +28,12 @@ export class BookmarkFolderComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, private InputElementService: InputElementService) {
     this.dropDownService.clearDropdowns()
-    console.log(this.routeId)
   };
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.routeId = parseInt(params.get('id')!);
+      this.folderService.setParentId(this.routeId)
       this.folderService.fetchFolder(this.routeId)
     })
   }
