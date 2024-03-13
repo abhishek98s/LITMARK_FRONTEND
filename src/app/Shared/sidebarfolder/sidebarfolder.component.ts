@@ -43,7 +43,7 @@ export class FolderComponent implements OnInit {
   deleteFolder(id: number) {
     this.sidebarFolderService.deleteFolder(id).subscribe({
       next: () => {
-        this.sidebarFolderService.fetchFolder()
+        this.sidebarFolderService.removeFolder(id)
         this.tost.success('Folder deleted sucessfully.')
       },
       error: (error) => {
@@ -64,7 +64,7 @@ export class FolderComponent implements OnInit {
 
     this.sidebarFolderService.updateFolder(id, { name: this.renamedFolderName }).subscribe({
       next: () => {
-        this.sidebarFolderService.fetchFolder()
+        this.sidebarFolderService.renameFolder(id, this.renamedFolderName)
         this.tost.success('Rename folder sucessfully.')
       },
       error: (error) => {

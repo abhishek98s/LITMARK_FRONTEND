@@ -32,12 +32,12 @@ export class sidebarFolderService {
   getFolder() {
     return this.sidebarFolders;
   }
-  
+
   postSidebarFolder(body: SidebarFolderApiBody) {
     return this.http.post<SidebarFolderResponse>('http://localhost:5000/api/folder', body)
   }
 
-  addSidebarFolder(sidebarFolder: SidebarFolder){
+  addSidebarFolder(sidebarFolder: SidebarFolder) {
     this.sidebarFolders().push(sidebarFolder);
   }
 
@@ -47,10 +47,21 @@ export class sidebarFolderService {
 
   deleteFolder(id: number) {
     return this.http.delete<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`)
-  };
+  }
+
+  removeFolder(id: number) {
+    let removedData = this.sidebarFolders().filter((sidebarFolder: SidebarFolder) => sidebarFolder.id !== id)
+    this.sidebarFolders.set(removedData)
+  }
 
   updateFolder(id: number, option: UpdateFolderBody) {
     return this.http.patch<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`, option)
+  };
+
+  renameFolder(id: number, name: string) {
+    this.sidebarFolders().map((sidebarFolder: SidebarFolder) => {
+      if (id === sidebarFolder.id) sidebarFolder.name = name
+    })
   };
 
   populateSearchResult(searchText: string) {
