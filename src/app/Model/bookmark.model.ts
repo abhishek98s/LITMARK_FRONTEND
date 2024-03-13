@@ -1,13 +1,23 @@
 export interface Bookmark {
     id: number,
     title: string,
-    img: string
+    image_id: number,
+    image_url?:string,
     date: string,
-    link: string
+    url: string
 }
 
 export interface bookmarkResponse {
     data: Bookmark[];
+}
+
+export interface bookmarkImageResponse {
+    data: Bookmark;
+}
+
+export interface bookmarkApiBody {
+    url: string,
+    folder_id: number,
 }
 
 export interface BookmarkSearchObject {

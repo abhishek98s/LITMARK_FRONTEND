@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { Bookmark, bookmarkResponse } from '../Model/bookmark.model';
+import { Bookmark, bookmarkApiBody, bookmarkImageResponse, bookmarkResponse } from '../Model/bookmark.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 
@@ -11,94 +11,89 @@ export class BookmarkService {
     {
       id: 1,
       title: "Elevate User Experiences with Exceptional UI/UX Design Services",
-      img: "assets/image/bookmark-2.webp",
+      image_id: 1,
       date: "September 18, 2023",
-      link: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
-    },
-    {
-      id: 2,
-      title: "Elevate User Experiences with Exceptional UI/UX Design Services",
-      img: "assets/image/bookmark-2.webp",
-      date: "September 18, 2023",
-      link: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
-    },
-    {
-      id: 3,
-      title: "Google News on smartphones finally picks up Material You makeover",
-      img: "assets/image/bookmark-4.webp",
-      date: "Apr 30, 2023",
-      link: "https://www.androidpolice.com/google-news-material-you-redesign-phones/"
+      url: "https://www.analyticsinsight.net/elevate-user-experiences-with-exceptional-ui-ux-design-services/"
     },
     {
       id: 4,
       title: "Google News on smartphones finally picks up Material You makeover",
+      image_id: 1,
       img: "assets/image/bookmark-4.webp",
       date: "Apr 30, 2023",
-      link: "https://www.androidpolice.com/google-news-material-you-redesign-phones/"
+      url: "https://www.androidpolice.com/google-news-material-you-redesign-phones/"
     },
     {
       id: 5,
       title: "Is Neumorphism really 2020's hottest design trend?",
+      image_id: 1,
       img: "assets/image/bookmark-1.webp",
       date: "May 18, 2014",
-      link: "https://www.creativebloq.com/news/neumorphism"
+      url: "https://www.creativebloq.com/news/neumorphism"
     },
     {
       id: 6,
       title: "Nokia unveils Pure UI, a new user interface design language",
+      image_id: 1,
       img: "assets/image/bookmark-3.webp",
       date: "May 18, 2014",
-      link: "https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php"
+      url: "https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php"
     },
     {
       id: 7,
       title: "Nokia unveils Pure UI, a new user interface design language",
+      image_id: 1,
       img: "assets/image/bookmark-3.webp",
       date: "May 18, 2014",
-      link: "https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php"
+      url: "https://www.gsmarena.com/nokia_unveils_pure_ui_a_new_user_interface_design_language-news-58063.php"
     },
     {
       id: 8,
       title: "The best UI design tools in 2023",
+      image_id: 1,
       img: "assets/image/bookmark-6.webp",
       date: "Mar 19, 2023",
-      link: "https://www.creativebloq.com/how-to/20-best-ui-design-tools"
+      url: "https://www.creativebloq.com/how-to/20-best-ui-design-tools"
     },
     {
       id: 9,
       title: "Whatsapp's new UI design looks super sleek",
+      image_id: 1,
       img: "assets/image/bookmark-5.webp",
       date: "May 18, 2014",
-      link: "https://www.creativebloq.com/news/new-whatsapp-ui-design"
+      url: "https://www.creativebloq.com/news/new-whatsapp-ui-design"
     },
     {
       id: 10,
       title: "35 features that make Angular stand out from the crowd",
+      image_id: 1,
       img: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*IaK-N7xvebUFuOfauNXwYw.png",
       date: "May 18, 2014",
-      link: "https://mirzaleka.medium.com/35-features-that-make-angular-stand-out-from-the-crowd-293375c368b8#b84b"
+      url: "https://mirzaleka.medium.com/35-features-that-make-angular-stand-out-from-the-crowd-293375c368b8#b84b"
     },
     {
       id: 11,
       title: "Back To Square One | JavaScript (JSLand)",
+      image_id: 1,
       img: "https://miro.medium.com/v2/resize:fit:720/format:webp/1*dll2cHrs9c-E5HlOggVPUw.jpeg",
       date: "Nov 18, 2023",
-      link: "https://github.com/MirzaLeka/JavaScript-Land"
+      url: "https://github.com/MirzaLeka/JavaScript-Land"
     },
     {
       id: 12,
       title: "TutFlix - Free Education Resources",
+      image_id: 1,
       img: "https://logos-world.net/wp-content/uploads/2022/05/Tutflix-Logo-700x394.png",
       date: "Dec 19, 2023",
-      link: "https://tutflix.org/"
+      url: "https://tutflix.org/"
     }
   ])
 
   constructor(private http: HttpClient) { }
 
   // Bookmark
-  fetchBookmark() {
-    this.http.get<bookmarkResponse>('http://localhost:5000/api/folder').pipe(
+  fetchBookmark(folderId: number) {
+    this.http.get<bookmarkResponse>(`http://localhost:5000/api/bookmark/${folderId}`).pipe(
       map((res: bookmarkResponse) => res.data),
     ).subscribe((bookmarks: Bookmark[]) => {
       this.bookmark.set(bookmarks);
@@ -116,14 +111,20 @@ export class BookmarkService {
     return sortedData;
   }
 
-  addBookmark(link: string) {
-    this.bookmark().push({
-      id: this.bookmark().length + 1,
-      title: link,
-      img: link,
-      date: "September 18, 2023",
-      link: link
-    })
+  addBookmark(object: bookmarkApiBody) {
+    return this.http.post<bookmarkResponse>(`http://localhost:5000/api/bookmark`, object);
+
+    // this.bookmark().push({
+    //   id: this.bookmark().length + 1,
+    //   title: link,
+    //   img: link,
+    //   date: "September 18, 2023",
+    //   link: link
+    // })
+  }
+
+  getBookmarkThumbnail(image_id:number){
+    return this.http.get<bookmarkImageResponse>(`http://localhost:5000/api/image/${image_id}`);
   }
 
   deleteBookmark(id: number) {

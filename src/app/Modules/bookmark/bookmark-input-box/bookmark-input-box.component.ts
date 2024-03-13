@@ -24,13 +24,17 @@ export class BookmarkInputBoxComponent {
   ngAfterViewInit() {
     this.bookmarkInputEvent.emit(this.bookmarkInputElement);
   }
-  
+
   submitBookmarkForm() {
     if (!this.bookmarkLink) {
       this.dropDownService.closeDropdown(this.bookmarkUniqueString);
       return
     }
-    this.bookmarkService.addBookmark(this.bookmarkLink);
+    this.bookmarkService.addBookmark({ url: this.bookmarkLink, folder_id: this.parentFolderId }).subscribe({
+      next : ()=>{
+        this.bookmarkService.fetchBookmark(this.parentFolderId);
+      }
+    });
     this.bookmarkLink = "";
     this.dropDownService.clearDropdowns();
   }

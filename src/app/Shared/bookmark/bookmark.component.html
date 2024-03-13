@@ -13,9 +13,9 @@
     </div>
     <div class="flex gap-[8px]">
         <figure class="website-icon max-w-[60px] w-full h-[60px] rounded-2">
-            <img class="rounded-2 object-cover object-left" src="https://www.google.com/s2/favicons?domain={{getHostnameFromUrl(bookmark.link)}}&sz=256" alt="bookmark-img">
+            <img class="rounded-2 object-cover object-left" src={{bookmark.image_url}} alt="bookmark-img">
         </figure>
         <a class="title line-clamp-3 flex-1 break-words color-primary-900 text-body-md-medium mt-[-4px] hover:underline" target="_blank"
-            href={{bookmark.link}}>{{bookmark.title}}</a>
+            href={{bookmark.url}}>{{bookmark.title}}</a>
     </div>
 </div>

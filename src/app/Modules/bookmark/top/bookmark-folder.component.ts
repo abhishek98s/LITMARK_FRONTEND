@@ -35,6 +35,7 @@ export class BookmarkFolderComponent implements OnInit {
       this.routeId = parseInt(params.get('id')!);
       this.folderService.setParentId(this.routeId)
       this.folderService.fetchFolder(this.routeId)
+      this.bookmarkService.fetchBookmark(this.routeId)
     })
   }
 
