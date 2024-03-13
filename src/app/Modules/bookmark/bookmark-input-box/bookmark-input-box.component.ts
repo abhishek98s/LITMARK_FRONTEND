@@ -9,7 +9,7 @@ import { ToastService } from 'src/app/services/toast.service';
 @Component({
   selector: 'app-bookmark-input-box',
   templateUrl: './bookmark-input-box.component.html',
-  styleUrl: './bookmark-input-box.component.scss'
+  styleUrls: ['./bookmark-input-box.component.scss']
 })
 export class BookmarkInputBoxComponent {
   @ViewChild('bookmarkInputElement') bookmarkInputElement!: ElementRef;

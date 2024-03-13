@@ -7,7 +7,7 @@ import { InputElementService } from 'src/app/services/input-element.service';
 @Component({
   selector: 'app-folder-input-box',
   templateUrl: './folder-input-box.component.html',
-  styleUrl: './folder-input-box.component.scss'
+  styleUrls: ['./folder-input-box.component.scss']
 })
 export class FolderFormComponent {
   @ViewChild('folderInputElement') folderInputElement!: ElementRef;
