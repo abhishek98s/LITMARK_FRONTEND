@@ -120,11 +120,28 @@ export class BookmarkService {
     this.bookmark().push(bookmarkObj)
   }
 
-  getBookmarkThumbnail(image_id: number) {
-    return this.http.get<bookmarkResponse>(`http://localhost:5000/api/image/${image_id}`);
+  updateBookmarkname(id: number, title: string) {
+    return this.http.patch<bookmarkResponse>(`http://localhost:5000/api/bookmark/${id}`, { title })
+  }
+
+  renameBookmark(id: number, name: string) {
+    this.bookmark().map((bookmark: Bookmark) => {
+      if (bookmark.id === id) {
+        bookmark.title = name
+      }
+    })
   }
 
   deleteBookmark(id: number) {
-    this.bookmark.set(this.bookmark().filter((item) => item.id !== id));
+    return this.http.delete<bookmarkResponse>(`http://localhost:5000/api/bookmark/${id}`);
+  }
+
+  removeBookmark(id: number) {
+    let removedData = this.bookmark().filter((item) => item.id !== id)
+    this.bookmark.set(removedData);
+  }
+
+  getBookmarkThumbnail(image_id: number) {
+    return this.http.get<bookmarkResponse>(`http://localhost:5000/api/image/${image_id}`);
   }
 }

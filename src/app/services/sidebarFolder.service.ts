@@ -40,10 +40,16 @@ export class sidebarFolderService {
   addSidebarFolder(sidebarFolder: SidebarFolder) {
     this.sidebarFolders().push(sidebarFolder);
   }
-
-  getFolderImage(id: number) {
-    return this.http.get(`http://localhost:5000/api/image/${id}`);
-  }
+   
+  updateFolder(id: number, option: UpdateFolderBody) {
+    return this.http.patch<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`, option)
+  };
+  
+  renameFolder(id: number, name: string) {
+    this.sidebarFolders().map((sidebarFolder: SidebarFolder) => {
+      if (id === sidebarFolder.id) sidebarFolder.name = name
+    })
+  };
 
   deleteFolder(id: number) {
     return this.http.delete<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`)
@@ -53,16 +59,10 @@ export class sidebarFolderService {
     let removedData = this.sidebarFolders().filter((sidebarFolder: SidebarFolder) => sidebarFolder.id !== id)
     this.sidebarFolders.set(removedData)
   }
-
-  updateFolder(id: number, option: UpdateFolderBody) {
-    return this.http.patch<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`, option)
-  };
-
-  renameFolder(id: number, name: string) {
-    this.sidebarFolders().map((sidebarFolder: SidebarFolder) => {
-      if (id === sidebarFolder.id) sidebarFolder.name = name
-    })
-  };
+ 
+  getFolderImage(id: number) {
+    return this.http.get(`http://localhost:5000/api/image/${id}`);
+  }
 
   populateSearchResult(searchText: string) {
     let filterData = this.sidebarFolders().filter(folder => {
