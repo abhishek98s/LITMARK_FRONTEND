@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
+import { NestedFolderResponse } from 'src/app/Model/nestedfolder.model';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { InputElementService } from 'src/app/services/input-element.service';
@@ -29,9 +30,10 @@ export class FolderFormComponent {
       this.dropDownService.closeDropdown(this.folderUniqueString);
       return
     }
-    this.folderService.addNestedFolder({name:this.fodlerName, folder_id:this.parentFolderId}).subscribe({
-      next: ()=>{
-        this.folderService.fetchFolder(this.parentFolderId);
+    this.folderService.postNestedFolder({ name: this.fodlerName, folder_id: this.parentFolderId }).subscribe({
+      next: (res: NestedFolderResponse) => {
+        const nestedFolder = res.data;
+        this.folderService.addNestedFolder(nestedFolder);
       }
     });
     this.InputElementService.clearValue(this.folderInputElement);

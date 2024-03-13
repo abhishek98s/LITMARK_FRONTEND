@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { Folder, FolderApiBody, NestedFolderResponse } from '../Model/nestedfolder.model';
+import { Folder, FolderApiBody, NestedFolderArrayResponse, NestedFolderResponse } from '../Model/nestedfolder.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 
@@ -17,8 +17,8 @@ export class FolderService {
   // Nested Folder
 
   fetchFolder(parentFolderId: number) {
-    this.http.get<NestedFolderResponse>(`http://localhost:5000/api/folder/${parentFolderId}`).pipe(
-      map((res: NestedFolderResponse) => res.data),
+    this.http.get<NestedFolderArrayResponse>(`http://localhost:5000/api/folder/${parentFolderId}`).pipe(
+      map((res: NestedFolderArrayResponse) => res.data),
     ).subscribe((folders: Folder[]) => {
       this.nestedFolder.set(folders);
     });
@@ -37,16 +37,31 @@ export class FolderService {
     return sortedData;
   }
 
-  addNestedFolder(folderBodyObj: FolderApiBody) {
+  postNestedFolder(folderBodyObj: FolderApiBody) {
     return this.http.post<NestedFolderResponse>(`http://localhost:5000/api/folder/`, folderBodyObj)
   }
 
+  addNestedFolder(folder: Folder) {
+    this.nestedFolder().push(folder)
+  }
+
   updateFolderName(folderId: number, folderName: string,) {
-    return this.http.patch<NestedFolderResponse>(`http://localhost:5000/api/folder/${folderId}`, { name: folderName })
+    return this.http.patch<NestedFolderArrayResponse>(`http://localhost:5000/api/folder/${folderId}`, { name: folderName })
+  }
+
+  renameNestedFolderById(id: number, name: string) {
+    this.nestedFolder().map((nestedFolder: Folder) => {
+      if (id === nestedFolder.id) nestedFolder.name = name
+    })
   }
 
   deleteNestedFolder(folderId: number) {
-    return this.http.delete<NestedFolderResponse>(`http://localhost:5000/api/folder/${folderId}`)
+    return this.http.delete<NestedFolderArrayResponse>(`http://localhost:5000/api/folder/${folderId}`)
+  }
+
+  removeNestedFolderById(id: number) {
+    const filteredNestedFolder = this.nestedFolder().filter((nestedFolder: Folder) => nestedFolder.id !== id)
+    this.nestedFolder.set(filteredNestedFolder)
   }
 
   setParentId(id: number) {

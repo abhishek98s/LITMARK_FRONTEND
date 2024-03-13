@@ -45,8 +45,7 @@ export class NestedFolderComponent implements OnInit {
   renameNestedFolder(id: number) {
     this.folderService.updateFolderName(id, this.renamedFolderName).subscribe({
       next: ()=>{
-        const currentParentId = this.folderService.getParentId();
-        this.folderService.fetchFolder(currentParentId)
+        this.folderService.renameNestedFolderById(id, this.renamedFolderName);
         this.dropDownService.clearDropdowns(); 
       }
     })
@@ -55,8 +54,7 @@ export class NestedFolderComponent implements OnInit {
   deleteNestedFolder(id: number) {
     this.folderService.deleteNestedFolder(id).subscribe({
       next: () => {
-        const currentParentId = this.folderService.getParentId();
-        this.folderService.fetchFolder(currentParentId);
+        this.folderService.removeNestedFolderById(id);
         this.dropDownService.clearDropdowns();
       }
     });

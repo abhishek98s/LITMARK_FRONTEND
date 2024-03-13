@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { Bookmark, bookmarkImageResponse, bookmarkResponse } from 'src/app/Model/bookmark.model';
+import { Bookmark, bookmarkResponse } from 'src/app/Model/bookmark.model';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { BookmarkService } from 'src/app/services/bookmark.service';
@@ -22,7 +22,7 @@ export class BookmarkComponent implements OnInit {
   ngOnInit(): void {
     this.uniqueString = this.bookmark.id.toString() + this.bookmark.title;
     this.bookmarkService.getBookmarkThumbnail(this.bookmark.image_id).subscribe({
-      next: (res: bookmarkImageResponse) => {
+      next: (res: bookmarkResponse) => {
         this.bookmark.image_url = res.data.url
       },
     })

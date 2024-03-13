@@ -5,8 +5,11 @@ export interface Folder {
     image_id: number,
     folder_id: number,
 }
-export interface NestedFolderResponse {
+export interface NestedFolderArrayResponse {
     data: Folder[];
+}
+export interface NestedFolderResponse {
+    data: Folder;
 }
 export interface FolderApiBody {
     name: string,

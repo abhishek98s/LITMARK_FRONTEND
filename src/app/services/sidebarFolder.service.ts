@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { SidebarFolder, SidebarFolderApiBody, SidebarFolderResponse } from '../Model/sidebarFolder.model';
+import { SidebarFolder, SidebarFolderApiBody, SidebarFolderArrayResponse, SidebarFolderResponse } from '../Model/sidebarFolder.model';
 import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -20,13 +20,10 @@ export class sidebarFolderService {
   constructor(private http: HttpClient) { }
 
   // Folders
-  addFolder(body: SidebarFolderApiBody) {
-    return this.http.post<SidebarFolderResponse>('http://localhost:5000/api/folder', body)
-  }
 
   fetchFolder() {
-    this.http.get<SidebarFolderResponse>('http://localhost:5000/api/folder').pipe(
-      map((res: SidebarFolderResponse) => res.data),
+    this.http.get<SidebarFolderArrayResponse>('http://localhost:5000/api/folder').pipe(
+      map((res: SidebarFolderArrayResponse) => res.data),
     ).subscribe((Folders: SidebarFolder[]) => {
       this.sidebarFolders.set(Folders);
     });
@@ -35,17 +32,25 @@ export class sidebarFolderService {
   getFolder() {
     return this.sidebarFolders;
   }
+  
+  postSidebarFolder(body: SidebarFolderApiBody) {
+    return this.http.post<SidebarFolderResponse>('http://localhost:5000/api/folder', body)
+  }
+
+  addSidebarFolder(sidebarFolder: SidebarFolder){
+    this.sidebarFolders().push(sidebarFolder);
+  }
 
   getFolderImage(id: number) {
     return this.http.get(`http://localhost:5000/api/image/${id}`);
   }
 
   deleteFolder(id: number) {
-    return this.http.delete<SidebarFolderResponse>(`http://localhost:5000/api/folder/${id}`)
+    return this.http.delete<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`)
   };
 
   updateFolder(id: number, option: UpdateFolderBody) {
-    return this.http.patch<SidebarFolderResponse>(`http://localhost:5000/api/folder/${id}`, option)
+    return this.http.patch<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`, option)
   };
 
   populateSearchResult(searchText: string) {

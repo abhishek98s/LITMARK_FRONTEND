@@ -7,11 +7,11 @@ export interface Bookmark {
     url: string
 }
 
-export interface bookmarkResponse {
+export interface bookmarkArrayResponse {
     data: Bookmark[];
 }
 
-export interface bookmarkImageResponse {
+export interface bookmarkResponse {
     data: Bookmark;
 }
 

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Signal, ViewChild, WritableSignal, signal } from '@angular/core';
-import { SidebarFolder } from 'src/app/Model/sidebarFolder.model';
+import { SidebarFolder, SidebarFolderResponse } from 'src/app/Model/sidebarFolder.model';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
@@ -59,11 +59,11 @@ export class SidebarComponent implements OnInit {
 
   submitSidebarFolderForm() {
     if (this.userInputtedFodlerName) {
-      this.sidebarFolderService.addFolder({ name: this.userInputtedFodlerName, folder_id: 0 }).subscribe(
+      this.sidebarFolderService.postSidebarFolder({ name: this.userInputtedFodlerName, folder_id: 0 }).subscribe(
         {
-          next: () => {
-            this.sidebarFolderService.fetchFolder()
-            this.tost.success('Folder added sucessfully.')
+          next: (res: SidebarFolderResponse) => {
+            const sidebarFolder = res.data;
+            this.sidebarFolderService.addSidebarFolder(sidebarFolder);
           },
           error: (error) => {
             const err = error.error.msg;

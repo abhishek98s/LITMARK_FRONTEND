@@ -11,8 +11,12 @@ export interface SidebarFolderApiBody {
     folder_id: number
 }
 
-export interface SidebarFolderResponse {
+export interface SidebarFolderArrayResponse {
     data: SidebarFolder[];
+}
+
+export interface SidebarFolderResponse {
+    data: SidebarFolder;
 }
 
 export interface SidebarFolderSearchObject {

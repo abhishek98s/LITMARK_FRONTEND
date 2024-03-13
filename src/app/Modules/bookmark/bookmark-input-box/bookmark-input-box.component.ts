@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { bookmarkResponse } from 'src/app/Model/bookmark.model';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
@@ -31,8 +32,8 @@ export class BookmarkInputBoxComponent {
       return
     }
     this.bookmarkService.addBookmark({ url: this.bookmarkLink, folder_id: this.parentFolderId }).subscribe({
-      next : ()=>{
-        this.bookmarkService.fetchBookmark(this.parentFolderId);
+      next: (res: bookmarkResponse) => {
+        this.bookmarkService.pushBookmark(res.data)
       }
     });
     this.bookmarkLink = "";

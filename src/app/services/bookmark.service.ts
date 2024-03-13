@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { Bookmark, bookmarkApiBody, bookmarkImageResponse, bookmarkResponse } from '../Model/bookmark.model';
+import { Bookmark, bookmarkApiBody, bookmarkResponse, bookmarkArrayResponse } from '../Model/bookmark.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 
@@ -93,12 +93,13 @@ export class BookmarkService {
 
   // Bookmark
   fetchBookmark(folderId: number) {
-    this.http.get<bookmarkResponse>(`http://localhost:5000/api/bookmark/${folderId}`).pipe(
-      map((res: bookmarkResponse) => res.data),
+    this.http.get<bookmarkArrayResponse>(`http://localhost:5000/api/bookmark/${folderId}`).pipe(
+      map((res: bookmarkArrayResponse) => res.data),
     ).subscribe((bookmarks: Bookmark[]) => {
       this.bookmark.set(bookmarks);
     });
   }
+
   getBookmark() {
     const sortedData: Bookmark[] = this.bookmark().sort((a, b): number => {
 
@@ -113,18 +114,14 @@ export class BookmarkService {
 
   addBookmark(object: bookmarkApiBody) {
     return this.http.post<bookmarkResponse>(`http://localhost:5000/api/bookmark`, object);
-
-    // this.bookmark().push({
-    //   id: this.bookmark().length + 1,
-    //   title: link,
-    //   img: link,
-    //   date: "September 18, 2023",
-    //   link: link
-    // })
   }
 
-  getBookmarkThumbnail(image_id:number){
-    return this.http.get<bookmarkImageResponse>(`http://localhost:5000/api/image/${image_id}`);
+  pushBookmark(bookmarkObj: Bookmark) {
+    this.bookmark().push(bookmarkObj)
+  }
+
+  getBookmarkThumbnail(image_id: number) {
+    return this.http.get<bookmarkResponse>(`http://localhost:5000/api/image/${image_id}`);
   }
 
   deleteBookmark(id: number) {
