@@ -1,9 +1,11 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Folder } from 'src/app/Model/nestedfolder.model';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { InputElementService } from 'src/app/services/input-element.service';
+import { BreadCrumb } from 'src/app/Model/breadcrums.model';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 
 @Component({
   selector: 'nested-folder',
@@ -14,7 +16,6 @@ export class NestedFolderComponent implements OnInit {
   @ViewChild(`nestedFolderDropdown`) dropdownElement!: ElementRef;
   @ViewChild(`nestedFolderUpdateForm`) nestedFolderUpdateForm!: ElementRef;
 
-
   @Input() nestedFolder!: Folder;
   menuOpen: boolean = false;
 
@@ -22,7 +23,7 @@ export class NestedFolderComponent implements OnInit {
   renamedFolderString = '';
   renamedFolderName = ''
 
-  constructor(public dropDownService: dropDownService, public folderService: FolderService, private InputElementService:InputElementService) { }
+  constructor(public dropDownService: dropDownService, public folderService: FolderService, private InputElementService: InputElementService, public breadcrumbService:BreadcrumbService) { }
 
   ngOnInit(): void {
     this.uniqueString = this.nestedFolder.id.toString() + this.nestedFolder.name;
@@ -44,9 +45,9 @@ export class NestedFolderComponent implements OnInit {
 
   renameNestedFolder(id: number) {
     this.folderService.updateFolderName(id, this.renamedFolderName).subscribe({
-      next: ()=>{
+      next: () => {
         this.folderService.renameNestedFolderById(id, this.renamedFolderName);
-        this.dropDownService.clearDropdowns(); 
+        this.dropDownService.clearDropdowns();
       }
     })
   }
@@ -63,7 +64,7 @@ export class NestedFolderComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     if (this.dropDownService.isOpen(this.renamedFolderString) && !this.nestedFolderUpdateForm.nativeElement.contains(event.target)) {
-      this.dropDownService.clearDropdowns(); 
+      this.dropDownService.clearDropdowns();
       this.renamedFolderName = ''
     }
     if (this.dropDownService.isOpen(this.uniqueString) === false) { return }

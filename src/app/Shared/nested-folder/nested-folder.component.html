@@ -4,7 +4,7 @@
             <img src="assets/icon/sub-folder.svg" alt="sub-folder">
         </figure>
 
-        <span *ngIf="!this.dropDownService.isOpen(renamedFolderString)" class="text-body-md-medium color-primary-900">{{nestedFolder.name}}</span>
+        <a routerLink="/bookmark/{{nestedFolder.id}}" *ngIf="!this.dropDownService.isOpen(renamedFolderString)" (click)="breadcrumbService.pushBreadcrumbs(nestedFolder.name, nestedFolder.id)" class="text-body-md-medium color-primary-900 flex-1">{{nestedFolder.name}}</a>
         <form *ngIf="this.dropDownService.isOpen(renamedFolderString)" (ngSubmit)="renameNestedFolder(nestedFolder.id)" class="w-full">
             <input #nestedFolderUpdateForm class="small text-body-md-regular color-primary-900 w-full block pl-2 mr-[4px]" type="text"
                 [(ngModel)]="renamedFolderName" name="folderName">

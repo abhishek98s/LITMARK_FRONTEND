@@ -1,5 +1,6 @@
 <div class="folder rounded-1 flex-between-center relative">
     <a routerLink="/bookmark/{{folder.id}}"
+        (click)="this.breadcrumbService.setinitialBreadcrumbs(folder.name, folder.id)"
         class="flex items-center gap-[8px] w-full color-primary-900 text-body-md-medium">
         <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-full overflow-hidden ">
             <img src={{folder.img}} alt="folder">
@@ -7,13 +8,15 @@
 
         <span *ngIf="!this.dropDownService.isOpen(renamedFormString)"
             class="text-body-md-regular color-primary-900 w-full block">{{folder.name}}</span>
-        <form *ngIf="this.dropDownService.isOpen(renamedFormString)" (ngSubmit)="renameFolder(folder.id)" class="w-full">
+        <form *ngIf="this.dropDownService.isOpen(renamedFormString)" (ngSubmit)="renameFolder(folder.id)"
+            class="w-full">
             <input #updateForm class="small text-body-md-regular color-primary-900 w-full block pl-2" type="text"
                 [(ngModel)]="renamedFolderName" name="folderName">
         </form>
     </a>
 
-    <figure *ngIf="!this.dropDownService.isOpen(renamedFormString)" class="more-btn rounded-full w-[30px] h-[30px]" (click)="toggleOpen($event)">
+    <figure *ngIf="!this.dropDownService.isOpen(renamedFormString)" class="more-btn rounded-full w-[30px] h-[30px]"
+        (click)="toggleOpen($event)">
         <img src="assets/icon/more.svg" alt="more">
     </figure>
 

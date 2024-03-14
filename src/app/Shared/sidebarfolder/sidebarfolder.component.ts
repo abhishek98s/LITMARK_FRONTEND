@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { SidebarFolder } from 'src/app/Model/sidebarFolder.model';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -21,7 +22,7 @@ export class FolderComponent implements OnInit {
 
   renamedFolderName = '';
 
-  constructor(public sidebarFolderService: sidebarFolderService, public dropDownService: dropDownService, private tost: ToastService) { }
+  constructor(public sidebarFolderService: sidebarFolderService, public dropDownService: dropDownService, private tost: ToastService, public breadcrumbService:BreadcrumbService) { }
 
   ngOnInit(): void {
     this.uniqueString = (this.folder.name + this.folder.id).toString()

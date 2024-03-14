@@ -6,6 +6,8 @@ import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { FolderFormComponent } from '../folder-input-box/folder-input-box.component';
 import { InputElementService } from 'src/app/services/input-element.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
+import { BreadCrumb } from 'src/app/Model/breadcrums.model';
 
 @Component({
   selector: 'app-bookmark-folder',
@@ -26,7 +28,7 @@ export class BookmarkFolderComponent implements OnInit {
   folderUniqueString = 'folder-input-box'
   bookmarkUniqueString = 'bookmark-input-box'
 
-  constructor(private route: ActivatedRoute, public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, private InputElementService: InputElementService) {
+  constructor(private route: ActivatedRoute, public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, private InputElementService: InputElementService, public breadcrumbService: BreadcrumbService) {
     this.dropDownService.clearDropdowns()
   };
 
@@ -42,7 +44,6 @@ export class BookmarkFolderComponent implements OnInit {
   onFolderInputEvent(element: ElementRef) {
     this.folderInputElement = element;
   }
-
   onBookmarkInputEvent(element: ElementRef) {
     this.bookmarkInputElement = element;
   }
