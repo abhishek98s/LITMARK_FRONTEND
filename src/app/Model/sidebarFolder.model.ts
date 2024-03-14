@@ -8,7 +8,7 @@ export interface SidebarFolder {
 
 export interface SidebarFolderApiBody {
     name: string,
-    folder_id: number
+    folder_id: number | null
 }
 
 export interface SidebarFolderArrayResponse {

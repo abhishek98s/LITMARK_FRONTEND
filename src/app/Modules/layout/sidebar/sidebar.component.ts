@@ -59,7 +59,7 @@ export class SidebarComponent implements OnInit {
 
   submitSidebarFolderForm() {
     if (this.userInputtedFodlerName) {
-      this.sidebarFolderService.postSidebarFolder({ name: this.userInputtedFodlerName, folder_id: 0 }).subscribe(
+      this.sidebarFolderService.postSidebarFolder({ name: this.userInputtedFodlerName, folder_id: null }).subscribe(
         {
           next: (res: SidebarFolderResponse) => {
             const sidebarFolder = res.data;
