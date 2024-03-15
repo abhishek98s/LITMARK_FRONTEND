@@ -4,6 +4,7 @@ export interface SidebarFolder {
     name: string,
     image_id?: number,
     folder_id: number
+    active?: boolean;
 }
 
 export interface SidebarFolderApiBody {

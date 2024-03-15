@@ -8,6 +8,8 @@ import { BreadCrumb } from '../Model/breadcrums.model';
 export class BreadcrumbService {
   private breadcrumb: WritableSignal<BreadCrumb[]> = signal([])
 
+  private currentFolder: WritableSignal<number> = signal(0);
+
   constructor() { }
 
   getBreadcrumbs() {
@@ -15,8 +17,11 @@ export class BreadcrumbService {
   }
 
   getIdOfLastItem(){
-    let len = this.breadcrumb().length;
     return this.breadcrumb().slice(-1)[0].folder_id
+  }
+
+  getIdOfFirstItem() {
+    return this.breadcrumb()[0].folder_id
   }
 
   storeBreadCrumbsToLocalStorage() {

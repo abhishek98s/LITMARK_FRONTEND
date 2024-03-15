@@ -16,6 +16,10 @@
     }
   }
 
+  & > a.active span {
+    font-weight: 800;
+  }
+
   .more-btn {
     transition: 0.2s;
     display: block;

@@ -17,12 +17,14 @@ export class FolderComponent implements OnInit {
 
   @Input() folder!: SidebarFolder;
 
+  isCurrentFolder = false;
+
   uniqueString = ''
   renamedFormString = '';
 
   renamedFolderName = '';
 
-  constructor(public sidebarFolderService: sidebarFolderService, public dropDownService: dropDownService, private tost: ToastService, public breadcrumbService:BreadcrumbService) { }
+  constructor(public sidebarFolderService: sidebarFolderService, public dropDownService: dropDownService, private tost: ToastService, public breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
     this.uniqueString = (this.folder.name + this.folder.id).toString()

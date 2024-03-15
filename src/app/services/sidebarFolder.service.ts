@@ -40,11 +40,11 @@ export class sidebarFolderService {
   addSidebarFolder(sidebarFolder: SidebarFolder) {
     this.sidebarFolders().push(sidebarFolder);
   }
-   
+
   updateFolder(id: number, option: UpdateFolderBody) {
     return this.http.patch<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`, option)
   };
-  
+
   renameFolder(id: number, name: string) {
     this.sidebarFolders().map((sidebarFolder: SidebarFolder) => {
       if (id === sidebarFolder.id) sidebarFolder.name = name
@@ -59,7 +59,7 @@ export class sidebarFolderService {
     let removedData = this.sidebarFolders().filter((sidebarFolder: SidebarFolder) => sidebarFolder.id !== id)
     this.sidebarFolders.set(removedData)
   }
- 
+
   getFolderImage(id: number) {
     return this.http.get(`http://localhost:5000/api/image/${id}`);
   }
@@ -78,5 +78,16 @@ export class sidebarFolderService {
 
   isSearchEmpty() {
     return (this.searchResult().length == 0) ? 1 : 0;
+  }
+
+  setFolderActive(folder_id: number) {
+    const sidebarFoldersArr = this.sidebarFolders();
+    const activeFolder = sidebarFoldersArr.find((item: SidebarFolder) => item.id === folder_id);
+
+    sidebarFoldersArr.forEach((item: SidebarFolder) => {
+      item.active = item === activeFolder;
+    });
+
+    console.log(sidebarFoldersArr)
   }
 }
