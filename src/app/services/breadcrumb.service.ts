@@ -14,12 +14,32 @@ export class BreadcrumbService {
     return this.breadcrumb();
   }
 
+  getIdOfLastItem(){
+    let len = this.breadcrumb().length;
+    return this.breadcrumb().slice(-1)[0].folder_id
+  }
+
+  storeBreadCrumbsToLocalStorage() {
+    localStorage.setItem('breadcrumb', JSON.stringify(this.breadcrumb()));
+  }
+
+  setStoredBreadCrumbs() {
+    this.breadcrumb.set(this.getStoredBreadcrumbs())
+  }
+
+  getStoredBreadcrumbs(): BreadCrumb[] {
+    const storedBreadcrumbs = localStorage.getItem('breadcrumb');
+    return storedBreadcrumbs ? JSON.parse(storedBreadcrumbs) : [];
+  }
+
   setinitialBreadcrumbs(title: string, folder_id: number) {
     this.breadcrumb.set([{ title, folder_id }])
+    this.storeBreadCrumbsToLocalStorage()
   }
 
   pushBreadcrumbs(title: string, folder_id: number) {
     this.breadcrumb().push({ title, folder_id })
+    this.storeBreadCrumbsToLocalStorage()
   }
 
   removeBreadcrumbsAfter(index: number) {

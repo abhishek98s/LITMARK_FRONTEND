@@ -5,7 +5,7 @@ import { FolderService } from 'src/app/services/folder.service';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { FolderFormComponent } from '../folder-input-box/folder-input-box.component';
 import { InputElementService } from 'src/app/services/input-element.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { BreadCrumb } from 'src/app/Model/breadcrums.model';
 
@@ -28,7 +28,7 @@ export class BookmarkFolderComponent implements OnInit {
   folderUniqueString = 'folder-input-box'
   bookmarkUniqueString = 'bookmark-input-box'
 
-  constructor(private route: ActivatedRoute, public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, private InputElementService: InputElementService, public breadcrumbService: BreadcrumbService) {
+  constructor(private router: Router, private route: ActivatedRoute, public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, private InputElementService: InputElementService, public breadcrumbService: BreadcrumbService) {
     this.dropDownService.clearDropdowns()
   };
 
@@ -39,6 +39,10 @@ export class BookmarkFolderComponent implements OnInit {
       this.folderService.fetchFolder(this.routeId)
       this.bookmarkService.fetchBookmark(this.routeId)
     })
+    this.breadcrumbService.setStoredBreadCrumbs();
+    const lastFoderId = this.breadcrumbService.getIdOfLastItem()
+    this.router.navigate([`/bookmark/${lastFoderId}`])
+
   }
 
   onFolderInputEvent(element: ElementRef) {
