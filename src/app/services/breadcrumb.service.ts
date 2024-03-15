@@ -16,12 +16,16 @@ export class BreadcrumbService {
     return this.breadcrumb();
   }
 
-  getIdOfLastItem(){
+  getIdOfLastItem() {
     return this.breadcrumb().slice(-1)[0].folder_id
   }
 
   getIdOfFirstItem() {
-    return this.breadcrumb()[0].folder_id
+    let arrLen = this.breadcrumb().length;
+    if (arrLen) {
+      return this.breadcrumb()[0].folder_id
+    }
+    return 0
   }
 
   storeBreadCrumbsToLocalStorage() {

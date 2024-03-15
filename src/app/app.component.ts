@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.breadcrumbService.setStoredBreadCrumbs();
     const id = this.breadcrumbService.getIdOfFirstItem()
-    setTimeout(() => this.sidebarFolderService.setFolderActive(id),1000)
+    if (id) setTimeout(() => this.sidebarFolderService.setFolderActive(id!), 1000)
   }
 }
 
