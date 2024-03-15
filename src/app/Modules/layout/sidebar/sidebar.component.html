@@ -4,28 +4,27 @@
             <img src="assets/image/logo.svg" alt="logo">
         </figure>
     </a>
-    <div #sidebarFodlerSearch class="relative z-10">
-        <app-input-box [searchType]="'sidebarfolder'" [inputId]="'input1'" (newItemEvent)="setSearchData($event)"
-            class="p-[8px] md:p-0"></app-input-box>
-        <div *ngIf="dropDownService.isOpen(inputUniqueString) && !sidebarFolderService.isSearchEmpty()"
-            class="search-folder-list absolute left-0 right-0 top-full mt-[8px] p-[4px] rounded-2 shadow-1 bg-neutral-0">
-            <ng-container *ngFor="let folder of sidebarFolderService.sidebarFolderSearchResult()">
-                <app-sidebarfolder-searched-item [folder]="folder"></app-sidebarfolder-searched-item>
-            </ng-container>
-        </div>
-        <div *ngIf="dropDownService.isOpen(inputUniqueString) && sidebarFolderService.isSearchEmpty()"
-            class="search-folder-list flex-center absolute left-0 right-0 top-full mt-[8px] p-[8px_4px] rounded-2 shadow-1 bg-neutral-0">
-            <div class="text-md-body-regular color-primary-560">No result with "{{searchData}}"</div>
-        </div>
-    </div>
-    <hr class="bg-primary-500 rounded-2">
     <section class="folders h-full overflow-hidden flex flex-col gap-[20px] relative">
         <div class="flex justify-between items-center pr-[4px]">
             <div class="text-body-xl-bold">Folders</div>
             <app-add-folder [value]="'Add Folder'" [icon]="'add-folder'"
-                (click)="toggleSidebarFolderInputBox($event)"></app-add-folder>
+            (click)="toggleSidebarFolderInputBox($event)"></app-add-folder>
         </div>
-        <div class="h-full folder-list overflow-y-scroll">
+        <div #sidebarFodlerSearch class="relative z-10">
+            <app-input-box [searchType]="'sidebarfolder'" [inputId]="'input1'" (newItemEvent)="setSearchData($event)"
+                class="p-[8px] md:p-0"></app-input-box>
+            <div *ngIf="dropDownService.isOpen(inputUniqueString) && !sidebarFolderService.isSearchEmpty()"
+                class="search-folder-list absolute left-0 right-0 top-full mt-[8px] p-[4px] rounded-2 shadow-1 bg-neutral-0">
+                <ng-container *ngFor="let folder of sidebarFolderService.sidebarFolderSearchResult()">
+                    <app-sidebarfolder-searched-item [folder]="folder"></app-sidebarfolder-searched-item>
+                </ng-container>
+            </div>
+            <div *ngIf="dropDownService.isOpen(inputUniqueString) && sidebarFolderService.isSearchEmpty()"
+                class="search-folder-list flex-center absolute left-0 right-0 top-full mt-[8px] p-[8px_4px] rounded-2 shadow-1 bg-neutral-0">
+                <div class="text-md-body-regular color-primary-560">No result with "{{searchData}}"</div>
+            </div>
+        </div>
+        <div class="h-full folder-list overflow-y-scroll mt-[-12px]">
             <div #sidebarinput [hidden]="!dropDownService.isOpen(uniqueString)" (click)="stopPropagation($event)">
                 <form class="flex py-[8px] pl-[8px] gap-[8px]" (ngSubmit)="submitSidebarFolderForm()">
                     <div class="flex items-center gap-[8px] color-primary-900 text-body-md-medium w-100">
