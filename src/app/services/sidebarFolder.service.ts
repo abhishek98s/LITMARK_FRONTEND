@@ -87,7 +87,5 @@ export class sidebarFolderService {
     sidebarFoldersArr.forEach((item: SidebarFolder) => {
       item.active = item === activeFolder;
     });
-
-    console.log(sidebarFoldersArr)
   }
 }
