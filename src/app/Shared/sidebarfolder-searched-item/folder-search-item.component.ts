@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
-import {  SidebarFolder } from 'src/app/Model/sidebarFolder.model';
+import { SidebarFolder } from 'src/app/Model/sidebarFolder.model';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
+import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 
 @Component({
   selector: 'app-sidebarfolder-searched-item',
@@ -11,10 +13,14 @@ import { SearchTextService } from 'src/app/services/search-text.service';
 export class FolderSearchItemComponent {
   @Input() folder!: SidebarFolder;
 
-  constructor(private dropDownService: dropDownService, private searchTextService: SearchTextService){}
+  constructor(private dropDownService: dropDownService, private searchTextService: SearchTextService, private sidebarFolderService: sidebarFolderService, private breadcrumbService: BreadcrumbService) { }
 
-  onFolderSearchClick(){
+  onFolderSearchClick() {
     this.dropDownService.clearDropdowns();
     this.searchTextService.clearSearchText()
+
+
+    this.sidebarFolderService.setFolderActive(this.folder.id)
+    this.breadcrumbService.setinitialBreadcrumbs(this.folder.name, this.folder.id)
   }
 }

@@ -5,6 +5,7 @@ import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class SidebarComponent implements OnInit {
   uniqueString = 'addfolderinput'
   inputUniqueString = 'sidebar-folder-input-box'
 
-  constructor(public stateService: StateService, public dropDownService: dropDownService, public sidebarFolderService: sidebarFolderService, private searchTextService: SearchTextService, private tost: ToastService) { }
+  constructor(public stateService: StateService, public dropDownService: dropDownService, public sidebarFolderService: sidebarFolderService, private searchTextService: SearchTextService, private tost: ToastService, public breadcrumbService:BreadcrumbService) { }
 
   ngOnInit(): void {
     this.sidebarFolderService.fetchFolder();
