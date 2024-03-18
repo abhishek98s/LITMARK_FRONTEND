@@ -32,6 +32,10 @@ export class FolderComponent implements OnInit {
     this.sidebarFolderService.getFolderImage(this.folder.image_id!).subscribe((image: any) => this.folder.img = image.data.url)
   }
 
+  stopPropagation(event: Event){
+    event.stopPropagation();
+  }
+
   toggleRenameForm(event: Event) {
     event.stopPropagation();
     this.dropDownService.toggle(this.renamedFormString)

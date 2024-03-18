@@ -20,7 +20,7 @@
         <img src="assets/icon/more.svg" alt="more">
     </figure>
 
-    <div #dropdowns
+    <div #dropdowns (click)="stopPropagation($event)"
         class="more-btn-dropdown rounded-1 absolute right-[8px] top-[80%] min-w-[100px] pt-[8px] p-[4px] text-label-md-regular"
         [hidden]="!dropDownService.isOpen(uniqueString)">
         <div class="rounded-1" (click)="deleteFolder(folder.id)">Delete</div>
