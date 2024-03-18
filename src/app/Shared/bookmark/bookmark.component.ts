@@ -29,13 +29,13 @@ export class BookmarkComponent implements OnInit {
     this.bookmarkService.getBookmarkThumbnail(this.bookmark.image_id).subscribe({
       next: (res: bookmarkResponse) => {
         this.bookmark.image_url = res.data.url
-        this.bookmark.date = this.getCurrentDate();
+        this.bookmark.date = this.getCurrentDate(this.bookmark.date);
       },
     })
   }
 
-  getCurrentDate() {
-    const currentDate: Date = new Date();
+  getCurrentDate(data: any) {
+    const currentDate: Date = new Date(data);
     const options: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric', year: 'numeric' };
     return currentDate.toLocaleDateString('en-US', options);
   }
