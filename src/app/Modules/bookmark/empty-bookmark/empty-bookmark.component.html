@@ -1,0 +1,11 @@
+<section *ngIf="isEmpty() && !this.dropDownService.isOpen(this.folderString) && !this.dropDownService.isOpen(this.bookmarkString)"
+    class="flex flex-col justify-center items-center mx-auto mt-[12px] max-w-[400px]">
+    <figure class="max-w-[150px]">
+        <img src="assets/image/empty-bookmark.svg">
+    </figure>
+
+    <h2 class="color-primary-1000 text-body-xl-bold ">No Bookmarks</h2>
+
+    <p class="color-primary-550 text-body-md-regular text-center">Save your favorite sites to revisit websites or web
+        pages that they are valuable and interesting</p>
+</section>

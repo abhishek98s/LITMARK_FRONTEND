@@ -4,7 +4,8 @@
     <header class="flex flex-between-center mt-[48px] mb-[30px]">
         <div class="flex-1">
             <ng-container *ngFor="let breadcrumb of breadcrumbService.getBreadcrumbs(); index as i">
-                <a class="text-title-md-bold mr-[12px]" routerLink="/bookmark/{{breadcrumb.folder_id}}" (click)="breadcrumbService.removeBreadcrumbsAfter(i)">{{breadcrumb.title}} /</a>
+                <a class="text-title-md-bold mr-[12px]" routerLink="/bookmark/{{breadcrumb.folder_id}}"
+                    (click)="breadcrumbService.removeBreadcrumbsAfter(i)">{{breadcrumb.title}} /</a>
             </ng-container>
         </div>
 
@@ -35,4 +36,6 @@
             <app-bookmark [bookmark]="bookmark"></app-bookmark>
         </div>
     </section>
+
+    <app-empty-bookmark [folderString]="folderUniqueString" [bookmarkString]="bookmarkUniqueString"></app-empty-bookmark>
 </section>
