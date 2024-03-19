@@ -144,4 +144,8 @@ export class BookmarkService {
   getBookmarkThumbnail(image_id: number) {
     return this.http.get<bookmarkResponse>(`http://localhost:5000/api/image/${image_id}`);
   }
+
+  searchBookmarkByTitle(title: string, folder_id: number) {
+    return this.http.get<bookmarkResponse>(`http://localhost:5000/api/bookmark/search?title=${title}&folder_id=${folder_id}`)
+  }
 }
