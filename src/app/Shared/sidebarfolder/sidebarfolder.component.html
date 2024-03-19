@@ -1,6 +1,6 @@
-<div class="folder rounded-1 flex-between-center relative" (click)="sidebarFolderService.setFolderActive(folder.id)">
-    <a routerLink="/bookmark/{{folder.id}}" [ngClass]="{'active': folder.active}"
-        (click)="this.breadcrumbService.setinitialBreadcrumbs(folder.name, folder.id)"
+<div routerLink="/bookmark/{{folder.id}}" (click)="this.breadcrumbService.setinitialBreadcrumbs(folder.name, folder.id)"
+    class="folder rounded-1 flex-between-center relative" (click)="sidebarFolderService.setFolderActive(folder.id)">
+    <a [ngClass]="{'active': folder.active}"
         class="flex items-center gap-[8px] w-full color-primary-900 text-body-md-medium">
         <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[30px] md:h-[30px] w-full overflow-hidden ">
             <img src={{folder.img}} alt="folder">
