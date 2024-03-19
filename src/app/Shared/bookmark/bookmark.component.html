@@ -16,7 +16,7 @@
             <img class="rounded-2 object-cover object-center" src={{bookmark.image_url}} alt="bookmark-img">
         </figure>
         <a *ngIf="!this.dropDownService.isOpen(bookmarkInputBoxString)" class="title line-clamp-3 flex-1 break-words color-primary-900 text-body-md-medium mt-[-4px] hover:underline" target="_blank"
-            href={{bookmark.url}}>{{bookmark.title}}</a>
+            routerLink={{bookmark.url}}>{{bookmark.title}}</a>
         <form *ngIf="this.dropDownService.isOpen(bookmarkInputBoxString)" (ngSubmit)="renameBookmark(bookmark.id)"
             class="w-full">
             <input #bookmarkUpdateForm class="small text-body-md-regular color-primary-900 w-full block pl-2 mr-[4px]"
