@@ -1,7 +1,9 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { SidebarFolder } from 'src/app/Model/sidebarFolder.model';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
+import { FolderService } from 'src/app/services/folder.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -17,14 +19,12 @@ export class FolderComponent implements OnInit {
 
   @Input() folder!: SidebarFolder;
 
-  isCurrentFolder = false;
-
   uniqueString = ''
   renamedFormString = '';
 
   renamedFolderName = '';
 
-  constructor(public sidebarFolderService: sidebarFolderService, public dropDownService: dropDownService, private tost: ToastService, public breadcrumbService: BreadcrumbService) { }
+  constructor(private router: Router, public sidebarFolderService: sidebarFolderService, public dropDownService: dropDownService, private tost: ToastService, public breadcrumbService: BreadcrumbService, private folderService: FolderService) { }
 
   ngOnInit(): void {
     this.uniqueString = (this.folder.name + this.folder.id).toString()
@@ -32,7 +32,7 @@ export class FolderComponent implements OnInit {
     this.sidebarFolderService.getFolderImage(this.folder.image_id!).subscribe((image: any) => this.folder.img = image.data.url)
   }
 
-  stopPropagation(event: Event){
+  stopPropagation(event: Event) {
     event.stopPropagation();
   }
 
@@ -52,6 +52,11 @@ export class FolderComponent implements OnInit {
       next: () => {
         this.sidebarFolderService.removeFolder(id)
         this.tost.success('Folder deleted sucessfully.')
+        if (id === this.folderService.getParentId()){
+          this.router.navigate(['/'])
+          this.breadcrumbService.removeBreadcrumbsAfter(0)
+        }
+
       },
       error: (error) => {
         const err = error.error.msg;
