@@ -42,7 +42,6 @@ export class BreadcrumbService {
   }
 
   setinitialBreadcrumbs(title: string, folder_id: number) {
-    console.log({ title, folder_id })
     this.breadcrumb.set([{ title, folder_id }])
     this.storeBreadCrumbsToLocalStorage()
   }

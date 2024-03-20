@@ -16,7 +16,6 @@ export class EmptyBookmarkComponent implements OnInit {
 
   ngOnInit(): void {
     this.isEmpty();
-    console.log(this.folderString, this.bookmarkString)
   }
 
   isEmpty() {

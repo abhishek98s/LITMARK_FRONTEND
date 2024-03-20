@@ -6,6 +6,8 @@ import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
+import { BookmarkService } from 'src/app/services/bookmark.service';
+import { Subject, debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-input-box',
@@ -13,59 +15,69 @@ import { SearchTextService } from 'src/app/services/search-text.service';
   styleUrls: ['./input-box.component.scss']
 })
 export class InputBoxComponent implements OnInit {
+  private searchSignal: Subject<string> = new Subject<string>();
+  private unsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(public searchService: SearchService, private recentBookmarkService: recentBookmarkService, private dropDownService: dropDownService, private sidebarFolderService: sidebarFolderService, public searchTextService: SearchTextService) { }
-
+  constructor(public searchService: SearchService, private folderService: FolderService, private bookmarkService: BookmarkService, private recentBookmarkService: recentBookmarkService, private dropDownService: dropDownService, private sidebarFolderService: sidebarFolderService, public searchTextService: SearchTextService) { }
 
   @Input() searchType!: string;
   @Input() inputId!: string;
   searchData!: string;
 
+  @Output() newItemEvent = new EventEmitter<string>();
+
   ngOnInit(): void {
     this.searchTextService.getSearchText(this.inputId).subscribe((searchText) => {
       this.searchData = searchText;
     })
+
+    this.searchSignal
+      .pipe(debounceTime(300), takeUntil(this.unsubscribe))
+      .subscribe(searchInput => {
+        this.inputOnChange(this.searchType, searchInput)
+      });
   }
 
-  @Output() newItemEvent = new EventEmitter<string>();
-  emitInputValue(value: string) {
-    if (this.searchType === 'recent-bookmark' || this.searchType === 'sidebarfolder') {
-      this.newItemEvent.emit(value);
-    }
-  }
-
-
-  inputOnChange(e: Event) {
+  onSearchInputChange() {
     if (!this.searchData) {
       this.searchService.hideSearchBox();
       this.dropDownService.clearDropdowns();
-      this.searchData = ''
-      return
+      this.searchData = '';
+      return;
     }
 
-    if (this.searchType === 'recent-bookmark') {
-      let result = this.recentBookmarkService.filterByTitle(this.searchData)
-      this.searchService.populateSearchResult(result)
-      this.emitInputValue(this.searchData)
-      this.dropDownService.openDropdown('bookmark-search-unique-string');
-    }
-    else if (this.searchType === 'sidebarfolder') {
-      this.dropDownService.openDropdown('sidebar-folder-input-box');
-      this.sidebarFolderService.populateSearchResult(this.searchData);
-      this.emitInputValue(this.searchData)
-    }
-    else if (this.searchType === 'bookmark') {
-      console.log('Call bookmark service')
-      return
-    }
-    else {
-      return
-    }
-
-    this.searchTextService.setSearchText(this.searchData, this.inputId)
+    this.searchSignal.next(this.searchData);
   }
 
-  clearinput(){
+  inputOnChange(searchType: string, searchInput: string) {
+    switch (searchType) {
+      case 'recent-bookmark':
+        const result = this.recentBookmarkService.filterByTitle(searchInput);
+        this.searchService.populateSearchResult(result);
+        this.newItemEvent.emit(searchInput);
+        this.dropDownService.openDropdown('bookmark-search-unique-string');
+        break;
+
+      case 'sidebarfolder':
+        this.dropDownService.openDropdown('sidebar-folder-input-box');
+        this.sidebarFolderService.populateSearchResult(searchInput);
+        this.newItemEvent.emit(searchInput);
+        break;
+
+      case 'bookmark':
+        this.dropDownService.openDropdown('bookmark-search-unique-string');
+        this.newItemEvent.emit(searchInput);
+        console.log('Call bookmark service');
+        break;
+
+      default:
+        return;
+    }
+
+    this.searchTextService.setSearchText(searchInput, this.inputId);
+  }
+
+  clearinput() {
     this.dropDownService.clearDropdowns();
     this.searchTextService.clearSearchText();
   }

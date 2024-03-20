@@ -1,7 +1,7 @@
 <form class="input-box relative rounded-1 h-[40px] w-full ">
     <input
         class="absolute color-primary-1000 overflow-hidden bg-neutral-0 w-full h-full p-[12px_8px] pl-[40px] text-body-md-medium rounded-1"
-        type="text" placeholder="Search" name="search" [(ngModel)]="searchData" (input)="inputOnChange($event)">
+        type="text" placeholder="Search" name="search" [(ngModel)]="searchData" (input)="onSearchInputChange()">
     <button type="submit" class="absolute w-[38px] left-0 bg-transparent m-[1px]">
         <img src="assets/icon/search.svg" alt="search">
     </button>
