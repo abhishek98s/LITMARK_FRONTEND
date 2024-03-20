@@ -67,7 +67,11 @@ export class InputBoxComponent implements OnInit {
       case 'bookmark':
         this.dropDownService.openDropdown('bookmark-search-unique-string');
         this.newItemEvent.emit(searchInput);
-        console.log('Call bookmark service');
+        this.bookmarkService.searchBookmarkByTitle(searchInput, this.folderService.getParentId()).subscribe({
+          next: () => {
+            //instead of populate make a signal in searchService
+          }
+        })
         break;
 
       default:

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BookmarkSearchObject } from '../Model/bookmark.model';
+import { SearchObject } from '../Model/bookmark.model';
 import { dropDownService } from './dropdown.service';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { dropDownService } from './dropdown.service';
 })
 export class SearchService {
   private searchResultBox: Boolean = false;
-  public searchResult: BookmarkSearchObject[] = [];
+  public searchResult: SearchObject[] = [];
 
   constructor(private dropDownService: dropDownService) { }
 
@@ -30,7 +30,7 @@ export class SearchService {
     this.searchResultBox = false
   }
 
-  populateSearchResult(arr: BookmarkSearchObject[]) {
+  populateSearchResult(arr: SearchObject[]) {
     this.searchResult = arr
   }
 

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BookmarkSearchObject } from 'src/app/Model/bookmark.model';
+import { SearchObject } from 'src/app/Model/bookmark.model';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 
@@ -9,7 +9,7 @@ import { SearchTextService } from 'src/app/services/search-text.service';
   styleUrls: ['./bookmark-search-item.component.scss']
 })
 export class BookmarkSearchItemComponent {
-  @Input() bookmarkResult! :BookmarkSearchObject;
+  @Input() bookmarkResult! :SearchObject;
 
   constructor(private dropDownService: dropDownService, private searchTextService: SearchTextService){}
 

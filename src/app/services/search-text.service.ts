@@ -10,6 +10,7 @@ export class SearchTextService {
   private searchTexts: SearchText[] = [];
 
   setSearchText(searchText: string, inputId: string) {
+    this.clearSearchText()
     const index = this.searchTexts.findIndex((item) => item.inputId === inputId)
 
     if (index !== -1) {

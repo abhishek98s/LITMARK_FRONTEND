@@ -20,8 +20,7 @@ export interface bookmarkApiBody {
     folder_id: number,
 }
 
-export interface BookmarkSearchObject {
-    type: string,
+export interface SearchObject {
     title: string,
     link: string,
 }

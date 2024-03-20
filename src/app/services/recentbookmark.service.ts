@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Recentbookmark } from '../Model/recentbookmark.model';
 import { Chip, } from '../Model/chip.model';
-import { BookmarkSearchObject, } from '../Model/bookmark.model';
+import { SearchObject, } from '../Model/bookmark.model';
 
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { distinctUntilKeyChanged } from 'rxjs/operators';
@@ -307,7 +307,7 @@ export class recentBookmarkService {
   }
 
   filterByTitle(searchText: string) {
-    const filteredData: BookmarkSearchObject[] = this.recentBookmark.filter(item => {
+    const filteredData: SearchObject[] = this.recentBookmark.filter(item => {
       const bookmarkTitle = item.title.toLowerCase();
       return bookmarkTitle.includes(searchText.toLowerCase());
     }).map((filterItem) => {
