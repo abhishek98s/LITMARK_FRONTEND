@@ -8,6 +8,7 @@ import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs';
+import { SearchObject, bookmarkSearchResponse } from 'src/app/Model/bookmark.model';
 
 @Component({
   selector: 'app-input-box',
@@ -68,8 +69,8 @@ export class InputBoxComponent implements OnInit {
         this.dropDownService.openDropdown('bookmark-search-unique-string');
         this.newItemEvent.emit(searchInput);
         this.bookmarkService.searchBookmarkByTitle(searchInput, this.folderService.getParentId()).subscribe({
-          next: () => {
-            //instead of populate make a signal in searchService
+          next: (res: bookmarkSearchResponse) => {
+            this.searchService.populateSearchResult(res.data)
           }
         })
         break;

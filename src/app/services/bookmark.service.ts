@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { Bookmark, bookmarkApiBody, bookmarkResponse, bookmarkArrayResponse } from '../Model/bookmark.model';
+import { Bookmark, bookmarkApiBody, bookmarkResponse, bookmarkArrayResponse, bookmarkSearchResponse } from '../Model/bookmark.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 
@@ -146,6 +146,6 @@ export class BookmarkService {
   }
 
   searchBookmarkByTitle(title: string, folder_id: number) {
-    return this.http.get<bookmarkResponse>(`http://localhost:5000/api/bookmark/search?title=${title}&folder_id=${folder_id}`)
+    return this.http.get<bookmarkSearchResponse>(`http://localhost:5000/api/bookmark/search?title=${title}&folder_id=${folder_id}`)
   }
 }

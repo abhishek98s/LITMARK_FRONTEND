@@ -2,7 +2,7 @@ export interface Bookmark {
     id: number,
     title: string,
     image_id: number,
-    image_url?:string,
+    image_url?: string,
     date: string,
     url: string
 }
@@ -22,5 +22,8 @@ export interface bookmarkApiBody {
 
 export interface SearchObject {
     title: string,
-    link: string,
+    url: string,
+}
+export interface bookmarkSearchResponse {
+    data: SearchObject[];
 }

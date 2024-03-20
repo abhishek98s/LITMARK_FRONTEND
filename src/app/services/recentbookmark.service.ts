@@ -312,7 +312,7 @@ export class recentBookmarkService {
       return bookmarkTitle.includes(searchText.toLowerCase());
     }).map((filterItem) => {
       const { title, link } = filterItem;
-      return { title, link, type: 'bookmark' }
+      return { title, url: link }
     });
 
     return filteredData;
