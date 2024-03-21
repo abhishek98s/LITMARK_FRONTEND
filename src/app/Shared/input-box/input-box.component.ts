@@ -33,7 +33,7 @@ export class InputBoxComponent implements OnInit {
     })
 
     this.searchSignal
-      .pipe(debounceTime(300), takeUntil(this.unsubscribe))
+      .pipe(debounceTime(100), takeUntil(this.unsubscribe))
       .subscribe(searchInput => {
         this.inputOnChange(this.searchType, searchInput)
       });

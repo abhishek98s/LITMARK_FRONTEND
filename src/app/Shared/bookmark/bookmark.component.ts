@@ -4,6 +4,7 @@ import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { InputElementService } from 'src/app/services/input-element.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-bookmark',
@@ -16,7 +17,7 @@ export class BookmarkComponent implements OnInit {
 
   @Input() bookmark!: Bookmark;
 
-  constructor(public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public dropDownService: dropDownService, private inputElementService: InputElementService) { }
+  constructor(public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public dropDownService: dropDownService, private inputElementService: InputElementService, private toast:ToastService) { }
 
   uniqueString = ''
   bookmarkThumbnail = ''
@@ -31,6 +32,18 @@ export class BookmarkComponent implements OnInit {
         this.bookmark.image_url = res.data.url
         this.bookmark.date = this.getCurrentDate(this.bookmark.date);
       },
+    })
+  }
+
+  handleLinkClick(e: Event) {
+    e.preventDefault();
+    this.bookmarkService.onBookmarkClick(this.bookmark.id).subscribe({
+      next: () => {
+        window.open(this.bookmark.url, '_blank')
+      },
+      error: () => {
+        this.toast.error('Try again later');
+      }
     })
   }
 

@@ -148,4 +148,8 @@ export class BookmarkService {
   searchBookmarkByTitle(title: string, folder_id: number) {
     return this.http.get<bookmarkSearchResponse>(`http://localhost:5000/api/bookmark/search?title=${title}&folder_id=${folder_id}`)
   }
+
+  onBookmarkClick(bookmarkId:number){
+    return this.http.patch(`http://localhost:5000/api/bookmark/click/${bookmarkId}`, {})
+  }
 }
