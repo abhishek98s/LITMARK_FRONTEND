@@ -23,7 +23,7 @@ export class NestedFolderComponent implements OnInit {
   renamedFolderString = '';
   renamedFolderName = ''
 
-  constructor(public dropDownService: dropDownService, public folderService: FolderService, private InputElementService: InputElementService, public breadcrumbService:BreadcrumbService) { }
+  constructor(public dropDownService: dropDownService, public folderService: FolderService, private InputElementService: InputElementService, public breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
     this.uniqueString = this.nestedFolder.id.toString() + this.nestedFolder.name;
@@ -40,25 +40,16 @@ export class NestedFolderComponent implements OnInit {
     this.dropDownService.toggle(this.renamedFolderString);
     setTimeout(() => this.nestedFolderUpdateForm.nativeElement.focus())
     this.renamedFolderName = ''
-
   }
 
   renameNestedFolder(id: number) {
-    this.folderService.updateFolderName(id, this.renamedFolderName).subscribe({
-      next: () => {
-        this.folderService.renameNestedFolderById(id, this.renamedFolderName);
-        this.dropDownService.clearDropdowns();
-      }
-    })
+    this.folderService.updateFolderName(id, this.renamedFolderName)
+    this.dropDownService.clearDropdowns();
   }
 
   deleteNestedFolder(id: number) {
-    this.folderService.deleteNestedFolder(id).subscribe({
-      next: () => {
-        this.folderService.removeNestedFolderById(id);
-        this.dropDownService.clearDropdowns();
-      }
-    });
+    this.folderService.deleteNestedFolder(id);
+    this.dropDownService.clearDropdowns();
   }
 
   @HostListener('document:click', ['$event'])

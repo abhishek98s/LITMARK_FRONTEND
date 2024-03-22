@@ -30,12 +30,7 @@ export class FolderFormComponent {
       this.dropDownService.closeDropdown(this.folderUniqueString);
       return
     }
-    this.folderService.postNestedFolder({ name: this.fodlerName, folder_id: this.parentFolderId }).subscribe({
-      next: (res: NestedFolderResponse) => {
-        const nestedFolder = res.data;
-        this.folderService.addNestedFolder(nestedFolder);
-      }
-    });
+    this.folderService.postNestedFolder({ name: this.fodlerName, folder_id: this.parentFolderId });
     this.InputElementService.clearValue(this.folderInputElement);
     this.dropDownService.clearDropdowns();
   }
