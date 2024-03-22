@@ -3,3 +3,7 @@ export interface Chip {
     chipName: string,
     active: boolean
 }
+
+export interface ChipsResponse {
+    data: Chip[]
+}

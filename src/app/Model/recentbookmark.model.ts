@@ -6,3 +6,7 @@ export interface Recentbookmark {
     img: string,
     link: string
 }
+
+export interface RecentbookmarkResponse {
+    data: Recentbookmark[]
+}
