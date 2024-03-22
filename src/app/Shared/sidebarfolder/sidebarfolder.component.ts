@@ -48,25 +48,11 @@ export class FolderComponent implements OnInit {
   }
 
   deleteFolder(id: number) {
-    this.sidebarFolderService.deleteFolder(id).subscribe({
-      next: () => {
-        this.sidebarFolderService.removeFolder(id)
-        this.tost.success('Folder deleted sucessfully.')
-        if (id === this.folderService.getParentId()){
-          this.router.navigate(['/'])
-          this.breadcrumbService.removeBreadcrumbsAfter(0)
-        }
-
-      },
-      error: (error) => {
-        const err = error.error.msg;
-        if (!err) {
-          this.tost.error("Check connection.");
-          return
-        }
-        this.tost.error(err)
-      }
-    })
+    this.sidebarFolderService.deleteFolder(id)
+    if (id === this.folderService.getParentId()) {
+      this.router.navigate(['/'])
+      this.breadcrumbService.removeBreadcrumbsAfter(0)
+    }
   };
 
   renameFolder(id: number) {
@@ -74,20 +60,7 @@ export class FolderComponent implements OnInit {
       this.dropDownService.clearDropdowns()
     }
 
-    this.sidebarFolderService.updateFolder(id, { name: this.renamedFolderName }).subscribe({
-      next: () => {
-        this.sidebarFolderService.renameFolder(id, this.renamedFolderName)
-        this.tost.success('Rename folder sucessfully.')
-      },
-      error: (error) => {
-        const err = error.error.msg;
-        if (!err) {
-          this.tost.error("Check connection.");
-          return
-        }
-        this.tost.error(err)
-      }
-    })
+    this.sidebarFolderService.updateFolder(id, { name: this.renamedFolderName })
     this.dropDownService.clearDropdowns();
   }
 

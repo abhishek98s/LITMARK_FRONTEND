@@ -60,22 +60,7 @@ export class SidebarComponent implements OnInit {
 
   submitSidebarFolderForm() {
     if (this.userInputtedFodlerName) {
-      this.sidebarFolderService.postSidebarFolder({ name: this.userInputtedFodlerName, folder_id: null }).subscribe(
-        {
-          next: (res: SidebarFolderResponse) => {
-            const sidebarFolder = res.data;
-            this.sidebarFolderService.addSidebarFolder(sidebarFolder);
-          },
-          error: (error) => {
-            const err = error.error.msg;
-            if (!err) {
-              this.tost.error("Check connection.");
-              return
-            }
-            this.tost.error(err)
-          }
-        }
-      )
+      this.sidebarFolderService.postSidebarFolder({ name: this.userInputtedFodlerName, folder_id: null })
     }
     this.dropDownService.closeDropdown(this.uniqueString);
   }

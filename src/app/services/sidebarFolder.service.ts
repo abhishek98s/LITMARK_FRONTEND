@@ -2,6 +2,7 @@ import { Injectable, WritableSignal, signal } from '@angular/core';
 import { SidebarFolder, SidebarFolderApiBody, SidebarFolderArrayResponse, SidebarFolderResponse } from '../Model/sidebarFolder.model';
 import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ToastService } from './toast.service';
 
 
 interface UpdateFolderBody {
@@ -17,7 +18,7 @@ export class sidebarFolderService {
 
   private searchResult: WritableSignal<SidebarFolder[]> = signal([]);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toast: ToastService) { }
 
   // Folders
 
@@ -34,30 +35,61 @@ export class sidebarFolderService {
   }
 
   postSidebarFolder(body: SidebarFolderApiBody) {
-    return this.http.post<SidebarFolderResponse>('http://localhost:5000/api/folder', body)
+    this.http.post<SidebarFolderResponse>('http://localhost:5000/api/folder', body).subscribe({
+      next: (res: SidebarFolderResponse) => {
+        const sidebarFolder = res.data;
+        this.sidebarFolders().push(sidebarFolder);
+
+      },
+      error: (error) => {
+        const err = error.error.msg;
+        if (!err) {
+          this.toast.error("Check connection.");
+          return
+        }
+        this.toast.error(err)
+      }
+    })
   }
 
-  addSidebarFolder(sidebarFolder: SidebarFolder) {
-    this.sidebarFolders().push(sidebarFolder);
-  }
 
   updateFolder(id: number, option: UpdateFolderBody) {
-    return this.http.patch<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`, option)
-  };
-
-  renameFolder(id: number, name: string) {
-    this.sidebarFolders().map((sidebarFolder: SidebarFolder) => {
-      if (id === sidebarFolder.id) sidebarFolder.name = name
+    this.http.patch<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`, option).subscribe({
+      next: () => {
+        this.sidebarFolders().map((sidebarFolder: SidebarFolder) => {
+          if (id === sidebarFolder.id) sidebarFolder.name = option.name
+        })
+        this.toast.success('Rename folder sucessfully.')
+      },
+      error: (error) => {
+        const err = error.error.msg;
+        if (!err) {
+          this.toast.error("Check connection.");
+          return
+        }
+        this.toast.error(err)
+      }
     })
   };
 
-  deleteFolder(id: number) {
-    return this.http.delete<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`)
-  }
 
-  removeFolder(id: number) {
-    let removedData = this.sidebarFolders().filter((sidebarFolder: SidebarFolder) => sidebarFolder.id !== id)
-    this.sidebarFolders.set(removedData)
+  deleteFolder(id: number) {
+    this.http.delete<SidebarFolderArrayResponse>(`http://localhost:5000/api/folder/${id}`).subscribe({
+      next: () => {
+        let removedData = this.sidebarFolders().filter((sidebarFolder: SidebarFolder) => sidebarFolder.id !== id)
+        this.sidebarFolders.set(removedData)
+
+        this.toast.success('Folder deleted sucessfully.')
+      },
+      error: (error) => {
+        const err = error.error.msg;
+        if (!err) {
+          this.toast.error("Check connection.");
+          return
+        }
+        this.toast.error(err)
+      }
+    })
   }
 
   getFolderImage(id: number) {
