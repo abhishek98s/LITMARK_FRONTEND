@@ -19,13 +19,13 @@ export class EmptyBookmarkComponent implements OnInit {
   }
 
   isEmpty() {
-    let bookmark = this.bookmarkService.getBookmark().length;
+    let bookmark = this.bookmarkService.getBookmarkLength();
     let folder = this.folderService.getNestedFolder().length;
 
     return (bookmark == 0 && folder == 0) ? true : false;
   }
 
-  isInputsOpen(){
+  isInputsOpen() {
     return (this.dropDownService.isOpen(this.folderString) && this.dropDownService.isOpen(this.bookmarkString)) ? true : false
   }
 }

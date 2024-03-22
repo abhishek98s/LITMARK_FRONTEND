@@ -17,7 +17,7 @@ export class BookmarkComponent implements OnInit {
 
   @Input() bookmark!: Bookmark;
 
-  constructor(public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public dropDownService: dropDownService, private inputElementService: InputElementService, private toast:ToastService) { }
+  constructor(public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public dropDownService: dropDownService, private inputElementService: InputElementService, private toast: ToastService) { }
 
   uniqueString = ''
   bookmarkThumbnail = ''
@@ -65,20 +65,12 @@ export class BookmarkComponent implements OnInit {
   }
 
   renameBookmark(id: number) {
-    this.bookmarkService.updateBookmarkname(id, this.updatedBookmarkName).subscribe({
-      next: () => {
-        this.bookmarkService.renameBookmark(id, this.updatedBookmarkName);
-        this.dropDownService.clearDropdowns();
-      }
-    })
+    this.bookmarkService.updateBookmarkname(id, this.updatedBookmarkName);
+    this.dropDownService.clearDropdowns();
   }
 
   deleteBookmark(id: number) {
-    this.bookmarkService.deleteBookmark(id).subscribe({
-      next: (res: bookmarkResponse) => {
-        this.bookmarkService.removeBookmark(id)
-      }
-    });
+    this.bookmarkService.deleteBookmark(id)
     this.dropDownService.clearDropdowns()
   }
 

@@ -45,11 +45,7 @@ export class BookmarkInputBoxComponent {
     if (!isUrlValid) {
       this.toast.error('Enter Valid Url')
     }
-    this.bookmarkService.addBookmark({ url: this.bookmarkLink, folder_id: this.parentFolderId }).subscribe({
-      next: (res: bookmarkResponse) => {
-        this.bookmarkService.pushBookmark(res.data)
-      }
-    });
+    this.bookmarkService.addBookmark({ url: this.bookmarkLink, folder_id: this.parentFolderId });
     this.bookmarkLink = "";
     this.dropDownService.clearDropdowns();
   }

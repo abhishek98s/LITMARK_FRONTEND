@@ -2,6 +2,7 @@ import { Injectable, WritableSignal, signal } from '@angular/core';
 import { Bookmark, bookmarkApiBody, bookmarkResponse, bookmarkArrayResponse, bookmarkSearchResponse } from '../Model/bookmark.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -89,7 +90,7 @@ export class BookmarkService {
     }
   ])
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toast: ToastService) { }
 
   // Bookmark
   fetchBookmark(folderId: number) {
@@ -112,33 +113,49 @@ export class BookmarkService {
     return sortedData;
   }
 
-  addBookmark(object: bookmarkApiBody) {
-    return this.http.post<bookmarkResponse>(`http://localhost:5000/api/bookmark`, object);
+  getBookmarkLength() {
+    return this.bookmark().length;
   }
 
-  pushBookmark(bookmarkObj: Bookmark) {
-    this.bookmark().push(bookmarkObj)
+  addBookmark(object: bookmarkApiBody) {
+    this.http.post<bookmarkResponse>(`http://localhost:5000/api/bookmark`, object).subscribe({
+      next: (res) => {
+        this.bookmark().push(res.data)
+      },
+      error: () => {
+        this.toast.error('Failed to add bookmark.')
+        return
+      }
+    });
   }
 
   updateBookmarkname(id: number, title: string) {
-    return this.http.patch<bookmarkResponse>(`http://localhost:5000/api/bookmark/${id}`, { title })
-  }
-
-  renameBookmark(id: number, name: string) {
-    this.bookmark().map((bookmark: Bookmark) => {
-      if (bookmark.id === id) {
-        bookmark.title = name
+    this.http.patch<bookmarkResponse>(`http://localhost:5000/api/bookmark/${id}`, { title }).subscribe({
+      next: () => {
+        this.bookmark().map((bookmark: Bookmark) => {
+          if (bookmark.id === id) {
+            bookmark.title = title
+          }
+        })
+      },
+      error: () => {
+        this.toast.error('Failed to update bookmark.')
+        return
       }
     })
   }
 
   deleteBookmark(id: number) {
-    return this.http.delete<bookmarkResponse>(`http://localhost:5000/api/bookmark/${id}`);
-  }
-
-  removeBookmark(id: number) {
-    let removedData = this.bookmark().filter((item) => item.id !== id)
-    this.bookmark.set(removedData);
+    this.http.delete<bookmarkResponse>(`http://localhost:5000/api/bookmark/${id}`).subscribe({
+      next: () => {
+        let removedData = this.bookmark().filter((item) => item.id !== id)
+        this.bookmark.set(removedData);
+      },
+      error: () => {
+        this.toast.error('Failed to update bookmark.')
+        return
+      }
+    });
   }
 
   getBookmarkThumbnail(image_id: number) {
@@ -149,7 +166,7 @@ export class BookmarkService {
     return this.http.get<bookmarkSearchResponse>(`http://localhost:5000/api/bookmark/search?title=${title}&folder_id=${folder_id}`)
   }
 
-  onBookmarkClick(bookmarkId:number){
+  onBookmarkClick(bookmarkId: number) {
     return this.http.patch(`http://localhost:5000/api/bookmark/click/${bookmarkId}`, {})
   }
 }
