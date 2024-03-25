@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
@@ -8,6 +8,7 @@ import { InputElementService } from 'src/app/services/input-element.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { BreadCrumb } from 'src/app/Model/breadcrums.model';
+import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 
 @Component({
   selector: 'app-bookmark-folder',
@@ -28,11 +29,12 @@ export class BookmarkFolderComponent implements OnInit {
   folderUniqueString = 'folder-input-box'
   bookmarkUniqueString = 'bookmark-input-box'
 
-  constructor(private router: Router, private route: ActivatedRoute, public dataService: recentBookmarkService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, private InputElementService: InputElementService, public breadcrumbService: BreadcrumbService) {
+  constructor(private router: Router, private route: ActivatedRoute, public dataService: recentBookmarkService, private sidebarFolderService: sidebarFolderService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, private InputElementService: InputElementService, public breadcrumbService: BreadcrumbService) {
     this.dropDownService.clearDropdowns()
   };
 
   ngOnInit() {
+
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.routeId = parseInt(params.get('id')!);
       this.folderService.setParentId(this.routeId)

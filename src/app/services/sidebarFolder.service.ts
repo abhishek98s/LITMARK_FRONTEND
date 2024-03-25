@@ -120,4 +120,14 @@ export class sidebarFolderService {
       item.active = item === activeFolder;
     });
   }
+
+  clearActiveFolder() {
+    const sidebarFoldersArr = this.sidebarFolders();
+
+    sidebarFoldersArr.forEach((item: SidebarFolder) => {
+      item.active = false;
+    });
+
+    this.sidebarFolders.set(sidebarFoldersArr)
+  }
 }
