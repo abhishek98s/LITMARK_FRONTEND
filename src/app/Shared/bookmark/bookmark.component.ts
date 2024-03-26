@@ -5,6 +5,7 @@ import { dropDownService } from 'src/app/services/dropdown.service';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { InputElementService } from 'src/app/services/input-element.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { getCurrentDate } from 'src/app/utils/date';
 
 @Component({
   selector: 'app-bookmark',
@@ -30,7 +31,7 @@ export class BookmarkComponent implements OnInit {
     this.bookmarkService.getBookmarkThumbnail(this.bookmark.image_id).subscribe({
       next: (res: bookmarkResponse) => {
         this.bookmark.image_url = res.data.url
-        this.bookmark.date = this.getCurrentDate(this.bookmark.date);
+        this.bookmark.date = getCurrentDate(this.bookmark.date);
       },
     })
   }
@@ -47,11 +48,7 @@ export class BookmarkComponent implements OnInit {
     })
   }
 
-  getCurrentDate(data: any) {
-    const currentDate: Date = new Date(data);
-    const options: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric', year: 'numeric' };
-    return currentDate.toLocaleDateString('en-US', options);
-  }
+ 
 
   toggleBookmarkMenu(event: Event) {
     event.stopPropagation();

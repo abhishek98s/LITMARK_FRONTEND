@@ -8,7 +8,8 @@ import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs';
-import { SearchObject, bookmarkSearchResponse } from 'src/app/Model/bookmark.model';
+import { SearchObject, SearchResponse } from 'src/app/Model/bookmark.model';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-input-box',
@@ -19,7 +20,7 @@ export class InputBoxComponent implements OnInit {
   private searchSignal: Subject<string> = new Subject<string>();
   private unsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(public searchService: SearchService, private folderService: FolderService, private bookmarkService: BookmarkService, private recentBookmarkService: recentBookmarkService, private dropDownService: dropDownService, private sidebarFolderService: sidebarFolderService, public searchTextService: SearchTextService) { }
+  constructor(private toast: ToastService, public searchService: SearchService, private folderService: FolderService, private bookmarkService: BookmarkService, private recentBookmarkService: recentBookmarkService, private dropDownService: dropDownService, private sidebarFolderService: sidebarFolderService, public searchTextService: SearchTextService) { }
 
   @Input() searchType!: string;
   @Input() inputId!: string;
@@ -53,10 +54,13 @@ export class InputBoxComponent implements OnInit {
   inputOnChange(searchType: string, searchInput: string) {
     switch (searchType) {
       case 'recent-bookmark':
-        const result = this.recentBookmarkService.filterByTitle(searchInput);
-        this.searchService.populateSearchResult(result);
-        this.newItemEvent.emit(searchInput);
         this.dropDownService.openDropdown('bookmark-search-unique-string');
+        this.newItemEvent.emit(searchInput);
+        this.recentBookmarkService.filterByTitle(searchInput).subscribe({
+          next: (res) => {
+            this.searchService.populateSearchResult(res.data);
+          }
+        });
         break;
 
       case 'sidebarfolder':
@@ -69,7 +73,7 @@ export class InputBoxComponent implements OnInit {
         this.dropDownService.openDropdown('bookmark-search-unique-string');
         this.newItemEvent.emit(searchInput);
         this.bookmarkService.searchBookmarkByTitle(searchInput, this.folderService.getParentId()).subscribe({
-          next: (res: bookmarkSearchResponse) => {
+          next: (res: SearchResponse) => {
             this.searchService.populateSearchResult(res.data)
           }
         })

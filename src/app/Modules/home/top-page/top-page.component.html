@@ -4,13 +4,13 @@
     <h3 class="text-title-md-bold mb-[12px]">Recent Bookmarks</h3>
 
     <div class="chips-list flex gap-[12px] overflow-scroll no-scrollbar">
-        <div *ngFor="let chip of dataService.getChips()">
+        <div *ngFor="let chip of recentBookmarkService.getChips()">
             <app-chip [chip]="chip" (click)="filterRecentBookmarkCategory(chip.chipName)"></app-chip>
         </div>
     </div>
 
     <div class="recent-bookmark-list grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-[4%]">
-        <div *ngFor="let recentBookmark of recentBookmark">
+        <div *ngFor="let recentBookmark of recentBookmarkService.getRecentBookmark()">
             <app-recent-bookmark class="col-span-1" [recentBookmark]="recentBookmark"></app-recent-bookmark>
         </div>
     </div>

@@ -30,9 +30,9 @@
 
         <div #dateDropdown [hidden]="!dropDownService.isOpen(uniqueString)"
             class="sort-option absolute top-[80%] pt-[10px] mt-[16px] p-[4px] rounded-1 text-label-md-regular spacing-y-[4px] z-50">
-            <div (click)="sortRecentBookmarkBy('Date')">Date</div>
-            <div (click)="sortRecentBookmarkBy('A-Z')">A-Z</div>
-            <div (click)="sortRecentBookmarkBy('Z-A')">Z-A</div>
+            <div (click)="sortRecentBookmarkBy('date', 'asc')">Date</div>
+            <div (click)="sortRecentBookmarkBy('A-Z', 'asc')">A-Z</div>
+            <div (click)="sortRecentBookmarkBy('Z-A', 'desc')">Z-A</div>
         </div>
     </div>
 </article>

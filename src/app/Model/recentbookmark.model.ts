@@ -2,9 +2,9 @@ export interface Recentbookmark {
     id: number,
     category: string,
     title: string,
-    date: string,
+    click_date: string,
     img: string,
-    link: string
+    url: string
 }
 
 export interface RecentbookmarkResponse {

@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@
 import { Recentbookmark } from 'src/app/Model/recentbookmark.model';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
+import { getCurrentDate } from 'src/app/utils/date';
 
 @Component({
   selector: 'app-recent-bookmark',
@@ -18,6 +19,7 @@ export class RecentBookmarkComponent implements OnInit {
   constructor(public dataService: recentBookmarkService, public dropDownService: dropDownService) { };
 
   ngOnInit(): void {
+    this.recentBookmark.click_date = getCurrentDate(this.recentBookmark.click_date);
     this.uniqueString = this.recentBookmark.id.toString() + this.recentBookmark.title;
   }
 

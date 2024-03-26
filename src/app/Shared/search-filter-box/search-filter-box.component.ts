@@ -14,7 +14,7 @@ export class SearchFilterBoxComponent implements OnInit {
   @ViewChild('dateDropdown') dropdownElement!: ElementRef;
 
   @Input() searchType!: string;
-  constructor(private dataService: recentBookmarkService, public dropDownService: dropDownService, public searchService: SearchService, private searchTextService: SearchTextService) { }
+  constructor(private recentBookmarkService: recentBookmarkService, public dropDownService: dropDownService, public searchService: SearchService, private searchTextService: SearchTextService) { }
 
   filter: string = 'Date';
   uniqueString = 'date';
@@ -22,7 +22,7 @@ export class SearchFilterBoxComponent implements OnInit {
   searchData!: string;
 
   ngOnInit(): void {
-    this.filter = this.dataService.getFilterType();
+    this.filter = this.recentBookmarkService.getFilterType();
   }
 
   isInputFocus() {
@@ -38,10 +38,10 @@ export class SearchFilterBoxComponent implements OnInit {
     event.stopPropagation();
   }
 
-  sortRecentBookmarkBy(filterType: string) {
-    this.dataService.sortRecentBookmarkBy(filterType)
-    this.filter = this.dataService.getFilterType();
-    this.dropDownService.closeDropdown(this.uniqueString);
+  sortRecentBookmarkBy(sortType: string, order: string) {
+    this.recentBookmarkService.sortRecentBookmarkBy(sortType, order)
+    this.filter = this.recentBookmarkService.getFilterType();
+    this.dropDownService.clearDropdowns();
   }
 
   @HostListener('document:click', ['$event'])

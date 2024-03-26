@@ -24,6 +24,6 @@ export interface SearchObject {
     title: string,
     url: string,
 }
-export interface bookmarkSearchResponse {
+export interface SearchResponse {
     data: SearchObject[];
 }

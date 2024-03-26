@@ -14,10 +14,11 @@ export class TopPageComponent implements OnInit, AfterViewInit {
 
   searchType = 'recent-bookmark'
 
-  constructor(public dataService: recentBookmarkService, private sidebarFolderService: sidebarFolderService, private breadcrumbService: BreadcrumbService) { }
+  constructor(public recentBookmarkService: recentBookmarkService, private sidebarFolderService: sidebarFolderService, private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
-    this.dataService.recentBookmarkObservable.subscribe((value) => this.recentBookmark = value);
+    this.recentBookmarkService.fetchRecentBookmarks();
+
     this.breadcrumbService.removeBreadcrumbsAfter(0);
   }
 
@@ -26,6 +27,6 @@ export class TopPageComponent implements OnInit, AfterViewInit {
   }
 
   filterRecentBookmarkCategory(category: string) {
-    this.dataService.filterRecentBookmarkByChip(category);
+    this.recentBookmarkService.filterRecentBookmarkByChip(category);
   }
 }
