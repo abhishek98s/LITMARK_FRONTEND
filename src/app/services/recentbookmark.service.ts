@@ -139,6 +139,7 @@ export class recentBookmarkService {
             this.toast.error(err)
           }
         })
+        this.filterType = "Date"
         break;
 
       case "A-Z":
@@ -155,6 +156,7 @@ export class recentBookmarkService {
             this.toast.error(err)
           }
         })
+        this.filterType = "A-Z"
         break;
 
       case "Z-A":
@@ -171,6 +173,7 @@ export class recentBookmarkService {
             this.toast.error(err)
           }
         })
+        this.filterType = "Z-A"
         break;
       default:
         break;

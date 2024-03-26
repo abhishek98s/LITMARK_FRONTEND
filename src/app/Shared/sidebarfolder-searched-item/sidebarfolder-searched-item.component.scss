@@ -4,6 +4,10 @@
     border-bottom: 1px solid $primary-400-35;
     transition: .4s;
 
+    &:last-of-type {
+        border-bottom: 0;
+    }
+
     &:hover {
         background-color: $primary-200;
     }
