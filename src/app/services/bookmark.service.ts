@@ -167,6 +167,6 @@ export class BookmarkService {
   }
 
   onBookmarkClick(bookmarkId: number) {
-    return this.http.patch(`http://localhost:5000/api/bookmark/click/${bookmarkId}`, {})
+    return this.http.patch(`http://localhost:5000/api/bookmark/recent/${bookmarkId}`, {})
   }
 }
