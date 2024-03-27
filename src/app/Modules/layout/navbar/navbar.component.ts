@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 interface User {
   id: number,
   username: string,
-  mail: string
+  email: string
 }
 @Component({
   selector: 'app-navbar',
