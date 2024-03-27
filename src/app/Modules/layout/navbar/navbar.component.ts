@@ -1,7 +1,15 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
+
+interface User {
+  id: number,
+  username: string,
+  mail: string
+}
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,12 +18,20 @@ import { dropDownService } from 'src/app/services/dropdown.service';
 export class NavbarComponent implements OnInit {
   @ViewChild('dropdown') dropdownElement!: ElementRef;
 
-  constructor(public dropDownService: dropDownService, private authService: AuthService) { }
+  constructor(private router: Router, private jwtHelper: JwtHelperService, public dropDownService: dropDownService, private authService: AuthService) { }
 
   uniqueString = 'profile-menu'
+  userData!: User;
 
   ngOnInit(): void {
     this.dropDownService.closeDropdown(this.uniqueString);
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.userData = this.jwtHelper.decodeToken(token) as User;
+    console.log(this.userData)
   }
 
   toggleProfileMenu(event: Event) {
