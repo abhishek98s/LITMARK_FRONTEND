@@ -31,7 +31,6 @@ export class NavbarComponent implements OnInit {
       return;
     }
     this.userData = this.jwtHelper.decodeToken(token) as User;
-    console.log(this.userData)
   }
 
   toggleProfileMenu(event: Event) {

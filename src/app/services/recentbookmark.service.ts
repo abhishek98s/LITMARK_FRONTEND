@@ -106,7 +106,6 @@ export class recentBookmarkService {
     this.http.get<RecentbookmarkResponse>('http://localhost:5000/api/bookmark/recent/sort?sortBy=date&order=desc').subscribe({
       next: (res) => {
         this.recentBookmark.set(res.data);
-        console.log(res.data)
       },
       error: (error) => {
         const err = error.error.msg;

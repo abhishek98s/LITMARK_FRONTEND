@@ -3,7 +3,8 @@ export interface Recentbookmark {
     category: string,
     title: string,
     click_date: string,
-    img: string,
+    image_id: number,
+    img_url: string,
     url: string
 }
 

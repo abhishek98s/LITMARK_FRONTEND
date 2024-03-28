@@ -3,6 +3,8 @@ import { Recentbookmark } from 'src/app/Model/recentbookmark.model';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { getCurrentDate } from 'src/app/utils/date';
+import { BookmarkService } from 'src/app/services/bookmark.service';
+import { bookmarkResponse } from 'src/app/Model/bookmark.model';
 
 @Component({
   selector: 'app-recent-bookmark',
@@ -16,11 +18,16 @@ export class RecentBookmarkComponent implements OnInit {
 
   uniqueString = '';
 
-  constructor(public dataService: recentBookmarkService, public dropDownService: dropDownService) { };
+  constructor(public dataService: recentBookmarkService, public dropDownService: dropDownService, private bookmarkService: BookmarkService) { };
 
   ngOnInit(): void {
     this.recentBookmark.click_date = getCurrentDate(this.recentBookmark.click_date);
     this.uniqueString = this.recentBookmark.id.toString() + this.recentBookmark.title;
+    this.bookmarkService.getBookmarkThumbnail(this.recentBookmark.image_id).subscribe({
+      next: (res: bookmarkResponse) => {
+        this.recentBookmark.img_url = res.data.url
+      },
+    })
   }
 
   getHostnameFromUrl(url: string) {

@@ -2,15 +2,21 @@
 
 .recent-bookmark {
   padding: 8px;
+
   &:hover {
     .more-btn {
       display: block;
     }
   }
 
+  .recent-bookmark-image {
+    border: 1px solid $primary-300;
+  }
+
   .more-btn {
     transition: 0.4s;
     display: none;
+
     &:hover {
       background-color: $primary-200;
     }
@@ -19,7 +25,7 @@
   .category-title {
     max-width: calc(100% - 70px);
 
-    & ~ figure {
+    &~figure {
       border: 1px solid $primary-400;
     }
 
