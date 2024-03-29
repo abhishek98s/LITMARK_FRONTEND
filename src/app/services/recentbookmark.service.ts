@@ -16,7 +16,6 @@ export class recentBookmarkService {
 
   constructor(private http: HttpClient, private toast: ToastService) { }
 
-  private filterType = 'Date';
 
   private recentBookmark: WritableSignal<Recentbookmark[]> = signal([]);
 
@@ -57,9 +56,7 @@ export class recentBookmarkService {
     },
   ]
 
-  getFilterType() {
-    return this.filterType
-  }
+
 
   // Chip
   getChips() {

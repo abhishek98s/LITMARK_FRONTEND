@@ -3,6 +3,7 @@ import { SidebarFolder, SidebarFolderApiBody, SidebarFolderArrayResponse, Sideba
 import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from './toast.service';
+import { dropDownService } from './dropdown.service';
 
 
 interface UpdateFolderBody {
@@ -18,7 +19,7 @@ export class sidebarFolderService {
 
   private searchResult: WritableSignal<SidebarFolder[]> = signal([]);
 
-  constructor(private http: HttpClient, private toast: ToastService) { }
+  constructor(private http: HttpClient, private dropDownService: dropDownService, private toast: ToastService) { }
 
   // Folders
 
@@ -119,6 +120,8 @@ export class sidebarFolderService {
     sidebarFoldersArr.forEach((item: SidebarFolder) => {
       item.active = item === activeFolder;
     });
+
+    this.dropDownService.setFilterType('Date')
   }
 
   clearActiveFolder() {

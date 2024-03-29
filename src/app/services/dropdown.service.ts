@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,8 +6,19 @@ import { Injectable } from '@angular/core';
 export class dropDownService {
   private openDropdowns: Set<string> = new Set<string>();
 
+  private filterType = signal('Date');
+
   constructor() {
     this.clearDropdowns()
+  }
+
+  getFilterType() {
+    return this.filterType()
+  }
+
+  setFilterType(type: string) {
+    this.filterType.set(type);
+    console.log(type)
   }
 
   isOpen(identifier: string): boolean {

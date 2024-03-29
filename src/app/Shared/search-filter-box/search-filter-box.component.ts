@@ -18,13 +18,11 @@ export class SearchFilterBoxComponent implements OnInit {
   @Input() searchType!: string;
   constructor(private recentBookmarkService: recentBookmarkService, public dropDownService: dropDownService, public searchService: SearchService, private searchTextService: SearchTextService, private folderService: FolderService, private bookmarkService: BookmarkService) { }
 
-  filter: string = 'Date';
   uniqueString = 'date';
   bookmarkSearchUniqueString = 'bookmark-search-unique-string';
   searchData!: string;
 
   ngOnInit(): void {
-    this.filter = this.recentBookmarkService.getFilterType();
   }
 
   isInputFocus() {
@@ -45,12 +43,13 @@ export class SearchFilterBoxComponent implements OnInit {
       case 'bookmark':
         this.folderService.sortNestedFolderBy(sortType, order);
         this.bookmarkService.sortBookmarksBy(sortType, order);
-        this.filter = sortBy;
+        this.dropDownService.setFilterType(sortBy);
         this.dropDownService.clearDropdowns();
         break;
       case 'recent-bookmark':
         this.recentBookmarkService.sortRecentBookmarkBy(sortType, order)
-        this.filter = sortBy;
+        this.dropDownService.setFilterType(sortBy);
+
         this.dropDownService.clearDropdowns();
         break;
       default:

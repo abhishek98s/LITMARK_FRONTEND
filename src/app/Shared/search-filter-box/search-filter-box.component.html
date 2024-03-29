@@ -20,7 +20,7 @@
     <div class="relative bg-neutral-0" [ngClass]="{'hideinMobile': isInputFocus()}">
         <a (click)="toggleProfileMenu($event)"
             class="sortDropdown flex p-[4px_10px] rounded-1 justify-between items-center color-primary-900 text-label-md-regular">
-            <button class="more-btn-dropdown-btn">{{filter}}</button>
+            <button class="more-btn-dropdown-btn">{{this.dropDownService.getFilterType()}}</button>
 
             <figure class="down-arrow w-[12px] h-[12px] flex-center"
                 [ngClass]="{'active': dropDownService.isOpen(uniqueString)}">
