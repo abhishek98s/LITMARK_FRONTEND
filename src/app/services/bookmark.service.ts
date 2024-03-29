@@ -102,15 +102,7 @@ export class BookmarkService {
   }
 
   getBookmark() {
-    const sortedData: Bookmark[] = this.bookmark().sort((a, b): number => {
-
-      const titleA = a.title || '';
-      const titleB = b.title || '';
-
-      return titleA.localeCompare(titleB);
-    });
-
-    return sortedData;
+    return this.bookmark();
   }
 
   getBookmarkLength() {
@@ -156,6 +148,20 @@ export class BookmarkService {
         return
       }
     });
+  }
+
+  sortBookmarksBy(sortBy: string, order: string) {
+    const storedFolders = localStorage.getItem('breadcrumb');
+    const currentFolder = JSON.parse(storedFolders!).slice(-1)[0].folder_id;
+
+    return this.http.get<bookmarkArrayResponse>(`http://localhost:5000/api/bookmark/sort?sort=${sortBy}&folder_id=${currentFolder}&order=${order}`).subscribe({
+      next: (res) => {
+        this.bookmark.set(res.data)
+      },
+      error: () => {
+        this.toast.error('Failed to retrive bookmark');
+      }
+    })
   }
 
   getBookmarkThumbnail(image_id: number) {

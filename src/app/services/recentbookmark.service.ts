@@ -123,60 +123,19 @@ export class recentBookmarkService {
   }
 
   sortRecentBookmarkBy(sortType: string, order: string) {
-    switch (sortType) {
-      case "date":
-        this.http.get<RecentbookmarkResponse>(`http://localhost:5000/api/bookmark/recent/sort?sortBy=date&order=${order}`).subscribe({
-          next: (res) => {
-            this.recentBookmark.set(res.data);
-          },
-          error: (error) => {
-            const err = error.error.msg;
-            if (!err) {
-              this.toast.error("Check connection.");
-              return
-            }
-            this.toast.error(err)
-          }
-        })
-        this.filterType = "Date"
-        break;
-
-      case "A-Z":
-        this.http.get<RecentbookmarkResponse>(`http://localhost:5000/api/bookmark/recent/sort?sortBy=alphabet&order=${order}`).subscribe({
-          next: (res) => {
-            this.recentBookmark.set(res.data);
-          },
-          error: (error) => {
-            const err = error.error.msg;
-            if (!err) {
-              this.toast.error("Check connection.");
-              return
-            }
-            this.toast.error(err)
-          }
-        })
-        this.filterType = "A-Z"
-        break;
-
-      case "Z-A":
-        this.http.get<RecentbookmarkResponse>(`http://localhost:5000/api/bookmark/recent/sort?sortBy=alphabet&order=${order}`).subscribe({
-          next: (res) => {
-            this.recentBookmark.set(res.data);
-          },
-          error: (error) => {
-            const err = error.error.msg;
-            if (!err) {
-              this.toast.error("Check connection.");
-              return
-            }
-            this.toast.error(err)
-          }
-        })
-        this.filterType = "Z-A"
-        break;
-      default:
-        break;
-    }
+    this.http.get<RecentbookmarkResponse>(`http://localhost:5000/api/bookmark/recent/sort?sortBy=${sortType}&order=${order}`).subscribe({
+      next: (res) => {
+        this.recentBookmark.set(res.data);
+      },
+      error: (error) => {
+        const err = error.error.msg;
+        if (!err) {
+          this.toast.error("Check connection.");
+          return
+        }
+        this.toast.error(err)
+      }
+    })
   }
 
   deleteRecentBookmark(id: number) {

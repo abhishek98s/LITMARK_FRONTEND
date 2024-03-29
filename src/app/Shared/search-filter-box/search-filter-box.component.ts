@@ -3,6 +3,8 @@ import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchService } from 'src/app/services/search.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
+import { FolderService } from 'src/app/services/folder.service';
+import { BookmarkService } from 'src/app/services/bookmark.service';
 
 @Component({
   selector: 'app-search-filter-box',
@@ -14,7 +16,7 @@ export class SearchFilterBoxComponent implements OnInit {
   @ViewChild('dateDropdown') dropdownElement!: ElementRef;
 
   @Input() searchType!: string;
-  constructor(private recentBookmarkService: recentBookmarkService, public dropDownService: dropDownService, public searchService: SearchService, private searchTextService: SearchTextService) { }
+  constructor(private recentBookmarkService: recentBookmarkService, public dropDownService: dropDownService, public searchService: SearchService, private searchTextService: SearchTextService, private folderService: FolderService, private bookmarkService: BookmarkService) { }
 
   filter: string = 'Date';
   uniqueString = 'date';
@@ -38,10 +40,22 @@ export class SearchFilterBoxComponent implements OnInit {
     event.stopPropagation();
   }
 
-  sortRecentBookmarkBy(sortType: string, order: string) {
-    this.recentBookmarkService.sortRecentBookmarkBy(sortType, order)
-    this.filter = this.recentBookmarkService.getFilterType();
-    this.dropDownService.clearDropdowns();
+  sortBy(sortBy: string, sortType: string, order: string) {
+    switch (this.searchType) {
+      case 'bookmark':
+        this.folderService.sortNestedFolderBy(sortType, order);
+        this.bookmarkService.sortBookmarksBy(sortType, order);
+        this.filter = sortBy;
+        this.dropDownService.clearDropdowns();
+        break;
+      case 'recent-bookmark':
+        this.recentBookmarkService.sortRecentBookmarkBy(sortType, order)
+        this.filter = sortBy;
+        this.dropDownService.clearDropdowns();
+        break;
+      default:
+        break;
+    }
   }
 
   @HostListener('document:click', ['$event'])

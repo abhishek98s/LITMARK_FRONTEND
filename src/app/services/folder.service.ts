@@ -3,6 +3,7 @@ import { Folder, FolderApiBody, NestedFolderArrayResponse, NestedFolderResponse 
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { ToastService } from './toast.service';
+import { BreadCrumb } from '../Model/breadcrums.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,16 +26,7 @@ export class FolderService {
   }
 
   getNestedFolder() {
-    const sortedData: Folder[] = this.nestedFolder().sort((a, b): number => {
-
-      // If both have the same folder property, sort alphabetically by title
-      const titleA = a.name || ''; // Use an empty string if a.title is undefined
-      const titleB = b.name || ''; // Use an empty string if b.title is undefined
-
-      return titleA.localeCompare(titleB);
-    });
-
-    return sortedData;
+    return this.nestedFolder();
   }
 
   postNestedFolder(folderBodyObj: FolderApiBody) {
@@ -71,6 +63,20 @@ export class FolderService {
         this.toast.error('Failed to delete folder');
       }
     });
+  }
+
+  sortNestedFolderBy(sortBy: string, order: string) {
+    const storedFolders = localStorage.getItem('breadcrumb');
+    const currentFolder = JSON.parse(storedFolders!).slice(-1)[0].folder_id;
+
+    return this.http.get<NestedFolderArrayResponse>(`http://localhost:5000/api/folder/sort?sort=${sortBy}&folder_id=${currentFolder}&order=${order}`).subscribe({
+      next: (res) => {
+        this.nestedFolder.set(res.data)
+      },
+      error: () => {
+        this.toast.error('Failed to retrive folder');
+      }
+    })
   }
 
   setParentId(id: number) {
