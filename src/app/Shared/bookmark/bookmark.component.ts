@@ -46,9 +46,7 @@ export class BookmarkComponent implements OnInit {
         this.toast.error('Try again later');
       }
     })
-  }
-
- 
+  } 
 
   toggleBookmarkMenu(event: Event) {
     event.stopPropagation();
@@ -69,6 +67,10 @@ export class BookmarkComponent implements OnInit {
   deleteBookmark(id: number) {
     this.bookmarkService.deleteBookmark(id)
     this.dropDownService.clearDropdowns()
+  }
+
+  onDragStart(event:DragEvent){
+    event.dataTransfer?.setData("bookmark_id", this.bookmark.id.toString())
   }
 
   @HostListener('document:click', ['$event'])

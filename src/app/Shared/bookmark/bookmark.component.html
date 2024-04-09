@@ -1,4 +1,4 @@
-<div class="bookmark rounded-2 pt-0 p-[10px_12px] relative">
+<div draggable="true" (dragstart)="onDragStart($event)" class="bookmark rounded-2 pt-0 p-[10px_12px] relative">
     <div class="relative flex justify-between mb-[8px]">
         <span class="color-primary-850-80 text-label-md-regular">{{bookmark.date}}</span>
 
@@ -13,7 +13,7 @@
     </div>
     <div class="flex gap-[8px]">
         <figure class="website-icon max-w-[60px] w-full h-[60px] rounded-2">
-            <img class="rounded-2 object-cover object-center" src={{bookmark.image_url}} alt="bookmark-img">
+            <img class="rounded-2 object-cover object-center cursor-grab active:cursor-grabbing" src={{bookmark.image_url}} alt="bookmark-img">
         </figure>
         <a *ngIf="!this.dropDownService.isOpen(bookmarkInputBoxString)" class="title line-clamp-3 flex-1 break-words color-primary-900 text-body-md-medium mt-[-4px] hover:underline" target="_blank"
             (click)="handleLinkClick($event)">{{bookmark.title}}</a>

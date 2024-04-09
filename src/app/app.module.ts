@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
-import { JwtModule } from '@auth0/angular-jwt';
+import { BrowserModule } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptor } from './auth.interceptor';
@@ -52,7 +53,8 @@ import { SharedModule } from './Shared/shared.module';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(), 
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DragDropModule,
   ],
   providers: [AuthGuard,
     {

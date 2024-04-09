@@ -6,6 +6,8 @@ import { FolderService } from 'src/app/services/folder.service';
 import { InputElementService } from 'src/app/services/input-element.service';
 import { BreadCrumb } from 'src/app/Model/breadcrums.model';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { BookmarkService } from 'src/app/services/bookmark.service';
 
 @Component({
   selector: 'nested-folder',
@@ -23,7 +25,7 @@ export class NestedFolderComponent implements OnInit {
   renamedFolderString = '';
   renamedFolderName = ''
 
-  constructor(public dropDownService: dropDownService, public folderService: FolderService, private InputElementService: InputElementService, public breadcrumbService: BreadcrumbService) { }
+  constructor(public dropDownService: dropDownService, public folderService: FolderService, private InputElementService: InputElementService, public breadcrumbService: BreadcrumbService, private bookmarkService: BookmarkService) { }
 
   ngOnInit(): void {
     this.uniqueString = this.nestedFolder.id.toString() + this.nestedFolder.name;
@@ -50,6 +52,16 @@ export class NestedFolderComponent implements OnInit {
   deleteNestedFolder(id: number) {
     this.folderService.deleteNestedFolder(id);
     this.dropDownService.clearDropdowns();
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    const bookmarkId = parseInt(event.dataTransfer?.getData('bookmark_id')!);
+    this.bookmarkService.moveBookmark(bookmarkId, this.nestedFolder.id);
   }
 
   @HostListener('document:click', ['$event'])

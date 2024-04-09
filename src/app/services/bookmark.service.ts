@@ -150,6 +150,19 @@ export class BookmarkService {
     });
   }
 
+  moveBookmark(bookmarkId: number, nestedFolderId: number) {
+    this.http.patch(`http://localhost:5000/api/bookmark/${bookmarkId}`, { folder_id: nestedFolderId }).subscribe({
+      next: () => {
+        let removedData = this.bookmark().filter((item) => item.id !== bookmarkId)
+        this.bookmark.set(removedData);
+      },
+      error: () => {
+        this.toast.error('Failed to move bookmark.')
+        return
+      }
+    })
+  }
+
   sortBookmarksBy(sortBy: string, order: string) {
     const storedFolders = localStorage.getItem('breadcrumb');
     const currentFolder = JSON.parse(storedFolders!).slice(-1)[0].folder_id;
