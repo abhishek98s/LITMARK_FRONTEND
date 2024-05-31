@@ -5,6 +5,7 @@ import { dropDownService } from 'src/app/services/dropdown.service';
 import { getCurrentDate } from 'src/app/utils/date';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { bookmarkResponse } from 'src/app/Model/bookmark.model';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-recent-bookmark',
@@ -18,7 +19,7 @@ export class RecentBookmarkComponent implements OnInit {
 
   uniqueString = '';
 
-  constructor(public dataService: recentBookmarkService, public dropDownService: dropDownService, private bookmarkService: BookmarkService) { };
+  constructor(public dataService: recentBookmarkService, public dropDownService: dropDownService, public toast: ToastService, private bookmarkService: BookmarkService) { };
 
   ngOnInit(): void {
     this.recentBookmark.date = getCurrentDate(this.recentBookmark.date);
@@ -27,6 +28,18 @@ export class RecentBookmarkComponent implements OnInit {
       next: (res: bookmarkResponse) => {
         this.recentBookmark.img_url = res.data.url
       },
+    })
+  }
+
+  handleLinkClick(e: Event) {
+    e.preventDefault();
+    this.bookmarkService.onBookmarkClick(this.recentBookmark.id).subscribe({
+      next: () => {
+        window.open(this.recentBookmark.url, '_blank')
+      },
+      error: () => {
+        this.toast.error('Try again later');
+      }
     })
   }
 

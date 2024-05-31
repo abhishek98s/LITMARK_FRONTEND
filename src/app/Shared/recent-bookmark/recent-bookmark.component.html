@@ -17,7 +17,7 @@
             <img class="rounded-2 object-cover object-left rounded-2" src={{recentBookmark.img_url}} alt="bookmark-img">
         </figure>
         <div class="category-title grow-0 max-h-[60px]">
-            <a href={{recentBookmark.url}} target="_blank"
+            <a href={{recentBookmark.url}} target="_blank" (click)="handleLinkClick($event)"
                 class="title line-clamp-3 flex-1 mt-[4px] text-body-md-medium color-primary-1000 ">{{recentBookmark.title}}</a>
         </div>
     </div>
