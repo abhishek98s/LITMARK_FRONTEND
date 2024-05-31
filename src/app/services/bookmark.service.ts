@@ -94,7 +94,7 @@ export class BookmarkService {
 
   // Bookmark
   fetchBookmark(folderId: number) {
-    this.http.get<bookmarkArrayResponse>(`http://localhost:5000/api/bookmark/${folderId}`).pipe(
+    this.http.get<bookmarkArrayResponse>(`https://litmark-backend.vercel.app/api/bookmark/${folderId}`).pipe(
       map((res: bookmarkArrayResponse) => res.data),
     ).subscribe((bookmarks: Bookmark[]) => {
       this.bookmark.set(bookmarks);
@@ -110,7 +110,7 @@ export class BookmarkService {
   }
 
   addBookmark(object: bookmarkApiBody) {
-    this.http.post<bookmarkResponse>(`http://localhost:5000/api/bookmark`, object).subscribe({
+    this.http.post<bookmarkResponse>(`https://litmark-backend.vercel.app/api/bookmark`, object).subscribe({
       next: (res) => {
         this.bookmark().push(res.data)
       },
@@ -122,7 +122,7 @@ export class BookmarkService {
   }
 
   updateBookmarkname(id: number, title: string) {
-    this.http.patch<bookmarkResponse>(`http://localhost:5000/api/bookmark/${id}`, { title }).subscribe({
+    this.http.patch<bookmarkResponse>(`https://litmark-backend.vercel.app/api/bookmark/${id}`, { title }).subscribe({
       next: () => {
         this.bookmark().map((bookmark: Bookmark) => {
           if (bookmark.id === id) {
@@ -138,7 +138,7 @@ export class BookmarkService {
   }
 
   deleteBookmark(id: number) {
-    this.http.delete<bookmarkResponse>(`http://localhost:5000/api/bookmark/${id}`).subscribe({
+    this.http.delete<bookmarkResponse>(`https://litmark-backend.vercel.app/api/bookmark/${id}`).subscribe({
       next: () => {
         let removedData = this.bookmark().filter((item) => item.id !== id)
         this.bookmark.set(removedData);
@@ -151,7 +151,7 @@ export class BookmarkService {
   }
 
   moveBookmark(bookmarkId: number, nestedFolderId: number) {
-    this.http.patch(`http://localhost:5000/api/bookmark/${bookmarkId}`, { folder_id: nestedFolderId }).subscribe({
+    this.http.patch(`https://litmark-backend.vercel.app/api/bookmark/${bookmarkId}`, { folder_id: nestedFolderId }).subscribe({
       next: () => {
         let removedData = this.bookmark().filter((item) => item.id !== bookmarkId)
         this.bookmark.set(removedData);
@@ -167,7 +167,7 @@ export class BookmarkService {
     const storedFolders = localStorage.getItem('breadcrumb');
     const currentFolder = JSON.parse(storedFolders!).slice(-1)[0].folder_id;
 
-    return this.http.get<bookmarkArrayResponse>(`http://localhost:5000/api/bookmark/sort?sort=${sortBy}&folder_id=${currentFolder}&order=${order}`).subscribe({
+    return this.http.get<bookmarkArrayResponse>(`https://litmark-backend.vercel.app/api/bookmark/sort?sort=${sortBy}&folder_id=${currentFolder}&order=${order}`).subscribe({
       next: (res) => {
         this.bookmark.set(res.data)
       },
@@ -178,14 +178,14 @@ export class BookmarkService {
   }
 
   getBookmarkThumbnail(image_id: number) {
-    return this.http.get<bookmarkResponse>(`http://localhost:5000/api/image/${image_id}`);
+    return this.http.get<bookmarkResponse>(`https://litmark-backend.vercel.app/api/image/${image_id}`);
   }
 
   searchBookmarkByTitle(title: string, folder_id: number) {
-    return this.http.get<SearchResponse>(`http://localhost:5000/api/bookmark/search?title=${title}&folder_id=${folder_id}`)
+    return this.http.get<SearchResponse>(`https://litmark-backend.vercel.app/api/bookmark/search?title=${title}&folder_id=${folder_id}`)
   }
 
   onBookmarkClick(bookmarkId: number) {
-    return this.http.patch(`http://localhost:5000/api/bookmark/recent/${bookmarkId}`, {})
+    return this.http.patch(`https://litmark-backend.vercel.app/api/bookmark/recent/${bookmarkId}`, {})
   }
 }

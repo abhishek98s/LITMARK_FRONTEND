@@ -54,5 +54,6 @@ export class BreadcrumbService {
   removeBreadcrumbsAfter(index: number) {
     const arr = this.breadcrumb().slice(0, index + 1);
     this.breadcrumb.set(arr)
+    this.storeBreadCrumbsToLocalStorage();
   }
 }

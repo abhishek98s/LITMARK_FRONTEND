@@ -21,7 +21,7 @@ export class RecentBookmarkComponent implements OnInit {
   constructor(public dataService: recentBookmarkService, public dropDownService: dropDownService, private bookmarkService: BookmarkService) { };
 
   ngOnInit(): void {
-    this.recentBookmark.click_date = getCurrentDate(this.recentBookmark.click_date);
+    this.recentBookmark.date = getCurrentDate(this.recentBookmark.date);
     this.uniqueString = this.recentBookmark.id.toString() + this.recentBookmark.title;
     this.bookmarkService.getBookmarkThumbnail(this.recentBookmark.image_id).subscribe({
       next: (res: bookmarkResponse) => {

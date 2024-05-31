@@ -73,7 +73,7 @@ export class recentBookmarkService {
     }
 
     if (chipCategory == 'All') {
-      this.http.get<RecentbookmarkResponse>('http://localhost:5000/api/bookmark/recent').subscribe({
+      this.http.get<RecentbookmarkResponse>('https://litmark-backend.vercel.app/api/bookmark/recent').subscribe({
         next: (res) => {
           this.recentBookmark.set(res.data)
         },
@@ -100,7 +100,7 @@ export class recentBookmarkService {
 
   // Recent Bookmark
   fetchRecentBookmarks() {
-    this.http.get<RecentbookmarkResponse>('http://localhost:5000/api/bookmark/recent/sort?sortBy=date&order=desc').subscribe({
+    this.http.get<RecentbookmarkResponse>('https://litmark-backend.vercel.app/api/bookmark/recent/sort?sortBy=date&order=desc').subscribe({
       next: (res) => {
         this.recentBookmark.set(res.data);
       },
@@ -120,7 +120,7 @@ export class recentBookmarkService {
   }
 
   sortRecentBookmarkBy(sortType: string, order: string) {
-    this.http.get<RecentbookmarkResponse>(`http://localhost:5000/api/bookmark/recent/sort?sortBy=${sortType}&order=${order}`).subscribe({
+    this.http.get<RecentbookmarkResponse>(`https://litmark-backend.vercel.app/api/bookmark/recent/sort?sortBy=${sortType}&order=${order}`).subscribe({
       next: (res) => {
         this.recentBookmark.set(res.data);
       },
@@ -136,7 +136,7 @@ export class recentBookmarkService {
   }
 
   deleteRecentBookmark(id: number) {
-    this.http.delete<RecentbookmarkResponse>(`http://localhost:5000/api/bookmark/recent/${id}`).subscribe({
+    this.http.delete<RecentbookmarkResponse>(`https://litmark-backend.vercel.app/api/bookmark/recent/${id}`).subscribe({
       next: () => {
         let filterData = this.recentBookmark().filter(item => item.id !== id);
         this.recentBookmark.set(filterData)
@@ -153,6 +153,6 @@ export class recentBookmarkService {
   }
 
   filterByTitle(searchText: string) {
-    return this.http.get<SearchResponse>(`http://localhost:5000/api/bookmark/recent/search?title=${searchText}`);
+    return this.http.get<SearchResponse>(`https://litmark-backend.vercel.app/api/bookmark/recent/search?title=${searchText}`);
   }
 }
