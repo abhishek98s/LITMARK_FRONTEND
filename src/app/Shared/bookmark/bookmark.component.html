@@ -13,7 +13,7 @@
     </div>
     <div class="flex gap-[8px]">
         <figure class="website-icon max-w-[60px] w-full h-[60px] rounded-2">
-            <img class="rounded-2 object-cover object-center cursor-grab active:cursor-grabbing" src={{bookmark.image_url}} alt="bookmark-img">
+            <img class="rounded-2 object-cover object-center cursor-grab active:cursor-grabbing" src={{bookmark.image_url}} alt="bookmark-img" loading="lazy">
         </figure>
         <a *ngIf="!this.dropDownService.isOpen(bookmarkInputBoxString)" class="title line-clamp-3 flex-1 break-words color-primary-900 text-body-md-medium mt-[-4px] hover:underline" target="_blank"
             (click)="handleLinkClick($event)">{{bookmark.title}}</a>
