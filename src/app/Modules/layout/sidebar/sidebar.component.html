@@ -1,5 +1,5 @@
 <aside class="sidebar flex flex-col bg-primary-20 relative">
-    <a routerLink="/">
+    <a routerLink="/" (click)="dropDownService.clearDropdowns()">
         <figure class="w-[140px] p-[8px] md:p-0">
             <img src="assets/image/logo.svg" alt="logo">
         </figure>
@@ -8,7 +8,7 @@
         <div class="flex justify-between items-center pr-[4px]">
             <div class="text-body-xl-bold">Folders</div>
             <app-add-folder [value]="'Add Folder'" [icon]="'add-folder'"
-            (click)="toggleSidebarFolderInputBox($event)"></app-add-folder>
+                (click)="toggleSidebarFolderInputBox($event)"></app-add-folder>
         </div>
         <div #sidebarFodlerSearch class="relative z-10">
             <app-input-box [searchType]="'sidebarfolder'" [inputId]="'input1'" (newItemEvent)="setSearchData($event)"
@@ -38,7 +38,7 @@
                 </form>
             </div>
             <div class="folder mr-[4px]" *ngFor="let folder of getFolders()">
-                <app-sidebarfolder [folder]="folder"></app-sidebarfolder>
+                <app-sidebarfolder [folder]="folder" (click)="dropDownService.clearDropdowns()"></app-sidebarfolder>
             </div>
             <ng-container *ngIf="isFoldersEmpty() && !dropDownService.isOpen(uniqueString)">
                 <app-empty-folder (click)="toggleSidebarFolderInputBox($event)"></app-empty-folder>

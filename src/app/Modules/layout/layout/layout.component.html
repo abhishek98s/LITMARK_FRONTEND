@@ -1,7 +1,7 @@
 <section class="main-wrapper grid grid-cols-2 ">
     <div class="md:block hidden"><app-sidebar></app-sidebar></div>
-    <div class="md:hidden block mobile-sidebar fixed left-0 right-0 z-30" [class.active]="stateService.state.sidebar"
-        [class.inactive]="!stateService.state.sidebar"><app-sidebar></app-sidebar></div>
+    <div class="md:hidden block mobile-sidebar fixed left-0 right-0 z-30" [class.active]="dropDownService.isOpen(uniqueString)"
+        [class.inactive]="!dropDownService.isOpen(uniqueString)"><app-sidebar></app-sidebar></div>
 
     <section>
         <app-navbar></app-navbar>

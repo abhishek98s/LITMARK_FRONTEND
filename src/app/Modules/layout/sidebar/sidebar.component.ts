@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
   uniqueString = 'addfolderinput'
   inputUniqueString = 'sidebar-folder-input-box'
 
-  constructor(public stateService: StateService, public dropDownService: dropDownService, public sidebarFolderService: sidebarFolderService, private searchTextService: SearchTextService, private tost: ToastService, public breadcrumbService:BreadcrumbService) { }
+  constructor(public stateService: StateService, public dropDownService: dropDownService, public sidebarFolderService: sidebarFolderService, private searchTextService: SearchTextService, private tost: ToastService, public breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
     this.sidebarFolderService.fetchFolder();
@@ -45,7 +45,7 @@ export class SidebarComponent implements OnInit {
   }
 
   toggleSidebar() {
-    this.stateService.state.sidebar = !this.stateService.state.sidebar;
+    this.dropDownService.clearDropdowns();
   }
 
   toggleSidebarFolderInputBox(event: Event) {
