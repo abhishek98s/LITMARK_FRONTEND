@@ -1,3 +1,6 @@
+<ng-container *ngIf="stateService.state.loading">
+    <app-loading></app-loading>
+</ng-container>
 <section class="main-wrapper grid grid-cols-2">
     <div class="md:block hidden"><app-sidebar></app-sidebar></div>
     <div class="md:hidden block mobile-sidebar fixed left-0 right-0 z-30"
@@ -6,9 +9,6 @@
     </div>
 
 
-    <ng-container *ngIf="stateService.state.loading">
-        <app-loading></app-loading>
-    </ng-container>
 
     <section>
         <app-navbar></app-navbar>
