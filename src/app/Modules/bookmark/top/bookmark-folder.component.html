@@ -19,7 +19,7 @@
 
     <section class="inside-folder grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-[8px] md:gap-[4%]">
         <ng-container *ngIf="stateService.state.sub_loading">
-            <app-sub-loading class="absolute top-0 right-0 left-0 bottom-0 bg-neutral-0 flex justify-center items-center z-20"></app-sub-loading>
+            <app-sub-loading class="absolute top-0 right-0 left-0 bottom-0 bg-neutral-0 flex justify-center mt-[200px] z-20"></app-sub-loading>
         </ng-container>
         <div #folderInputBox [hidden]="!dropDownService.isOpen(folderUniqueString)" (click)="stopPropagation($event)">
             <app-folder-input-box (folderInputEvent)="onFolderInputEvent($event)"
