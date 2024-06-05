@@ -317,3 +317,21 @@ $colors-list: map-merge(("primary-20": $primary-20,
   background-color: $primary-1000 !important;
   opacity: 0.2 !important;
 }
+
+.loading {
+  animation: leftToRight 1.5s infinite;
+}
+
+@keyframes leftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(200%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}

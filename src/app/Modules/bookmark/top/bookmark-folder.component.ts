@@ -9,6 +9,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { BreadCrumb } from 'src/app/Model/breadcrums.model';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-bookmark-folder',
@@ -29,7 +30,7 @@ export class BookmarkFolderComponent implements OnInit {
   folderUniqueString = 'folder-input-box'
   bookmarkUniqueString = 'bookmark-input-box'
 
-  constructor(private router: Router, private route: ActivatedRoute, public dataService: recentBookmarkService, private sidebarFolderService: sidebarFolderService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, private InputElementService: InputElementService, public breadcrumbService: BreadcrumbService) {
+  constructor(private router: Router, private route: ActivatedRoute, public dataService: recentBookmarkService, private sidebarFolderService: sidebarFolderService, public bookmarkService: BookmarkService, public folderService: FolderService, public dropDownService: dropDownService, private InputElementService: InputElementService, public breadcrumbService: BreadcrumbService, public stateService: StateService) {
     this.dropDownService.clearDropdowns()
   };
 

@@ -20,6 +20,7 @@ export interface FolderApiBody {
 export interface State {
     sidebar: Boolean,
     loading: Boolean,
+    sub_loading: Boolean,
     folderInputbox: Boolean,
     bookmarkInputbox: Boolean
     sidebarFolderkInputbox: Boolean,

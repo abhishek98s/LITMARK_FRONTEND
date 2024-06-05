@@ -1,6 +1,6 @@
 <app-search-filter-box [searchType]="searchType"></app-search-filter-box>
 
-<section class="inside-bookmark-box">
+<section class="inside-bookmark-box relative">
     <header class="flex flex-between-center mt-[48px] mb-[30px]">
         <div class="flex-1">
             <ng-container *ngFor="let breadcrumb of breadcrumbService.getBreadcrumbs(); index as i">
@@ -18,6 +18,9 @@
     </header>
 
     <section class="inside-folder grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 gap-[8px] md:gap-[4%]">
+        <ng-container *ngIf="stateService.state.sub_loading">
+            <app-sub-loading class="absolute top-0 right-0 left-0 bottom-0 bg-neutral-0 flex justify-center items-center z-20"></app-sub-loading>
+        </ng-container>
         <div #folderInputBox [hidden]="!dropDownService.isOpen(folderUniqueString)" (click)="stopPropagation($event)">
             <app-folder-input-box (folderInputEvent)="onFolderInputEvent($event)"
                 [parentFolderId]="routeId"></app-folder-input-box>
@@ -37,5 +40,6 @@
         </div>
     </section>
 
-    <app-empty-bookmark [folderString]="folderUniqueString" [bookmarkString]="bookmarkUniqueString"></app-empty-bookmark>
+    <app-empty-bookmark [folderString]="folderUniqueString"
+        [bookmarkString]="bookmarkUniqueString"></app-empty-bookmark>
 </section>

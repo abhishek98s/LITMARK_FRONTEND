@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { ToastService } from './toast.service';
 import { BreadCrumb } from '../Model/breadcrums.model';
+import { StateService } from './state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,18 @@ export class FolderService {
 
   private nestedFolder: WritableSignal<Folder[]> = signal([])
 
-  constructor(private http: HttpClient, private toast: ToastService) { }
+  constructor(private http: HttpClient, private toast: ToastService, private stateService: StateService) { }
 
   // Nested Folder
   fetchFolder(parentFolderId: number) {
+    this.stateService.state.sub_loading = true;
     this.http.get<NestedFolderArrayResponse>(`https://litmark-backend-2.vercel.app/api/folder/${parentFolderId}`).pipe(
       map((res: NestedFolderArrayResponse) => res.data),
     ).subscribe((folders: Folder[]) => {
       this.nestedFolder.set(folders);
+      setTimeout(() => {
+        this.stateService.state.sub_loading = false;
+      }, 1500)
     });
   }
 
@@ -68,10 +73,14 @@ export class FolderService {
   sortNestedFolderBy(sortBy: string, order: string) {
     const storedFolders = localStorage.getItem('breadcrumb');
     const currentFolder = JSON.parse(storedFolders!).slice(-1)[0].folder_id;
+    this.stateService.state.sub_loading = true;
 
     return this.http.get<NestedFolderArrayResponse>(`https://litmark-backend-2.vercel.app/api/folder/sort?sort=${sortBy}&folder_id=${currentFolder}&order=${order}`).subscribe({
       next: (res) => {
         this.nestedFolder.set(res.data)
+        setTimeout(() => {
+          this.stateService.state.sub_loading = false;
+        }, 1500)
       },
       error: () => {
         this.toast.error('Failed to retrive folder');

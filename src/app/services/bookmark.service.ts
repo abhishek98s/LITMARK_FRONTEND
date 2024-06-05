@@ -95,6 +95,8 @@ export class BookmarkService {
 
   // Bookmark
   fetchBookmark(folderId: number) {
+    this.stateService.state.sub_loading = true;
+
     this.http.get<bookmarkArrayResponse>(`https://litmark-backend-2.vercel.app/api/bookmark/${folderId}`).pipe(
       map((res: bookmarkArrayResponse) => res.data),
     ).subscribe((bookmarks: Bookmark[]) => {
@@ -102,7 +104,8 @@ export class BookmarkService {
 
       setTimeout(() => {
         this.stateService.state.loading = false;
-      }, 3000)
+        this.stateService.state.sub_loading = false;
+      }, 1500)
     });
   }
 
@@ -171,10 +174,14 @@ export class BookmarkService {
   sortBookmarksBy(sortBy: string, order: string) {
     const storedFolders = localStorage.getItem('breadcrumb');
     const currentFolder = JSON.parse(storedFolders!).slice(-1)[0].folder_id;
+    this.stateService.state.sub_loading = true;
 
     return this.http.get<bookmarkArrayResponse>(`https://litmark-backend-2.vercel.app/api/bookmark/sort?sort=${sortBy}&folder_id=${currentFolder}&order=${order}`).subscribe({
       next: (res) => {
         this.bookmark.set(res.data)
+        setTimeout(() => {
+          this.stateService.state.sub_loading = false;
+        }, 1500)
       },
       error: () => {
         this.toast.error('Failed to retrive bookmark');
