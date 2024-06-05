@@ -77,10 +77,6 @@ export class recentBookmarkService {
       this.http.get<RecentbookmarkResponse>('https://litmark-backend-2.vercel.app/api/bookmark/recent').subscribe({
         next: (res) => {
           this.recentBookmark.set(res.data)
-
-          setTimeout(() => {
-            this.stateService.state.loading = false;
-          }, 3000)
         },
         error: (error) => {
           const err = error.error.msg;
@@ -131,10 +127,6 @@ export class recentBookmarkService {
     this.http.get<RecentbookmarkResponse>(`https://litmark-backend-2.vercel.app/api/bookmark/recent/sort?sortBy=${sortType}&order=${order}`).subscribe({
       next: (res) => {
         this.recentBookmark.set(res.data);
-
-        setTimeout(() => {
-          this.stateService.state.loading = false;
-        }, 3000)
       },
       error: (error) => {
         const err = error.error.msg;
@@ -152,10 +144,6 @@ export class recentBookmarkService {
       next: () => {
         let filterData = this.recentBookmark().filter(item => item.id !== id);
         this.recentBookmark.set(filterData)
-
-        setTimeout(() => {
-          this.stateService.state.loading = false;
-        }, 3000)
       },
       error: (error) => {
         const err = error.error.msg;
