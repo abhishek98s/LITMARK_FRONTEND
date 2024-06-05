@@ -106,10 +106,12 @@ export class recentBookmarkService {
     this.http.get<RecentbookmarkResponse>('https://litmark-backend-2.vercel.app/api/bookmark/recent/sort?sortBy=date&order=desc').subscribe({
       next: (res) => {
         this.recentBookmark.set(res.data);
-        setTimeout(() => {
-          this.stateService.state.loading = false;
-          this.stateService.state.sub_loading = false;
-        }, 1500)
+        if(res.data.length){
+          setTimeout(() => {
+            this.stateService.state.loading = false;
+            this.stateService.state.sub_loading = false;
+          }, 1500)
+        }
       },
       error: (error) => {
         const err = error.error.msg;
