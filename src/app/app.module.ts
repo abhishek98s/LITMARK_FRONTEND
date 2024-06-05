@@ -23,6 +23,7 @@ import { SettingComponent } from './Modules/settings/setting/setting.component';
 import { BookmarkModule } from './Modules/bookmark/bookmark.module';
 
 import { SharedModule } from './Shared/shared.module';
+import { LoadingComponent } from './Modules/layout/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SharedModule } from './Shared/shared.module';
     TopPageComponent,
     LoginComponent,
     LayoutComponent,
+    LoadingComponent,
     RegisterComponent,
     SettingComponent,
   ],

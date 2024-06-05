@@ -9,6 +9,7 @@ export class StateService {
 
   public state = <State>{
     sidebar: false,
+    loading: true,
     folderInputbox: false,
     bookmarkInputbox: false,
     sidebarFolderkInputbox: false,

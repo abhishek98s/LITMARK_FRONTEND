@@ -3,6 +3,7 @@ import { Bookmark, bookmarkApiBody, bookmarkResponse, bookmarkArrayResponse, Sea
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { ToastService } from './toast.service';
+import { StateService } from './state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -90,7 +91,7 @@ export class BookmarkService {
     }
   ])
 
-  constructor(private http: HttpClient, private toast: ToastService) { }
+  constructor(private http: HttpClient, private toast: ToastService, private stateService: StateService) { }
 
   // Bookmark
   fetchBookmark(folderId: number) {
@@ -98,6 +99,9 @@ export class BookmarkService {
       map((res: bookmarkArrayResponse) => res.data),
     ).subscribe((bookmarks: Bookmark[]) => {
       this.bookmark.set(bookmarks);
+      setTimeout(() => {
+        this.stateService.state.loading = false;
+      }, 3000)
     });
   }
 
@@ -113,6 +117,9 @@ export class BookmarkService {
     this.http.post<bookmarkResponse>(`https://litmark-backend-2.vercel.app/api/bookmark`, object).subscribe({
       next: (res) => {
         this.bookmark().push(res.data)
+        setTimeout(() => {
+          this.stateService.state.loading = false;
+        }, 3000)
       },
       error: () => {
         this.toast.error('Failed to add bookmark.')
@@ -129,6 +136,9 @@ export class BookmarkService {
             bookmark.title = title
           }
         })
+        setTimeout(() => {
+          this.stateService.state.loading = false;
+        }, 3000)
       },
       error: () => {
         this.toast.error('Failed to update bookmark.')

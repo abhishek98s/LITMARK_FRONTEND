@@ -13,6 +13,7 @@ import { dropDownService } from 'src/app/services/dropdown.service';
 export class LayoutComponent {
   title = 'Litmark';
   uniqueString = 'mobileSidebarDolderUniquestring'
+  loadingString = 'loading-string';
 
   constructor(public dataService: recentBookmarkService, public stateService: StateService, public dropDownService: dropDownService,  private titleService: Title,
     private metaTagService: Meta) { }
