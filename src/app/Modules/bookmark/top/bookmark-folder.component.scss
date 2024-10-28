@@ -2,6 +2,7 @@
 
 .inside-bookmark-box {
     min-height: 80vh;
+
     .inside-folder {
         row-gap: 16px;
         margin-bottom: 8px;
@@ -9,6 +10,27 @@
         @media screen and (min-width: 768px) {
             margin-bottom: 0;
             row-gap: 32px;
+        }
+    }
+
+    .fade-out {
+        animation: fade-up-down 3.5s;
+    }
+
+    @keyframes fade-up-down {
+        0% {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        75% {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 }
