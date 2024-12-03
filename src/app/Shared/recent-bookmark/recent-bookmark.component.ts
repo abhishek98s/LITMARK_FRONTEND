@@ -24,11 +24,6 @@ export class RecentBookmarkComponent implements OnInit {
   ngOnInit(): void {
     this.recentBookmark.date = getCurrentDate(this.recentBookmark.date);
     this.uniqueString = this.recentBookmark.id.toString() + this.recentBookmark.title;
-    this.bookmarkService.getBookmarkThumbnail(this.recentBookmark.image_id).subscribe({
-      next: (res: bookmarkResponse) => {
-        this.recentBookmark.img_url = res.data.url
-      },
-    })
   }
 
   handleLinkClick(e: Event) {

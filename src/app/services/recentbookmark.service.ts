@@ -9,6 +9,7 @@ import { distinctUntilKeyChanged } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from './toast.service';
 import { StateService } from './state.service';
+import { APP_URL } from '../utils/app.config';
 
 @Injectable({
   providedIn: 'root'
@@ -74,7 +75,7 @@ export class recentBookmarkService {
     }
 
     if (chipCategory == 'All') {
-      this.http.get<RecentbookmarkResponse>('https://litmark-backend-2.vercel.app/api/bookmark/recent').subscribe({
+      this.http.get<RecentbookmarkResponse>(`${APP_URL}/bookmark/recent`).subscribe({
         next: (res) => {
           this.recentBookmark.set(res.data)
         },
@@ -103,13 +104,13 @@ export class recentBookmarkService {
   fetchRecentBookmarks() {
     this.stateService.state.sub_loading = true;
 
-    this.http.get<RecentbookmarkResponse>('https://litmark-backend-2.vercel.app/api/bookmark/recent/sort?sortBy=date&order=desc').subscribe({
+    this.http.get<RecentbookmarkResponse>(`${APP_URL}/bookmark/recent/sort?sortBy=date&order=desc`).subscribe({
       next: (res) => {
         this.recentBookmark.set(res.data);
         setTimeout(() => {
           this.stateService.state.loading = false;
           this.stateService.state.sub_loading = false;
-        }, 1500)
+        }, 1000)
       },
       error: (error) => {
         // const err = error.error.msg;
@@ -132,12 +133,12 @@ export class recentBookmarkService {
   sortRecentBookmarkBy(sortType: string, order: string) {
     this.stateService.state.sub_loading = true;
 
-    this.http.get<RecentbookmarkResponse>(`https://litmark-backend-2.vercel.app/api/bookmark/recent/sort?sortBy=${sortType}&order=${order}`).subscribe({
+    this.http.get<RecentbookmarkResponse>(`${APP_URL}/bookmark/recent/sort?sortBy=${sortType}&order=${order}`).subscribe({
       next: (res) => {
         this.recentBookmark.set(res.data);
         setTimeout(() => {
           this.stateService.state.sub_loading = false;
-        }, 1500)
+        }, 1000)
       },
       error: (error) => {
         const err = error.error.msg;
@@ -151,7 +152,7 @@ export class recentBookmarkService {
   }
 
   deleteRecentBookmark(id: number) {
-    this.http.delete<RecentbookmarkResponse>(`https://litmark-backend-2.vercel.app/api/bookmark/recent/${id}`).subscribe({
+    this.http.delete<RecentbookmarkResponse>(`${APP_URL}/bookmark/recent/${id}`).subscribe({
       next: () => {
         let filterData = this.recentBookmark().filter(item => item.id !== id);
         this.recentBookmark.set(filterData)
@@ -168,6 +169,6 @@ export class recentBookmarkService {
   }
 
   filterByTitle(searchText: string) {
-    return this.http.get<SearchResponse>(`https://litmark-backend-2.vercel.app/api/bookmark/recent/search?title=${searchText}`);
+    return this.http.get<SearchResponse>(`${APP_URL}/bookmark/recent/search?title=${searchText}`);
   }
 }

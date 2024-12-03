@@ -29,7 +29,6 @@ export class FolderComponent implements OnInit {
   ngOnInit(): void {
     this.uniqueString = (this.folder.name + this.folder.id).toString()
     this.renamedFormString = (this.renamedFolderName + this.folder.id).toString()
-    this.sidebarFolderService.getFolderImage(this.folder.image_id!).subscribe((image: any) => this.folder.img = image.data.url)
   }
 
   stopPropagation(event: Event) {

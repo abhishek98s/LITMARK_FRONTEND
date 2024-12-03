@@ -4,6 +4,7 @@ import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from './toast.service';
 import { dropDownService } from './dropdown.service';
+import { APP_URL } from '../utils/app.config';
 
 
 interface UpdateFolderBody {
@@ -24,7 +25,7 @@ export class sidebarFolderService {
   // Folders
 
   fetchFolder() {
-    this.http.get<SidebarFolderArrayResponse>('https://litmark-backend-2.vercel.app/api/folder').pipe(
+    this.http.get<SidebarFolderArrayResponse>(`${APP_URL}/folder`).pipe(
       map((res: SidebarFolderArrayResponse) => res.data),
     ).subscribe((Folders: SidebarFolder[]) => {
       this.sidebarFolders.set(Folders);
@@ -36,7 +37,7 @@ export class sidebarFolderService {
   }
 
   postSidebarFolder(body: SidebarFolderApiBody) {
-    this.http.post<SidebarFolderResponse>('https://litmark-backend-2.vercel.app/api/folder', body).subscribe({
+    this.http.post<SidebarFolderResponse>(`${APP_URL}/folder`, body).subscribe({
       next: (res: SidebarFolderResponse) => {
         const sidebarFolder = res.data;
         this.sidebarFolders().push(sidebarFolder);
@@ -55,7 +56,7 @@ export class sidebarFolderService {
 
 
   updateFolder(id: number, option: UpdateFolderBody) {
-    this.http.patch<SidebarFolderArrayResponse>(`https://litmark-backend-2.vercel.app/api/folder/${id}`, option).subscribe({
+    this.http.patch<SidebarFolderArrayResponse>(`${APP_URL}/folder/${id}`, option).subscribe({
       next: () => {
         this.sidebarFolders().map((sidebarFolder: SidebarFolder) => {
           if (id === sidebarFolder.id) sidebarFolder.name = option.name
@@ -75,7 +76,7 @@ export class sidebarFolderService {
 
 
   deleteFolder(id: number) {
-    this.http.delete<SidebarFolderArrayResponse>(`https://litmark-backend-2.vercel.app/api/folder/${id}`).subscribe({
+    this.http.delete<SidebarFolderArrayResponse>(`${APP_URL}/folder/${id}`).subscribe({
       next: () => {
         let removedData = this.sidebarFolders().filter((sidebarFolder: SidebarFolder) => sidebarFolder.id !== id)
         this.sidebarFolders.set(removedData)
@@ -94,7 +95,7 @@ export class sidebarFolderService {
   }
 
   getFolderImage(id: number) {
-    return this.http.get(`https://litmark-backend-2.vercel.app/api/image/${id}`);
+    return this.http.get(`${APP_URL}/api/image/${id}`);
   }
 
   populateSearchResult(searchText: string) {
