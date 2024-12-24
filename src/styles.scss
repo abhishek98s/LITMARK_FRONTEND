@@ -322,6 +322,10 @@ $colors-list: map-merge(("primary-20": $primary-20,
   animation: leftToRight 1.5s infinite;
 }
 
+.font-sora {
+  font-family: "Sora", serif;
+}
+
 @keyframes leftToRight {
   0% {
     transform: translateX(-100%);

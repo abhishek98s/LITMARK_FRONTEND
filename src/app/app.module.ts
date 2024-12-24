@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
@@ -15,7 +15,7 @@ import { AuthGuard } from './guard/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TopPageComponent } from './Modules/home/top-page/top-page.component';
+import { RecentBoomkarkPageComponent } from './Modules/home/recent-boomkark-page/recent-boomkark-page.component';
 import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
@@ -28,7 +28,7 @@ import { LoadingComponent } from './Modules/layout/loading/loading.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TopPageComponent,
+    RecentBoomkarkPageComponent,
     LoginComponent,
     LayoutComponent,
     LoadingComponent,
@@ -40,8 +40,8 @@ import { LoadingComponent } from './Modules/layout/loading/loading.component';
       config: {
         tokenGetter: () => localStorage.getItem('token'), // Provide a function to retrieve the token from storage
         allowedDomains: ['http://localhost:4200/'], // Specify the domains where the token should be sent
-        disallowedRoutes: ['example.com/auth'] // Specify routes that don't need the token
-      }
+        disallowedRoutes: ['example.com/auth'], // Specify routes that don't need the token
+      },
     }),
     BrowserModule,
     AppRoutingModule,
@@ -53,17 +53,18 @@ import { LoadingComponent } from './Modules/layout/loading/loading.component';
     SharedModule,
     BookmarkModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    ToastrModule.forRoot(), 
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     DragDropModule,
   ],
-  providers: [AuthGuard,
+  providers: [
+    AuthGuard,
+    provideHttpClient(),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

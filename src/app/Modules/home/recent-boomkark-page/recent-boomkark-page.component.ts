@@ -7,15 +7,20 @@ import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-top-page',
-  templateUrl: './top-page.component.html',
-  styleUrls: ['./top-page.component.scss'],
+  templateUrl: './recent-boomkark-page.component.html',
+  styleUrls: ['./recent-boomkark-page.component.scss'],
 })
-export class TopPageComponent implements OnInit, AfterViewInit {
+export class RecentBoomkarkPageComponent implements OnInit, AfterViewInit {
   recentBookmark!: Recentbookmark[];
 
-  searchType = 'recent-bookmark'
+  searchType = 'recent-bookmark';
 
-  constructor(public recentBookmarkService: recentBookmarkService, private sidebarFolderService: sidebarFolderService, private breadcrumbService: BreadcrumbService, public stateService: StateService) { }
+  constructor(
+    public recentBookmarkService: recentBookmarkService,
+    private sidebarFolderService: sidebarFolderService,
+    private breadcrumbService: BreadcrumbService,
+    public stateService: StateService
+  ) {}
 
   ngOnInit(): void {
     this.recentBookmarkService.fetchRecentBookmarks();
@@ -24,7 +29,7 @@ export class TopPageComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.sidebarFolderService.clearActiveFolder()
+    this.sidebarFolderService.clearActiveFolder();
   }
 
   filterRecentBookmarkCategory(category: string) {
