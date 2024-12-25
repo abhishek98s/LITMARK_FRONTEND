@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { Router, RouterModule } from '@angular/router';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +14,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { JwtModule } from '@auth0/angular-jwt';
 
 import { ToastrModule } from 'ngx-toastr';
-import { AuthInterceptor } from './auth.interceptor';
+import { loggingInterceptor } from './auth.interceptor';
 import { AuthGuard } from './guard/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -59,12 +63,7 @@ import { LoadingComponent } from './Modules/layout/loading/loading.component';
   ],
   providers: [
     AuthGuard,
-    provideHttpClient(),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+    provideHttpClient(withInterceptors([loggingInterceptor])),
   ],
   bootstrap: [AppComponent],
 })
