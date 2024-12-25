@@ -1,43 +1,71 @@
-<section class="register-wrapper grid place-items-center w-[100vw] h-[100vh]">
-    <div
-        class="form-box max-w-[400px] w-full mx-auto mt-auto rounded-2 px-[16px] pt-[52px] pb-[16px] bg-neutral-0 md:m-auto md:p-[48px_24px] md:pb-[24px]">
-        <figure class="w-[164px] mb-[56px]">
-            <img src="assets/image/logo.svg">
-        </figure>
+<section class="register-wrapper w-[100vw] h-[100vh]">
 
-        <header class="mb-[32px] color-primary-900">
-            <h1 class="mb-[8px] text-title-md-bold">Register</h1>
-            <div class="text-body-md-regular">Register for free and start exploring today.</div>
-        </header>
+    <div class="flex max-md:flex-col max-md:justify-end h-[100vh]">
+        <div
+            class="left-block max-w-[50%] w-full h-[100vh] pl-[4%] pt-[22vh] max-md:h-full  max-md:max-w-none max-md:pt-[10vh] max-md:px-[16px]">
+            <div class="max-w-[500px] w-full">
+                <div class="font-bold font-sora text-[45px] color-primary-800 leading-[1.2] max-md:text-[36px]">
+                    Ready to take control of your bookmarks? 
+                </div>
 
-        <form class="form-wrapper" [formGroup]="registerForm" (ngSubmit)="submitForm()">
-            <div class="flex flex-col mb-[20px]">
-                <label  class="text-body-md-bold color-primary-900 mb-[8px]">Username</label>
-                <input  class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="John Weasly" formControlName="username">
-            </div>
-            <div class="flex flex-col mb-[20px]">
-                <label  class="text-body-md-bold color-primary-900 mb-[8px]">Email</label>
-                <input  class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com" formControlName="email">
-            </div>
-            <div class="flex flex-col mb-[20px]">
-                <label  class="text-body-md-bold color-primary-900 mb-[8px]">Password</label>
-                <div class="relative">
-                    <input  class="p-[20px] rounded-2 h-[56px] text-body-md-regular w-full pr-[10px]" type="password" formControlName="password">
-                    <div class="absolute top-[50%] right-0 translate-y-[-50%] p-[10px] cursor-pointer">
-                        <figure class="w-[24px] h-[24px] bg-neutral-0 cursor-pointer">
-                            <img src="assets/icon/eye.svg">
-                        </figure>
-                    </div>
+                <div class="description leading-[1.2] color-primary-850 text-[20px] mt-[8px] max-md:text-[18px]">
+                    Get Started today and discover a better way to organize your online life.
+                </div>
+
+                <figure class="max-w-[306px] w-full mt-[24px] max-md:hidden">
+                    <img src="/assets/image/customer-love.png" alt="customer-love">
+                </figure>
+
+                <div
+                    class="cta mt-[48px] rounded-[12px] text-[20px] max-w-[250px] w-full text-white font-bold p-[20px_28px] bg-primary-1000 max-md:hidden">
+                    Register now for free
                 </div>
             </div>
+        </div>
+        <div class="right-block flex-1 h-[100vh] grid place-items-center bg-white max-md:h-auto max-md:flex-none">
+            <div
+                class="form-box max-w-[400px] w-full mx-auto mt-auto rounded-2 px-[16px] pt-[52px] pb-[16px] bg-neutral-0 md:m-auto md:p-[48px_24px] md:pb-[24px] max-md:max-w-none">
 
-            <div class="buttons flex gap-[24px]">
-                <button type="button" routerLink="/login"
-                    class="secondary-btn color-primary-800 rounded-2 w-full p-[12px] text-body-md-bold text-center">Login</button>
-                <button type="submit"
-                    class="bg-primary-800 color-neutral-0 rounded-2 w-full p-[12px] text-body-md-bold text-center cursor-pointer" >Register</button>
+                <header class="mb-[32px] color-primary-900">
+                    <h1 class="mb-[8px] text-title-md-bold color-primary-800">Register</h1>
+                    <div class="text-body-md-regular color-primary-850">Register for free and start exploring today.
+                    </div>
+                </header>
+
+                <form class="form-wrapper" [formGroup]="registerForm" (ngSubmit)="submitForm()">
+                    <div class="flex flex-col mb-[20px]">
+                        <label class="text-body-md-regular color-primary-850 mb-[8px]">Username</label>
+                        <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="John Weasly"
+                            formControlName="username">
+                    </div>
+                    <div class="flex flex-col mb-[20px]">
+                        <label class="text-body-md-regular color-primary-850 mb-[8px]">Email</label>
+                        <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com"
+                            formControlName="email">
+                    </div>
+                    <div class="flex flex-col mb-[20px]">
+                        <label class="text-body-md-regular color-primary-850 mb-[8px]">Password</label>
+                        <div class="relative">
+                            <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular w-full pr-[10px]"
+                                type="password" formControlName="password">
+                            <div class="absolute top-[50%] right-0 translate-y-[-50%] p-[10px] cursor-pointer"
+                                (click)="this.togglePassword()">
+                                <figure class="w-[24px] h-[24px] bg-neutral-0 cursor-pointer">
+                                    <img [src]="isPasswordShown ? 'assets/icon/eye.svg': 'assets/icon/eye-close.svg'">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="buttons flex gap-[24px]">
+                        <button type="button" routerLink="/login"
+                            class="secondary-btn color-primary-800 rounded-2 w-full p-[12px] text-body-md-bold text-center">Login</button>
+                        <button type="submit"
+                            class="bg-primary-800 color-neutral-0 rounded-2 w-full p-[12px] text-body-md-bold text-center cursor-pointer">Register</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </section>
 

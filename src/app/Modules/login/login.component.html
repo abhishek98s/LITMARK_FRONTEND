@@ -1,31 +1,33 @@
 <section class="login-wrapper w-[100vw] h-[100vh]">
-    <div class="flex">
-        <div class="left-block max-w-[50%] w-full h-[100vh] pl-[4%] pt-[22vh]">
+    <div class="flex max-md:flex-col max-md:justify-end h-[100vh]">
+        <div
+            class="left-block max-w-[50%] w-full h-[100vh] pl-[4%] pt-[22vh] max-md:h-full  max-md:max-w-none max-md:pt-[10vh] max-md:px-[16px]">
             <div class="max-w-[500px] w-full">
-                <div class="font-bold font-sora text-[40px] leading-[1.2]">
+                <div class="font-bold font-sora text-[45px] leading-[1.2] max-md:text-[36px]">
                     Organize Your
                     <span class="color-primary-700 font-sora">Bookmarks</span> with <span
                         class="color-primary-700 font-sora">Ease</span>
                 </div>
 
-                <div class="description leading-[1.2] color-primary-850 text-[20px] mt-[8px]">Save time, reduce clutter,
+                <div class="description leading-[1.2] color-primary-850 text-[20px] mt-[8px] max-md:text-[18px]">Save
+                    time, reduce clutter,
                     and access your bookmarks
                     anywhere 
                 </div>
 
-                <figure class="max-w-[306px] w-full mt-[24px]">
+                <figure class="max-w-[306px] w-full mt-[24px] max-md:hidden">
                     <img src="/assets/image/customer-love.png" alt="customer-love">
                 </figure>
 
                 <div
-                    class="cta mt-[48px] rounded-[12px] text-[20px] max-w-[230px] w-full text-white font-bold p-[20px_28px] bg-primary-1000">
+                    class="cta mt-[48px] rounded-[12px] text-[20px] max-w-[230px] w-full text-white font-bold p-[20px_28px] bg-primary-1000 max-md:hidden">
                     Get started for free
                 </div>
             </div>
         </div>
-        <div class="right-block flex-1 h-[100vh] grid place-items-center bg-white">
+        <div class="right-block flex-1 h-[100vh] grid place-items-center bg-white max-md:h-auto max-md:flex-none">
             <div
-                class="form-box max-w-[400px] w-full mx-auto mt-auto rounded-2 px-[16px] pt-[52px] pb-[16px] bg-neutral-0 md:m-auto md:p-[48px_24px] md:pb-[24px]">
+                class="form-box max-w-[400px] w-full mx-auto mt-auto rounded-2 px-[16px] pt-[52px] pb-[16px] bg-neutral-0 md:m-auto md:p-[48px_24px] md:pb-[24px] max-md:max-w-none max-md:pb-[32px]">
 
                 <header class="mb-[32px] color-primary-900">
                     <h1 class="mb-[8px] text-title-md-bold color-primary-800">Login</h1>
@@ -42,10 +44,12 @@
                         <label class="text-body-md-regular color-primary-850 mb-[8px]">Password</label>
                         <div class="relative">
                             <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular w-full pr-[10px]"
-                                type="password" formControlName="password">
-                            <div class="absolute top-[50%] right-0 translate-y-[-50%] p-[10px] cursor-pointer">
+                                [type]="showPassword? 'text':'password'" formControlName="password">
+                            <div class="absolute top-[50%] right-0 translate-y-[-50%] p-[10px] cursor-pointer"
+                                (click)="this.togglePassword()">
+
                                 <figure class="w-[24px] h-[24px] bg-neutral-0 cursor-pointer">
-                                    <img src="assets/icon/eye.svg">
+                                    <img [src]="showPassword ? 'assets/icon/eye.svg': 'assets/icon/eye-close.svg'">
                                 </figure>
                             </div>
                         </div>
