@@ -27,7 +27,7 @@
         </div>
         <div class="right-block flex-1 h-[100vh] grid place-items-center bg-white max-md:h-auto max-md:flex-none">
             <div
-                class="form-box max-w-[400px] w-full mx-auto mt-auto rounded-2 px-[16px] pt-[52px] pb-[16px] bg-neutral-0 md:m-auto md:p-[48px_24px] md:pb-[24px] max-md:max-w-none max-md:pb-[32px]">
+                class="form-box max-w-[400px] w-full mx-auto mt-auto rounded-2 px-[16px] pt-[52px] pb-[16px] bg-neutral-0 md:m-auto md:p-[48px_24px] md:pb-[24px] max-md:max-w-none max-md:pb-[72px]">
 
                 <header class="mb-[32px] color-primary-900">
                     <h1 class="mb-[8px] text-title-md-bold color-primary-800">Login</h1>
@@ -37,7 +37,7 @@
                 <form class="form-wrapper" [formGroup]="loginForm" (ngSubmit)="submitForm()">
                     <div class="flex flex-col mb-[20px]">
                         <label class="text-body-md-regular color-primary-850 mb-[8px]">Email</label>
-                        <input class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com"
+                        <input type="email" class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com"
                             formControlName="email">
                     </div>
                     <div class="flex flex-col mb-[20px]">
