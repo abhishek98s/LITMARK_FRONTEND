@@ -12,7 +12,7 @@ export class AuthGuard {
     canActivate(): any {
         const token = localStorage.getItem('token');
         if (!token) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/']);
             return false;
         }
 
@@ -23,7 +23,7 @@ export class AuthGuard {
             }
             return true
         } catch (error) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/']);
         }
 
     }

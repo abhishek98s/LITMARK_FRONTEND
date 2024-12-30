@@ -1,0 +1,29 @@
+main {
+    background: linear-gradient(180deg, #ffffff00 44.78%, #ffffff 100%),
+        linear-gradient(180deg, #efeff5d9 0%, #ffffffd9 90%),
+        url('../../../assets/image/grid-pattern.png');
+
+
+    .yellow-line {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            background-image: url('../../../assets/image/line1.svg');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            height: 15px;
+            width: 108%;
+            bottom: -4px;
+            margin-left: -13px;
+        }
+
+        &.line-2::before {
+            background-image: url('../../../assets/image/line2.svg');
+            margin-left: -6px;
+        }
+    }
+}
