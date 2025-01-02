@@ -10,28 +10,45 @@ import { SettingComponent } from './Modules/settings/setting/setting.component';
 
 import { AuthGuard } from './guard/auth.guard';
 import { loggedInGuard } from './guard/logged-in.guard';
+import { LandingComponent } from './Modules/landing/landing.component';
 
 const routes: Routes = [
   {
-    path: '', component: LayoutComponent,
-    children: [
-      { path: '', component: RecentBoomkarkPageComponent },
-      { path: 'bookmark/:id', loadChildren: () => import('./Modules/bookmark/bookmark.module').then(m => m.BookmarkModule) },
-    ], canActivate: [AuthGuard]
+    path: '',
+    component: LandingComponent,
   },
   {
-    path: 'setting', component: LayoutComponent,
+    path: 'bookmark',
+    component: LayoutComponent,
     children: [
-      { path: '', component: SettingComponent },
-    ], canActivate: [AuthGuard]
+      { path: 'recent', component: RecentBoomkarkPageComponent },
+      {
+        path: ':id',
+        loadChildren: () =>
+          import('./Modules/bookmark/bookmark.module').then(
+            (m) => m.BookmarkModule
+          ),
+      },
+    ],
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'setting',
+    component: LayoutComponent,
+    children: [{ path: '', component: SettingComponent }],
+    canActivate: [AuthGuard],
   },
   { path: 'login', component: LoginComponent, canActivate: [loggedInGuard] },
-  { path: 'register', component: RegisterComponent, canActivate: [loggedInGuard] },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [loggedInGuard],
+  },
   { path: '**', redirectTo: '/login' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
