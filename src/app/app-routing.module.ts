@@ -21,6 +21,7 @@ const routes: Routes = [
     path: 'bookmark',
     component: LayoutComponent,
     children: [
+      { path: '', redirectTo: 'recent', pathMatch: 'full' },
       { path: 'recent', component: RecentBoomkarkPageComponent },
       {
         path: ':id',
@@ -29,6 +30,7 @@ const routes: Routes = [
             (m) => m.BookmarkModule
           ),
       },
+      { path: '**', redirectTo: 'recent' },
     ],
     canActivate: [AuthGuard],
   },

@@ -44,7 +44,7 @@ export class sidebarFolderService {
 
       },
       error: (error) => {
-        const err = error.error.msg;
+        const err = error.error.message;
         if (!err) {
           this.toast.error("Check connection.");
           return
@@ -64,7 +64,7 @@ export class sidebarFolderService {
         this.toast.success('Rename folder sucessfully.')
       },
       error: (error) => {
-        const err = error.error.msg;
+        const err = error.error.message;
         if (!err) {
           this.toast.error("Check connection.");
           return
@@ -84,7 +84,7 @@ export class sidebarFolderService {
         this.toast.success('Folder deleted sucessfully.')
       },
       error: (error) => {
-        const err = error.error.msg;
+        const err = error.error.message;
         if (!err) {
           this.toast.error("Check connection.");
           return
