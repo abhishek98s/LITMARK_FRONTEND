@@ -23,12 +23,13 @@ export class loggedInGuard {
 
     try {
       if (
-        !this.jwtHelper.isTokenExpired(token) &&
-        /(login|register)/.test(url)
+        !this.jwtHelper.isTokenExpired(token) ||
+        /(login|register|)/.test(url)
       ) {
         throw new Error();
+      } else {
+        this.router.navigate(['/login']);
       }
-      this.router.navigate(['/login']);
       return false;
     } catch (error) {
       this.router.navigate(['bookmark/recent']);
