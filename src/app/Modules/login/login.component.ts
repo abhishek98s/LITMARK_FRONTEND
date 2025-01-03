@@ -32,11 +32,12 @@ export class LoginComponent {
       next: (res) => {
         if (res.data) {
           localStorage.setItem('token', res.data)
-          this.router.navigate(['/']);
+          this.router.navigate(['/bookmark/recent']);
         }
       },
       error: (error) => {
-        const err = error.error.msg;
+        console.log(error);
+        const err = error.error.message;
         if (!err) {
           this.toast.error("Internet Unavailable");
           return;

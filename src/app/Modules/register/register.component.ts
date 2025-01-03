@@ -39,7 +39,7 @@ export class RegisterComponent {
         this.toast.success('You are registered.');
       },
       error: (error) => {
-        const err = error.error.msg;
+        const err = error.error.message;
         if (!err) {
           this.toast.error('Check connection.');
           return;

@@ -80,7 +80,7 @@ export class recentBookmarkService {
           this.recentBookmark.set(res.data)
         },
         error: (error) => {
-          const err = error.error.msg;
+          const err = error.error.message;
           if (!err) {
             this.toast.error("Check connection.");
             return
@@ -113,7 +113,7 @@ export class recentBookmarkService {
         }, 1000)
       },
       error: (error) => {
-        // const err = error.error.msg;
+        // const err = error.error.message;
         // if (!err) {
         //   this.toast.error("Check connection.");
         //   return
@@ -141,7 +141,7 @@ export class recentBookmarkService {
         }, 1000)
       },
       error: (error) => {
-        const err = error.error.msg;
+        const err = error.error.message;
         if (!err) {
           this.toast.error("Check connection.");
           return
@@ -158,7 +158,7 @@ export class recentBookmarkService {
         this.recentBookmark.set(filterData)
       },
       error: (error) => {
-        const err = error.error.msg;
+        const err = error.error.message;
         if (!err) {
           this.toast.error("Check connection.");
           return

@@ -4,24 +4,34 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class loggedInGuard {
-
-  constructor(private location: Location, private jwtHelper: JwtHelperService, private router: Router) { }
-
+  constructor(
+    private location: Location,
+    private jwtHelper: JwtHelperService,
+    private router: Router
+  ) {}
 
   canActivate(): any {
     const token = localStorage.getItem('token');
     const url = this.location.path();
 
+    if (!token) {
+      return true;
+    }
+
     try {
-      if (!this.jwtHelper.isTokenExpired(token) && /(login|register)/.test(url)) {
-        this.router.navigate(['/']);
+      if (
+        !this.jwtHelper.isTokenExpired(token) &&
+        /(login|register)/.test(url)
+      ) {
+        throw new Error();
       }
-    } catch (error) {
-      localStorage.clear();
       this.router.navigate(['/login']);
+      return false;
+    } catch (error) {
+      this.router.navigate(['bookmark/recent']);
     }
   }
 }
