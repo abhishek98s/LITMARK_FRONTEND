@@ -1,0 +1,5 @@
+.accordion-content {
+    padding: 16px;
+    overflow: hidden;
+    transition: max-height 400ms ease-in-out;
+}

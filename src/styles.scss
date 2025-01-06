@@ -139,6 +139,15 @@ $colors-list: map-merge(("primary-20": $primary-20,
   .bg-#{$name} {
     background: $color;
   }
+
+  .border-#{$name} {
+    border: 1px solid $color;
+  }
+
+  .focus-#{$name}:focus,
+  .focus-#{$name}:focus-visible {
+    outline: 1px solid $color;
+  }
 }
 
 .text {
@@ -340,6 +349,10 @@ $colors-list: map-merge(("primary-20": $primary-20,
 
   &.main {
     padding-block: 120px;
+  }
+
+  &.footer {
+    padding-block: 24px;
   }
 
   &.bg-purple {
