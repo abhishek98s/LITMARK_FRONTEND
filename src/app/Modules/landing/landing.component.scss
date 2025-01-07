@@ -112,3 +112,9 @@ main {
         margin-left: auto;
     }
 }
+
+footer{
+    .main-container{
+        border-top: 1px solid $primary-220;
+    }
+}
