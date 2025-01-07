@@ -431,3 +431,9 @@ $colors-list: map-merge(("primary-20": $primary-20,
     transform: translateX(-100%);
   }
 }
+
+@media screen and (max-width:1024px) {
+  .main-container .header-wrapper .sc-title {
+    font-size: 28px;
+  }
+}

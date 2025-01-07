@@ -56,14 +56,19 @@ main {
                 position: absolute;
                 left: 0;
                 right: 0;
-                bottom: -12px;
+                top: 115%;
                 width: 115%;
                 margin-inline: auto;
                 background-image: url('../../../assets/image/line1.svg');
                 background-size: 100%;
-                height: 15px;
+                background-repeat: no-repeat;
+                height: 50px;
                 margin-left: 50%;
                 transform: translateX(-50%);
+
+                @media screen and (max-width:992px) {
+                    top: 100%;
+                }
             }
         }
     }
@@ -101,6 +106,16 @@ main {
             &:nth-child(3n) {
                 border-right: 1px solid transparent;
             }
+
+            @media screen and (max-width:1024px) {
+                &:nth-child(2n) {
+                    border-right: 1px solid transparent;
+                }
+
+                &:nth-child(3n) {
+                    border-right: 1px solid $primary-200;
+                }
+            }
         }
     }
 }
@@ -110,11 +125,15 @@ main {
         max-width: calc(100vw - ((100vw - 1130px)/2));
         margin-inline: unset;
         margin-left: auto;
+
+        @media screen and (max-width:1024px) {
+            padding-bottom: 380px;
+        }
     }
 }
 
-footer{
-    .main-container{
+footer {
+    .main-container {
         border-top: 1px solid $primary-220;
     }
 }
