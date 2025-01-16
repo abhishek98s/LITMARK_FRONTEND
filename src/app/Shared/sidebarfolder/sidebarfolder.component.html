@@ -3,7 +3,7 @@
     <a [ngClass]="{'active': folder.active}"
         class="flex items-center gap-[8px] w-full color-primary-900 text-body-md-medium">
         <figure class="rounded-2 max-w-[40px] h-[40px] md:max-w-[24px] md:h-[30px] w-full overflow-hidden ">
-            <img src="assets/icon/sub-folder.svg" alt="folder">
+            <img src="assets/icon/sub-folder.svg" class="contain" alt="folder">
         </figure>
 
         <span *ngIf="!this.dropDownService.isOpen(renamedFormString)"
