@@ -1,8 +1,8 @@
 <nav class="absolute left-0 right-0 top-0">
     <div class="main-container navbar">
         <div class="flex justify-between items-center">
-            <figure class="max-w-[140px] w-full">
-                <img src="assets/image/logo.svg" alt="logo">
+            <figure class="max-w-[140px] h-[27px] w-full aspect-[5.18]">
+                <object type="image/svg+xml" title="logo" data="assets/image/logo.svg" class="logo-small"></object>
             </figure>
 
             <a href="/login"
@@ -30,15 +30,16 @@
                 </h2>
 
                 <figure class="max-w-[310px] w-full mb-[48px]">
-                    <img src="assets/image/customer-love.png" alt="customer-love">
+                    <img loading="lazy" decoding="async" src="assets/image/customer-love.png" alt="customer-love">
                 </figure>
 
                 <div class="relative w-max">
                     <a href="/login" class="btn-primary">Get started for free</a>
 
                     <div class="absolute top-full mt-[8px] right-[-50px]">
-                        <figure class="max-w-[158px] w-full">
-                            <img src="assets/image/trigger-click.png" alt="customer-love">
+                        <figure class="max-w-[159px] w-full">
+                            <img loading="lazy" decoding="async" src="assets/image/trigger-click.png"
+                                alt="customer-love">
                         </figure>
                     </div>
                 </div>
@@ -46,7 +47,8 @@
 
             <div class="flex-1 hidden lg:block">
                 <div class="max-w-[450px] h-[290px] w-full m-auto overflow-hidden -mb-[20px] -mr-[20px]">
-                    <img src="assets/image/bookmark-main.png" class="" alt="bookmark-overlap.png">
+                    <img decoding="async" src="assets/image/bookmark-main.png" class=""
+                        alt="bookmark-overlap.png">
                 </div>
             </div>
         </div>
@@ -55,15 +57,17 @@
 
 <section class="sc-video">
     <div class="main-container relative">
-        <video #videoPlayer class="image-wrapper rounded-[4px] border-primary-250 m-auto max-w-[900px] max-h-[646px]" width="800" height="240">
+        <video #videoPlayer class="image-wrapper rounded-[4px] border-primary-250 m-auto max-w-[900px] max-h-[646px]"
+            width="800" height="240">
             <source src="https://res.cloudinary.com/dxsqdqnoe/video/upload/v1737524578/Litmark-18_tgg3ih.mp4"
                 type="video/mp4">
+            <track kind="captions" srclang="en" label="english_captions">
         </video>
-        <button (click)="togglePlay(videoPlayer)"
-            
-        class="{{isPlaying? 'opacity-0':'opacity-100'}} absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 block max-w-[68px] rounded-full bg-primary-250 overflow-hidden w-full h-[68px]">
-            <figure class="img-wrapper m-auto max-w-[22px] w-full h-[22px]">
-                <img src="assets/icon/{{isPlaying? 'icon-pause.svg': 'icon-play.svg'}}" class="contain">
+        <button (click)="togglePlay(videoPlayer)" [attr.aria-label]="isPlaying ? 'Pause video' : 'Play video'"
+            class="{{isPlaying? 'opacity-0':'opacity-100'}} absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 block max-w-[68px] rounded-full bg-primary-250 overflow-hidden w-full h-[68px]">
+            <figure class="img-wrapper m-auto max-w-[22px] w-full h-[24px]">
+                <img loading="lazy" decoding="async" width="22" height="24"
+                    src="assets/icon/{{isPlaying? 'icon-pause.svg': 'icon-play.svg'}}" alt="play-pause">
             </figure>
         </button>
     </div>
@@ -86,9 +90,9 @@
             </div>
 
             <div class="right-block max-lg:m-auto max-lg:mb-[48px]">
-                <div class="header m-auto text-[18px] w-max font-bold color-primary-700 mb-[8px]">Introducing</div>
+                <div class="header m-auto text-[18px] w-max font-bold color-primary-800 mb-[8px]">Introducing</div>
                 <div class="image-wrapper visible max-w-[250px] max-h-[50px] max-lg:max-w-[300px] max-lg:max-h-[80px]">
-                    <img class="contain" src="/assets/image/logo.svg" alt="logo.svg">
+                    <object type="image/svg+xml" title="logo" data="assets/image/logo.svg" class="logo"></object>
                 </div>
             </div>
         </div>
@@ -101,7 +105,8 @@
             <div class="left-block">
                 <div
                     class="image-wrapper visible max-w-[450px] max-h-[335px] max-lg:max-w-none max-lg:max-h-none max-md:mb-[56px]">
-                    <img class="contain relative z-10" src="/assets/image/sc-why.png" alt="sc-why.png">
+                    <img loading="lazy" decoding="async" class="contain relative z-10" src="/assets/image/sc-why.webp"
+                        alt="sc-why">
                 </div>
             </div>
 
@@ -259,9 +264,10 @@
             <a href="/login" class="btn-primary">Get started for free</a>
         </div>
 
-        <div class="image-wrapper absolute bottom-0 right-0 max-w-[49%] max-lg:max-w-[700px] w-[48%] max-h-[320px]">
-            <img class="object-left-top" src="assets/image/mac-mockup.svg" alt="mac-mockup">
-        </div>
+        <figure
+            class="image-wrapper absolute bottom-0 right-0 max-w-[49%] max-lg:max-w-[700px] w-[48%] max-h-[320px] aspect-[1.5]">
+            <object type="image/svg+xml" title="logo" data="assets/image/mac-mockup.svg" class="mac-mockup"></object>
+        </figure>
     </div>
 </section>
 
@@ -281,10 +287,10 @@
         <div class="flex items-center gap-[8px]">
 
             <figure class="image-wrapper max-w-[60px]">
-                <img src="/assets/image/logo.svg" alt="logo">
+                <object type="image/svg+xml" title="logo" data="assets/image/logo.svg" class="logo"></object>
             </figure>
 
-            <span class="border border-gray-100 border-l-gray-200 pl-[8px] color-primary-550 text-[14px]">build by
+            <span class="border border-gray-100 border-l-gray-200 pl-[8px] color-primary-800 text-[14px]">build by
                 abhishek98s</span>
         </div>
     </div>
