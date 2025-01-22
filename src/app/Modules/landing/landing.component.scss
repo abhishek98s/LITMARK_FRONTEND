@@ -33,16 +33,31 @@ main {
 .sc-video {
     position: relative;
 
-    &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 426px;
-        background: linear-gradient(180deg, #ffffff1a 0%, #FFFFFF 87.68%);
+    button {
+        transition: .4s;
+        &:hover{
+            opacity: 1 !important;
+        }
     }
+
+    video {
+        &:hover {
+            &~button {
+                opacity: 1 !important;
+            }
+        }
+    }
+
+    // &::after {
+    //     content: '';
+    //     position: absolute;
+    //     left: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     width: 100%;
+    //     height: 426px;
+    //     background: linear-gradient(180deg, #ffffff1a 0%, #FFFFFF 87.68%);
+    // }
 }
 
 .sc-pain-point {

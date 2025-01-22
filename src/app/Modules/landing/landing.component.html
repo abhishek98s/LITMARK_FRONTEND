@@ -18,7 +18,8 @@
 
         <div class="flex justify-between items-center ">
             <div class="left-block max-w-[550px]">
-                <h1 class="text-[48px] font-bold font-sora color-primary-900 leading-[120%] mb-[8px] max-lg:text-[44px] max-md:text-[40px]">
+                <h1
+                    class="text-[48px] font-bold font-sora color-primary-900 leading-[120%] mb-[8px] max-lg:text-[44px] max-md:text-[40px]">
                     Organize Your
                     <span class="yellow-line inline-block font-sora color-primary-800 ">Bookmarks</span> with <span
                         class="yellow-line line-2 inline-block font-sora color-primary-800">Ease</span>
@@ -53,10 +54,18 @@
 </main>
 
 <section class="sc-video">
-    <div class="main-container">
-        <figure class="image-wrapper m-auto max-w-[900px] max-h-[646px]">
-            <img src="assets/image/video.png" alt="product-demo">
-        </figure>
+    <div class="main-container relative">
+        <video #videoPlayer class="image-wrapper rounded-[4px] border-primary-250 m-auto max-w-[900px] max-h-[646px]" width="800" height="240">
+            <source src="https://res.cloudinary.com/dxsqdqnoe/video/upload/v1737524578/Litmark-18_tgg3ih.mp4"
+                type="video/mp4">
+        </video>
+        <button (click)="togglePlay(videoPlayer)"
+            
+        class="{{isPlaying? 'opacity-0':'opacity-100'}} absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 block max-w-[68px] rounded-full bg-primary-250 overflow-hidden w-full h-[68px]">
+            <figure class="img-wrapper m-auto max-w-[22px] w-full h-[22px]">
+                <img src="assets/icon/{{isPlaying? 'icon-pause.svg': 'icon-play.svg'}}" class="contain">
+            </figure>
+        </button>
     </div>
 </section>
 
@@ -64,7 +73,8 @@
     <div class="main-container">
         <div class="flex justify-between align-items-center max-lg:flex-col-reverse">
             <div class="left-block max-w-[500px] w-full">
-                <h3 class="font-sora color-primary-900 text-[32px] font-bold leading-[120%] mb-[12px] max-lg:text-[28px]">
+                <h3
+                    class="font-sora color-primary-900 text-[32px] font-bold leading-[120%] mb-[12px] max-lg:text-[28px]">
                     Struggling to
                     <span class="font-sora color-primary-800">find</span> the links you
                     <span class="font-sora color-primary-800">need</span> when you need them?
@@ -89,13 +99,15 @@
     <div class="main-container">
         <div class="flex justify-between max-lg:flex-col">
             <div class="left-block">
-                <div class="image-wrapper visible max-w-[450px] max-h-[335px] max-lg:max-w-none max-lg:max-h-none max-md:mb-[56px]">
+                <div
+                    class="image-wrapper visible max-w-[450px] max-h-[335px] max-lg:max-w-none max-lg:max-h-none max-md:mb-[56px]">
                     <img class="contain relative z-10" src="/assets/image/sc-why.png" alt="sc-why.png">
                 </div>
             </div>
 
             <div class="right-block max-w-[592px] w-full">
-                <h3 class="font-bold font-sora leading-[120%] text-[32px] color-primary-900 mb-[20px] max-lg:text-[28px]">
+                <h3
+                    class="font-bold font-sora leading-[120%] text-[32px] color-primary-900 mb-[20px] max-lg:text-[28px]">
                     Designed to help you take
                     <span class="font-sora color-primary-800">Control</span> of your
                     <span class="font-sora color-primary-800">Bookmarks</span>
@@ -237,9 +249,11 @@
 <section class="sc-cta bg-primary-700 relative">
     <div class="main-container">
         <div class="left-block text-white max-w-[500px] w-full">
-            <h4 class="leading-[100%] font-bold text-[45px] font-sora mb-[12px] max-md:text-[40px]">Ready to take control of your
+            <h4 class="leading-[100%] font-bold text-[45px] font-sora mb-[12px] max-md:text-[40px]">Ready to take
+                control of your
                 bookmarks? </h4>
-            <div class="description text-[24px] font-medium leading-[150%] mb-[32px] max-md:text-[20px]">Get Started today and discover a
+            <div class="description text-[24px] font-medium leading-[150%] mb-[32px] max-md:text-[20px]">Get Started
+                today and discover a
                 better way to organize your online life.</div>
 
             <a href="/login" class="btn-primary">Get started for free</a>
@@ -270,7 +284,8 @@
                 <img src="/assets/image/logo.svg" alt="logo">
             </figure>
 
-            <span class="border border-gray-100 border-l-gray-200 pl-[8px] color-primary-550 text-[14px]">build by abhishek98s</span>
+            <span class="border border-gray-100 border-l-gray-200 pl-[8px] color-primary-550 text-[14px]">build by
+                abhishek98s</span>
         </div>
     </div>
 </footer>
