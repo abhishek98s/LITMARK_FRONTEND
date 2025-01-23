@@ -30,8 +30,8 @@
             </h2>
 
             <figure class="image-wrapper max-w-[310px] w-full mb-[48px] aspect-[6.45]">
-                <img decoding="async" width="310" height="48" class="contain"
-                    src="assets/image/customer-love.png" alt="customer-love">
+                <img decoding="async" width="310" height="48" class="contain" src="assets/image/customer-love.png"
+                    alt="customer-love">
             </figure>
 
             <div class="relative w-max">
@@ -44,18 +44,22 @@
         </div>
 
         <div class="flex-1 hidden lg:block">
-            <div class="max-w-[450px] h-[290px] w-full m-auto overflow-hidden -mb-[20px] -mr-[20px] aspect-[1.5]">
-                <img decoding="async" width="450" height="290" src="assets/image/bookmark-main.svg" class="contain"
-                    alt="bookmark-main">
-            </div>
+            <picture
+                class="image-wrapper max-w-[450px] h-[290px] w-full m-auto overflow-hidden -mb-[20px] -mr-[20px] aspect-[1.5]">
+
+                <source decoding="async" width="450" height="290" media="(min-width:1024px)"
+                    srcset="assets/image/bookmark-main.svg" alt="bookmark-main">
+                <img decoding="async" class="contain" src="assets/image/line-2.svg" alt="line">
+            </picture>
         </div>
     </div>
 </main>
 
 <section class="sc-video">
     <div class="main-container relative">
-        <video #videoPlayer preload="auto" class="image-wrapper rounded-[4px] border-primary-250 m-auto max-w-[900px] max-h-[646px]"
-            width="800" height="240">
+        <video #videoPlayer preload="auto"
+            class="image-wrapper rounded-[4px] border-primary-250 m-auto max-w-[900px] max-h-[646px]" width="800"
+            height="240">
             <source src="https://res.cloudinary.com/dxsqdqnoe/video/upload/v1737524578/Litmark-18_tgg3ih.mp4"
                 type="video/mp4">
             <track kind="captions" srclang="en" label="english_captions">
@@ -90,7 +94,8 @@
                 <div class="header m-auto text-[18px] w-max font-bold color-primary-800 mb-[8px]">Introducing</div>
                 <figure
                     class="image-wrapper visible max-w-[250px] max-h-[50px] max-lg:max-w-[300px] max-lg:max-h-[80px]">
-                    <img loading="lazy" decoding="async" alt="logo" width="250" height="50" src="assets/image/logo.svg" class="contain">
+                    <img loading="lazy" decoding="async" alt="logo" width="250" height="50" src="assets/image/logo.svg"
+                        class="contain">
                 </figure>
             </div>
         </div>
@@ -281,7 +286,8 @@
         <div class="flex items-center gap-[8px]">
 
             <figure class="image-wrapper max-w-[60px]">
-                <img loading="lazy" decoding="async" alt="logo" width="60" height="12" src="assets/image/logo-60.svg" class="contain">
+                <img loading="lazy" decoding="async" alt="logo" width="60" height="12" src="assets/image/logo-60.svg"
+                    class="contain">
             </figure>
 
             <span class="border border-gray-100 border-l-gray-200 pl-[8px] color-primary-800 text-[14px]">build by
