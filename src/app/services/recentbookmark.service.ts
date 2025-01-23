@@ -1,8 +1,8 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
 
-import { Recentbookmark, RecentbookmarkResponse } from '../model/recentbookmark.model';
-import { Chip, } from '../model/chip.model';
-import { SearchObject, SearchResponse, bookmarkArrayResponse, } from '../model/bookmark.model';
+import { Recentbookmark, RecentbookmarkResponse } from 'src/app/model/recentbookmark.model';
+import { Chip, } from 'src/app/model/chip.model';
+import { SearchObject, SearchResponse, bookmarkArrayResponse, } from 'src/app/model/bookmark.model';
 
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { distinctUntilKeyChanged } from 'rxjs/operators';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { SearchText } from '../model/nestedfolder.model';
+import { SearchText } from 'src/app/model/nestedfolder.model';
 
 @Injectable({
   providedIn: 'root'

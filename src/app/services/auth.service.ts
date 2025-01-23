@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { LoginUser, RegisterUser } from '../model/auth.model';
-import { APP_URL } from '../utils/app.config';
+import { LoginUser, RegisterUser } from 'src/app/model/auth.model';
+import { APP_URL } from 'src/app/utils/app.config';
 
 @Injectable({
   providedIn: 'root'

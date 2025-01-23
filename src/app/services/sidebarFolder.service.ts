@@ -6,7 +6,7 @@ import {
   SidebarFolderApiBody,
   SidebarFolderArrayResponse,
   SidebarFolderResponse,
-} from '../model/sidebarFolder.model';
+} from 'src/app/model/sidebarFolder.model';
 import { map } from 'rxjs';
 import { ToastService } from './toast.service';
 import { dropDownService } from './dropdown.service';
