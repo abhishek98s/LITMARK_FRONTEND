@@ -1,20 +1,18 @@
-import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, HostListener, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
-import { FolderFormComponent } from '../folder-input-box/folder-input-box.component';
 import { InputElementService } from 'src/app/services/input-element.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
-import { BreadCrumb } from 'src/app/Model/breadcrums.model';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-bookmark-folder',
-  templateUrl: './bookmark-folder.component.html',
-  styleUrls: ['./bookmark-folder.component.scss']
+  templateUrl: './bookmark-detail.component.html',
+  styleUrls: ['./bookmark-detail.component.scss']
 })
 export class BookmarkFolderComponent implements OnInit {
   @ViewChild('folderInputBox') folderInputBox!: ElementRef;

@@ -19,7 +19,7 @@ import { AuthGuard } from './guard/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RecentBoomkarkPageComponent } from './Modules/home/recent-boomkark-page/recent-boomkark-page.component';
+import { RecentBoomkarkPageComponent } from './Modules/bookmark/recent-boomkark-page/recent-boomkark-page.component';
 import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
