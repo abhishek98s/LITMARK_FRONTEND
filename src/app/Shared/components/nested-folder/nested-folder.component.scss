@@ -1,13 +1,18 @@
-@import "../../colors";
+@import "../../../colors";
 
-.bookmark {
-    &:hover{
-        .more-btn{
+.sub-folder {
+    padding: 12px 16px;
+    height: fit-content;
+
+    &:hover {
+        .more-btn {
             display: block;
         }
     }
+
     .more-btn {
-        transition: 0.4s;
+        transition: 0.2s;
+
         &:hover {
             background-color: $primary-100;
         }
@@ -15,8 +20,5 @@
         @media screen and (min-width: 768px) {
             display: none;
         }
-    }
-    .website-icon{
-        border: 1px solid $primary-300;
     }
 }
