@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { BreadCrumb } from '../Model/breadcrums.model';
+import { BreadCrumb } from 'src/app/model/breadcrums.model';
 
 @Injectable({
   providedIn: 'root'

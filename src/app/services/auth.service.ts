@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { LoginUser, RegisterUser } from '../Model/auth.model';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { APP_URL } from '../utils/app.config';
+
+import { Observable } from 'rxjs';
+import { LoginUser, RegisterUser } from 'src/app/model/auth.model';
+import { APP_URL } from 'src/app/utils/app.config';
 
 @Injectable({
   providedIn: 'root'

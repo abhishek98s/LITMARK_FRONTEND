@@ -5,7 +5,7 @@ import {
   bookmarkResponse,
   bookmarkArrayResponse,
   SearchResponse,
-} from '../Model/bookmark.model';
+} from 'src/app/model/bookmark.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { ToastService } from './toast.service';

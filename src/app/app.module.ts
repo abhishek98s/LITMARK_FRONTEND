@@ -19,25 +19,22 @@ import { AuthGuard } from './guard/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RecentBoomkarkPageComponent } from './Modules/bookmark/recent-boomkark-page/recent-boomkark-page.component';
-import { LoginComponent } from './Modules/login/login.component';
-import { LayoutComponent } from './Modules/layout/layout/layout.component';
-import { RegisterComponent } from './Modules/register/register.component';
-import { SettingComponent } from './Modules/settings/setting/setting.component';
-import { BookmarkModule } from './Modules/bookmark/bookmark.module';
+import { RecentBoomkarkPageComponent } from './modules/bookmark/recent-boomkark-page/recent-boomkark-page.component';
+import { LayoutComponent } from './modules/layout/layout/layout.component';
+import { BookmarkModule } from './modules/bookmark/bookmark.module';
 
-import { SharedModule } from './Shared/shared.module';
-import { LoadingComponent } from './Modules/layout/loading/loading.component';
+import { SharedModule } from './shared/shared.module';
+import { LoadingComponent } from './modules/layout/loading/loading.component';
+import { SettingsModule } from './modules/settings/settings.module';
+import { RegisterModule } from './modules/register/register.module';
+import { LoginModule } from './modules/login/login.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecentBoomkarkPageComponent,
-    LoginComponent,
     LayoutComponent,
     LoadingComponent,
-    RegisterComponent,
-    SettingComponent,
   ],
   imports: [
     JwtModule.forRoot({
@@ -56,6 +53,9 @@ import { LoadingComponent } from './Modules/layout/loading/loading.component';
     AppRoutingModule,
     SharedModule,
     BookmarkModule,
+    SettingsModule,
+    RegisterModule,
+    LoginModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
