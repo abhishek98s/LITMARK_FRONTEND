@@ -1,25 +1,26 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SidebarComponent } from '../Modules/layout/sidebar/sidebar.component';
-import { PrimaryBtnComponent } from './Button/primary-btn/primary-btn.component';
-import { SecondaryBtnComponent } from './Button/secondary-btn/secondary-btn.component';
-import { TeritaryBtnComponent } from './Button/teritary-btn/teritary-btn.component';
-import { InputBoxComponent } from './input-box/input-box.component';
-import { AddComponent } from './Button/Add/add.component';
-import { FolderComponent } from './sidebarfolder/sidebarfolder.component';
-import { NavbarComponent } from '../Modules/layout/navbar/navbar.component';
-import { SearchFilterBoxComponent } from './search-filter-box/search-filter-box.component';
-import { ChipComponent } from './chip/chip.component';
-import { RecentBookmarkComponent } from './recent-bookmark/recent-bookmark.component';
-import { RouterModule } from '@angular/router';
-import { NestedFolderComponent } from './nested-folder/nested-folder.component';
-import { BookmarkComponent } from './bookmark/bookmark.component';
 import { FormsModule } from '@angular/forms';
-import { BookmarkSearchItemComponent } from './bookmark-search-item/bookmark-search.component';
-import { FolderSearchItemComponent } from './sidebarfolder-searched-item/folder-search-item.component';
-import { EmptyFolderComponent } from '../Modules/layout/empty-folder/empty-folder.component';
-import { SubLoadingComponent } from '../Modules/layout/sub-loading/sub-loading.component';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
+import { NavbarComponent } from '../Modules/layout/navbar/navbar.component';
+import { SidebarComponent } from '../Modules/layout/sidebar/sidebar.component';
+import { SubLoadingComponent } from '../Modules/layout/sub-loading/sub-loading.component';
+import { EmptyFolderComponent } from '../Modules/layout/empty-folder/empty-folder.component';
+
+import { ChipComponent } from './components/chip/chip.component';
+import { AddComponent } from './components/button/add/add.component';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
+import { InputBoxComponent } from './components/input-box/input-box.component';
+import { FolderComponent } from './components/sidebarfolder/sidebarfolder.component';
+import { NestedFolderComponent } from './components/nested-folder/nested-folder.component';
+import { PrimaryBtnComponent } from './components/button/primary-btn/primary-btn.component';
+import { TeritaryBtnComponent } from './components/button/teritary-btn/teritary-btn.component';
+import { RecentBookmarkComponent } from './components/recent-bookmark/recent-bookmark.component';
+import { SecondaryBtnComponent } from './components/button/secondary-btn/secondary-btn.component';
+import { SearchFilterBoxComponent } from './components/search-filter-box/search-filter-box.component';
+import { BookmarkSearchItemComponent } from './components/bookmark-search-item/bookmark-search.component';
+import { FolderSearchItemComponent } from './components/sidebarfolder-searched-item/folder-search-item.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +37,8 @@ import { SubLoadingComponent } from '../Modules/layout/sub-loading/sub-loading.c
     RecentBookmarkComponent,
     NestedFolderComponent,
     BookmarkComponent,
-    BookmarkSearchItemComponent,
     FolderSearchItemComponent,
+    BookmarkSearchItemComponent,
     EmptyFolderComponent,
     SubLoadingComponent,
 
@@ -48,6 +49,7 @@ import { SubLoadingComponent } from '../Modules/layout/sub-loading/sub-loading.c
     RouterModule
   ],
   exports: [
+    RouterModule,    
     SidebarComponent,
     PrimaryBtnComponent,
     SecondaryBtnComponent,
@@ -59,7 +61,6 @@ import { SubLoadingComponent } from '../Modules/layout/sub-loading/sub-loading.c
     SearchFilterBoxComponent,
     ChipComponent,
     RecentBookmarkComponent,
-    RouterModule,
     NestedFolderComponent,
     BookmarkComponent,
     EmptyFolderComponent,
