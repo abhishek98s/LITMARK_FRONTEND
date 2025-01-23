@@ -1,13 +1,11 @@
-<div class="accordion" role="tablist">
-    <div *ngFor="let item of items; let i = index;"
-        class="accordion-item relative mb-[20px] overflow-hidden border-primary-220 rounded-[12px]">
-        <button class="block text-left w-full accordion-wrapper" (click)="toggleItem(item.id)" role="tab"
-            [attr.aria-expanded]="isOpen(item.id) ? 'true' : 'false'" [attr.id]="'header-' + i" tabindex="0"
-            (keydown.enter)="toggleItem(item.id)" (keydown.space)="toggleItem(item.id); $event.preventDefault()">
-            <div class="header p-[24px] border-primary-220 outline-transparent color-primary-900 font-medium flex-1">
-                {{item.title}}
-            </div>
-        </button>
+<div class="accordion-wrapper" role="tablist">
+    <a *ngFor="let item of items; let i = index;" role="tab" (click)="toggleItem(item.id)"
+        [attr.aria-expanded]="isOpen(item.id) ? 'true' : 'false'" [attr.id]="'header-' + i" tabindex="0"
+        (keydown.enter)="toggleItem(item.id)" (keydown.space)="toggleItem(item.id); $event.preventDefault()"
+        class="accordion-item block text-left w-full relative mb-[20px] overflow-hidden border-primary-220 rounded-[12px]">
+        <div class="header p-[24px] border-primary-220 outline-transparent color-primary-900 font-medium flex-1">
+            {{item.title}}
+        </div>
         <figure class="absolute top-[20px] right-[20px] image-wrapper max-w-[24px] max-h-[24px] duration-300"
             [class.rotate-180]="isOpen(item.id)">
             <img src="/assets/icon/arrow-down.svg" alt="arrow-down">
@@ -17,5 +15,5 @@
             [attr.aria-labelledby]="'header-' + i" [attr.aria-hidden]="!isOpen(item.id)">
             {{item.content}}
         </div>
-    </div>
+    </a>
 </div>
