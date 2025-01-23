@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookmarkFolderComponent } from './bookmark-folder.component';
+import { BookmarkFolderComponent } from './bookmark-detail.component';
 
 describe('BookmarkFolderComponent', () => {
   let component: BookmarkFolderComponent;

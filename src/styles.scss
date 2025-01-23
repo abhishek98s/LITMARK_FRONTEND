@@ -99,7 +99,6 @@ input {
 $colors-list: (
 );
 $colors-list: map-merge(("primary-20": $primary-20,
-      "primary-0": $primary-0,
       "primary-40": $primary-40,
       "primary-100": $primary-100,
       "primary-150": $primary-150,
@@ -334,7 +333,7 @@ $colors-list: map-merge(("primary-20": $primary-20,
 }
 
 .font-sora {
-  font-family: "Sora", serif;
+  font-family: "Sora", cursive, monospace;
 }
 
 .main-container {

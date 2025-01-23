@@ -1,8 +1,8 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { RecentBoomkarkPageComponent } from './Modules/home/recent-boomkark-page/recent-boomkark-page.component';
-import { BookmarkFolderComponent } from './Modules/bookmark/top/bookmark-folder.component';
+import { RecentBoomkarkPageComponent } from './Modules/bookmark/recent-boomkark-page/recent-boomkark-page.component';
+import { BookmarkFolderComponent } from './Modules/bookmark/bookmark-detail/bookmark-detail.component';
 import { LoginComponent } from './Modules/login/login.component';
 import { LayoutComponent } from './Modules/layout/layout/layout.component';
 import { RegisterComponent } from './Modules/register/register.component';
@@ -16,23 +16,14 @@ const routes: Routes = [
   {
     path: '',
     component: LandingComponent,
-    canActivate: [loggedInGuard]
+    canActivate: [loggedInGuard],
   },
   {
     path: 'bookmark',
-    component: LayoutComponent,
-    children: [
-      { path: '', redirectTo: 'recent', pathMatch: 'full' },
-      { path: 'recent', component: RecentBoomkarkPageComponent },
-      {
-        path: ':id',
-        loadChildren: () =>
-          import('./Modules/bookmark/bookmark.module').then(
-            (m) => m.BookmarkModule
-          ),
-      },
-      { path: '**', redirectTo: 'recent' },
-    ],
+    loadChildren: () =>
+      import('./Modules/bookmark/bookmark.module').then(
+        (m) => m.BookmarkModule
+      ),
     canActivate: [AuthGuard],
   },
   {
@@ -47,7 +38,7 @@ const routes: Routes = [
     component: RegisterComponent,
     canActivate: [loggedInGuard],
   },
-  { path: '**', redirectTo: '/login' },
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({
