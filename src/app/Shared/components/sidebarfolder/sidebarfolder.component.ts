@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { SidebarFolder } from 'src/app/Model/sidebarFolder.model';
+import { SidebarFolder } from 'src/app/model/sidebarFolder.model';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';

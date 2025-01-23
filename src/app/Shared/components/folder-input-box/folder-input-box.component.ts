@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
-import { NestedFolderResponse } from 'src/app/Model/nestedfolder.model';
+import { NestedFolderResponse } from 'src/app/model/nestedfolder.model';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { InputElementService } from 'src/app/services/input-element.service';

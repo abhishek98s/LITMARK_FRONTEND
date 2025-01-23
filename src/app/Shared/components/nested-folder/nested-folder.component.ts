@@ -1,10 +1,10 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Folder } from 'src/app/Model/nestedfolder.model';
+import { Folder } from 'src/app/model/nestedfolder.model';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { FolderService } from 'src/app/services/folder.service';
 import { InputElementService } from 'src/app/services/input-element.service';
-import { BreadCrumb } from 'src/app/Model/breadcrums.model';
+import { BreadCrumb } from 'src/app/model/breadcrums.model';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { BookmarkService } from 'src/app/services/bookmark.service';

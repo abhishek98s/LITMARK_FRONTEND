@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { SidebarFolder } from 'src/app/Model/sidebarFolder.model';
+import { SidebarFolder } from 'src/app/model/sidebarFolder.model';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchTextService } from 'src/app/services/search-text.service';

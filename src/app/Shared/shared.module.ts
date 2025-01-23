@@ -3,10 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { NavbarComponent } from '../Modules/layout/navbar/navbar.component';
-import { SidebarComponent } from '../Modules/layout/sidebar/sidebar.component';
-import { SubLoadingComponent } from '../Modules/layout/sub-loading/sub-loading.component';
-import { EmptyFolderComponent } from '../Modules/layout/empty-folder/empty-folder.component';
+import { NavbarComponent } from '../modules/layout/navbar/navbar.component';
+import { SidebarComponent } from '../modules/layout/sidebar/sidebar.component';
+import { SubLoadingComponent } from '../modules/layout/sub-loading/sub-loading.component';
+import { EmptyFolderComponent } from '../modules/layout/empty-folder/empty-folder.component';
 
 import { ChipComponent } from './components/chip/chip.component';
 import { AddComponent } from './components/button/add/add.component';
@@ -24,6 +24,7 @@ import { FolderSearchItemComponent } from './components/sidebarfolder-searched-i
 
 @NgModule({
   declarations: [
+    
     SidebarComponent,
     PrimaryBtnComponent,
     SecondaryBtnComponent,

@@ -4,11 +4,11 @@ import {
   FolderApiBody,
   NestedFolderArrayResponse,
   NestedFolderResponse,
-} from '../Model/nestedfolder.model';
+} from '../model/nestedfolder.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { ToastService } from './toast.service';
-import { BreadCrumb } from '../Model/breadcrums.model';
+import { BreadCrumb } from '../model/breadcrums.model';
 import { StateService } from './state.service';
 import { APP_URL } from '../utils/app.config';
 

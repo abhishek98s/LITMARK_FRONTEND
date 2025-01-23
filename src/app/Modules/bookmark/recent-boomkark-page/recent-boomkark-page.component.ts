@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Recentbookmark } from 'src/app/Model/recentbookmark.model';
+import { Recentbookmark } from 'src/app/model/recentbookmark.model';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { recentBookmarkService } from 'src/app/services/recentbookmark.service';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';

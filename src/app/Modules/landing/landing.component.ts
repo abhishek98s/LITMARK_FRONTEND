@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AccordionModule } from '../../Shared/components/accordion/accordion.module';
+import { AccordionModule } from '../../shared/components/accordion/accordion.module';
 import { Title } from '@angular/platform-browser';
 
 @Component({

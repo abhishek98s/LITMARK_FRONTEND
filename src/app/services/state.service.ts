@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { State } from '../Model/nestedfolder.model';
+import { State } from '../model/nestedfolder.model';
 
 @Injectable({
   providedIn: 'root'

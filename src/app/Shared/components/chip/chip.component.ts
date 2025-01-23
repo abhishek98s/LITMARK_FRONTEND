@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Chip } from 'src/app/Model/chip.model';
+import { Chip } from 'src/app/model/chip.model';
 
 @Component({
   selector: 'app-chip',

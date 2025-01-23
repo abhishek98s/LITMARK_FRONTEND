@@ -1,5 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { SidebarFolder, SidebarFolderApiBody, SidebarFolderArrayResponse, SidebarFolderResponse } from '../Model/sidebarFolder.model';
+import { SidebarFolder, SidebarFolderApiBody, SidebarFolderArrayResponse, SidebarFolderResponse } from '../model/sidebarFolder.model';
 import { BehaviorSubject, forkJoin, map, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from './toast.service';

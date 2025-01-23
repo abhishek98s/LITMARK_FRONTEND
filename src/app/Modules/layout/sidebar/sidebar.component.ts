@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Signal, ViewChild, WritableSignal, signal } from '@angular/core';
-import { SidebarFolder, SidebarFolderResponse } from 'src/app/Model/sidebarFolder.model';
+import { SidebarFolder, SidebarFolderResponse } from 'src/app/model/sidebarFolder.model';
 import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { StateService } from 'src/app/services/state.service';
 import { dropDownService } from 'src/app/services/dropdown.service';

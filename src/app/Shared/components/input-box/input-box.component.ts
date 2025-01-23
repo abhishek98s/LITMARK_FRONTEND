@@ -8,7 +8,7 @@ import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap, takeUntil } from 'rxjs';
-import { SearchObject, SearchResponse } from 'src/app/Model/bookmark.model';
+import { SearchObject, SearchResponse } from 'src/app/model/bookmark.model';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({

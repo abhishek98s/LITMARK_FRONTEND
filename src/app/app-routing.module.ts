@@ -1,16 +1,9 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { RecentBoomkarkPageComponent } from './Modules/bookmark/recent-boomkark-page/recent-boomkark-page.component';
-import { BookmarkFolderComponent } from './Modules/bookmark/bookmark-detail/bookmark-detail.component';
-import { LoginComponent } from './Modules/login/login.component';
-import { LayoutComponent } from './Modules/layout/layout/layout.component';
-import { RegisterComponent } from './Modules/register/register.component';
-import { SettingComponent } from './Modules/settings/setting/setting.component';
 
 import { AuthGuard } from './guard/auth.guard';
 import { loggedInGuard } from './guard/logged-in.guard';
-import { LandingComponent } from './Modules/landing/landing.component';
+import { LandingComponent } from './modules/landing/landing.component';
 
 const routes: Routes = [
   {
@@ -21,21 +14,31 @@ const routes: Routes = [
   {
     path: 'bookmark',
     loadChildren: () =>
-      import('./Modules/bookmark/bookmark.module').then(
+      import('./modules/bookmark/bookmark.module').then(
         (m) => m.BookmarkModule
       ),
     canActivate: [AuthGuard],
   },
   {
     path: 'setting',
-    component: LayoutComponent,
-    children: [{ path: '', component: SettingComponent }],
+    loadChildren: () =>
+      import('./modules/settings/settings.module').then(
+        (m) => m.SettingsModule
+      ),
     canActivate: [AuthGuard],
   },
-  { path: 'login', component: LoginComponent, canActivate: [loggedInGuard] },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./modules/login/login.module').then((m) => m.LoginModule),
+    canActivate: [loggedInGuard],
+  },
   {
     path: 'register',
-    component: RegisterComponent,
+    loadChildren: () =>
+      import('./modules/register/register.module').then(
+        (m) => m.RegisterModule
+      ),
     canActivate: [loggedInGuard],
   },
   { path: '**', redirectTo: '/' },

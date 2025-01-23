@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SearchObject } from 'src/app/Model/bookmark.model';
+import { SearchObject } from 'src/app/model/bookmark.model';
 import { dropDownService } from 'src/app/services/dropdown.service';
 import { SearchTextService } from 'src/app/services/search-text.service';
 
