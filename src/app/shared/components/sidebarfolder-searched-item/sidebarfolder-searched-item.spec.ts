@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FolderSearchItemComponent } from './folder-search-item.component';
+import { FolderSearchItemComponent } from './sidebarfolder-searched-item.component';
 
 describe('FolderSearchItemComponent', () => {
   let component: FolderSearchItemComponent;

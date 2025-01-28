@@ -14,7 +14,7 @@ import { StateService } from 'src/app/services/state.service';
   templateUrl: './bookmark-detail.component.html',
   styleUrls: ['./bookmark-detail.component.scss']
 })
-export class BookmarkFolderComponent implements OnInit {
+export class BookmarkFolderDetailComponent implements OnInit {
   @ViewChild('folderInputBox') folderInputBox!: ElementRef;
   folderInputElement!: ElementRef
 

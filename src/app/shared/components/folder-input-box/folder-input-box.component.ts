@@ -9,7 +9,7 @@ import { InputElementService } from 'src/app/services/input-element.service';
   templateUrl: './folder-input-box.component.html',
   styleUrls: ['./folder-input-box.component.scss']
 })
-export class FolderFormComponent {
+export class FolderInputBoxComponent {
   @ViewChild('folderInputElement') folderInputElement!: ElementRef;
 
   @Input() parentFolderId!: number;

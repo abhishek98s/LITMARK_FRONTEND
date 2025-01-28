@@ -35,7 +35,7 @@ export class RegisterComponent {
     }
     this.authService.onRegister(this.registerForm.value).subscribe({
       next: () => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
         this.toast.success('You are registered.');
       },
       error: (error) => {

@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/litmark",
+            "outputPath": "dist/Litmark/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -106,6 +106,66 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/Litmark/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "buildOptimizer": true,
+              "outputHashing": "media",
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true,
+              "vendorChunk": false
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": true,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "Litmark:build:development",
+              "serverTarget": "Litmark:server:development"
+            },
+            "production": {
+              "browserTarget": "Litmark:build:production",
+              "serverTarget": "Litmark:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Litmark:build:production",
+              "serverTarget": "Litmark:server:production"
+            },
+            "development": {
+              "browserTarget": "Litmark:build:development",
+              "serverTarget": "Litmark:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

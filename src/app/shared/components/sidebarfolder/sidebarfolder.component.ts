@@ -12,7 +12,7 @@ import { ToastService } from 'src/app/services/toast.service';
   templateUrl: './sidebarfolder.component.html',
   styleUrls: ['./sidebarfolder.component.scss']
 })
-export class FolderComponent implements OnInit {
+export class SidebarFolderComponent implements OnInit {
   @ViewChild(`dropdowns`) dropdownElement!: ElementRef;
   @ViewChild(`updateForm`) updateForm!: ElementRef;
 

@@ -1,40 +1,44 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
-  HTTP_INTERCEPTORS,
-  provideHttpClient,
-  withInterceptors,
-} from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+  RouterLink,
+  RouterLinkActive,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { Meta } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Meta, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserAnimationsModule,
+  provideAnimations,
+} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { JwtModule } from '@auth0/angular-jwt';
 
-import { ToastrModule } from 'ngx-toastr';
+import { provideToastr, ToastrModule } from 'ngx-toastr';
 import { loggingInterceptor } from './auth.interceptor';
 import { AuthGuard } from './guard/auth.guard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RecentBoomkarkPageComponent } from './modules/bookmark/recent-boomkark-page/recent-boomkark-page.component';
-import { LayoutComponent } from './modules/layout/layout/layout.component';
 import { BookmarkModule } from './modules/bookmark/bookmark.module';
 
 import { SharedModule } from './shared/shared.module';
-import { LoadingComponent } from './modules/layout/loading/loading.component';
-import { SettingsModule } from './modules/settings/settings.module';
-import { RegisterModule } from './modules/register/register.module';
-import { LoginModule } from './modules/login/login.module';
+import { LandingComponent } from './modules/landing/landing.component';
+import { AccordionModule } from './shared/components/accordion/accordion.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { AuthRoutingModule } from './modules/auth/auth-routing.module';
+import { LoginComponent } from './modules/auth/login/login.component';
+import { RegisterComponent } from './modules/auth/register/register.component';
+import { BookmarkRoutingModule } from './modules/bookmark/bookmark-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RecentBoomkarkPageComponent,
-    LayoutComponent,
-    LoadingComponent,
+    LandingComponent,
+    // LoginComponent,
+    // RegisterComponent,
   ],
   imports: [
     JwtModule.forRoot({
@@ -44,26 +48,23 @@ import { LoginModule } from './modules/login/login.module';
         disallowedRoutes: ['example.com/auth'], // Specify routes that don't need the token
       },
     }),
+
     BrowserModule,
-    AppRoutingModule,
     CommonModule,
     FormsModule,
     RouterModule,
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    BookmarkModule,
-    SettingsModule,
-    RegisterModule,
-    LoginModule,
-    ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    DragDropModule,
+    
+    AppRoutingModule,
+    AccordionModule,
+    
+
   ],
   providers: [
     AuthGuard,
     provideHttpClient(withInterceptors([loggingInterceptor])),
+    provideClientHydration(),
   ],
   bootstrap: [AppComponent],
 })

@@ -31,14 +31,17 @@ export class loggedInGuard {
         !this.jwtHelper.isTokenExpired(token) ||
         /(login|register|)/.test(url)
       ) {
+        console.log('err')
         throw new Error();
       } else {
         this.stateService.state.loading = false;
 
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
       }
       return false;
     } catch (error) {
+        console.log('err');
+
       this.router.navigate(['bookmark/recent']);
     }
   }

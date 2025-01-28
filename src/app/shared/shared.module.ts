@@ -1,71 +1,110 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { NavbarComponent } from '../modules/layout/navbar/navbar.component';
-import { SidebarComponent } from '../modules/layout/sidebar/sidebar.component';
-import { SubLoadingComponent } from '../modules/layout/sub-loading/sub-loading.component';
-import { EmptyFolderComponent } from '../modules/layout/empty-folder/empty-folder.component';
-
 import { ChipComponent } from './components/chip/chip.component';
-import { AddComponent } from './components/button/add/add.component';
+import { AddBtnComponent } from './components/button/add-btn/add-btn.component';
 import { BookmarkComponent } from './components/bookmark/bookmark.component';
 import { InputBoxComponent } from './components/input-box/input-box.component';
-import { FolderComponent } from './components/sidebarfolder/sidebarfolder.component';
+import { SidebarFolderComponent } from './components/sidebarfolder/sidebarfolder.component';
 import { NestedFolderComponent } from './components/nested-folder/nested-folder.component';
 import { PrimaryBtnComponent } from './components/button/primary-btn/primary-btn.component';
 import { TeritaryBtnComponent } from './components/button/teritary-btn/teritary-btn.component';
-import { RecentBookmarkComponent } from './components/recent-bookmark/recent-bookmark.component';
 import { SecondaryBtnComponent } from './components/button/secondary-btn/secondary-btn.component';
 import { SearchFilterBoxComponent } from './components/search-filter-box/search-filter-box.component';
 import { BookmarkSearchItemComponent } from './components/bookmark-search-item/bookmark-search.component';
-import { FolderSearchItemComponent } from './components/sidebarfolder-searched-item/folder-search-item.component';
+import { SidebarFolderSearchedItem } from './components/sidebarfolder-searched-item/sidebarfolder-searched-item.component';
+import { BookmarkInputBoxComponent } from './components/bookmark-input-box/bookmark-input-box.component';
+import { EmptyBookmarkComponent } from './components/empty-bookmark/empty-bookmark.component';
+import { FolderInputBoxComponent } from './components/folder-input-box/folder-input-box.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { EmptyFolderComponent } from './components/empty-folder/empty-folder.component';
+import { SubLoadingComponent } from './components/sub-loading/sub-loading.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { LayoutComponent } from './layout/layout/layout.component';
+import { RecentBookmarkComponent } from './components/recent-bookmark/recent-bookmark.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    
-    SidebarComponent,
+    BookmarkComponent,
+    BookmarkInputBoxComponent,
+    BookmarkSearchItemComponent,
+    AddBtnComponent,
     PrimaryBtnComponent,
     SecondaryBtnComponent,
     TeritaryBtnComponent,
-    InputBoxComponent,
-    AddComponent,
-    FolderComponent,
-    NavbarComponent,
-    SearchFilterBoxComponent,
     ChipComponent,
-    RecentBookmarkComponent,
-    NestedFolderComponent,
-    BookmarkComponent,
-    FolderSearchItemComponent,
-    BookmarkSearchItemComponent,
+    EmptyBookmarkComponent,
     EmptyFolderComponent,
+    FolderInputBoxComponent,
+    InputBoxComponent,
+    LoadingComponent,
+    NestedFolderComponent,
+    RecentBookmarkComponent,
+    SearchFilterBoxComponent,
+    SidebarFolderComponent,
+    SidebarFolderSearchedItem,
     SubLoadingComponent,
 
+    SidebarComponent,
+    NavbarComponent,
+    LayoutComponent,
   ],
   imports: [
-    FormsModule,
+    RouterModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    ReactiveFormsModule,
     CommonModule,
-    RouterModule
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   exports: [
-    RouterModule,    
-    SidebarComponent,
+    RouterModule,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    ReactiveFormsModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule,
+
+    BookmarkComponent,
+    BookmarkInputBoxComponent,
+    BookmarkSearchItemComponent,
+    AddBtnComponent,
     PrimaryBtnComponent,
     SecondaryBtnComponent,
     TeritaryBtnComponent,
-    InputBoxComponent,
-    AddComponent,
-    FolderComponent,
-    NavbarComponent,
-    SearchFilterBoxComponent,
     ChipComponent,
-    RecentBookmarkComponent,
-    NestedFolderComponent,
-    BookmarkComponent,
+    EmptyBookmarkComponent,
     EmptyFolderComponent,
+    FolderInputBoxComponent,
+    InputBoxComponent,
+    LoadingComponent,
+    NestedFolderComponent,
+    RecentBookmarkComponent,
+    SearchFilterBoxComponent,
+    SidebarFolderComponent,
+    SidebarFolderSearchedItem,
     SubLoadingComponent,
-  ]
+
+    SidebarComponent,
+    NavbarComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FolderFormComponent } from './folder-input-box.component';
+import { FolderInputBoxComponent } from './folder-input-box.component';
 
-describe('FolderFormComponent', () => {
-  let component: FolderFormComponent;
-  let fixture: ComponentFixture<FolderFormComponent>;
+describe('FolderInputBoxComponent', () => {
+  let component: FolderInputBoxComponent;
+  let fixture: ComponentFixture<FolderInputBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FolderFormComponent]
+      imports: [FolderInputBoxComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(FolderFormComponent);
+    fixture = TestBed.createComponent(FolderInputBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

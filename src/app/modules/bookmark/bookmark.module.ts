@@ -1,29 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { FolderFormComponent } from '../../shared/components/folder-input-box/folder-input-box.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BookmarkInputBoxComponent } from '../../shared/components/bookmark-input-box/bookmark-input-box.component';
 import { EmptyBookmarkComponent } from '../../shared/components/empty-bookmark/empty-bookmark.component';
 import { BookmarkRoutingModule } from './bookmark-routing.module';
-import { BookmarkFolderComponent } from './bookmark-detail/bookmark-detail.component';
-
+import { BookmarkFolderDetailComponent } from './bookmark-detail/bookmark-detail.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { RecentBoomkarkPageComponent } from './recent-boomkark-page/recent-boomkark-page.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [
-    BookmarkFolderComponent,
-    FolderFormComponent,
-    BookmarkInputBoxComponent,
-    EmptyBookmarkComponent
-  ],
+  declarations: [BookmarkFolderDetailComponent, RecentBoomkarkPageComponent],
   imports: [
-    FormsModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+
     BookmarkRoutingModule,
-    CommonModule,
-    RouterModule,
-    SharedModule       
-  ]
+    SharedModule,
+  ],
 })
-export class BookmarkModule { }
+export class BookmarkModule {}

@@ -43,6 +43,8 @@ export class LoginComponent {
           return;
         }
         this.toast.error(err);
+        console.log(error);
+
       }
     })
   }
