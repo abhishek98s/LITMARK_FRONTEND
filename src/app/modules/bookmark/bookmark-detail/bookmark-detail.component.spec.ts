@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookmarkFolderComponent } from './bookmark-detail.component';
+import { BookmarkFolderDetailComponent } from './bookmark-detail.component';
 
-describe('BookmarkFolderComponent', () => {
-  let component: BookmarkFolderComponent;
-  let fixture: ComponentFixture<BookmarkFolderComponent>;
+describe('BookmarkFolderDetailComponent', () => {
+  let component: BookmarkFolderDetailComponent;
+  let fixture: ComponentFixture<BookmarkFolderDetailComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BookmarkFolderComponent]
+      declarations: [BookmarkFolderDetailComponent]
     });
-    fixture = TestBed.createComponent(BookmarkFolderComponent);
+    fixture = TestBed.createComponent(BookmarkFolderDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

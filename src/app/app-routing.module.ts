@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 import { loggedInGuard } from './guard/logged-in.guard';
 import { LandingComponent } from './modules/landing/landing.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
   {
@@ -28,24 +29,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'login',
+    path: 'auth',
     loadChildren: () =>
-      import('./modules/login/login.module').then((m) => m.LoginModule),
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
     canActivate: [loggedInGuard],
   },
-  {
-    path: 'register',
-    loadChildren: () =>
-      import('./modules/register/register.module').then(
-        (m) => m.RegisterModule
-      ),
-    canActivate: [loggedInGuard],
-  },
-  { path: '**', redirectTo: '/' },
+  { path: '**', redirectTo: '/auth/login' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [BrowserModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

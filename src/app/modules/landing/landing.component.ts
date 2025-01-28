@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { AccordionModule } from '../../shared/components/accordion/accordion.module';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-landing',
-  standalone: true,
-  imports: [AccordionModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
 })

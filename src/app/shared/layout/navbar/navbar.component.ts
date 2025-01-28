@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
     this.dropDownService.closeDropdown(this.uniqueString);
     const token = localStorage.getItem('token');
     if (!token) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth/login']);
       return;
     }
     this.userData = this.jwtHelper.decodeToken(token) as User;

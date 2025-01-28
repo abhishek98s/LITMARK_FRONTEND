@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BookmarkFolderComponent } from './bookmark-detail/bookmark-detail.component';
+import { BookmarkFolderDetailComponent } from './bookmark-detail/bookmark-detail.component';
 import { RecentBoomkarkPageComponent } from './recent-boomkark-page/recent-boomkark-page.component';
-import { LayoutComponent } from '../layout/layout/layout.component';
+import { LayoutComponent } from 'src/app/shared/layout/layout/layout.component';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'recent', pathMatch: 'full' },
       { path: 'recent', component: RecentBoomkarkPageComponent },
-      { path: ':id', component: BookmarkFolderComponent },
+      { path: ':id', component: BookmarkFolderDetailComponent },
       { path: '**', redirectTo: 'recent' },
     ],
   },

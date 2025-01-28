@@ -11,7 +11,7 @@ import { sidebarFolderService } from 'src/app/services/sidebarFolder.service';
   templateUrl: './sidebarfolder-searched-item.component.html',
   styleUrls: ['./sidebarfolder-searched-item.component.scss'],
 })
-export class FolderSearchItemComponent {
+export class SidebarFolderSearchedItem {
   @Input() folder!: SidebarFolder;
 
   constructor(

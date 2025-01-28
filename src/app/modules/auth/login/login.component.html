@@ -37,8 +37,8 @@
                 <form class="form-wrapper" [formGroup]="loginForm" (ngSubmit)="submitForm()">
                     <div class="flex flex-col mb-[20px]">
                         <label class="text-body-md-regular color-primary-850 mb-[8px]">Email</label>
-                        <input type="email" class="p-[20px] rounded-2 h-[56px] text-body-md-regular" placeholder="example@gmail.com"
-                            formControlName="email">
+                        <input type="email" class="p-[20px] rounded-2 h-[56px] text-body-md-regular"
+                            placeholder="example@gmail.com" formControlName="email">
                     </div>
                     <div class="flex flex-col mb-[20px]">
                         <label class="text-body-md-regular color-primary-850 mb-[8px]">Password</label>
@@ -49,7 +49,8 @@
                                 (click)="this.togglePassword()">
 
                                 <figure class="w-[24px] h-[24px] bg-neutral-0 cursor-pointer">
-                                    <img [src]="showPassword ? 'assets/icon/eye.svg': 'assets/icon/eye-close.svg'" alt="password">
+                                    <img [src]="showPassword ? 'assets/icon/eye.svg': 'assets/icon/eye-close.svg'"
+                                        alt="password">
                                 </figure>
                             </div>
                         </div>
@@ -68,8 +69,8 @@
                     <div class="buttons flex gap-[24px]">
                         <button type="submit"
                             class="bg-primary-800 color-neutral-0 rounded-2 w-full p-[12px] text-body-md-bold text-center cursor-pointer">Login</button>
-                        <button routerLink="/register" type="button"
-                            class="register-btn color-primary-800 rounded-2 w-full p-[12px] text-body-md-bold text-center">Register</button>
+                        <a href="/auth/register" routerLinkActive="active"
+                            class="register-btn color-primary-800 rounded-2 w-full p-[12px] text-body-md-bold text-center">Register</a>
                     </div>
                 </form>
             </div>
