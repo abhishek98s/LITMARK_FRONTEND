@@ -32,9 +32,6 @@ import { LoginModule } from './modules/login/login.module';
 @NgModule({
   declarations: [
     AppComponent,
-    RecentBoomkarkPageComponent,
-    LayoutComponent,
-    LoadingComponent,
   ],
   imports: [
     JwtModule.forRoot({
@@ -49,17 +46,13 @@ import { LoginModule } from './modules/login/login.module';
     CommonModule,
     FormsModule,
     RouterModule,
-    BrowserModule,
-    AppRoutingModule,
     SharedModule,
-    BookmarkModule,
-    SettingsModule,
+    // BookmarkModule,
     RegisterModule,
     LoginModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    DragDropModule,
   ],
   providers: [
     AuthGuard,
