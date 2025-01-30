@@ -416,6 +416,12 @@ $colors-list: map-merge(("primary-20": $primary-20,
     font-weight: 700;
     color: $neutral-0;
     min-width: 100px;
+
+
+    @media screen and (max-width: 768px) {
+      padding: 16px 24px;
+      font-size: 16px;
+    }
   }
 }
 
@@ -434,7 +440,14 @@ $colors-list: map-merge(("primary-20": $primary-20,
 }
 
 @media screen and (max-width:1024px) {
-  .main-container .header-wrapper .sc-title {
-    font-size: 28px;
+  .main-container {
+    .header-wrapper .sc-title {
+      font-size: 28px;
+    }
+
+    &.main {
+      padding-block: 0;
+    }
   }
+
 }
