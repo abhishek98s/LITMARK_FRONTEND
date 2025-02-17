@@ -44,7 +44,7 @@ import { LoginModule } from './modules/login/login.module';
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    FormsModule,
+    
     RouterModule,
     SharedModule,
     // BookmarkModule,
